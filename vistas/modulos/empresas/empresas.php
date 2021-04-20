@@ -100,21 +100,69 @@ MODAL AGREGAR EMPRESA
 
           <div class="box-body">
 
-            <!-- ENTRADA PARA EL CODIGO -->
+            <!-- ENTRADA PARA LA RAZON SOCIAL -->
             
             <div class="form-group">
               
               <div class="input-group">
               
-                <span class="input-group-addon"><i class="fa fa-key"></i></span> 
+                <span class="input-group-addon"><i class="fa fa-building"></i></span> 
 
-                <input type="text" min="0" class="form-control input-lg" name="nuevoCodigo" placeholder="Ingresar codigo" required>
+                <input type="text" min="0" class="form-control input-lg" name="nuevaRazonSocial" placeholder="Ingresar razon social" required>
 
               </div>
 
             </div>          
 
-            <!-- ENTRADA PARA EL NOMBRE -->
+            <!-- ENTRADA PARA EL DOCUMENTO -->
+            
+            <div class="form-group">
+              
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-archive"></i></span> 
+
+                <input type="text" class="form-control input-lg" name="nuevoDocumento" placeholder="Ingresar documento" required>
+
+              </div>
+
+            </div>
+
+            <!-- ENTRADA PARA EL LOGO1 -->
+            
+            <div class="form-group">
+              
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-image"></i></span> 
+
+                <input type="file" class="form-control input-lg nuevoLogo1"  name="nuevoLogo1" >
+
+
+              </div>
+              <img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail previsualizarLogo" width="100px">
+
+            </div>
+
+            <!-- ENTRADA PARA EL LOGO2 -->
+            
+            <div class="form-group">
+              
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-image"></i></span> 
+
+                <input type="file" class="form-control input-lg nuevoLogo2" name="nuevoLogo2" >
+
+                
+
+              </div>
+
+              <img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail previsualizarLogo2" width="100px">
+
+            </div>
+
+            <!-- ENTRADA PARA EL RESPONSABLE -->
             
             <div class="form-group">
               
@@ -122,11 +170,20 @@ MODAL AGREGAR EMPRESA
               
                 <span class="input-group-addon"><i class="fa fa-user"></i></span> 
 
-                <input type="text" class="form-control input-lg" name="nuevaDescripcion" placeholder="Ingresar banco" required>
+                <select  class="form-control input-lg selectpicker" name="nuevoResponsable" data-live-search="true" required>
+                  <option value="">Seleccionar responsable</option>
+                <?php
+                  $usuarios = ControladorUsuarios::ctrMostrarUsuarios(null,null);
+                  foreach ($usuarios as $key => $value) {
+                    echo '<option value="' . $value["id"] . '">' . $value["id"] ." - ".$value["nombre"] . '</option>';
+                  }
+                ?>
+                </select>
 
               </div>
 
             </div>
+
 
           </div>
 

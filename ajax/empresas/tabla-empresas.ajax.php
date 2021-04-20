@@ -25,12 +25,12 @@ class TablaEmpresas{
             if($empresa[$i]["estado"] == 1){
 
                 /* $estado = "<button class='btn btn-danger btn-xs btnActivar'>".$articulos[$i]["id"]."</button>"; */
-                $estado = "<button class='btn btn-success btn-xs btnActivarEmpresa' idEmpresa='".$empresa[$i]["id"]."' estadoEmpresa='0'>Activo</button>";
+                $estado = "<button class='btn btn-success btn-xs btnActivarEmpresa' idEmpresa='".$empresa[$i]["id_empresa"]."' estadoEmpresa='0'>Activo</button>";
     
             }else{
     
                 /* $estado = "<button class='btn btn-success btn-xs btnActivarArt'>".$articulos[$i]["id"]."</button>"; */
-                $estado = "<button class='btn btn-danger btn-xs btnActivarEmpresa' idEmpresa='".$empresa[$i]["id"]."' estadoEmpresa='1'>Inactivo</button>";
+                $estado = "<button class='btn btn-danger btn-xs btnActivarEmpresa' idEmpresa='".$empresa[$i]["id_empresa"]."' estadoEmpresa='1'>Inactivo</button>";
     
             }
     
@@ -38,7 +38,7 @@ class TablaEmpresas{
         TRAEMOS LAS ACCIONES
         =============================================*/         
         
-        $botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarEmpresa' idEmpresa='".$empresa[$i]["id"]."' data-toggle='modal' data-target='#modalEditarEmpresa'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarEmpresa' idEmpresa='".$empresa[$i]["id"]."'><i class='fa fa-times'></i></button></div>"; 
+        $botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarEmpresa' idEmpresa='".$empresa[$i]["id_empresa"]."' data-toggle='modal' data-target='#modalEditarEmpresa'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarEmpresa' idEmpresa='".$empresa[$i]["id_empresa"]."'><i class='fa fa-times'></i></button></div>"; 
 
             $datosJson .= '[
             "'.($i+1).'",

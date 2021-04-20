@@ -43,6 +43,8 @@ session_start();
    <!-- DataTables -->
   <link rel="stylesheet" href="vistas/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
   <link rel="stylesheet" href="vistas/bower_components/datatables.net-bs/css/responsive.bootstrap.min.css">
+  <!-- Toastr -->
+  <link rel="stylesheet" href="vistas/bower_components/toastr/toastr.min.css">
 
   <!--=====================================
   PLUGINS DE JAVASCRIPT
@@ -71,6 +73,8 @@ session_start();
   <!-- By default SweetAlert2 doesn't support IE. To enable IE 11 support, include Promise polyfill:-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
 
+  <!-- Toastr -->
+  <script src="vistas/bower_components/toastr/toastr.min.js"></script>
 </head>
 
 <!--=====================================

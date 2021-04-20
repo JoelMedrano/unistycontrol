@@ -151,4 +151,32 @@ class ModeloUsuarios{
 
 	}
 
+	/*=============================================
+	REGISTRO DE AUDITORIA
+	=============================================*/
+
+	static public function mdlIngresarAuditoria($tabla, $datos){
+
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla( usuario, concepto, fecha) VALUES ( :usuario, :concepto, :fecha)");
+
+		$stmt->bindParam(":usuario", $datos["usuario"], PDO::PARAM_STR);
+		$stmt->bindParam(":concepto", $datos["concepto"], PDO::PARAM_STR);
+		$stmt->bindParam(":fecha", $datos["fecha"], PDO::PARAM_STR);
+
+		if($stmt->execute()){
+
+			return "ok";	
+
+		}else{
+
+			return "error";
+		
+		}
+
+		$stmt->close();
+		
+		$stmt = null;
+
+	}
+
 }
