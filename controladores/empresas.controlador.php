@@ -18,15 +18,14 @@ class ControladorEmpresas{
 
 				if(isset($_FILES["nuevoLogo1"]["tmp_name"]) ){
 
-					// list($ancho, $alto) = getimagesize($_FILES["nuevoLogo1"]["tmp_name"]);
-					// list($ancho2, $alto2) = getimagesize($_FILES["nuevoLogo2"]["tmp_name"]);
+					list($ancho, $alto) = getimagesize($_FILES["nuevoLogo1"]["tmp_name"]);
+					list($ancho2, $alto2) = getimagesize($_FILES["nuevoLogo2"]["tmp_name"]);
 
 					$nuevoAncho = 172;
 					$nuevoAlto = 172;
-					var_dump($_FILES["nuevoLogo1"]["tmp_name"]);
 
-					// $nuevoAncho2 = 500;
-					// $nuevoAlto2 = 183;
+					$nuevoAncho2 = 500;
+					$nuevoAlto2 = 183;
 
 					/*=============================================
 					CREAMOS EL DIRECTORIO DONDE VAMOS A GUARDAR LA FOTO DE LA EMPRESA
@@ -34,107 +33,107 @@ class ControladorEmpresas{
 
 					$directorio = "vistas/img/empresas/".$_POST["nuevoDocumento"];
 					var_dump($directorio);
-					// mkdir($directorio, 0755);
+					mkdir($directorio, 0755);
 
 					/*=============================================
 					DE ACUERDO AL TIPO DE IMAGEN APLICAMOS LAS FUNCIONES POR DEFECTO DE PHP
 					=============================================*/
 
-					// if($_FILES["nuevoLogo1"]["type"] == "image/jpeg"){
+					if($_FILES["nuevoLogo1"]["type"] == "image/jpeg"){
 
-					// 	/*=============================================
-					// 	GUARDAMOS LA IMAGEN EN EL DIRECTORIO
-					// 	=============================================*/
+						/*=============================================
+						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
+						=============================================*/
 
-					// 	$aleatorio = mt_rand(100,999);
+						$aleatorio = mt_rand(100,999);
 
-					// 	$ruta = "vistas/img/empresas/".$_POST["nuevoDocumento"]."/".$aleatorio.".jpg";
+						$ruta = "vistas/img/empresas/".$_POST["nuevoDocumento"]."/".$aleatorio.".jpg";
 
-					// 	$origen = imagecreatefromjpeg($_FILES["nuevoLogo1"]["tmp_name"]);						
+						$origen = imagecreatefromjpeg($_FILES["nuevoLogo1"]["tmp_name"]);						
 
-					// 	$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
 
-					// 	imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
 
-					// 	imagejpeg($destino, $ruta);
+						imagejpeg($destino, $ruta);
 
-						// $aleatorio2 = mt_rand(100,999);
+						$aleatorio2 = mt_rand(100,999);
 
-						// $ruta2 = "vistas/img/empresas/".$_POST["nuevoDocumento"]."/".$aleatorio2.".jpg";
+						$ruta2 = "vistas/img/empresas/".$_POST["nuevoDocumento"]."/".$aleatorio2.".jpg";
 
-						// $origen2 = imagecreatefromjpeg($_FILES["nuevoLogo2"]["tmp_name"]);						
+						$origen2 = imagecreatefromjpeg($_FILES["nuevoLogo2"]["tmp_name"]);						
 
-						// $destino2 = imagecreatetruecolor($nuevoAncho2, $nuevoAlto2);
+						$destino2 = imagecreatetruecolor($nuevoAncho2, $nuevoAlto2);
 
-						// imagecopyresized($destino, $origen2, 0, 0, 0, 0, $nuevoAncho2, $nuevoAlto2, $ancho2, $alto2);
+						imagecopyresized($destino, $origen2, 0, 0, 0, 0, $nuevoAncho2, $nuevoAlto2, $ancho2, $alto2);
 
-						// imagejpeg($destino2, $ruta2);
-					// }
+						imagejpeg($destino2, $ruta2);
+					}
 
-					// if($_FILES["nuevoLogo1"]["type"] == "image/png"){
+					if($_FILES["nuevoLogo1"]["type"] == "image/png"){
 
-					// 	/*=============================================
-					// 	GUARDAMOS LA IMAGEN EN EL DIRECTORIO
-					// 	=============================================*/
+						/*=============================================
+						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
+						=============================================*/
 
-					// 	$aleatorio = mt_rand(100,999);
+						$aleatorio = mt_rand(100,999);
 
-					// 	$ruta = "vistas/img/empresas/".$_POST["nuevoDocumento"]."/".$aleatorio.".png";
+						$ruta = "vistas/img/empresas/".$_POST["nuevoDocumento"]."/".$aleatorio.".png";
 
-					// 	$origen = imagecreatefrompng($_FILES["nuevoLogo1"]["tmp_name"]);						
+						$origen = imagecreatefrompng($_FILES["nuevoLogo1"]["tmp_name"]);						
 
-					// 	$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
 
-					// 	imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
 
-					// 	imagepng($destino, $ruta);
+						imagepng($destino, $ruta);
 
-						// $aleatorio2 = mt_rand(100,999);
+						$aleatorio2 = mt_rand(100,999);
 
-						// $ruta2 = "vistas/img/empresas/".$_POST["nuevoDocumento"]."/".$aleatorio2.".png";
+						$ruta2 = "vistas/img/empresas/".$_POST["nuevoDocumento"]."/".$aleatorio2.".png";
 
-						// $origen2 = imagecreatefrompng($_FILES["nuevoLogo2"]["tmp_name"]);						
+						$origen2 = imagecreatefrompng($_FILES["nuevoLogo2"]["tmp_name"]);						
 
-						// $destino2 = imagecreatetruecolor($nuevoAncho2, $nuevoAlto2);
+						$destino2 = imagecreatetruecolor($nuevoAncho2, $nuevoAlto2);
 
-						// imagecopyresized($destino2, $origen2, 0, 0, 0, 0, $nuevoAncho2, $nuevoAlto2, $ancho2, $alto2);
+						imagecopyresized($destino2, $origen2, 0, 0, 0, 0, $nuevoAncho2, $nuevoAlto2, $ancho2, $alto2);
 
-						// imagepng($destino2, $ruta2);
+						imagepng($destino2, $ruta2);
 
-					// }
+					}
 
 				}
 
-				// $tabla="empresa";
-			   	// $datos = array("nombre"=>$_POST["nuevaRazonSocial"],
-				// 			   "documento"=>$_POST["nuevoDocumento"],
-				// 			   "logo1"=>$ruta,
-				// 			   "logo2"=>$ruta2,
-				// 			   "id_responsable"=>$_POST["nuevoResponsable"],
-				// 			   "id_usuario"=>$_SESSION["id"]);
+				$tabla="empresa";
+			   	$datos = array("nombre"=>$_POST["nuevaRazonSocial"],
+							   "documento"=>$_POST["nuevoDocumento"],
+							   "logo1"=>$ruta,
+							   "logo2"=>$ruta2,
+							   "id_responsable"=>$_POST["nuevoResponsable"],
+							   "id_usuario"=>$_SESSION["id"]);
 
-			   	// $respuesta = ModeloEmpresas::mdlIngresarEmpresa($tabla,$datos);
+			   	$respuesta = ModeloEmpresas::mdlIngresarEmpresa($tabla,$datos);
 
-			   	// if($respuesta == "ok"){
+			   	if($respuesta == "ok"){
 
-				// 	echo'<script>
+					echo'<script>
 
-				// 	swal({
-				// 		  type: "success",
-				// 		  title: "La empresa ha sido guardado correctamente",
-				// 		  showConfirmButton: true,
-				// 		  confirmButtonText: "Cerrar"
-				// 		  }).then(function(result){
-				// 					if (result.value) {
+					swal({
+						  type: "success",
+						  title: "La empresa ha sido guardado correctamente",
+						  showConfirmButton: true,
+						  confirmButtonText: "Cerrar"
+						  }).then(function(result){
+									if (result.value) {
 
-				// 					window.location = "empresas";
+									window.location = "empresas";
 
-				// 					}
-				// 				})
+									}
+								})
 
-				// 	</script>';
+					</script>';
 
-				// }
+				}
 
 			
 

@@ -50,9 +50,10 @@ $(".tablaEmpresas").on("click", ".btnEditarEmpresa", function () {
         dataType: "json",
         success: function (respuesta) {
 
-            $("#idEmpresa").val(respuesta["id"]);
-            $("#editarCodigo").val(respuesta["codigo"]);
-            $("#editarDescripcion").val(respuesta["nombre"]);
+            $("#idEmpresa").val(respuesta["id_empresa"]);
+            $("#editarRazonSocial").val(respuesta["nombre"]);
+            $("#editarDocumento").val(respuesta["documento"]);
+			$("#editarResponsable").val(respuesta["id_responsable"]);
         }
 
     })
@@ -94,7 +95,7 @@ REPORTE EMPRESA
   
 // })
 
-// ACTIVANDO-DESACTIVANDO ARTICULO
+// ACTIVANDO-DESACTIVANDO EMPRESA
 $(document).on("click",".btnActivarEmpresa",function(){
 	// Capturamos el id del usuario y el estado
 	var idEmpresa=$(this).attr("idEmpresa");

@@ -78,7 +78,7 @@ MODAL AGREGAR EMPRESA
 
     <div class="modal-content">
 
-      <form role="form" method="post">
+      <form role="form" method="post" enctype="multipart/form-data">
 
         <!--=====================================
         CABEZA DEL MODAL
@@ -252,21 +252,36 @@ MODAL EDITAR EMPRESA
           <div class="box-body">
 
           
-            <!-- ENTRADA PARA EL CODIGO  -->
+            <!-- ENTRADA PARA LA RAZON SOCIAL -->
             
             <div class="form-group">
               
               <div class="input-group">
               
-                <span class="input-group-addon"><i class="fa fa-key"></i></span> 
+                <span class="input-group-addon"><i class="fa fa-building"></i></span> 
 
-                <input type="text"  class="form-control input-lg" name="editarCodigo" id="editarCodigo" required>
+                <input type="text" min="0" class="form-control input-lg" name="editarRazonSocial"  id="editarRazonSocial" required>
+
+              </div>
+
+            </div>          
+
+            <!-- ENTRADA PARA EL DOCUMENTO -->
+            
+            <div class="form-group">
+              
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-archive"></i></span> 
+
+                <input type="text" class="form-control input-lg" name="editarDocumento" id="editarDocumento" required>
+                <input type="text"  name="idEmpresa" id="idEmpresa" >
 
               </div>
 
             </div>
 
-            <!-- ENTRADA PARA EL NOMBRE -->
+            <!-- ENTRADA PARA EL RESPONSABLE -->
             
             <div class="form-group">
               
@@ -274,8 +289,16 @@ MODAL EDITAR EMPRESA
               
                 <span class="input-group-addon"><i class="fa fa-user"></i></span> 
 
-                <input type="text" class="form-control input-lg" name="editarDescripcion" id="editarDescripcion" required>
-                <input type="hidden" id="idEmpresa" name="idEmpresa">
+                <select  class="form-control input-lg selectpicker" name="editarResponsable" id ="editarResponsable" data-live-search="true" required>
+                  
+                <?php
+                  $usuarios = ControladorUsuarios::ctrMostrarUsuarios(null,null);
+                  foreach ($usuarios as $key => $value) {
+                    echo '<option value="' . $value["id"] . '">' . $value["id"] ." - ".$value["nombre"] . '</option>';
+                  }
+                ?>
+                </select>
+
               </div>
 
             </div>
