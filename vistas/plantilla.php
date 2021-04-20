@@ -126,6 +126,10 @@ CUERPO DOCUMENTO
 
         include "modulos/empresas/".$_GET["ruta"].".php";
 
+      }else if($_GET["ruta"] == "miembros" ){
+
+        include "modulos/miembros/".$_GET["ruta"].".php";
+
       }else if( $_GET["ruta"] == "inicio" ||
         $_GET["ruta"] == "salir" ||
         $_GET["ruta"] == "reportes"){
