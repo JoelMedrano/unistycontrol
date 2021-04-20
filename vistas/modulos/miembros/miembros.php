@@ -34,7 +34,7 @@
 
             <div class="box-body">
 
-                <table class="table table-bordered table-striped dt-responsive tablas">
+                <table class="table table-bordered table-striped dt-responsive table-condensed tablas">
 
                     <thead>
 
@@ -96,7 +96,7 @@
 </div>
 
 <!--=====================================
-MODAL AGREGAR USUARIO
+MODAL AGREGAR MIEMBRO
 ======================================-->
 
 <div id="modalAgregarMiembros" class="modal fade" role="dialog">
@@ -108,8 +108,8 @@ MODAL AGREGAR USUARIO
             <form role="form" method="post" enctype="multipart/form-data">
 
                 <!--=====================================
-        CABEZA DEL MODAL
-        ======================================-->
+                CABEZA DEL MODAL
+                ======================================-->
 
                 <div class="modal-header" style="background:#3c8dbc; color:white">
 
@@ -120,8 +120,8 @@ MODAL AGREGAR USUARIO
                 </div>
 
                 <!--=====================================
-        CUERPO DEL MODAL
-        ======================================-->
+                CUERPO DEL MODAL
+                ======================================-->
 
                 <div class="modal-body">
 
@@ -135,8 +135,7 @@ MODAL AGREGAR USUARIO
 
                                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
 
-                                <input type="text" class="form-control input-md" name="nuevoNombre"
-                                    placeholder="Ingresar nombre" required>
+                                <input type="text" class="form-control input-md" name="nuevoNombre"    placeholder="Ingresar nombre" required>
 
                             </div>
 
@@ -150,12 +149,11 @@ MODAL AGREGAR USUARIO
 
                                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
 
-                                <input type="text" class="form-control input-md" name="nuevoDocumento"
-                                    placeholder="Ingresar documento" required>
+                                <input type="text" class="form-control input-md" name="nuevoDocumento" placeholder="Ingresar documento" required>
 
                             </div>
 
-                        </div>                        
+                        </div>
 
                         <!-- ENTRADA PARA EL CELULAR -->
 
@@ -165,9 +163,7 @@ MODAL AGREGAR USUARIO
 
                                 <span class="input-group-addon"><i class="fa fa-phone"></i></span>
 
-                                <input type="text" class="form-control input-md" name="nuevoCelular"
-                                    placeholder="Ingresar celular" data-inputmask="'mask':'999-999-999'"
-                                    data-mask required>
+                                <input type="text" class="form-control input-md" name="nuevoCelular" placeholder="Ingresar celular" data-inputmask="'mask':'999-999-999'" data-mask required>
 
                             </div>
 
@@ -181,29 +177,13 @@ MODAL AGREGAR USUARIO
 
                                 <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
 
-                                <input type="email" class="form-control" name="nuevoEmail"
-                                    placeholder="Ingrese el Correo del Cliente" maxlength="200" required>
-
-                            </div>
-
-                        </div>                        
-
-                        <!-- ENTRADA PARA LA RED SOCIAL -->
-
-                        <div class="form-group">
-
-                            <div class="input-group">
-
-                                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-
-                                <input type="text" class="form-control input-md" name="nuevaRedSocial"
-                                    placeholder="Ingresar Red Social" required>
+                                <input type="email" class="form-control" name="nuevoEmail" placeholder="Ingrese el Correo del Cliente" maxlength="200" required>
 
                             </div>
 
                         </div>
 
-                        <!-- ENTRADA PARA SELECCIONAR SU PERFIL -->
+                        <!-- ENTRADA PARA SELECCIONAR SU RED SOCIAL -->
 
                         <div class="form-group">
 
@@ -211,17 +191,31 @@ MODAL AGREGAR USUARIO
 
                                 <span class="input-group-addon"><i class="fa fa-users"></i></span>
 
-                                <select class="form-control input-md" name="nuevoPerfil">
+                                <select class="form-control input-md" name="nuevaRedSocial">
 
-                                    <option value="">Selecionar perfil</option>
+                                    <option value="">Selecionar Red Social</option>
 
-                                    <option value="Administrador">Administrador</option>
+                                    <option value="Instagram">Instagram</option>
 
-                                    <option value="Especial">Especial</option>
+                                    <option value="Facebook">Facebook</option>
 
-                                    <option value="Vendedor">Vendedor</option>
+                                    <option value="Tik Tok">Tik Tok</option>
 
                                 </select>
+
+                            </div>
+
+                        </div>
+
+                        <!-- ENTRADA PARA EL PERFIL -->
+
+                        <div class="form-group">
+
+                            <div class="input-group">
+
+                                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+
+                                <input type="text" class="form-control input-md" name="nuevoPerfil" placeholder="Ingresar usuario" required>
 
                             </div>
 
@@ -233,11 +227,11 @@ MODAL AGREGAR USUARIO
 
                             <div class="panel">SUBIR FOTO</div>
 
-                            <input type="file" id="nuevaFoto" name="nuevaFoto">
+                            <input type="file" class="form-control input-md nuevaFotoMiembro" id="nuevaFotoMiembro" name="nuevaFotoMiembro">
 
-                            <p class="help-block">Peso máximo de la foto 200 MB</p>
+                            <p class="help-block">Peso máximo de la foto 2 MB</p>
 
-                            <img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail" width="100px">
+                            <img src="vistas/img/miembros/default/anonymous.png" class="img-thumbnail previsualizarM" width="100px">
 
                         </div>
 
@@ -246,8 +240,8 @@ MODAL AGREGAR USUARIO
                 </div>
 
                 <!--=====================================
-        PIE DEL MODAL
-        ======================================-->
+                PIE DEL MODAL
+                ======================================-->
 
                 <div class="modal-footer">
 
@@ -256,6 +250,13 @@ MODAL AGREGAR USUARIO
                     <button type="submit" class="btn btn-primary">Guardar usuario</button>
 
                 </div>
+
+                <?php
+
+                $crearMiembro = new ControladorMiembros();
+                $crearMiembro -> ctrCrearMiembro();
+                
+                ?>
 
             </form>
 
