@@ -108,7 +108,7 @@ MODAL AGREGAR EMPRESA
               
                 <span class="input-group-addon"><i class="fa fa-building"></i></span> 
 
-                <input type="text" min="0" class="form-control input-lg" name="nuevaRazonSocial" placeholder="Ingresar razon social" required>
+                <input type="text" min="0" class="form-control input-md" name="nuevaRazonSocial" placeholder="Ingresar razon social" required>
 
               </div>
 
@@ -122,7 +122,7 @@ MODAL AGREGAR EMPRESA
               
                 <span class="input-group-addon"><i class="fa fa-archive"></i></span> 
 
-                <input type="text" class="form-control input-lg" name="nuevoDocumento" placeholder="Ingresar documento" required>
+                <input type="text" class="form-control input-md" name="nuevoDocumento" placeholder="Ingresar documento" required>
 
               </div>
 
@@ -136,7 +136,7 @@ MODAL AGREGAR EMPRESA
               
                 <span class="input-group-addon"><i class="fa fa-image"></i></span> 
 
-                <input type="file" class="form-control input-lg nuevoLogo1"  name="nuevoLogo1" >
+                <input type="file" class="form-control input-md nuevoLogo1"  name="nuevoLogo1" >
 
 
               </div>
@@ -152,7 +152,7 @@ MODAL AGREGAR EMPRESA
               
                 <span class="input-group-addon"><i class="fa fa-image"></i></span> 
 
-                <input type="file" class="form-control input-lg nuevoLogo2" name="nuevoLogo2" >
+                <input type="file" class="form-control input-md nuevoLogo2" name="nuevoLogo2" >
 
                 
 
@@ -170,7 +170,7 @@ MODAL AGREGAR EMPRESA
               
                 <span class="input-group-addon"><i class="fa fa-user"></i></span> 
 
-                <select  class="form-control input-lg selectpicker" name="nuevoResponsable" data-live-search="true" required>
+                <select  class="form-control input-md selectpicker" name="nuevoResponsable" data-live-search="true" required>
                   <option value="">Seleccionar responsable</option>
                 <?php
                   $usuarios = ControladorUsuarios::ctrMostrarUsuarios(null,null);
@@ -260,7 +260,7 @@ MODAL EDITAR EMPRESA
               
                 <span class="input-group-addon"><i class="fa fa-building"></i></span> 
 
-                <input type="text" min="0" class="form-control input-lg" name="editarRazonSocial"  id="editarRazonSocial" required>
+                <input type="text" min="0" class="form-control input-md" name="editarRazonSocial"  id="editarRazonSocial" required>
 
               </div>
 
@@ -274,8 +274,8 @@ MODAL EDITAR EMPRESA
               
                 <span class="input-group-addon"><i class="fa fa-archive"></i></span> 
 
-                <input type="text" class="form-control input-lg" name="editarDocumento" id="editarDocumento" required>
-                <input type="text"  name="idEmpresa" id="idEmpresa" >
+                <input type="text" class="form-control input-md" name="editarDocumento" id="editarDocumento" required>
+                <input type="hidden"  name="idEmpresa" id="idEmpresa" >
 
               </div>
 
@@ -289,7 +289,7 @@ MODAL EDITAR EMPRESA
               
                 <span class="input-group-addon"><i class="fa fa-user"></i></span> 
 
-                <select  class="form-control input-lg selectpicker" name="editarResponsable" id ="editarResponsable" data-live-search="true" required>
+                <select  class="form-control input-md selectpicker" name="editarResponsable" id ="editarResponsable" data-live-search="true" required>
                   
                 <?php
                   $usuarios = ControladorUsuarios::ctrMostrarUsuarios(null,null);

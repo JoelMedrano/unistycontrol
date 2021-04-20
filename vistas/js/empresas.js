@@ -53,7 +53,9 @@ $(".tablaEmpresas").on("click", ".btnEditarEmpresa", function () {
             $("#idEmpresa").val(respuesta["id_empresa"]);
             $("#editarRazonSocial").val(respuesta["nombre"]);
             $("#editarDocumento").val(respuesta["documento"]);
+			
 			$("#editarResponsable").val(respuesta["id_responsable"]);
+			$("#editarResponsable").selectpicker("refresh");
         }
 
     })

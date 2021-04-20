@@ -5,7 +5,7 @@ require_once "conexion.php";
 class ModeloEmpresas{
 
 	/*=============================================
-	CREAR UNIDAD MEDIDA
+	CREAR EMPRESA
 	=============================================*/
 
 	static public function mdlIngresarEmpresa($tabla,$datos){
@@ -36,7 +36,7 @@ class ModeloEmpresas{
 	}    
 
 	/*=============================================
-	MOSTRAR TIPO DE PAGO
+	MOSTRAR EMPRESAS
 	=============================================*/
 
 	static public function mdlMostrarEmpresas($tabla,$item,$valor){
@@ -68,12 +68,12 @@ class ModeloEmpresas{
     }
     
 	/*=============================================
-	EDITAR TIPO DE PAGO
+	EDITAR EMPRESA
 	=============================================*/
 
 	static public function mdlEditarEmpresa($tabla,$datos){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET nombre = :codigo, documento = :descripcion , id_responsable = :id_responsable , id_usuario = :id_usuario WHERE id_empresa = :id");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET nombre = :nombre, documento = :documento , id_responsable = :id_responsable , id_usuario = :id_usuario WHERE id_empresa = :id");
 
 		$stmt->bindParam(":id", $datos["id"], PDO::PARAM_INT);
 		$stmt->bindParam(":nombre", $datos["nombre"], PDO::PARAM_STR);
@@ -98,7 +98,7 @@ class ModeloEmpresas{
 	
 	
 	/*=============================================
-	ELIMINAR TIPO DE PAGO
+	ELIMINAR EMPRESA
 	=============================================*/
 
 	static public function mdlEliminarEmpresa($tabla,$datos){
