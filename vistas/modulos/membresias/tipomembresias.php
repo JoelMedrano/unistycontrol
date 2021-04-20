@@ -27,6 +27,7 @@
         <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarTipoMembresia">
           
           Agregar tipo membresia
+          
 
         </button>
 
@@ -34,7 +35,7 @@
         
       <div class="box-body">
        <input type="hidden" value="<?= $_SESSION["perfil"]; ?>" id="perfilOculto"> 
-       <table class="table table-bordered table-striped dt-responsive tablaTipoMembresia">
+       <table class="table table-bordered table-striped dt-responsive tablaTipoMembresias">
          
         <thead>
          
@@ -101,13 +102,51 @@ MODAL AGREGAR TIPO MEMBRESIA
               
               <div class="input-group">
               
-                <span class="input-group-addon"><i class="fa fa-globe"></i></span> 
+                <span class="input-group-addon"><i class="fa fa-credit-card-alt"></i></span> 
 
                 <input type="text"  class="form-control input-md" name="nuevoTipo" placeholder="Ingresar tipo membresia" required>
 
               </div>
 
-            </div>          
+            </div>    
+
+            <?php 
+             if ($_SESSION["empresa"] == "0"){
+            ?>
+            <div class="form-group">
+              
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-globe"></i></span> 
+
+                <select  class="form-control input-md selectpicker" name="nuevaEmpresa"  required>
+                  <option value="">Seleccionar Empresa</option>
+
+                  <?php
+
+                    $empresas = ControladorEmpresas::ctrMostrarEmpresas(null,null);
+
+                    foreach ($empresas as $key => $value) {
+                      echo '<option value="' . $value["id_empresa"] . '">' .$value["nombre"] . '</option>';
+                    }
+                  
+                  ?>
+
+                </select>
+              </div>
+
+            </div>   
+            <?php 
+             }else{
+            ?>
+
+                <input type="hidden"  name="nuevaEmpresa" value="<?php echo $_SESSION["empresa"]?>" required>
+
+              
+            <?php 
+             }
+            ?>
+
 
 
           </div>
@@ -183,14 +222,50 @@ MODAL EDITAR TIPO MEMBRESIA
               
               <div class="input-group">
               
-                <span class="input-group-addon"><i class="fa fa-globe"></i></span> 
+                <span class="input-group-addon"><i class="fa fa-credit-card-alt"></i></span> 
 
                 <input type="text" class="form-control input-md" name="editarTipo"  id="editarTipo" required>
                 <input type="hidden" name="idTipo"  id="idTipo" required>
 
               </div>
 
-            </div>          
+            </div>   
+
+            <?php 
+             if ($_SESSION["empresa"] == "0"){
+            ?>
+            <div class="form-group">
+              
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-globe"></i></span> 
+
+                <select  class="form-control input-md selectpicker" name="editarEmpresa"  required>
+
+                  <?php
+
+                    $empresas = ControladorEmpresas::ctrMostrarEmpresas(null,null);
+
+                    foreach ($empresas as $key => $value) {
+                      echo '<option value="' . $value["id_empresa"] . '">' .$value["nombre"] . '</option>';
+                    }
+                  
+                  ?>
+
+                </select>
+              </div>
+
+            </div>   
+            <?php 
+             }else{
+            ?>
+
+                <input type="hidden"  name="editarEmpresa" value="<?php echo $_SESSION["empresa"]?>" required>
+
+              
+            <?php 
+             }
+            ?>       
 
   
           </div>
