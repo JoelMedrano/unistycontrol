@@ -144,6 +144,11 @@ CUERPO DOCUMENTO
       }else if($_GET["ruta"] == "miembros" ){
 
         include "modulos/miembros/".$_GET["ruta"].".php";
+        
+      }else if( $_GET["ruta"] == "membresias" ||
+                $_GET["ruta"] == "tipomembresias" ){
+
+        include "modulos/membresias/".$_GET["ruta"].".php";
 
       }else if( $_GET["ruta"] == "inicio" ||
         $_GET["ruta"] == "salir" ||
@@ -183,6 +188,7 @@ CUERPO DOCUMENTO
 <script src="vistas/js/usuarios.js"></script>
 <script src="vistas/js/empresas.js"></script>
 <script src="vistas/js/social.js"></script>
+<script src="vistas/js/membresias.js"></script>
 
 </body>
 </html>

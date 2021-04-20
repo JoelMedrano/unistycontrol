@@ -8,7 +8,7 @@ class ControladorSocial{
 
 	static public function ctrCrearSocial(){
 
-		if(isset($_POST["nuevaRazonSocial"])){
+		if(isset($_POST["nuevaRedSocial"])){
 				
             $tabla="red_social";
             $datos = array("nombre_red_social"=>$_POST["nuevaRedSocial"],
@@ -97,22 +97,22 @@ class ControladorSocial{
     }
     
 	/*=============================================
-	ELIMINAR EMPRESAS
+	ELIMINAR RED SOCIAL
 	=============================================*/
 
-	static public function ctrEliminarEmpresa(){
+	static public function ctrEliminarSocial(){
 
-		if(isset($_GET["idEmpresa"])){
+		if(isset($_GET["idSocial"])){
 
-			$datos = $_GET["idEmpresa"];
-			$tabla="empresa";
+			$datos = $_GET["idSocial"];
+			$tabla="red_social";
 			date_default_timezone_set('America/Lima');
 			$fecha = new DateTime();
-			$empresas=ControladorEmpresas::ctrMostrarEmpresas("id_empresa",$datos);
+			$social=ControladorSocial::ctrMostrarSocial("id_red_social",$datos);
 			$usuario= $_SESSION["nombre"];
 			$para      = 'notificacionesvascorp@gmail.com';
-			$asunto    = 'Se elimino una empresa';
-			$descripcion   = 'El usuario '.$usuario.' elimino la empresa '.$empresas["documento"].' - '.$empresas["nombre"];
+			$asunto    = 'Se elimino una red social';
+			$descripcion   = 'El usuario '.$usuario.' elimino la red social '.$social["nombre_red_social"];
 			$de = 'From: notificacionesvascorp@gmail.com';
 			if($_SESSION["correo"] == 1){
 				mail($para, $asunto, $descripcion, $de);
@@ -124,7 +124,7 @@ class ControladorSocial{
 				$auditoria=ModeloUsuarios::mdlIngresarAuditoria("auditoria",$datos2);
 			}
 			
-			$respuesta = ModeloEmpresas::mdlEliminarEmpresa($tabla,$datos);
+			$respuesta = ModeloSocial::mdlEliminarSocial($tabla,$datos);
 			if($respuesta == "ok"){
 				
 				
@@ -132,14 +132,14 @@ class ControladorSocial{
 
 				swal({
 					  type: "success",
-					  title: "La empresa ha sido borrado correctamente",
+					  title: "La red social ha sido borrada correctamente",
 					  showConfirmButton: true,
 					  confirmButtonText: "Cerrar",
 					  closeOnConfirm: false
 					  }).then(function(result){
 								if (result.value) {
 
-								window.location = "empresas";
+								window.location = "social";
 
 								}
 							})
