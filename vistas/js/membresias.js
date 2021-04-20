@@ -1,4 +1,4 @@
-$('.tablaSocial').DataTable({
+$('.tablaTipoMembresias').DataTable({
     "ajax": "ajax/social/tabla-social.ajax.php?perfil="+$("#perfilOculto").val(),
     "deferRender": true,
     "retrieve": true,
@@ -32,7 +32,7 @@ $('.tablaSocial').DataTable({
 /*=============================================
 EDITAR RED SOCIAL
 =============================================*/
-$(".tablaSocial").on("click", ".btnEditarSocial", function () {
+$(".tablaTipoMembresias").on("click", ".btnEditarSocial", function () {
 
     var idSocial = $(this).attr("idSocial");
 
@@ -63,7 +63,7 @@ $(".tablaSocial").on("click", ".btnEditarSocial", function () {
 /*=============================================
 ELIMINAR RED SOCIAL
 =============================================*/
-$(".tablaSocial").on("click", ".btnEliminarSocial", function(){
+$(".tablaTipoMembresias").on("click", ".btnEliminarSocial", function(){
 
 	var idSocial = $(this).attr("idSocial");
 	

@@ -63,9 +63,9 @@
 
 				<a href="#">
 
-					<i class="fa fa-list-ul"></i>
+					<i class="fa fa-credit-card-alt"></i>
 					
-					<span>Ventas</span>
+					<span>Membresias</span>
 					
 					<span class="pull-right-container">
 					
@@ -79,10 +79,10 @@
 					
 					<li>
 
-						<a href="ventas">
+						<a href="membresias">
 							
 							<i class="fa fa-circle-o"></i>
-							<span>Administrar ventas</span>
+							<span>Membresias</span>
 
 						</a>
 
@@ -90,21 +90,10 @@
 
 					<li>
 
-						<a href="crear-venta">
+						<a href="tipomembresias">
 							
 							<i class="fa fa-circle-o"></i>
-							<span>Crear venta</span>
-
-						</a>
-
-					</li>
-
-					<li>
-
-						<a href="reportes">
-							
-							<i class="fa fa-circle-o"></i>
-							<span>Reporte de ventas</span>
+							<span>Tipo membresias</span>
 
 						</a>
 

@@ -4,7 +4,7 @@
     
     <h1>
       
-      Administrar redes sociales
+      Administrar tipo membresias
     
     </h1>
 
@@ -12,7 +12,7 @@
       
       <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
       
-      <li class="active">Administrar redes sociales</li>
+      <li class="active">Administrar tipo membresias</li>
     
     </ol>
 
@@ -24,9 +24,9 @@
 
       <div class="box-header with-border">
   
-        <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarSocial">
+        <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarTipoMembresia">
           
-          Agregar red social
+          Agregar tipo membresia
 
         </button>
 
@@ -34,13 +34,14 @@
         
       <div class="box-body">
        <input type="hidden" value="<?= $_SESSION["perfil"]; ?>" id="perfilOculto"> 
-       <table class="table table-bordered table-striped dt-responsive tablaSocial">
+       <table class="table table-bordered table-striped dt-responsive tablaTipoMembresia">
          
         <thead>
          
          <tr>
            <th>N°</th>
            <th>Nombre</th>
+           <th>Empresa</th>
            <th>Fecha</th>
            <th>Acciones</th>
 
@@ -63,10 +64,10 @@
 </div>
 
 <!--=====================================
-MODAL AGREGAR RED SOCIAL
+MODAL AGREGAR TIPO MEMBRESIA
 ======================================-->
 
-<div id="modalAgregarSocial" class="modal fade" role="dialog">
+<div id="modalAgregarTipoMembresia" class="modal fade" role="dialog">
   
   <div class="modal-dialog">
 
@@ -82,7 +83,7 @@ MODAL AGREGAR RED SOCIAL
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Agregar red social</h4>
+          <h4 class="modal-title">Agregar tipo membresia</h4>
 
         </div>
 
@@ -94,7 +95,7 @@ MODAL AGREGAR RED SOCIAL
 
           <div class="box-body">
 
-            <!-- ENTRADA PARA LA RED SOCIAL -->
+            <!-- ENTRADA PARA TIPO DE MEMBRESIA -->
             
             <div class="form-group">
               
@@ -102,7 +103,7 @@ MODAL AGREGAR RED SOCIAL
               
                 <span class="input-group-addon"><i class="fa fa-globe"></i></span> 
 
-                <input type="text"  class="form-control input-md" name="nuevaRedSocial" placeholder="Ingresar red social" required>
+                <input type="text"  class="form-control input-md" name="nuevoTipo" placeholder="Ingresar tipo membresia" required>
 
               </div>
 
@@ -121,7 +122,7 @@ MODAL AGREGAR RED SOCIAL
 
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary">Guardar red social</button>
+          <button type="submit" class="btn btn-primary">Guardar tipo membresia</button>
 
         </div>
 
@@ -130,8 +131,8 @@ MODAL AGREGAR RED SOCIAL
 
       <?php
 
-        $crearSocial = new ControladorSocial();
-        $crearSocial -> ctrCrearSocial();
+        $crearTipoMembresia = new ControladorMembresias();
+        $crearTipoMembresia -> ctrCrearTipoMembresia();
 
       ?>
 
@@ -144,10 +145,10 @@ MODAL AGREGAR RED SOCIAL
 
 
 <!--=====================================
-MODAL EDITAR SOCIAL
+MODAL EDITAR TIPO MEMBRESIA
 ======================================-->
 
-<div id="modalEditarSocial" class="modal fade" role="dialog">
+<div id="modalEditarTipoMembresia" class="modal fade" role="dialog">
   
   <div class="modal-dialog">
 
@@ -163,7 +164,7 @@ MODAL EDITAR SOCIAL
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Editar red social</h4>
+          <h4 class="modal-title">Editar tipo membresia</h4>
 
         </div>
 
@@ -176,7 +177,7 @@ MODAL EDITAR SOCIAL
           <div class="box-body">
 
           
-            <!-- ENTRADA PARA LA RED SOCIAL -->
+            <!-- ENTRADA PARA TIPO MEMBRESIA -->
             
             <div class="form-group">
               
@@ -184,8 +185,8 @@ MODAL EDITAR SOCIAL
               
                 <span class="input-group-addon"><i class="fa fa-globe"></i></span> 
 
-                <input type="text" class="form-control input-md" name="editarRedSocial"  id="editarRedSocial" required>
-                <input type="hidden" name="idRedSocial"  id="idRedSocial" required>
+                <input type="text" class="form-control input-md" name="editarTipo"  id="editarTipo" required>
+                <input type="hidden" name="idTipo"  id="idTipo" required>
 
               </div>
 
@@ -212,8 +213,8 @@ MODAL EDITAR SOCIAL
 
       <?php
 
-        $editarSocial = new ControladorSocial();
-        $editarSocial -> ctrEditarSocial();
+        $editarTipoMembresia = new ControladorMembresias();
+        $editarTipoMembresia -> ctrEditarTipoMembresia();
 
       ?>   
 
@@ -227,11 +228,11 @@ MODAL EDITAR SOCIAL
 
 <?php
 
-  $eliminarSocial = new ControladorSocial();
-  $eliminarSocial -> ctrEliminarSocial();
+  $eliminarTipoMembresia = new ControladorMembresias();
+  $eliminarTipoMembresia -> ctrEliminarTipoMembresia();
 
 ?>
 
 <script>
-window.document.title = "Red social"
+window.document.title = "Tipo membresias"
 </script>
