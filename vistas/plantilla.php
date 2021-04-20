@@ -43,6 +43,10 @@ session_start();
    <!-- DataTables -->
   <link rel="stylesheet" href="vistas/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
   <link rel="stylesheet" href="vistas/bower_components/datatables.net-bs/css/responsive.bootstrap.min.css">
+
+  <!-- SELECT2 -->
+  <link rel="stylesheet" href="vistas/bower_components/bootstrap-select/dist/css/bootstrap-select.min.css">
+
   <!-- Toastr -->
   <link rel="stylesheet" href="vistas/bower_components/toastr/toastr.min.css">
 
@@ -62,6 +66,8 @@ session_start();
   <!-- AdminLTE App -->
   <script src="vistas/dist/js/adminlte.min.js"></script>
 
+  <script src="vistas/bower_components/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+  
   <!-- DataTables -->
   <script src="vistas/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
   <script src="vistas/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
