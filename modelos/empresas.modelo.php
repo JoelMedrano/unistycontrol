@@ -10,11 +10,14 @@ class ModeloEmpresas{
 
 	static public function mdlIngresarEmpresa($tabla,$datos){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(codigo,descripcion,tipo_dato) VALUES (:codigo,:descripcion,:tipo_dato)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(nombre,documento,logo1,logo2,id_responsable,id_usuario) VALUES (:nombre,:documento,:logo1,:logo2,:id_responsable,:id_usuario)");
 
-		$stmt->bindParam(":codigo", $datos["codigo"], PDO::PARAM_STR);
-		$stmt->bindParam(":descripcion", $datos["descripcion"], PDO::PARAM_STR);
-		$stmt->bindParam(":tipo_dato", $datos["tipo_dato"], PDO::PARAM_STR);
+		$stmt->bindParam(":nombre", $datos["nombre"], PDO::PARAM_STR);
+		$stmt->bindParam(":documento", $datos["documento"], PDO::PARAM_STR);
+		$stmt->bindParam(":logo1", $datos["logo1"], PDO::PARAM_STR);
+		$stmt->bindParam(":logo2", $datos["logo2"], PDO::PARAM_STR);
+		$stmt->bindParam(":id_responsable", $datos["id_responsable"], PDO::PARAM_STR);
+		$stmt->bindParam(":id_usuario", $datos["id_usuario"], PDO::PARAM_STR);
 
 
 		if($stmt->execute()){
@@ -70,11 +73,13 @@ class ModeloEmpresas{
 
 	static public function mdlEditarEmpresa($tabla,$datos){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET codigo = :codigo, descripcion = :descripcion WHERE id = :id");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET nombre = :codigo, documento = :descripcion , id_responsable = :id_responsable , id_usuario = :id_usuario WHERE id_empresa = :id");
 
 		$stmt->bindParam(":id", $datos["id"], PDO::PARAM_INT);
-		$stmt->bindParam(":codigo", $datos["codigo"], PDO::PARAM_STR);
-		$stmt->bindParam(":descripcion", $datos["descripcion"], PDO::PARAM_STR);
+		$stmt->bindParam(":nombre", $datos["nombre"], PDO::PARAM_STR);
+		$stmt->bindParam(":documento", $datos["documento"], PDO::PARAM_STR);
+		$stmt->bindParam(":id_responsable", $datos["id_responsable"], PDO::PARAM_STR);
+		$stmt->bindParam(":id_usuario", $datos["id_usuario"], PDO::PARAM_STR);
 
 		if($stmt->execute()){
 
@@ -98,7 +103,7 @@ class ModeloEmpresas{
 
 	static public function mdlEliminarEmpresa($tabla,$datos){
 
-		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id = :id");
+		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id_empresa = :id");
 
 		$stmt -> bindParam(":id", $datos, PDO::PARAM_INT);
 
@@ -117,5 +122,28 @@ class ModeloEmpresas{
 		$stmt = null;
 
 	}    
+
+	/* 
+	* Método para activar y desactivar un usuario
+	*/
+	static public function mdlActualizarEmpresa($valor1, $valor2){
+
+		$sql = "UPDATE empresa SET estado= :estado WHERE id_empresa=:valor";
+
+		$stmt = Conexion::conectar()->prepare($sql);
+
+		$stmt->bindParam(":estado", $valor1, PDO::PARAM_STR);
+		$stmt->bindParam(":valor", $valor2, PDO::PARAM_STR);
+
+		if ($stmt->execute()) {
+
+			return "ok";
+		} else {
+
+			return "error";
+		}
+
+		$stmt = null;
+	}
 
 }

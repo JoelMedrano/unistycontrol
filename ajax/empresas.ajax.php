@@ -14,7 +14,7 @@ class AjaxEmpresas{
 
 	public function ajaxEditarEmpresa(){
 
-		$item = "id";
+		$item = "id_empresa";
 		$valor = $this->idEmpresa;
 
 		$respuesta = ControladorEmpresas::ctrMostrarEmpresas($item, $valor);
@@ -32,13 +32,13 @@ class AjaxEmpresas{
 		date_default_timezone_set('America/Lima');
 		$fecha = new DateTime();
 		$valor2=$this->activarId;
-		$empresa=ControladorEmpresas::ctrMostrarEmpresas($valor2);
+		$empresa=ControladorEmpresas::ctrMostrarEmpresas("id_empresa",$valor2);
 		$usuario= $_SESSION["nombre"];
 		if($valor1 == "1"){
 			
 			$para      = 'notificacionesvascorp@gmail.com';
 			$asunto    = 'Se activo una empresa';
-			$descripcion   = 'El usuario '.$usuario.' activo la empresa '.$empresa["documento"].' - '.$empresa["nombre"]." talla: ".$articulo["id_responsable"];
+			$descripcion   = 'El usuario '.$usuario.' activo la empresa '.$empresa["documento"].' - '.$empresa["nombre"];
 			$de = 'From: notificacionesvascorp@gmail.com';
 			if($_SESSION["correo"] == 1){
 				mail($para, $asunto, $descripcion, $de);
@@ -52,7 +52,7 @@ class AjaxEmpresas{
 		}else{
 			$para      = 'notificacionesvascorp@gmail.com';
 			$asunto    = 'Se desactivo una empresa';
-			$descripcion   = 'El usuario '.$usuario.' desactivo la empresa '.$empresa["documento"].' - '.$empresa["nombre"]." talla: ".$articulo["id_responsable"];
+			$descripcion   = 'El usuario '.$usuario.' desactivo la empresa '.$empresa["documento"].' - '.$empresa["nombre"];
 			$de = 'From: notificacionesvascorp@gmail.com';
 			if($_SESSION["correo"] == 1){
 				mail($para, $asunto, $descripcion, $de);
@@ -88,6 +88,6 @@ ACTIVAR Y DESACTIVAR EMPRESA
 if(isset($_POST["activarId"])){
 	$activar=new AjaxEmpresas();
 	$activar->activarId=$_POST["activarId"];
-	$activar->activarEstado=$_POST["activarEstado"];
-	$activar->ajaxActivarDesactivarArticulo();
+	$activar->activarEstado=$_POST["estadoEmpresa"];
+	$activar->ajaxActivarDesactivarEmpresa();
 }

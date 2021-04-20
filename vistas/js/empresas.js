@@ -63,7 +63,7 @@ $(".tablaEmpresas").on("click", ".btnEditarEmpresa", function () {
 /*=============================================
 ELIMINAR EMPRESA
 =============================================*/
-$(".tablaBancos").on("click", ".btnEliminarBanco", function(){
+$(".tablaEmpresas").on("click", ".btnEliminarEmpresa", function(){
 
 	var idEmpresa = $(this).attr("idEmpresa");
 	
@@ -113,11 +113,13 @@ $(document).on("click",".btnActivarEmpresa",function(){
 	contentType:false,
 	processData:false,
 	success:function(respuesta){
-      if(estadoEmpresa == "1"){
+      	if(estadoEmpresa == "1"){
 
-      }else{
-        
-      }
+			Command: toastr["success"]("La empresa se activo correctamente!");
+		}else{
+
+		Command: toastr["error"]("La empresa se desactivo correctamente!");
+		}
     }
 	});
 	//Cambiamos el estado del botón físicamente
@@ -132,3 +134,101 @@ $(document).on("click",".btnActivarEmpresa",function(){
 	$(this).html("Activo");
 	$(this).attr("estadoEmpresa","0");}
 });
+
+/*=============================================
+SUBIENDO LA FOTO DEL LOGO 1 DE LA EMPRESA
+=============================================*/
+$(".nuevoLogo1").change(function(){
+
+	var imagen = this.files[0];
+	
+	/*=============================================
+  	VALIDAMOS EL FORMATO DE LA IMAGEN SEA JPG O PNG
+  	=============================================*/
+
+  	if(imagen["type"] != "image/jpeg" && imagen["type"] != "image/png"){
+
+  		$(".nuevoLogo1").val("");
+
+  		 swal({
+		      title: "Error al subir la imagen",
+		      text: "¡La imagen debe estar en formato JPG o PNG!",
+		      type: "error",
+		      confirmButtonText: "¡Cerrar!"
+		    });
+
+  	}else if(imagen["size"] > 2000000){
+
+  		$(".nuevoLogo1").val("");
+
+  		 swal({
+		      title: "Error al subir la imagen",
+		      text: "¡La imagen no debe pesar más de 2MB!",
+		      type: "error",
+		      confirmButtonText: "¡Cerrar!"
+		    });
+
+  	}else{
+
+  		var datosImagen = new FileReader;
+  		datosImagen.readAsDataURL(imagen);
+
+  		$(datosImagen).on("load", function(event){
+
+  			var rutaImagen = event.target.result;
+
+  			$(".previsualizarLogo").attr("src", rutaImagen);
+
+  		})
+
+  	}
+})
+
+/*=============================================
+SUBIENDO LA FOTO DEL LOGO 2 DE LA EMPRESA
+=============================================*/
+$(".nuevoLogo2").change(function(){
+
+	var imagen = this.files[0];
+	
+	/*=============================================
+  	VALIDAMOS EL FORMATO DE LA IMAGEN SEA JPG O PNG
+  	=============================================*/
+
+  	if(imagen["type"] != "image/jpeg" && imagen["type"] != "image/png"){
+
+  		$(".nuevoLogo2").val("");
+
+  		 swal({
+		      title: "Error al subir la imagen",
+		      text: "¡La imagen debe estar en formato JPG o PNG!",
+		      type: "error",
+		      confirmButtonText: "¡Cerrar!"
+		    });
+
+  	}else if(imagen["size"] > 2000000){
+
+  		$(".nuevoLogo2").val("");
+
+  		 swal({
+		      title: "Error al subir la imagen",
+		      text: "¡La imagen no debe pesar más de 2MB!",
+		      type: "error",
+		      confirmButtonText: "¡Cerrar!"
+		    });
+
+  	}else{
+
+  		var datosImagen = new FileReader;
+  		datosImagen.readAsDataURL(imagen);
+
+  		$(datosImagen).on("load", function(event){
+
+  			var rutaImagen = event.target.result;
+
+  			$(".previsualizarLogo2").attr("src", rutaImagen);
+
+  		})
+
+  	}
+})
