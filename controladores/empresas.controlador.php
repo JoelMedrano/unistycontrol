@@ -166,8 +166,6 @@ class ControladorEmpresas{
 			$datos = array("id"=>$_POST["idEmpresa"],
 						"nombre"=>$_POST["editarRazonSocial"],
 						"documento"=>$_POST["editarDocumento"],
-						"logo1"=>$_POST["editarLogo1"],
-						"logo2"=>$_POST["editarLogo2"],
 						"id_responsable"=>$_POST["editarResponsable"],
 						"id_usuario"=>$_SESSION["id"]);
 

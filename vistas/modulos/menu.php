@@ -39,10 +39,10 @@
 
 			<li>
 
-				<a href="productos">
+				<a href="social">
 
-					<i class="fa fa-product-hunt"></i>
-					<span>Productos</span>
+					<i class="fa fa-globe"></i>
+					<span>Red Social</span>
 
 				</a>
 
