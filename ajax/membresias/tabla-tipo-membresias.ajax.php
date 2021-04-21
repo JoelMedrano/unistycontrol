@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once "../../controladores/membresias.controlador.php";
 require_once "../../modelos/membresias.modelo.php";
 
@@ -11,10 +11,9 @@ class TablaTipoMembresias{
 
     public function mostrarTablaTipoMembresias(){
 
-        $item = null;     
-        $valor = null;
+        $valor = $_SESSION["empresa"];
 
-        $tipo = ControladorMembresias::ctrMostrarTipoMembresias($item, $valor);	
+        $tipo = ControladorMembresias::ctrSelecTipoMembresias($valor);	
         if(count($tipo)>0){
 
         $datosJson = '{
@@ -32,7 +31,7 @@ class TablaTipoMembresias{
             $datosJson .= '[
             "'.($i+1).'",
             "'.$tipo[$i]["nombre_membresia"].'",
-            "'.$tipo[$i]["id_empresa"].'",
+            "'.$tipo[$i]["nombre"].'",
             "'.$tipo[$i]["fecha_creacion"].'",
             "'.$botones.'"
             ],';        

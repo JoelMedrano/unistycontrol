@@ -320,4 +320,161 @@ class ControladorMembresias{
 
     }
 
+
+	/*=============================================
+	CREAR PRECIO DE MEMBRESIA
+	=============================================*/
+
+	static public function ctrCrearMembresia(){
+
+		if(isset($_POST["nuevoTipoMembresia"])){
+				
+            $tabla="membresia";
+            $datos = array("id_tipo_membresia"=>$_POST["nuevoTipoMembresia"],
+							"fecha_inicio"=>$_POST["nuevaFechaInicio"],
+							"fecha_fin"=>$_POST["nuevaFechaFin"],
+							"comprobante"=>$_POST["nuevoComprobante"],
+                            "id_usuario"=>$_SESSION["id"]);
+
+            $respuesta = ModeloMembresias::mdlIngresarMembresia($tabla,$datos);
+
+            if($respuesta == "ok"){
+
+                echo'<script>
+
+                swal({
+                        type: "success",
+                        title: "La membresia ha sido guardada correctamente",
+                        showConfirmButton: true,
+                        confirmButtonText: "Cerrar"
+                        }).then(function(result){
+                                if (result.value) {
+
+                                window.location = "membresias";
+
+                                }
+                            })
+
+                </script>';
+
+            }
+
+			
+
+		}
+
+    }
+    
+
+	/*=============================================
+	MOSTRAR PRECIO MEMBRESIAS
+	=============================================*/
+
+	static public function ctrMostrarMembresias($item,$valor){
+		$tabla="membresia";
+		$respuesta = ModeloMembresias::mdlMostrarMembresias($tabla,$item,$valor);
+
+		return $respuesta;
+
+    }
+    
+	/*=============================================
+	EDITAR PRECIO DE MEMBRESIA
+	=============================================*/
+
+	static public function ctrEditarMembresia(){
+
+		if(isset($_POST["idMembresia"])){
+
+			$tabla="membresia";
+			$datos = array("id"=>$_POST["idMembresia"],
+							"id_tipo_membresia"=>$_POST["editarTipoMembresia"],
+							"fecha_inicio"=>$_POST["editarFechaInicio"],
+							"fecha_fin"=>$_POST["editarFechaFin"],
+							"comprobante"=>$_POST["editarComprobante"],
+							"id_usuario"=>$_SESSION["id"]);
+
+			   	$respuesta = ModeloMembresias::mdlEditarMembresia($tabla,$datos);
+
+			   	if($respuesta == "ok"){
+
+					echo'<script>
+
+					swal({
+						  type: "success",
+						  title: "La membresia ha sido cambiada correctamente",
+						  showConfirmButton: true,
+						  confirmButtonText: "Cerrar"
+						  }).then(function(result){
+									if (result.value) {
+
+									window.location = "membresias";
+
+									}
+								})
+
+					</script>';
+
+
+			}
+		}
+
+    }
+    
+	/*=============================================
+	ELIMINAR TIPO MEMBRESIA
+	=============================================*/
+
+	static public function ctrEliminarMembresia(){
+
+		if(isset($_GET["idMembresia"])){
+
+			$datos = $_GET["idMembresia"];
+			$tabla="membresia";
+			date_default_timezone_set('America/Lima');
+			$fecha = new DateTime();
+			$precio=ControladorMembresias::ctrMostrarMembresias("id_membresia",$datos);
+			$usuario= $_SESSION["nombre"];
+			$para      = 'notificacionesvascorp@gmail.com';
+			$asunto    = 'Se elimino un precio de membresia';
+			$descripcion   = 'El usuario '.$usuario.' elimino el precio de membresia '.$precio["nombre_precio_membresia"];
+			$de = 'From: notificacionesvascorp@gmail.com';
+			if($_SESSION["correo"] == 1){
+				mail($para, $asunto, $descripcion, $de);
+			}
+			if($_SESSION["datos"] == 1){
+				$datos2= array( "usuario" => $usuario,
+								"concepto" => $descripcion,
+								"fecha" => $fecha->format("Y-m-d H:i:s"));
+				$auditoria=ModeloUsuarios::mdlIngresarAuditoria("auditoria",$datos2);
+			}
+			
+			$respuesta = ModeloMembresias::mdlEliminarMembresia($tabla,$datos);
+			if($respuesta == "ok"){
+				
+				
+				echo'<script>
+
+				swal({
+					  type: "success",
+					  title: "La membresia ha sido borrada correctamente",
+					  showConfirmButton: true,
+					  confirmButtonText: "Cerrar",
+					  closeOnConfirm: false
+					  }).then(function(result){
+								if (result.value) {
+
+								window.location = "membresias";
+
+								}
+							})
+
+				</script>';
+
+			}		
+
+		}
+
+	} 
+
 }

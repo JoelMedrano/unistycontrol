@@ -26,7 +26,7 @@
   
         <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarMembresia">
           
-          Agregar tipo membresia
+          Agregar membresia
 
         </button>
 
@@ -40,9 +40,12 @@
          
          <tr>
            <th>N°</th>
-           <th>Nombre</th>
-           <th>Empresa</th>
-           <th>Fecha</th>
+           <th>Miembro</th>
+           <th>Tipo Membresia</th>
+           <th>Fecha Inicio</th>
+           <th>Fecha Fin</th>
+           <th>Comprobante</th>
+           <th>Estado</th>
            <th>Acciones</th>
 
          </tr> 
@@ -96,18 +99,71 @@ MODAL AGREGAR MEMBRESIA
           <div class="box-body">
 
             <!-- ENTRADA PARA TIPO DE MEMBRESIA -->
-            
+
             <div class="form-group">
-              
+              <label for="">Tipo de membresia</label>
               <div class="input-group">
               
-                <span class="input-group-addon"><i class="fa fa-globe"></i></span> 
+                <span class="input-group-addon"><i class="fa fa-credit-card-alt"></i></span> 
 
-                <input type="text"  class="form-control input-md" name="nuevoTipo" placeholder="Ingresar membresia" required>
+                <select  class="form-control input-md selectpicker" name="nuevoTipoMembresia" id="nuevoTipoMembresia" data-live-search="true" required>
+                  <option value="">Seleccionar tipo de membresia</option>
+                  <?php
+                    $valor=$_SESSION["empresa"];
+                    $empresas = ControladorMembresias::ctrSelecTipoMembresias($valor);
+
+                    foreach ($empresas as $key => $value) {
+                      echo '<option value="' . $value["id_tipo_membresia"] . '">' .$value["nombre_membresia"] . '</option>';
+                    }
+                  
+                  ?>
+
+                </select>
+              </div>
+
+            </div>   
+
+            <!-- ENTRADA PARA FECHA DE INICIO -->
+            
+            <div class="form-group">
+              <label for="">Fecha de inicio</label>
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-calendar"></i></span> 
+
+                <input type="date"  class="form-control input-md" name="nuevaFechaInicio" required>
 
               </div>
 
-            </div>          
+            </div>        
+
+            <!-- ENTRADA PARA FECHA DE FIN -->
+            
+            <div class="form-group">
+              <label for="">Fecha de fin</label>
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-calendar"></i></span> 
+
+                <input type="date"  class="form-control input-md" name="nuevaFechaFin" required>
+
+              </div>
+
+            </div>    
+
+            <!-- ENTRADA PARA COMPROBANTE -->
+            
+            <div class="form-group">
+              <label for="">Comprobante</label>
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-archive"></i></span> 
+
+                <input type="text"  class="form-control input-md" name="nuevoComprobante" placeholder="Ingresar comprobante" required>
+
+              </div>
+
+            </div>   
 
 
           </div>
@@ -131,8 +187,8 @@ MODAL AGREGAR MEMBRESIA
 
       <?php
 
-        $crearTipoMembresia = new ControladorMembresias();
-        $crearTipoMembresia -> ctrCrearTipoMembresia();
+        $crearMembresia = new ControladorMembresias();
+        $crearMembresia -> ctrCrearMembresia();
 
       ?>
 
@@ -177,21 +233,73 @@ MODAL EDITAR MEMBRESIA
           <div class="box-body">
 
           
-            <!-- ENTRADA PARA TIPO MEMBRESIA -->
-            
+            <!-- ENTRADA PARA TIPO DE MEMBRESIA -->
+
             <div class="form-group">
-              
+              <label for="">Tipo de membresia</label>
               <div class="input-group">
               
-                <span class="input-group-addon"><i class="fa fa-globe"></i></span> 
+                <span class="input-group-addon"><i class="fa fa-credit-card-alt"></i></span> 
 
-                <input type="text" class="form-control input-md" name="editarTipo"  id="editarTipo" required>
-                <input type="hidden" name="idTipo"  id="idTipo" required>
+                <select  class="form-control input-md selectpicker" name="editarTipoMembresia" id="editarTipoMembresia" data-live-search="true" required>
+          
+                  <?php
+                    $valor=$_SESSION["empresa"];
+                    $empresas = ControladorMembresias::ctrSelecTipoMembresias($valor);
+
+                    foreach ($empresas as $key => $value) {
+                      echo '<option value="' . $value["id_tipo_membresia"] . '">' .$value["nombre_membresia"] . '</option>';
+                    }
+                  
+                  ?>
+
+                </select>
+              </div>
+
+            </div>   
+
+            <!-- ENTRADA PARA FECHA DE INICIO -->
+            
+            <div class="form-group">
+              <label for="">Fecha de inicio</label>
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-calendar"></i></span> 
+
+                <input type="date"  class="form-control input-md" name="editarFechaInicio"  id="editarFechaInicio" required>
+                <input type="hidden"  name="idMembresia" id="idMembresia" >
 
               </div>
 
-            </div>          
+            </div>        
 
+            <!-- ENTRADA PARA FECHA DE FIN -->
+            
+            <div class="form-group">
+              <label for="">Fecha de fin</label>
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-calendar"></i></span> 
+
+                <input type="date"  class="form-control input-md" name="editarFechaFin" id="editarFechaFin" required>
+
+              </div>
+
+            </div>    
+
+            <!-- ENTRADA PARA COMPROBANTE -->
+            
+            <div class="form-group">
+              <label for="">Comprobante</label>
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-archive"></i></span> 
+
+                <input type="text"  class="form-control input-md" name="editarComprobante" id="editarComprobante" required>
+
+              </div>
+
+            </div>   
   
           </div>
 
@@ -213,8 +321,8 @@ MODAL EDITAR MEMBRESIA
 
       <?php
 
-        $editarTipoMembresia = new ControladorMembresias();
-        $editarTipoMembresia -> ctrEditarTipoMembresia();
+        $editarMembresia = new ControladorMembresias();
+        $editarMembresia -> ctrEditarMembresia();
 
       ?>   
 
@@ -228,8 +336,8 @@ MODAL EDITAR MEMBRESIA
 
 <?php
 
-  $eliminarTipoMembresia = new ControladorMembresias();
-  $eliminarTipoMembresia -> ctrEliminarTipoMembresia();
+  $eliminarMembresia = new ControladorMembresias();
+  $eliminarMembresia -> ctrEliminarMembresia();
 
 ?>
 
