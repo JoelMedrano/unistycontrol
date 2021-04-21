@@ -128,33 +128,33 @@ class ModeloMiembros{
 		}else{
 
 			$stmt = Conexion::conectar()->prepare("SELECT 
-            m.id_miembro,
-            m.nombre_completo,
-            m.documento,
-            m.celular,
-            m.correo,
-            m.foto,
-            m.id_red_social,
-            r.nombre_red_social,
-            m.usuario_red_social,
-            m.fecha_creacion,
-            m.id_empresa,
-            e.nombre,
-            m.estado,
-            CASE
-              WHEN m.id_membresia = 0 
-              THEN 'Pendiente' 
-              ELSE m.id_membresia 
-            END AS id_membresia 
-          FROM
-            miembros m 
-            LEFT JOIN empresa e 
-              ON m.id_empresa = e.id_empresa 
-            LEFT JOIN membresia me 
-              ON m.id_miembro = me.id_miembro 
-            LEFT JOIN red_social r 
-              ON m.id_red_social = r.id_red_social 
-          WHERE m.id_empresa = $empresa");
+                                                m.id_miembro,
+                                                m.nombre_completo,
+                                                m.documento,
+                                                m.celular,
+                                                m.correo,
+                                                m.foto,
+                                                m.id_red_social,
+                                                r.nombre_red_social,
+                                                m.usuario_red_social,
+                                                m.fecha_creacion,
+                                                m.id_empresa,
+                                                e.nombre,
+                                                m.estado,
+                                                CASE
+                                                WHEN m.id_membresia = 0 
+                                                THEN 'Pendiente' 
+                                                ELSE m.id_membresia 
+                                                END AS id_membresia 
+                                            FROM
+                                                miembros m 
+                                                LEFT JOIN empresa e 
+                                                ON m.id_empresa = e.id_empresa 
+                                                LEFT JOIN membresia me 
+                                                ON m.id_miembro = me.id_miembro 
+                                                LEFT JOIN red_social r 
+                                                ON m.id_red_social = r.id_red_social 
+                                            WHERE m.id_empresa = $empresa");
 
 			$stmt -> execute();
 
