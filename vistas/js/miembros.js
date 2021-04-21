@@ -32,3 +32,52 @@ $('.tablaMiembros').DataTable({
 			}
     }    
   });
+
+/*=============================================
+*EDITAR MIEMBRO
+=============================================*/
+$(".tablaMiembros").on("click", ".btnEditarMiembro", function () {
+
+    var idMiembro = $(this).attr("idMiembro");
+	//console.log(idMiembro)
+
+    var datos = new FormData();
+    datos.append("idMiembro", idMiembro);
+
+    $.ajax({
+
+        url: "ajax/miembros.ajax.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function (respuesta) {
+
+			console.log(respuesta);
+
+			$("#editarEmpresa").val(respuesta["id_empresa"]);
+			$("#editarEmpresa").selectpicker("refresh");
+
+            $("#editarNombre").val(respuesta["nombre_completo"]);
+            $("#editarDocumento").val(respuesta["documento"]);
+			$("#editarCelular").val(respuesta["celular"]);
+			$("#editarEmail").val(respuesta["correo"]);
+			$("#editarRedSocial").val(respuesta["id_red_social"]);
+			$("#editarPerfil").val(respuesta["usuario_red_social"]);
+			$("#fotoMiembroActual").val(respuesta["foto"]);
+
+			if(respuesta["foto"] != ""){
+
+				$(".previsualizar").attr("src", respuesta["foto"]);
+
+			}
+
+			
+
+        }
+
+    })
+
+})
