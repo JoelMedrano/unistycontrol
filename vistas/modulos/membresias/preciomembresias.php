@@ -266,6 +266,7 @@ MODAL EDITAR PRECIO DE MEMBRESIA
                 <span class="input-group-addon"><i class="fa fa-usd"></i></span> 
 
                 <input type="number" step="any" min="0"  class="form-control input-md" name="editarPrecio" id="editarPrecio"  required>
+                <input type="hidden" name="idPrecio" id="idPrecio"  required>
 
               </div>
 
