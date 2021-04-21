@@ -34,7 +34,7 @@
 
             <div class="box-body">
 
-                <table class="table table-bordered table-striped dt-responsive table-condensed tablas">
+                <table class="table table-bordered table-striped dt-responsive table-condensed tablaMiembros">
 
                     <thead>
 
@@ -49,6 +49,7 @@
                             <th>Red Social</th>
                             <th>Usuario</th>
                             <th>Estado</th>
+                            <th>Membresia</th>
                             <th>Fecha creación</th>
                             <th>Acciones</th>
 
@@ -57,31 +58,6 @@
                     </thead>
 
                     <tbody>
-
-                        <tr>
-                            <td>1</td>
-                            <td>JOEL MEDRANO GUERE</td>
-                            <td>47281037</td>
-                            <td><img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail" width="40px"></td>
-                            <td>982-009-013</td>
-                            <td>jvmedranog@gmail.com</td>
-                            <td>Instagram</td>
-                            <td>joeycrisis</td>
-                            <td><button class="btn btn-success btn-xs">Activado</button></td>
-                            <td>2017-12-11 12:05:32</td>
-                            <td>
-
-                                <div class="btn-group">
-
-                                    <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
-
-                                    <button class="btn btn-danger"><i class="fa fa-times"></i></button>
-
-                                </div>
-
-                            </td>
-
-                        </tr>
 
                     </tbody>
 
@@ -127,6 +103,48 @@ MODAL AGREGAR MIEMBRO
 
                     <div class="box-body">
 
+                        <?php
+
+                            //var_dump($_SESSION["empresa"]);
+
+                            $empresa = $_SESSION["empresa"];
+
+                            if($empresa == '0'){
+
+                                echo '  <div class="form-group">
+
+                                            <div class="input-group">
+    
+                                                <span class="input-group-addon"><i class="fa fa-university"></i></span>
+                
+                                                <select class="form-control input-md" name="empresa">';
+
+                                                $item = null;
+                                                $valor = null;
+                
+                                                $empresas = ControladorEmpresas::ctrMostrarEmpresas($item, $valor);
+                
+                                                foreach ($empresas as $key => $value) {
+                
+                                                echo '<option value="' . $value["id_empresa"] . '">' . $value["nombre"] . '</option>';
+                                                }
+                
+
+                                                echo '</select>
+
+                                            </div>
+                
+                                        </div>';
+
+                            }else{
+
+                                echo'<input type="hidden" name="empresa" value="'.$empresa.'">';
+
+                            }
+                        
+                        
+                        ?>
+
                         <!-- ENTRADA PARA EL NOMBRE -->
 
                         <div class="form-group">
@@ -147,7 +165,7 @@ MODAL AGREGAR MIEMBRO
 
                             <div class="input-group">
 
-                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                <span class="input-group-addon"><i class="fa fa-address-card"></i></span>
 
                                 <input type="text" class="form-control input-md" name="nuevoDocumento" placeholder="Ingresar documento" required>
 
@@ -193,13 +211,19 @@ MODAL AGREGAR MIEMBRO
 
                                 <select class="form-control input-md" name="nuevaRedSocial">
 
-                                    <option value="">Selecionar Red Social</option>
+                                <?php
 
-                                    <option value="Instagram">Instagram</option>
+                                $item = null;
+                                $valor = null;
 
-                                    <option value="Facebook">Facebook</option>
+                                $social = ControladorSocial::ctrMostrarSocial($item, $valor);
 
-                                    <option value="Tik Tok">Tik Tok</option>
+                                foreach ($social as $key => $value) {
+
+                                echo '<option value="' . $value["id_red_social"] . '">' . $value["nombre_red_social"] . '</option>';
+                                }
+
+                                ?>
 
                                 </select>
 

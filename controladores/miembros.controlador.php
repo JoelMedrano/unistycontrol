@@ -2,7 +2,7 @@
 class ControladorMiembros{
 
     /* 
-    Registrar miembros
+    *Registrar miembros
     */
     static public function ctrCrearMiembro(){
 
@@ -78,10 +78,56 @@ class ControladorMiembros{
             $datos = array( "nombre_completo" => $_POST["nuevoNombre"],
                             "documento" => $_POST["nuevoDocumento"],
                             "celular" => $_POST["nuevoCelular"],
-                            "email" => $_POST["nuevoEmail"],
-                            "foto" => $_POST["nuevaFotoMiembro"]);
+                            "correo" => $_POST["nuevoEmail"],
+                            "foto" => $ruta,
+                            "id_red_social" => $_POST["nuevaRedSocial"],
+                            "usuario_red_social" => $_POST["nuevoPerfil"],
+                            "id_empresa" => $_POST["empresa"],
+                            "id_usuario" => $_SESSION["id"]);
+
+            //var_dump($datos);
+            $respuesta = ModeloMiembros::mdlCrearMiembros($datos);
+
+            //var_dump($respuesta);
+
+            if($respuesta == "ok"){
+
+                echo '<script>
+
+                swal({
+
+                    type: "success",
+                    title: "¡El miembro ha sido guardado correctamente!",
+                    showConfirmButton: true,
+                    confirmButtonText: "Cerrar"
+
+                }).then(function(result){
+
+                    if(result.value){
+                    
+                        window.location = "miembros";
+
+                    }
+
+                });
+            
+
+                </script>';
+
+            }
 
         }
+    }
+
+    /* 
+    *Mostrar Miembros
+    */
+    static public function ctrMostrarMiembros($item, $valor){
+
+        $respuesta = ModeloMiembros::mdlMostrarMiembros($item,$valor);
+
+        return $respuesta;
+
     }
 
 }

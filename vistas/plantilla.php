@@ -141,12 +141,9 @@ CUERPO DOCUMENTO
 
         include "modulos/empresas/".$_GET["ruta"].".php";
 
-      }else if($_GET["ruta"] == "miembros" ){
-
-        include "modulos/miembros/".$_GET["ruta"].".php";
-        
       }else if( $_GET["ruta"] == "membresias" ||
-                $_GET["ruta"] == "tipomembresias" ){
+                $_GET["ruta"] == "tipomembresias" ||
+                $_GET["ruta"] == "miembros" ){
 
         include "modulos/membresias/".$_GET["ruta"].".php";
 
@@ -189,6 +186,7 @@ CUERPO DOCUMENTO
 <script src="vistas/js/empresas.js"></script>
 <script src="vistas/js/social.js"></script>
 <script src="vistas/js/membresias.js"></script>
+<script src="vistas/js/miembros.js"></script>
 
 </body>
 </html>
