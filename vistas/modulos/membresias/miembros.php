@@ -49,6 +49,7 @@
                             <th>Red Social</th>
                             <th>Usuario</th>
                             <th>Estado</th>
+                            <th>Empresa</th>
                             <th>Membresia</th>
                             <th>Fecha creación</th>
                             <th>Acciones</th>
@@ -289,3 +290,7 @@ MODAL AGREGAR MIEMBRO
     </div>
 
 </div>
+
+<script>
+window.document.title = "Miembros"
+</script>
