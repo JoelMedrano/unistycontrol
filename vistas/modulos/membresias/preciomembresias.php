@@ -41,7 +41,8 @@
          <tr>
            <th>N°</th>
            <th>Nombre</th>
-           <th>Tipo Membresia</th>  
+           <th>Tipo Membresia</th> 
+           <th>Empresa</th>  
            <th>Precio S/</th>  
            <th>Fecha</th>
            <th>Acciones</th>

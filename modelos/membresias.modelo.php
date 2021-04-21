@@ -401,6 +401,58 @@ class ModeloMembresias{
 
     }
 
+	/*=============================================
+	SELECT PARA PRECIO DE MEMBRESIAS POR EMPRESA
+	=============================================*/
+
+	static public function mdlSelecPrecioMembresias($tabla,$empresa){
+
+		if($empresa == "0"){
+
+			$stmt = Conexion::conectar()->prepare("SELECT 
+			p.*,
+			t.nombre_membresia,
+			t.id_empresa,
+			e.nombre as nombre_empresa
+		  FROM
+			$tabla p 
+			LEFT JOIN tipo_membresia t 
+			ON t.id_tipo_membresia = p.id_tipo_membresia 
+			LEFT JOIN empresa e 
+			ON t.id_empresa = e.id_empresa  ");
+
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}else{
+
+			$stmt = Conexion::conectar()->prepare("SELECT 
+			p.*,
+			t.nombre_membresia,
+			t.id_empresa,
+			e.nombre as nombre_empresa
+		  FROM
+			$tabla p 
+			LEFT JOIN tipo_membresia t 
+			  ON t.id_tipo_membresia = p.id_tipo_membresia
+			LEFT JOIN empresa e 
+			  ON t.id_empresa = e.id_empresa  
+		  WHERE t.id_empresa = '".$empresa."' ");
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}
+
+		$stmt -> close();
+
+		$stmt = null;
+
+    }
+
 
 
 }
