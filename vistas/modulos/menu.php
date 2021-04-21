@@ -50,10 +50,10 @@
 
 			<li>
 
-				<a href="clientes">
+				<a href="miembros">
 
 					<i class="fa fa-users"></i>
-					<span>Clientes</span>
+					<span>Miembros</span>
 
 				</a>
 

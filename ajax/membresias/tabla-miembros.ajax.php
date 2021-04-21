@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require_once "../../controladores/miembros.controlador.php";
 require_once "../../modelos/miembros.modelo.php";
 
@@ -11,10 +13,8 @@ class TablaMiembros{
 
     public function mostrarTablaMiembros(){
 
-        $item = null;     
-        $valor = null;
-
-        $miembros = ControladorMiembros::ctrMostrarMiembros($item, $valor);	
+        $empresa = $_SESSION["empresa"];
+        $miembros = ControladorMiembros::ctrListarMiembroEmpresa($empresa);	
 
         if(count($miembros)>0){
 
@@ -23,28 +23,45 @@ class TablaMiembros{
 
         for($i = 0; $i < count($miembros); $i++){  
 
-        
-        /*=============================================
-        TRAEMOS LAS ACCIONES
-        =============================================*/         
-        
-        $botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarMiembro' idMiembro='".$miembros[$i]["id_miembro"]."' data-toggle='modal' data-target='#modalEditarMiembro'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarMiembro' idMiembro='".$miembros[$i]["id_miembro"]."'><i class='fa fa-times'></i></button></div>"; 
+            /* 
+            * imagen
+            */
+            $foto="<img src='".$miembros[$i]["foto"]."' class='img-thumbnail' width='40px'>";
+
+            /* 
+            *estado
+            */
+            if($miembros[$i]["estado"] == 1){
+
+                $estado = "<button class='btn btn-success btn-xs btnActivarMiembro' idMiembro='".$miembros[$i]["id_miembro"]."' estadoMiembro='0'>Activo</button>";
+    
+            }else{
+    
+                $estado = "<button class='btn btn-danger btn-xs btnActivarMiembro' idMiembro='".$miembros[$i]["id_miembro"]."' estadoMiembro='1'>Inactivo</button>";
+    
+            }
+
+            /*
+            *Botones
+            */            
+            $botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarMiembro' idMiembro='".$miembros[$i]["id_miembro"]."' data-toggle='modal' data-target='#modalEditarMiembro'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarMiembro' idMiembro='".$miembros[$i]["id_miembro"]."'><i class='fa fa-times'></i></button></div>"; 
 
             $datosJson .= '[
             "'.($i+1).'",
             "'.$miembros[$i]["nombre_completo"].'",
             "'.$miembros[$i]["documento"].'",
-            "'.$miembros[$i]["foto"].'",
+            "'.$foto.'",
             "'.$miembros[$i]["celular"].'",
             "'.$miembros[$i]["correo"].'",
-            "'.$miembros[$i]["id_red_social"].'",
+            "'.$miembros[$i]["nombre_red_social"].'",
             "'.$miembros[$i]["usuario_red_social"].'",
-            "'.$miembros[$i]["estado"].'",
+            "'.$estado.'",
+            "'.$miembros[$i]["nombre"].'",
             "'.$miembros[$i]["id_membresia"].'",
             "'.$miembros[$i]["fecha_creacion"].'",
             "'.$botones.'"
             ],';        
-            }
+        }
 
             $datosJson=substr($datosJson, 0, -1);
 

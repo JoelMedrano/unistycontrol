@@ -1,4 +1,5 @@
 <?php
+
 class ControladorMiembros{
 
     /* 
@@ -8,11 +9,13 @@ class ControladorMiembros{
 
         if(isset($_POST["nuevoDocumento"])){
 
+            var_dump($_SESSION["empresa"]);
+
             /*=============================================
             VALIDAR IMAGEN
             =============================================*/
 
-            $ruta = "";
+            $ruta = "vistas/img/miembros/default/anonymous.png";
 
             if(isset($_FILES["nuevaFotoMiembro"]["tmp_name"])){
 
@@ -127,6 +130,18 @@ class ControladorMiembros{
         $respuesta = ModeloMiembros::mdlMostrarMiembros($item,$valor);
 
         return $respuesta;
+
+    }
+
+
+    /* 
+    * listar miembros por empresa
+    */
+    static public function ctrListarMiembroEmpresa($empresa){
+
+        $respuesta = ModeloMiembros::mdlListarMiembroEmpresa($empresa);
+
+		return $respuesta;
 
     }
 
