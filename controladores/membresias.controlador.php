@@ -309,12 +309,24 @@ class ControladorMembresias{
 	} 
 
 	/*=============================================
-	MOSTRAR PRECIO MEMBRESIAS
+	MOSTRAR TIPO MEMBRESIAS
 	=============================================*/
 
 	static public function ctrSelecTipoMembresias($empresa){
 		$tabla="tipo_membresia";
 		$respuesta = ModeloMembresias::mdlSelecTipoMembresias($tabla,$empresa);
+
+		return $respuesta;
+
+    }
+
+	/*=============================================
+	MOSTRAR PRECIO MEMBRESIAS
+	=============================================*/
+
+	static public function ctrSelecPrecioMembresias($empresa){
+		$tabla="precio_membresia";
+		$respuesta = ModeloMembresias::mdlSelecPrecioMembresias($tabla,$empresa);
 
 		return $respuesta;
 

@@ -32,7 +32,7 @@ class ControladorEmpresas{
 					=============================================*/
 
 					$directorio = "vistas/img/empresas/".$_POST["nuevoDocumento"];
-					var_dump($directorio);
+					
 					mkdir($directorio, 0755);
 
 					/*=============================================
@@ -84,6 +84,10 @@ class ControladorEmpresas{
 
 						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
 
+						// $color = imagecolorallocate($destino, 0, 0, 0, 127);
+
+						// imagefill($destino, 0, 0, $color);
+
 						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
 
 						imagepng($destino, $ruta);
@@ -92,9 +96,13 @@ class ControladorEmpresas{
 
 						$ruta2 = "vistas/img/empresas/".$_POST["nuevoDocumento"]."/".$aleatorio2.".png";
 
-						$origen2 = imagecreatefrompng($_FILES["nuevoLogo2"]["tmp_name"]);						
+						$origen2 = imagecreatefrompng($_FILES["nuevoLogo2"]["tmp_name"]);	
 
 						$destino2 = imagecreatetruecolor($nuevoAncho2, $nuevoAlto2);
+						
+						// $color2 = imagecolorallocate($destino2, 0, 0, 0, 127);
+
+						// imagefill($destino2, 0, 0, $color2);
 
 						imagecopyresized($destino2, $origen2, 0, 0, 0, 0, $nuevoAncho2, $nuevoAlto2, $ancho2, $alto2);
 

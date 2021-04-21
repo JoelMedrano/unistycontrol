@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once "../../controladores/membresias.controlador.php";
 require_once "../../modelos/membresias.modelo.php";
 
@@ -11,10 +11,9 @@ class TablaPrecioMembresias{
 
     public function mostrarTablaPrecioMembresias(){
 
-        $item = null;     
-        $valor = null;
+        $valor = $_SESSION["empresa"];
 
-        $precio = ControladorMembresias::ctrMostrarPrecioMembresias($item, $valor);	
+        $precio = ControladorMembresias::ctrSelecPrecioMembresias($valor);	
         if(count($precio)>0){
 
         $datosJson = '{
@@ -32,7 +31,8 @@ class TablaPrecioMembresias{
             $datosJson .= '[
             "'.($i+1).'",
             "'.$precio[$i]["nombre_precio_membresia"].'",
-            "'.$precio[$i]["id_tipo_membresia"].'",
+            "'.$precio[$i]["nombre_membresia"].'",
+            "'.$precio[$i]["nombre_empresa"].'",
             "'.$precio[$i]["precio"].'",
             "'.$precio[$i]["fecha_creacion"].'",
             "'.$botones.'"

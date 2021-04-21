@@ -5,20 +5,68 @@
 	======================================-->
 	<a href="inicio" class="logo">
 		
-		<!-- logo mini -->
-		<span class="logo-mini">
+		<?php 
+			$idEmpresa= $_SESSION["empresa"];
+ 			if($idEmpresa == "0"){
+
+				echo'<!-- logo mini -->
+				<span class="logo-mini">
+				
+					
+					<img src="vistas/img/plantilla/icono-blanco.png" class="img-responsive" style="padding:10px">
+		
+				</span>
+		
+				<!-- logo normal -->
+		
+				<span class="logo-lg">
+					
+					<img src="vistas/img/plantilla/logo-blanco-lineal.png" class="img-responsive" style="padding:10px 0px">
+		
+				</span>';
+			 }else{
+
+				$empresas=ControladorEmpresas::ctrMostrarEmpresas("id_empresa",$idEmpresa);
+
+				if($empresas["logo1"] == ""){
+					echo'<!-- logo mini -->
+					<span class="logo-mini">
+					
+						
+						<img src="vistas/img/plantilla/icono-blanco.png" class="img-responsive" style="padding:10px">
 			
-			<img src="vistas/img/plantilla/icono-blanco.png" class="img-responsive" style="padding:10px">
-
-		</span>
-
-		<!-- logo normal -->
-
-		<span class="logo-lg">
+					</span>
 			
-			<img src="vistas/img/plantilla/logo-blanco-lineal.png" class="img-responsive" style="padding:10px 0px">
+					<!-- logo normal -->
+			
+					<span class="logo-lg">
+						
+						<img src="vistas/img/plantilla/logo-blanco-lineal.png" class="img-responsive" style="padding:10px 0px">
+			
+					</span>';
+					
+				}else{
 
-		</span>
+					echo'<!-- logo mini -->
+					<span class="logo-mini">
+					
+						
+						<img src="'.$empresas["logo1"].'" class="img-responsive" style="padding:10px">
+			
+					</span>
+			
+					<!-- logo normal -->
+			
+					<span class="logo-lg">
+						
+						<img src="'.$empresas["logo2"].'" class="img-responsive" style="padding:10px 0px">
+			
+					</span>';
+				
+				}
+			 }
+		?>
+		
 
 	</a>
 
