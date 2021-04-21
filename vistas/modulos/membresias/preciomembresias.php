@@ -4,7 +4,7 @@
     
     <h1>
       
-      Administrar tipo membresias
+      Administrar precio de membresias
     
     </h1>
 
@@ -12,7 +12,7 @@
       
       <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
       
-      <li class="active">Administrar tipo membresias</li>
+      <li class="active">Administrar precio de membresias</li>
     
     </ol>
 
@@ -24,10 +24,9 @@
 
       <div class="box-header with-border">
   
-        <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarTipoMembresia">
+        <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarPrecioMembresia">
           
-          Agregar tipo membresia
-          
+          Agregar precio de membresia
 
         </button>
 
@@ -35,14 +34,15 @@
         
       <div class="box-body">
        <input type="hidden" value="<?= $_SESSION["perfil"]; ?>" id="perfilOculto"> 
-       <table class="table table-bordered table-striped dt-responsive tablaTipoMembresias">
+       <table class="table table-bordered table-striped dt-responsive tablaPrecioMembresias">
          
         <thead>
          
          <tr>
            <th>N°</th>
            <th>Nombre</th>
-           <th>Empresa</th>
+           <th>Tipo Membresia</th>  
+           <th>Precio S/</th>  
            <th>Fecha</th>
            <th>Acciones</th>
 
@@ -65,10 +65,10 @@
 </div>
 
 <!--=====================================
-MODAL AGREGAR TIPO MEMBRESIA
+MODAL AGREGAR PRECIO MEMBRESIA
 ======================================-->
 
-<div id="modalAgregarTipoMembresia" class="modal fade" role="dialog">
+<div id="modalAgregarPrecioMembresia" class="modal fade" role="dialog">
   
   <div class="modal-dialog">
 
@@ -84,7 +84,7 @@ MODAL AGREGAR TIPO MEMBRESIA
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Agregar tipo membresia</h4>
+          <h4 class="modal-title">Agregar precio de membresia</h4>
 
         </div>
 
@@ -96,38 +96,36 @@ MODAL AGREGAR TIPO MEMBRESIA
 
           <div class="box-body">
 
-            <!-- ENTRADA PARA TIPO DE MEMBRESIA -->
+            <!-- ENTRADA PARA DESCRIPCION PRECIO DE MEMBRESIA -->
             
+            <div class="form-group">
+              
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-text-width"></i></span> 
+
+                <input type="text"  class="form-control input-md" name="nuevaDescripcionPrecio" placeholder="Ingresar descripcion membresia" required>
+
+              </div>
+
+            </div>    
+
+            <!-- ENTRADA PARA TIPO DE MEMBRESIA -->
+
             <div class="form-group">
               
               <div class="input-group">
               
                 <span class="input-group-addon"><i class="fa fa-credit-card-alt"></i></span> 
 
-                <input type="text"  class="form-control input-md" name="nuevoTipo" placeholder="Ingresar tipo membresia" required>
-
-              </div>
-
-            </div>    
-
-            <?php 
-             if ($_SESSION["empresa"] == "0"){
-            ?>
-            <div class="form-group">
-              
-              <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-builing"></i></span> 
-
-                <select  class="form-control input-md selectpicker" name="nuevaEmpresa" data-live-search="true"  required>
-                  <option value="">Seleccionar Empresa</option>
-
+                <select  class="form-control input-md selectpicker" name="nuevoTipoMembresia" data-live-search="true" required>
+                  <option value="">Seleccionar tipo membresia</option>
                   <?php
-
-                    $empresas = ControladorEmpresas::ctrMostrarEmpresas(null,null);
+                    $valor=$_SESSION["empresa"];
+                    $empresas = ControladorMembresias::ctrSelecTipoMembresias($valor);
 
                     foreach ($empresas as $key => $value) {
-                      echo '<option value="' . $value["id_empresa"] . '">' .$value["nombre"] . '</option>';
+                      echo '<option value="' . $value["id_tipo_membresia"] . '">' .$value["nombre_membresia"] . '</option>';
                     }
                   
                   ?>
@@ -136,17 +134,21 @@ MODAL AGREGAR TIPO MEMBRESIA
               </div>
 
             </div>   
-            <?php 
-             }else{
-            ?>
 
-                <input type="hidden"  name="nuevaEmpresa" value="<?php echo $_SESSION["empresa"]?>" required>
 
+            <!-- ENTRADA PARA PRECIO DE MEMBRESIA -->
+            
+            <div class="form-group">
               
-            <?php 
-             }
-            ?>
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-usd"></i></span> 
 
+                <input type="number" step="any" min="0"  class="form-control input-md" name="nuevoPrecio" placeholder="Ingresar precio de membresia" required>
+
+              </div>
+
+            </div>      
 
 
           </div>
@@ -161,7 +163,7 @@ MODAL AGREGAR TIPO MEMBRESIA
 
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary">Guardar tipo membresia</button>
+          <button type="submit" class="btn btn-primary">Guardar precio membresia</button>
 
         </div>
 
@@ -170,8 +172,8 @@ MODAL AGREGAR TIPO MEMBRESIA
 
       <?php
 
-        $crearTipoMembresia = new ControladorMembresias();
-        $crearTipoMembresia -> ctrCrearTipoMembresia();
+        $crearPrecioMembresia = new ControladorMembresias();
+        $crearPrecioMembresia -> ctrCrearPrecioMembresia();
 
       ?>
 
@@ -184,10 +186,10 @@ MODAL AGREGAR TIPO MEMBRESIA
 
 
 <!--=====================================
-MODAL EDITAR TIPO MEMBRESIA
+MODAL EDITAR PRECIO DE MEMBRESIA
 ======================================-->
 
-<div id="modalEditarTipoMembresia" class="modal fade" role="dialog">
+<div id="modalEditarPrecioMembresia" class="modal fade" role="dialog">
   
   <div class="modal-dialog">
 
@@ -203,7 +205,7 @@ MODAL EDITAR TIPO MEMBRESIA
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Editar tipo membresia</h4>
+          <h4 class="modal-title">Editar precio de membresia</h4>
 
         </div>
 
@@ -216,38 +218,35 @@ MODAL EDITAR TIPO MEMBRESIA
           <div class="box-body">
 
           
-            <!-- ENTRADA PARA TIPO MEMBRESIA -->
+            <!-- ENTRADA PARA DESCRIPCION PRECIO DE MEMBRESIA -->
             
+            <div class="form-group">
+              
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-text-width"></i></span> 
+
+                <input type="text"  class="form-control input-md" name="editarDescripcionPrecio" id="editarDescripcionPrecio"  required>
+
+              </div>
+
+            </div>    
+
+            <!-- ENTRADA PARA TIPO DE MEMBRESIA -->
+
             <div class="form-group">
               
               <div class="input-group">
               
                 <span class="input-group-addon"><i class="fa fa-credit-card-alt"></i></span> 
 
-                <input type="text" class="form-control input-md" name="editarTipo"  id="editarTipo" required>
-                <input type="hidden" name="idTipo"  id="idTipo" required>
-
-              </div>
-
-            </div>   
-
-            <?php 
-             if ($_SESSION["empresa"] == "0"){
-            ?>
-            <div class="form-group">
-              
-              <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-builing"></i></span> 
-
-                <select  class="form-control input-md selectpicker" name="editarEmpresa" data-live-search="true" required>
-
+                <select  class="form-control input-md selectpicker" name="editarTipoMembresia" id="editarTipoMembresia" data-live-search="true" required>
                   <?php
-
-                    $empresas = ControladorEmpresas::ctrMostrarEmpresas(null,null);
+                    $valor=$_SESSION["empresa"];
+                    $empresas = ControladorMembresias::ctrSelecTipoMembresias($valor);
 
                     foreach ($empresas as $key => $value) {
-                      echo '<option value="' . $value["id_empresa"] . '">' .$value["nombre"] . '</option>';
+                      echo '<option value="' . $value["id_tipo_membresia"] . '">' .$value["nombre_membresia"] . '</option>';
                     }
                   
                   ?>
@@ -256,16 +255,21 @@ MODAL EDITAR TIPO MEMBRESIA
               </div>
 
             </div>   
-            <?php 
-             }else{
-            ?>
 
-                <input type="hidden"  name="editarEmpresa" value="<?php echo $_SESSION["empresa"]?>" required>
 
+            <!-- ENTRADA PARA PRECIO DE MEMBRESIA -->
+            
+            <div class="form-group">
               
-            <?php 
-             }
-            ?>       
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-usd"></i></span> 
+
+                <input type="number" step="any" min="0"  class="form-control input-md" name="editarPrecio" id="editarPrecio"  required>
+
+              </div>
+
+            </div>           
 
   
           </div>
@@ -288,8 +292,8 @@ MODAL EDITAR TIPO MEMBRESIA
 
       <?php
 
-        $editarTipoMembresia = new ControladorMembresias();
-        $editarTipoMembresia -> ctrEditarTipoMembresia();
+        $editarPrecioMembresia = new ControladorMembresias();
+        $editarPrecioMembresia -> ctrEditarPrecioMembresia();
 
       ?>   
 
@@ -303,11 +307,11 @@ MODAL EDITAR TIPO MEMBRESIA
 
 <?php
 
-  $eliminarTipoMembresia = new ControladorMembresias();
-  $eliminarTipoMembresia -> ctrEliminarTipoMembresia();
+  $eliminarPrecioMembresia = new ControladorMembresias();
+  $eliminarPrecioMembresia -> ctrEliminarPrecioMembresia();
 
 ?>
 
 <script>
-window.document.title = "Tipo membresias"
+window.document.title = "Precio de membresias"
 </script>

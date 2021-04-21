@@ -15,7 +15,7 @@ class TablaTipoMembresias{
         $valor = null;
 
         $tipo = ControladorMembresias::ctrMostrarTipoMembresias($item, $valor);	
-        if(count($social)>0){
+        if(count($tipo)>0){
 
         $datosJson = '{
         "data": [';

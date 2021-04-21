@@ -90,6 +90,17 @@
 
 					<li>
 
+						<a href="preciomembresias">
+							
+							<i class="fa fa-circle-o"></i>
+							<span>Precio de membresias</span>
+
+						</a>
+
+					</li>
+
+					<li>
+
 						<a href="tipomembresias">
 							
 							<i class="fa fa-circle-o"></i>
