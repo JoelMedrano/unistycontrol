@@ -142,7 +142,8 @@ CUERPO DOCUMENTO
         include "modulos/empresas/".$_GET["ruta"].".php";
 
       }else if( $_GET["ruta"] == "membresias" ||
-        $_GET["ruta"] == "tipomembresias" ){
+          $_GET["ruta"] == "preciomembresias" ||
+          $_GET["ruta"] == "tipomembresias" ){
 
         include "modulos/membresias/".$_GET["ruta"].".php";
 

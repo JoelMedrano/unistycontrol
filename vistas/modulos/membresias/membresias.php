@@ -4,7 +4,7 @@
     
     <h1>
       
-      Administrar tipo membresias
+      Administrar membresias
     
     </h1>
 
@@ -12,7 +12,7 @@
       
       <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
       
-      <li class="active">Administrar tipo membresias</li>
+      <li class="active">Administrar membresias</li>
     
     </ol>
 
@@ -24,7 +24,7 @@
 
       <div class="box-header with-border">
   
-        <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarTipoMembresia">
+        <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarMembresia">
           
           Agregar tipo membresia
 
@@ -34,7 +34,7 @@
         
       <div class="box-body">
        <input type="hidden" value="<?= $_SESSION["perfil"]; ?>" id="perfilOculto"> 
-       <table class="table table-bordered table-striped dt-responsive tablaTipoMembresia">
+       <table class="table table-bordered table-striped dt-responsive tablaMembresias">
          
         <thead>
          
@@ -64,10 +64,10 @@
 </div>
 
 <!--=====================================
-MODAL AGREGAR TIPO MEMBRESIA
+MODAL AGREGAR MEMBRESIA
 ======================================-->
 
-<div id="modalAgregarTipoMembresia" class="modal fade" role="dialog">
+<div id="modalAgregarMembresia" class="modal fade" role="dialog">
   
   <div class="modal-dialog">
 
@@ -83,7 +83,7 @@ MODAL AGREGAR TIPO MEMBRESIA
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Agregar tipo membresia</h4>
+          <h4 class="modal-title">Agregar membresia</h4>
 
         </div>
 
@@ -103,7 +103,7 @@ MODAL AGREGAR TIPO MEMBRESIA
               
                 <span class="input-group-addon"><i class="fa fa-globe"></i></span> 
 
-                <input type="text"  class="form-control input-md" name="nuevoTipo" placeholder="Ingresar tipo membresia" required>
+                <input type="text"  class="form-control input-md" name="nuevoTipo" placeholder="Ingresar membresia" required>
 
               </div>
 
@@ -122,7 +122,7 @@ MODAL AGREGAR TIPO MEMBRESIA
 
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary">Guardar tipo membresia</button>
+          <button type="submit" class="btn btn-primary">Guardar membresia</button>
 
         </div>
 
@@ -145,10 +145,10 @@ MODAL AGREGAR TIPO MEMBRESIA
 
 
 <!--=====================================
-MODAL EDITAR TIPO MEMBRESIA
+MODAL EDITAR MEMBRESIA
 ======================================-->
 
-<div id="modalEditarTipoMembresia" class="modal fade" role="dialog">
+<div id="modalEditarMembresia" class="modal fade" role="dialog">
   
   <div class="modal-dialog">
 
@@ -164,7 +164,7 @@ MODAL EDITAR TIPO MEMBRESIA
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Editar tipo membresia</h4>
+          <h4 class="modal-title">Editar membresia</h4>
 
         </div>
 
@@ -234,5 +234,5 @@ MODAL EDITAR TIPO MEMBRESIA
 ?>
 
 <script>
-window.document.title = "Tipo membresias"
+window.document.title = "Membresias"
 </script>
