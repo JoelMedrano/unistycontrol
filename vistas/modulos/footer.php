@@ -1,6 +1,6 @@
 <footer class="main-footer">
 	
-	<strong>Copyright &copy; 2017 <a href="https://www.tutorialesatualcance.com" target="_blank">Tutoriales a tu Alcance</a>.</strong>
+	<strong>Copyright &copy; 2021 <a href="#" target="_blank">Unisty Control</a>.</strong>
 
 	Todos los derechos reservados.
 

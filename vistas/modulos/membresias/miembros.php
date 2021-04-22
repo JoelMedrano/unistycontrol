@@ -358,7 +358,7 @@ MODAL EDITAR MIEMBRO
 
                             }else{
 
-                                echo'<input type="hidden" name="empresa" id="empresa" value="'.$empresa.'">';
+                                echo'<input type="hidden" name="editarEmpresa" id="editarEmpresa" value="'.$empresa.'">';
 
                             }
                         
@@ -388,6 +388,8 @@ MODAL EDITAR MIEMBRO
                                 <span class="input-group-addon"><i class="fa fa-address-card"></i></span>
 
                                 <input type="text" class="form-control input-md" name="editarDocumento" id="editarDocumento" placeholder="Ingresar documento" required>
+
+                                <input type="hidden" name="idMiembro" id="idMiembro">
 
                             </div>
 
@@ -471,11 +473,11 @@ MODAL EDITAR MIEMBRO
               
                         <div class="panel">SUBIR FOTO</div>
 
-                            <input type="file" class="nuevaFotoMiembro" name="editarFotoMiembro">
+                            <input type="file" class="nuevaFotoMiembro" name="editarFotoMiembro" id="editarFotoMiembro">
 
                             <p class="help-block">Peso máximo de la foto 2MB</p>
 
-                            <img src="vistas/img/miembros/default/anonymous.png" class="img-thumbnail previsualizar" width="100px">
+                            <img src="vistas/img/miembros/default/anonymous.png" class="img-thumbnail previsualizarM" width="100px">
 
                             <input type="hidden" name="fotoMiembroActual" id="fotoMiembroActual">
 
@@ -493,11 +495,16 @@ MODAL EDITAR MIEMBRO
 
                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-                    <button type="submit" class="btn btn-primary">Guardar usuario</button>
+                    <button type="submit" class="btn btn-primary">Guardar miembro</button>
 
                 </div>
 
+                <?php
 
+                $editarMiembro = new ControladorMiembros();
+                $editarMiembro -> ctrEditarMiembro();
+
+                ?> 
 
             </form>
 

@@ -135,7 +135,7 @@ class ControladorMiembros{
 
 
     /* 
-    * listar miembros por empresa
+    *Listar miembros por empresa
     */
     static public function ctrListarMiembroEmpresa($empresa){
 
@@ -144,5 +144,176 @@ class ControladorMiembros{
 		return $respuesta;
 
     }
+
+    /* 
+    *Editar miembro
+    */
+    static public function ctrEditarMiembro(){
+
+        if(isset($_POST["idMiembro"])){
+
+            /*=============================================
+            VALIDAR IMAGEN
+            =============================================*/
+
+            $ruta = $_POST["fotoMiembroActual"];
+
+            if(isset($_FILES["editarFotoMiembro"]["tmp_name"]) && !empty($_FILES["editarFotoMiembro"]["tmp_name"])){
+
+                list($ancho, $alto) = getimagesize($_FILES["editarFotoMiembro"]["tmp_name"]);
+
+                $nuevoAncho = 500;
+                $nuevoAlto = 500;
+
+                /*=============================================
+                CREAMOS EL DIRECTORIO DONDE VAMOS A GUARDAR LA FOTO DEL USUARIO
+                =============================================*/
+
+                $directorio = "vistas/img/miembros/".$_POST["editarDocumento"];
+
+                /*=============================================
+                PRIMERO PREGUNTAMOS SI EXISTE OTRA IMAGEN EN LA BD
+                =============================================*/
+
+                if(!empty($_POST["fotoMiembroActual"])){
+
+                    unlink($_POST["fotoMiembroActual"]);
+
+                }else{
+
+                    mkdir($directorio, 0755);
+
+                }	
+
+                /*=============================================
+                DE ACUERDO AL TIPO DE IMAGEN APLICAMOS LAS FUNCIONES POR DEFECTO DE PHP
+                =============================================*/
+
+                if($_FILES["editarFotoMiembro"]["type"] == "image/jpeg"){
+
+                    /*=============================================
+                    GUARDAMOS LA IMAGEN EN EL DIRECTORIO
+                    =============================================*/
+
+                    $aleatorio = mt_rand(100,999);
+
+                    $ruta = "vistas/img/miembros/".$_POST["editarDocumento"]."/".$aleatorio.".jpg";
+
+                    $origen = imagecreatefromjpeg($_FILES["editarFotoMiembro"]["tmp_name"]);						
+
+                    $destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+
+                    imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+
+                    imagejpeg($destino, $ruta);
+
+                }
+
+                if($_FILES["editarFotoMiembro"]["type"] == "image/png"){
+
+                    /*=============================================
+                    GUARDAMOS LA IMAGEN EN EL DIRECTORIO
+                    =============================================*/
+
+                    $aleatorio = mt_rand(100,999);
+
+                    $ruta = "vistas/img/miembros/".$_POST["editarDocumento"]."/".$aleatorio.".png";
+
+                    $origen = imagecreatefrompng($_FILES["editarFotoMiembro"]["tmp_name"]);						
+
+                    $destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+
+                    imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+
+                    imagepng($destino, $ruta);
+
+                }
+
+            }
+
+            $datos = array( "id_miembro" => $_POST["idMiembro"],
+                            "nombre_completo" => $_POST["editarNombre"],
+                            "documento" => $_POST["editarDocumento"],
+                            "celular" => $_POST["editarCelular"],
+                            "correo" => $_POST["editarEmail"],
+                            "foto" => $ruta,
+                            "id_red_social" => $_POST["editarRedSocial"],
+                            "usuario_red_social" => $_POST["editarPerfil"],
+                            "id_empresa" => $_POST["editarEmpresa"],
+                            "id_usuario" => $_SESSION["id"]);
+
+            //var_dump($datos);
+
+            $respuesta = ModeloMiembros::mdlEditarMiembro($datos);
+            //var_dump($respuesta);
+
+            if($respuesta == "ok"){
+
+                echo'<script>
+
+                swal({
+                      type: "success",
+                      title: "El miembro ha sido editado correctamente",
+                      showConfirmButton: true,
+                      confirmButtonText: "Cerrar"
+                      }).then(function(result){
+                                if (result.value) {
+
+                                window.location = "miembros";
+
+                                }
+                            })
+
+                </script>';
+
+            }
+
+        }
+
+    }
+
+    /* 
+    *Eliminar miembro
+    */
+    static public function ctrBorrarUsuario(){
+
+		if(isset($_GET["idMiembro"])){
+
+			$tabla ="usuarios";
+			$datos = $_GET["idMiembro"];
+
+			if($_GET["fotoUsuario"] != ""){
+
+				unlink($_GET["fotoUsuario"]);
+				rmdir('vistas/img/usuarios/'.$_GET["usuario"]);
+
+			}
+
+			$respuesta = ModeloUsuarios::mdlBorrarUsuario($tabla, $datos);
+
+			if($respuesta == "ok"){
+
+				echo'<script>
+
+				swal({
+					  type: "success",
+					  title: "El usuario ha sido borrado correctamente",
+					  showConfirmButton: true,
+					  confirmButtonText: "Cerrar"
+					  }).then(function(result){
+								if (result.value) {
+
+								window.location = "usuarios";
+
+								}
+							})
+
+				</script>';
+
+			}		
+
+		}
+
+	}
 
 }

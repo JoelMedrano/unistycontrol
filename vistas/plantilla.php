@@ -11,12 +11,12 @@ session_start();
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>Inventory System</title>
+  <title>Unisty Control</title>
 
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-  <link rel="icon" href="vistas/img/plantilla/icono-negro.png">
+  <link rel="icon" href="vistas/img/plantilla/favicon.png">
 
    <!--=====================================
   PLUGINS DE CSS
@@ -83,7 +83,7 @@ session_start();
   <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
 
   <!-- iCheck 1.0.1 -->
-  <script src="vistas/plugins/iCheck/icheck.min.js"></script>  
+  <script src="vistas/plugins/iCheck/icheck.min.js"></script>
 
   <!-- InputMask -->
   <script src="vistas/plugins/input-mask/jquery.inputmask.js"></script>
@@ -99,12 +99,12 @@ CUERPO DOCUMENTO
 ======================================-->
 
 <body class="hold-transition skin-blue sidebar-collapse sidebar-mini login-page">
- 
+
   <?php
 
   if(isset($_SESSION["iniciarSesion"]) && $_SESSION["iniciarSesion"] == "ok"){
 
-   echo '<div class="wrapper">';
+    echo '<div class="wrapper">';
 
     /*=============================================
     CABEZOTE

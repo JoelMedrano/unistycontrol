@@ -372,7 +372,7 @@ MODAL EDITAR USUARIO
 
         </div>
 
-     <?php
+        <?php
 
           $editarUsuario = new ControladorUsuarios();
           $editarUsuario -> ctrEditarUsuario();
