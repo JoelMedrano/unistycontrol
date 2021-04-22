@@ -1,4 +1,55 @@
 /* 
+*subiendo la foto del miembro
+*/
+$(".nuevaFotoMiembro").change(function(){
+
+	var imagen = this.files[0];
+	console.log(imagen);
+	
+	/*=============================================
+  	VALIDAMOS EL FORMATO DE LA IMAGEN SEA JPG O PNG
+  	=============================================*/
+
+  	if(imagen["type"] != "image/jpeg" && imagen["type"] != "image/png"){
+
+  		$(".nuevaFotoMiembro").val("");
+
+  		 swal({
+		      title: "Error al subir la imagen",
+		      text: "¡La imagen debe estar en formato JPG o PNG!",
+		      type: "error",
+		      confirmButtonText: "¡Cerrar!"
+		    });
+
+  	}else if(imagen["size"] > 2000000){
+
+  		$(".nuevaFotoMiembro").val("");
+
+  		 swal({
+		      title: "Error al subir la imagen",
+		      text: "¡La imagen no debe pesar más de 2MB!",
+		      type: "error",
+		      confirmButtonText: "¡Cerrar!"
+		    });
+
+  	}else{
+
+  		var datosImagen = new FileReader;
+  		datosImagen.readAsDataURL(imagen);
+
+  		$(datosImagen).on("load", function(event){
+
+  			var rutaImagen = event.target.result;
+
+  			$(".previsualizarM").attr("src", rutaImagen);
+
+  		})
+
+  	}
+})
+
+
+/* 
 *tabla miembros
 */
 $('.tablaMiembros').DataTable({
@@ -55,11 +106,12 @@ $(".tablaMiembros").on("click", ".btnEditarMiembro", function () {
         dataType: "json",
         success: function (respuesta) {
 
-			console.log(respuesta);
+			//console.log(respuesta);
 
 			$("#editarEmpresa").val(respuesta["id_empresa"]);
 			$("#editarEmpresa").selectpicker("refresh");
 
+			$("#idMiembro").val(respuesta["id_miembro"]);
             $("#editarNombre").val(respuesta["nombre_completo"]);
             $("#editarDocumento").val(respuesta["documento"]);
 			$("#editarCelular").val(respuesta["celular"]);
@@ -70,7 +122,7 @@ $(".tablaMiembros").on("click", ".btnEditarMiembro", function () {
 
 			if(respuesta["foto"] != ""){
 
-				$(".previsualizar").attr("src", respuesta["foto"]);
+				$(".previsualizarM").attr("src", respuesta["foto"]);
 
 			}
 

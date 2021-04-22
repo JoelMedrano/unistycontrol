@@ -166,6 +166,51 @@ class ModeloMiembros{
 
 		$stmt = null;
 
-    }    
+    }
+
+
+    /* 
+    *Editar miembro
+    */
+    static public function mdlEditarMiembro($datos){
+	
+		$stmt = Conexion::conectar()->prepare("UPDATE 
+                                                miembros 
+                                            SET
+                                                nombre_completo = :nombre_completo,
+                                                documento = :documento,
+                                                celular = :celular,
+                                                correo = :correo,
+                                                foto = :foto,
+                                                id_red_social = :id_red_social,
+                                                usuario_red_social = :usuario_red_social,
+                                                id_empresa = :id_empresa 
+                                            WHERE id_miembro = :id_miembro");
+
+        $stmt->bindParam(":id_miembro", $datos["id_miembro"], PDO::PARAM_STR);
+        $stmt->bindParam(":nombre_completo", $datos["nombre_completo"], PDO::PARAM_STR);
+        $stmt->bindParam(":documento", $datos["documento"], PDO::PARAM_STR);
+        $stmt->bindParam(":celular", $datos["celular"], PDO::PARAM_STR);
+        $stmt->bindParam(":correo", $datos["correo"], PDO::PARAM_STR);
+        $stmt->bindParam(":foto", $datos["foto"], PDO::PARAM_STR);
+        $stmt->bindParam(":id_red_social", $datos["id_red_social"], PDO::PARAM_STR);
+        $stmt->bindParam(":usuario_red_social", $datos["usuario_red_social"], PDO::PARAM_STR);
+        $stmt->bindParam(":id_empresa", $datos["id_empresa"], PDO::PARAM_STR);
+
+		if($stmt -> execute()){
+
+			return "ok";
+		
+		}else{
+
+			return "error";	
+
+		}
+
+		$stmt -> close();
+
+		$stmt = null;
+
+	}
 
 }
