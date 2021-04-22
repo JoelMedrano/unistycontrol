@@ -84,9 +84,9 @@ $('.tablaMiembros').DataTable({
     }    
   });
 
-/*=============================================
+/*
 *EDITAR MIEMBRO
-=============================================*/
+*/
 $(".tablaMiembros").on("click", ".btnEditarMiembro", function () {
 
     var idMiembro = $(this).attr("idMiembro");
@@ -133,3 +133,36 @@ $(".tablaMiembros").on("click", ".btnEditarMiembro", function () {
     })
 
 })
+
+*
+/*
+*Eliminar miembro
+*/
+$(".tablaMiembros").on("click", ".btnEliminarMiembro", function(){
+
+	var idMiembro = $(this).attr("idMiembro");
+	var fotoMiembro = $(this).attr("fotoMiembro");
+	var documento = $(this).attr("documento");
+	console.log(idMiembro,fotoMiembro,documento);
+  
+	swal({
+	  title: '¿Está seguro de borrar el miembro?',
+	  text: "¡Si no lo está puede cancelar la accíón!",
+	  type: 'warning',
+	  showCancelButton: true,
+	  confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		cancelButtonText: 'Cancelar',
+		confirmButtonText: 'Si, borrar miembro!'
+	}).then(function(result){
+  
+	  if(result.value){
+  
+		window.location = "index.php?ruta=miembros&idMiembro="+idMiembro+"&documento="+documento+"&fotoMiembro="+fotoMiembro;
+  
+	  }
+  
+	})
+  
+  })
+  

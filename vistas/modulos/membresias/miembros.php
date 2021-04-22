@@ -514,6 +514,13 @@ MODAL EDITAR MIEMBRO
 
 </div>
 
+<?php
+
+  $borrarMiembro = new ControladorMiembros();
+  $borrarMiembro -> ctrBorrarMiembro();
+
+?> 
+
 <script>
 window.document.title = "Miembros"
 </script>

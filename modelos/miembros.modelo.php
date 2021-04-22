@@ -118,7 +118,8 @@ class ModeloMiembros{
                                                 LEFT JOIN membresia me 
                                                 ON m.id_miembro = me.id_miembro 
                                                 LEFT JOIN red_social r 
-                                                ON m.id_red_social = r.id_red_social");
+                                                ON m.id_red_social = r.id_red_social
+                                            WHERE m.eliminado=1");
 
 
 			$stmt -> execute();
@@ -154,7 +155,7 @@ class ModeloMiembros{
                                                 ON m.id_miembro = me.id_miembro 
                                                 LEFT JOIN red_social r 
                                                 ON m.id_red_social = r.id_red_social 
-                                            WHERE m.id_empresa = $empresa");
+                                            WHERE m.id_empresa = $empresa AND m.eliminado=1");
 
 			$stmt -> execute();
 
@@ -213,4 +214,33 @@ class ModeloMiembros{
 
 	}
 
+    /* 
+    *Borrar Miembro
+    */
+    static public function mdlBorrarMiembro($tabla, $datos){
+
+		$stmt = Conexion::conectar()->prepare("UPDATE 
+                                                    miembros 
+                                                SET
+                                                    eliminado = 0 
+                                                WHERE id_miembro = :idMiembro ");
+
+		$stmt -> bindParam(":idMiembro", $datos, PDO::PARAM_INT);
+
+		if($stmt -> execute()){
+
+			return "ok";
+		
+		}else{
+
+			return "error";	
+
+		}
+
+		$stmt -> close();
+
+		$stmt = null;
+
+
+	}
 }

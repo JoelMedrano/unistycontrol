@@ -44,7 +44,7 @@ class TablaMiembros{
             /*
             *Botones
             */            
-            $botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarMiembro' idMiembro='".$miembros[$i]["id_miembro"]."' data-toggle='modal' data-target='#modalEditarMiembro'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarMiembro' idMiembro='".$miembros[$i]["id_miembro"]."'><i class='fa fa-times'></i></button></div>"; 
+            $botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarMiembro' idMiembro='".$miembros[$i]["id_miembro"]."' data-toggle='modal' data-target='#modalEditarMiembro'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarMiembro' idMiembro='".$miembros[$i]["id_miembro"]."' fotoMiembro='".$miembros[$i]["foto"]."' documento='".$miembros[$i]["documento"]."'><i class='fa fa-times'></i></button></div>"; 
 
             $datosJson .= '[
             "'.($i+1).'",
