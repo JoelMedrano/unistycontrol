@@ -24,8 +24,8 @@ class ControladorEmpresas{
 					$nuevoAncho = 172;
 					$nuevoAlto = 172;
 
-					$nuevoAncho2 = 500;
-					$nuevoAlto2 = 183;
+					$nuevoAncho2 = 480;
+					$nuevoAlto2 = 120;
 
 					/*=============================================
 					CREAMOS EL DIRECTORIO DONDE VAMOS A GUARDAR LA FOTO DE LA EMPRESA
@@ -84,9 +84,15 @@ class ControladorEmpresas{
 
 						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
 
-						// $color = imagecolorallocate($destino, 0, 0, 0, 127);
+						//poner fondo transparente
 
-						// imagefill($destino, 0, 0, $color);
+						imagealphablending($destino, false);
+
+						imagesavealpha($destino,true);
+
+						$transparent = imagecolorallocatealpha($destino, 255, 255, 255, 127);
+
+						imagefilledrectangle($destino, 0, 0, $nuevoAncho, $nuevoAlto, $transparent);
 
 						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
 
@@ -100,9 +106,15 @@ class ControladorEmpresas{
 
 						$destino2 = imagecreatetruecolor($nuevoAncho2, $nuevoAlto2);
 						
-						// $color2 = imagecolorallocate($destino2, 0, 0, 0, 127);
+						//poner fondo transparente
 
-						// imagefill($destino2, 0, 0, $color2);
+						imagealphablending($destino2, false);
+
+						imagesavealpha($destino2,true);
+
+						$transparent2 = imagecolorallocatealpha($destino2, 255, 255, 255, 127);
+
+						imagefilledrectangle($destino, 0, 0, $nuevoAncho2, $nuevoAlto2, $transparent2);
 
 						imagecopyresized($destino2, $origen2, 0, 0, 0, 0, $nuevoAncho2, $nuevoAlto2, $ancho2, $alto2);
 

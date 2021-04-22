@@ -44,6 +44,7 @@
          
          <tr>
            <th>N°</th>
+           <th>Logo</th>
            <th>Nombre</th>
            <th>Documento</th>
            <th>Estado</th>

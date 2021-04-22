@@ -34,7 +34,7 @@
 
       <div class="box-body">
         
-       <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
+       <table class="table table-bordered table-striped dt-responsive tablaUsuarios" width="100%">
          
         <thead>
          
@@ -54,61 +54,6 @@
         </thead>
 
         <tbody>
-
-        <?php
-
-        $item = null;
-        $valor = null;
-
-        $usuarios = ControladorUsuarios::ctrMostrarUsuarios($item, $valor);
-
-       foreach ($usuarios as $key => $value){
-         
-          echo ' <tr>
-                  <td>1</td>
-                  <td>'.$value["nombre"].'</td>
-                  <td>'.$value["usuario"].'</td>';
-
-                  if($value["foto"] != ""){
-
-                    echo '<td><img src="'.$value["foto"].'" class="img-thumbnail" width="40px"></td>';
-
-                  }else{
-
-                    echo '<td><img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail" width="40px"></td>';
-
-                  }
-
-                  echo '<td>'.$value["perfil"].'</td>';
-
-                  if($value["estado"] != 0){
-
-                    echo '<td><button class="btn btn-success btn-xs btnActivar" idUsuario="'.$value["id"].'" estadoUsuario="0">Activado</button></td>';
-
-                  }else{
-
-                    echo '<td><button class="btn btn-danger btn-xs btnActivar" idUsuario="'.$value["id"].'" estadoUsuario="1">Desactivado</button></td>';
-
-                  }             
-
-                  echo '<td>'.$value["ultimo_login"].'</td>
-                  <td>
-
-                    <div class="btn-group">
-                        
-                      <button class="btn btn-warning btnEditarUsuario" idUsuario="'.$value["id"].'" data-toggle="modal" data-target="#modalEditarUsuario"><i class="fa fa-pencil"></i></button>
-
-                      <button class="btn btn-danger btnEliminarUsuario" idUsuario="'.$value["id"].'" fotoUsuario="'.$value["foto"].'" usuario="'.$value["usuario"].'"><i class="fa fa-times"></i></button>
-
-                    </div>  
-
-                  </td>
-
-                </tr>';
-        }
-
-
-        ?> 
 
         </tbody>
 
@@ -220,6 +165,21 @@ MODAL AGREGAR USUARIO
 
             </div>
 
+            <!-- ENTRADA PARA PERMISOS -->
+            <div class="form-group">
+              <label ><strong>PERMISOS</strong></label>
+              <ul id="permisos" style="list-style:none;columns:2">
+                <?php
+                $item=null;
+                $valor=null;
+                $permisos=ControladorUsuarios::ctrMostrarPermisos($item,$valor);
+                foreach ($permisos as $key => $value) {
+                  echo("<li><input type='checkbox' name='permiso[]' value='".$value["id_permiso"]."'> ".$value["nombre"]."</li>");
+                }
+                ?>
+              </ul>
+            </div>
+
             <!-- ENTRADA PARA SUBIR FOTO -->
 
              <div class="form-group">
@@ -320,7 +280,7 @@ MODAL EDITAR USUARIO
                 <span class="input-group-addon"><i class="fa fa-key"></i></span> 
 
                 <input type="text" class="form-control input-lg" id="editarUsuario" name="editarUsuario" value="" readonly>
-
+                <input type="hidden" name="idUsuario" id="idUsuario">
               </div>
 
             </div>
@@ -365,6 +325,21 @@ MODAL EDITAR USUARIO
 
             </div>
 
+            <!-- ENTRADA PARA PERMISOS -->
+            <div class="form-group">
+              <label ><strong>PERMISOS</strong></label>
+              <ul id="permisos" style="list-style:none;columns:2">
+                <?php
+                $item=null;
+                $valor=null;
+                $permisos=ControladorUsuarios::ctrMostrarPermisos($item,$valor);
+                foreach ($permisos as $key => $value) {
+                  echo("<li><input type='checkbox' name='permisos[]' id='permisos[]' value='".$value["id_permiso"]."'> ".$value["nombre"]."</li>");
+                }
+                ?>
+              </ul>
+            </div>
+
             <!-- ENTRADA PARA SUBIR FOTO -->
 
              <div class="form-group">
@@ -401,6 +376,117 @@ MODAL EDITAR USUARIO
 
           $editarUsuario = new ControladorUsuarios();
           $editarUsuario -> ctrEditarUsuario();
+
+        ?> 
+
+      </form>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!--=====================================
+MODAL EDITAR CORREO
+======================================-->
+
+<div id="modalEditarCorreo" class="modal fade" role="dialog">
+  
+  <div class="modal-dialog modal-md">
+
+    <div class="modal-content">
+
+      <form role="form" method="post" enctype="multipart/form-data">
+
+        <!--=====================================
+        CABEZA DEL MODAL
+        ======================================-->
+
+        <div class="modal-header" style="background:#3c8dbc; color:white">
+
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+          <h4 class="modal-title">Editar permisos de correo</h4>
+
+        </div>
+
+        <!--=====================================
+        CUERPO DEL MODAL
+        ======================================-->
+
+        <div class="modal-body">
+
+          <div class="box-body">
+
+            <!-- ENTRADA PARA EL NOMBRE -->
+            <div class="form-group col-lg-6">
+              <label for=""><strong>Nombre</strong></label>
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-user"></i></span> 
+
+                <input type="text" class="form-control input-md" id="editarNombreCorreo" name="editarNombreCorreo" value="" readonly>
+
+              </div>
+
+            </div>
+
+            <div class="form-group col-lg-6">
+            <label for=""><strong>Usuario</strong></label>
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-user"></i></span> 
+
+                <input type="text" class="form-control input-md" id="editarUsuarioCorreo" name="editarUsuarioCorreo" value="" readonly>
+
+              </div>
+
+            </div>
+            <div class="form-group col-lg-6">
+              <label for="">Enviar correos</label>
+              <div class="input-group">
+              
+                <label class="switch">
+                  <input type="checkbox"  id="nuevoCorreo" name="nuevoCorreo" value="1" >
+                  <span class="slider round"></span>
+                </label>
+
+              </div>
+
+            </div>
+
+            <!-- ENTRADA PARA EL USUARIO -->
+
+             <div class="form-group  col-lg-6">
+              <label for=""><strong>Guardar bd</strong></label>
+              <div class="input-group">
+                <label class="switch">
+                  <input type="checkbox"  id="nuevoDatos" name="nuevoDatos" value="1" >
+                  <span class="slider round"></span>
+                </label>
+                <input type="hidden" name="idUsuarioCorreo" id="idUsuarioCorreo">
+              </div>
+
+            </div>
+        </div>
+      </div>         
+        <!--=====================================
+        PIE DEL MODAL
+        ======================================-->
+
+        <div class="modal-footer">
+
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+
+          <button type="submit" class="btn btn-primary">Modificar correos</button>
+
+        </div>
+        <?php
+
+          $editarCorreo = new ControladorUsuarios();
+          $editarCorreo -> ctrActualizarCorreo();
 
         ?> 
 

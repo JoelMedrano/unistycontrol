@@ -1,3 +1,34 @@
+$('.tablaUsuarios').DataTable({
+    "ajax": "ajax/usuarios/tabla-usuarios.ajax.php?perfil="+$("#perfilOculto").val(),
+    "deferRender": true,
+    "retrieve": true,
+    "processing": true,
+    "order": [[0, "asc"]],
+    "language": {
+			"sProcessing":     "Procesando...",
+			"sLengthMenu":     "Mostrar _MENU_ registros",
+			"sZeroRecords":    "No se encontraron resultados",
+			"sEmptyTable":     "Ningún dato disponible en esta tabla",
+			"sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
+			"sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0",
+			"sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+			"sInfoPostFix":    "",
+			"sSearch":         "Buscar:",
+			"sUrl":            "",
+			"sInfoThousands":  ",",
+			"sLoadingRecords": "Cargando...",
+			"oPaginate": {
+			"sFirst":    "Primero",
+			"sLast":     "Último",
+			"sNext":     "Siguiente",
+			"sPrevious": "Anterior"
+			},
+			"oAria": {
+				"sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+				"sSortDescending": ": Activar para ordenar la columna de manera descendente"
+			}
+    }    
+  });
 /*=============================================
 SUBIENDO LA FOTO DEL USUARIO
 =============================================*/
@@ -50,7 +81,7 @@ $(".nuevaFoto").change(function(){
 /*=============================================
 EDITAR USUARIO
 =============================================*/
-$(document).on("click", ".btnEditarUsuario", function(){
+$(".tablaUsuarios").on("click", ".btnEditarUsuario", function(){
 
 	var idUsuario = $(this).attr("idUsuario");
 	
@@ -67,7 +98,7 @@ $(document).on("click", ".btnEditarUsuario", function(){
 		processData: false,
 		dataType: "json",
 		success: function(respuesta){
-			
+			$("#idUsuario").val(respuesta["id"]);
 			$("#editarNombre").val(respuesta["nombre"]);
 			$("#editarUsuario").val(respuesta["usuario"]);
 			$("#editarPerfil").html(respuesta["perfil"]);
@@ -86,12 +117,41 @@ $(document).on("click", ".btnEditarUsuario", function(){
 
 	});
 
+	var datos2 = new FormData();
+	datos2.append("idUsuario2", idUsuario);
+	$.ajax({
+
+		url:"ajax/usuarios.ajax.php",
+		method: "POST",
+		data: datos2,
+		cache: false,
+		contentType: false,
+		processData: false,
+		dataType: "json",
+		success: function(respuesta2){
+			console.log(respuesta2);
+			$("input[name='permisos[]']").prop('checked',false);
+			var cantidad= $("input[name='permisos[]']");
+			for (let index = 0; index < respuesta2.length; index++) {
+				
+				$("input[name='permisos[]']").each(function(indice,elemento){
+					if (cantidad[indice].value==respuesta2[index]["id_permiso"]){
+						$(cantidad[indice]).prop('checked',true);
+					}
+				})
+	
+			}
+			
+		}
+
+	});
+
 })
 
 /*=============================================
 ACTIVAR USUARIO
 =============================================*/
-$(document).on("click", ".btnActivar", function(){
+$(".tablaUsuarios").on("click", ".btnActivar", function(){
 
 	var idUsuario = $(this).attr("idUsuario");
 	var estadoUsuario = $(this).attr("estadoUsuario");
@@ -189,7 +249,7 @@ $("#nuevoUsuario").change(function(){
 /*=============================================
 ELIMINAR USUARIO
 =============================================*/
-$(document).on("click", ".btnEliminarUsuario", function(){
+$(".tablaUsuarios").on("click", ".btnEliminarUsuario", function(){
 
   var idUsuario = $(this).attr("idUsuario");
   var fotoUsuario = $(this).attr("fotoUsuario");
@@ -217,5 +277,36 @@ $(document).on("click", ".btnEliminarUsuario", function(){
 })
 
 
+$(".tablaUsuarios").on("click", ".btnEditarCorreo", function(){
+	var idUsuario = $(this).attr("idUsuario");
+	$("#idUsuarioCorreo").val(idUsuario);
+	var datos = new FormData();
+	datos.append("idUsuario", idUsuario);
 
+	$.ajax({
+
+		url:"ajax/usuarios.ajax.php",
+		method: "POST",
+		data: datos,
+		cache: false,
+		contentType: false,
+		processData: false,
+		dataType: "json",
+		success: function(respuesta){
+            $("#editarNombreCorreo").val(respuesta["nombre"]);
+			$("#editarUsuarioCorreo").val(respuesta["usuario"]);
+			if(respuesta["correo"] == 1){
+				$("#nuevoCorreo").prop('checked',true);
+			}else{
+				$("#nuevoCorreo").prop('checked',false);
+			}
+			
+			if(respuesta["datos"] == 1){
+				$("#nuevoDatos").prop('checked',true);
+			}else{
+				$("#nuevoDatos").prop('checked',false);
+			}
+			}
+		})
+});
 
