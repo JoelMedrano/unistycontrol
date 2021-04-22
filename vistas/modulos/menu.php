@@ -4,6 +4,24 @@
 
 		<ul class="sidebar-menu">
 
+			<?php
+            $item="id_usuario";
+            $valor=$_SESSION["id"];
+            $permisos=ControladorUsuarios::ctrMostrarUsuariosPermisos($item,$valor);
+            $valores= array();
+            foreach ($permisos as $key => $value) {
+                array_push($valores,$value["id_permiso"]);
+            }
+            in_array(1,$valores)?$_SESSION['usuarios']=1:$_SESSION['usuarios']=0;
+            in_array(2,$valores)?$_SESSION['empresas']=1:$_SESSION['empresas']=0;
+            in_array(3,$valores)?$_SESSION['redes']=1:$_SESSION['redes']=0;
+            in_array(4,$valores)?$_SESSION['miembros']=1:$_SESSION['miembros']=0;
+            in_array(5,$valores)?$_SESSION['membresias']=1:$_SESSION['membresias']=0;
+            in_array(6,$valores)?$_SESSION['estadisticas']=1:$_SESSION['estadisticas']=0;
+			in_array(6,$valores)?$_SESSION['dashboard']=1:$_SESSION['dashboard']=0;
+
+            ?>
+
 			<li class="active">
 
 				<a href="inicio">
@@ -15,6 +33,11 @@
 
 			</li>
 
+			<?php
+            if($_SESSION["usuarios"] == 1){
+            ?>
+
+
 			<li>
 
 				<a href="usuarios">
@@ -25,6 +48,10 @@
 				</a>
 
 			</li>
+			<?php
+			}
+            if($_SESSION["empresas"] == 1){
+            ?>
 
 			<li>
 
@@ -37,6 +64,11 @@
 
 			</li>
 
+			<?php
+			}
+            if($_SESSION["redes"] == 1){
+            ?>
+
 			<li>
 
 				<a href="social">
@@ -48,6 +80,11 @@
 
 			</li>
 
+			<?php
+			}
+            if($_SESSION["miembros"] == 1){
+            ?>
+
 			<li>
 
 				<a href="miembros">
@@ -58,6 +95,11 @@
 				</a>
 
 			</li>
+
+			<?php
+			}
+            if($_SESSION["membresias"] == 1){
+            ?>
 
 			<li class="treeview">
 
@@ -113,6 +155,10 @@
 				</ul>
 
 			</li>
+
+			<?php
+			}
+            ?>
 
 		</ul>
 

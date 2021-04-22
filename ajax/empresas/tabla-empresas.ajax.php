@@ -22,6 +22,16 @@ class TablaEmpresas{
 
         for($i = 0; $i < count($empresa); $i++){  
 
+            if($empresa[$i]["logo1"] != ""){
+
+                $foto= "<img src='".$empresa[$i]["logo1"]."' class='img-thumbnail' width='40px'>";
+    
+              }else{
+    
+                $foto= "<img src='vistas/img/usuarios/default/anonymous.png' class='img-thumbnail' width='40px'>";
+    
+              }
+
             if($empresa[$i]["estado"] == 1){
 
                 /* $estado = "<button class='btn btn-danger btn-xs btnActivar'>".$articulos[$i]["id"]."</button>"; */
@@ -42,6 +52,7 @@ class TablaEmpresas{
 
             $datosJson .= '[
             "'.($i+1).'",
+            "'.$foto.'",
             "'.$empresa[$i]["nombre"].'",
             "'.$empresa[$i]["documento"].'",
             "'.$estado.'",

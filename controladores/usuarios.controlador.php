@@ -172,6 +172,17 @@ class ControladorUsuarios{
 					           "foto"=>$ruta);
 
 				$respuesta = ModeloUsuarios::mdlIngresarUsuario($tabla, $datos);
+
+				$ultimoID=ModeloUsuarios::mdlMostrarUltimoID($tabla);
+				$permisosCHK=$_POST["permiso"];
+				
+				
+				for ($i=0; $i <count($permisosCHK) ; $i++) { 
+					$tabla2="usuario_permiso";
+					$datos2=array("id_usuario"=>$ultimoID["id"],
+								   "id_permiso"=>$permisosCHK[$i]);
+					$usuario_permiso=ModeloUsuarios::mdlIngresarPermiso($tabla2,$datos2);
+				}
 			
 				if($respuesta == "ok"){
 
@@ -242,6 +253,32 @@ class ControladorUsuarios{
 		$tabla = "usuarios";
 
 		$respuesta = ModeloUsuarios::MdlMostrarUsuarios($tabla, $item, $valor);
+
+		return $respuesta;
+	}
+
+	/*=============================================
+	MOSTRAR PERMISOS
+	=============================================*/
+
+	static public function ctrMostrarPermisos($item, $valor){
+
+		$tabla = "permisos";
+
+		$respuesta = ModeloUsuarios::MdlMostrarPermisos($tabla, $item, $valor);
+
+		return $respuesta;
+	}
+
+	/*=============================================
+	MOSTRAR PERMISOS
+	=============================================*/
+
+	static public function ctrMostrarUsuariosPermisos($item, $valor){
+
+		$tabla = "usuario_permiso";
+
+		$respuesta = ModeloUsuarios::MdlMostrarUsuariosPermisos($tabla, $item, $valor);
 
 		return $respuesta;
 	}
@@ -378,6 +415,19 @@ class ControladorUsuarios{
 
 				$respuesta = ModeloUsuarios::mdlEditarUsuario($tabla, $datos);
 
+				$permisosCHK=$_POST["permisos"];
+				$tabla2="usuario_permiso";
+				$datosBorrar = $_POST["idUsuario"];
+				$borrado=ModeloUsuarios::mdlBorrarUsuarioPermiso($tabla2, $datosBorrar);
+				
+				for ($i=0; $i <count($permisosCHK) ; $i++) { 
+					
+					$datos2=array("id_usuario"=>$_POST["idUsuario"],
+								   "id_permiso"=>$permisosCHK[$i]);
+					$usuario_permiso=ModeloUsuarios::mdlIngresarPermiso($tabla2,$datos2);
+				}
+
+
 				if($respuesta == "ok"){
 
 					echo'<script>
@@ -444,6 +494,8 @@ class ControladorUsuarios{
 			}
 
 			$respuesta = ModeloUsuarios::mdlBorrarUsuario($tabla, $datos);
+			$tabla2="usuario_permiso";
+			$borrado=ModeloUsuarios::mdlBorrarUsuarioPermiso($tabla2, $datos);
 
 			if($respuesta == "ok"){
 
@@ -455,6 +507,58 @@ class ControladorUsuarios{
 					  showConfirmButton: true,
 					  confirmButtonText: "Cerrar"
 					  }).then(function(result){
+								if (result.value) {
+
+								window.location = "usuarios";
+
+								}
+							})
+
+				</script>';
+
+			}		
+
+		}
+
+	}
+
+	/*=============================================
+	ACTUALIZAR CORREO DE  USUARIO
+	=============================================*/
+
+	static public function ctrActualizarCorreo(){
+
+		if(isset($_POST["idUsuarioCorreo"]) ){
+
+			$tabla ="usuarios";
+			$item3 = "id";
+			$valor3 = $_POST["idUsuarioCorreo"];
+			$item2 = "correo";
+			$item1 = "datos";
+			if(empty($_POST["nuevoCorreo"])){
+				$valor2="0";
+			}else{
+				$valor2=$_POST["nuevoCorreo"];
+			}
+			if(empty($_POST["nuevoDatos"])){
+				$valor1="0";
+			}else{
+				$valor1=$_POST["nuevoDatos"];
+			}
+			var_dump($valor3);
+			$respuesta = ModeloUsuarios::mdlActualizarCorreo($tabla, $item1, $valor1, $item2, $valor2, $item3, $valor3);
+
+			if($respuesta == "ok"){
+
+				echo'<script>
+
+				swal({
+					  type: "success",
+					  title: "El usuario ha sido actualizado correctamente",
+					  showConfirmButton: true,
+					  confirmButtonText: "Cerrar",
+					  closeOnConfirm: false
+					  }).then(function(result) {
 								if (result.value) {
 
 								window.location = "usuarios";
