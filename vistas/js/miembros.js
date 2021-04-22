@@ -166,3 +166,65 @@ $(".tablaMiembros").on("click", ".btnEliminarMiembro", function(){
   
   })
   
+/* 
+*Activar Miembro
+*/
+$(".tablaMiembros").on("click", ".btnActivarMiembro", function(){
+
+	var idMiembro = $(this).attr("idMiembro");
+	var estadoMiembro = $(this).attr("estadoMiembro");
+
+	var datos = new FormData();
+ 	datos.append("activarId", idMiembro);
+  	datos.append("activarMiembro", estadoMiembro);
+
+  	$.ajax({
+
+	  url:"ajax/miembros.ajax.php",
+	  method: "POST",
+	  data: datos,
+	  cache: false,
+      contentType: false,
+      processData: false,
+      success: function(respuesta){
+		  console.log(respuesta)
+
+      	if(window.matchMedia("(max-width:767px)").matches){
+		
+      		 swal({
+		      	title: "El usuario ha sido actualizado",
+		      	type: "success",
+		      	confirmButtonText: "¡Cerrar!"
+		    	}).then(function(result) {
+		        
+		        	if (result.value) {
+
+		        	window.location = "miembros";
+
+		        }
+
+		      });
+
+
+		}
+      }
+
+  	})
+
+  	if(estadoMiembro == 0){
+
+  		$(this).removeClass('btn-success');
+  		$(this).addClass('btn-danger');
+  		$(this).html('Inactivo');
+  		$(this).attr('estadoMiembro',1);
+
+  	}else{
+
+  		$(this).addClass('btn-success');
+  		$(this).removeClass('btn-danger');
+  		$(this).html('Activado');
+  		$(this).attr('estadoMiembro',0);
+
+  	}
+
+})

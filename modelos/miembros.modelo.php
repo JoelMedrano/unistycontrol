@@ -241,6 +241,32 @@ class ModeloMiembros{
 
 		$stmt = null;
 
+	}
+
+    /* 
+    *Actualizar 1 dato miembro
+    */
+    static public function mdlActualizarMiembro($item1, $valor1, $item2, $valor2){
+
+		$stmt = Conexion::conectar()->prepare("UPDATE miembros SET $item1 = :$item1 WHERE $item2 = :$item2");
+
+		$stmt -> bindParam(":".$item1, $valor1, PDO::PARAM_STR);
+		$stmt -> bindParam(":".$item2, $valor2, PDO::PARAM_STR);
+
+		if($stmt -> execute()){
+
+			return "ok";
+		
+		}else{
+
+			return "error";	
+
+		}
+
+		$stmt -> close();
+
+		$stmt = null;
 
 	}
+
 }
