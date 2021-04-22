@@ -241,6 +241,16 @@ $(".tablaMembresias").on("click", ".btnEditarMembresia", function () {
           $("#editarComprobante").val(respuesta["comprobante"]);
           $("#editarTipoMembresia").val(respuesta["id_tipo_membresia"]);
           $("#editarTipoMembresia").selectpicker("refresh");
+          $("#editarMiembro").val(respuesta["id_miembro"]);
+          $("#editarMiembro2").val(respuesta["id_miembro"]+" - "+respuesta["nombre_completo"]);
+          $("#fotoActualComprobante").val(respuesta["comprobante"]);
+
+
+        if(respuesta["comprobante"] != ""){
+
+          $(".previsualizarComprobante").attr("src", respuesta["comprobante"]);
+
+        }
     
       }
 
@@ -255,6 +265,7 @@ ELIMINAR MEMBRESIA
 $(".tablaMembresias").on("click", ".btnEliminarMembresia", function(){
 
 var idMembresia = $(this).attr("idMembresia");
+var comprobante = $(this).attr("comprobante");
 
 swal({
       title: '¿Está seguro de borrar la membresia?',
@@ -268,9 +279,58 @@ swal({
     }).then(function(result){
       if (result.value) {
         
-          window.location = "index.php?ruta=membresias&idMembresia="+idMembresia;
+          window.location = "index.php?ruta=membresias&idMembresia="+idMembresia+"&comprobante="+comprobante;
       }
 
 })
 
+})
+
+/*=============================================
+SUBIENDO LA FOTO DEL USUARIO
+=============================================*/
+$(".nuevoComprobante").change(function(){
+
+	var imagen = this.files[0];
+	
+	/*=============================================
+  	VALIDAMOS EL FORMATO DE LA IMAGEN SEA JPG O PNG
+  	=============================================*/
+
+  	if(imagen["type"] != "image/jpeg" && imagen["type"] != "image/png"){
+
+  		$(".nuevoComprobante").val("");
+
+  		 swal({
+		      title: "Error al subir la imagen",
+		      text: "¡La imagen debe estar en formato JPG o PNG!",
+		      type: "error",
+		      confirmButtonText: "¡Cerrar!"
+		    });
+
+  	}else if(imagen["size"] > 2000000){
+
+  		$(".nuevoComprobante").val("");
+
+  		 swal({
+		      title: "Error al subir la imagen",
+		      text: "¡La imagen no debe pesar más de 2MB!",
+		      type: "error",
+		      confirmButtonText: "¡Cerrar!"
+		    });
+
+  	}else{
+
+  		var datosImagen = new FileReader;
+  		datosImagen.readAsDataURL(imagen);
+
+  		$(datosImagen).on("load", function(event){
+
+  			var rutaImagen = event.target.result;
+
+  			$(".previsualizarComprobante").attr("src", rutaImagen);
+
+  		})
+
+  	}
 })

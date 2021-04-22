@@ -35,6 +35,7 @@ EDITAR EMPRESA
 $(".tablaEmpresas").on("click", ".btnEditarEmpresa", function () {
 
     var idEmpresa = $(this).attr("idEmpresa");
+	
 
     var datos = new FormData();
     datos.append("idEmpresa", idEmpresa);
@@ -69,7 +70,8 @@ ELIMINAR EMPRESA
 $(".tablaEmpresas").on("click", ".btnEliminarEmpresa", function(){
 
 	var idEmpresa = $(this).attr("idEmpresa");
-	
+	var logo1 = $(this).attr("logo1");
+	var logo2 = $(this).attr("logo2");
 	swal({
         title: '¿Está seguro de borrar la empresa?',
         text: "¡Si no lo está puede cancelar la acción!",
@@ -82,7 +84,7 @@ $(".tablaEmpresas").on("click", ".btnEliminarEmpresa", function(){
       }).then(function(result){
         if (result.value) {
           
-            window.location = "index.php?ruta=empresas&idEmpresa="+idEmpresa;
+            window.location = "index.php?ruta=empresas&idEmpresa="+idEmpresa+"&logo1="+logo1+"&logo2="+logo2;
         }
 
   })

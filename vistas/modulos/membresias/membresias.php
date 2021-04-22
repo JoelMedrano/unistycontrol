@@ -44,7 +44,6 @@
            <th>Tipo Membresia</th>
            <th>Fecha Inicio</th>
            <th>Fecha Fin</th>
-           <th>Comprobante</th>
            <th>Estado</th>
            <th>Acciones</th>
 
@@ -76,7 +75,7 @@ MODAL AGREGAR MEMBRESIA
 
     <div class="modal-content">
 
-      <form role="form" method="post" >
+      <form role="form" method="post" enctype="multipart/form-data">
 
         <!--=====================================
         CABEZA DEL MODAL
@@ -151,6 +150,31 @@ MODAL AGREGAR MEMBRESIA
 
             </div>    
 
+            <!-- ENTRADA PARA MIEMBROS -->
+
+            <div class="form-group">
+              <label for="">Miembros</label>
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-users"></i></span> 
+
+                <select  class="form-control input-md selectpicker" name="nuevoMiembro" id="nuevoMiembro" data-live-search="true" required>
+                  <option value="">Seleccionar Miembros</option>
+                  <?php
+                    $valor=$_SESSION["empresa"];
+                    $miembros = ControladorMiembros::ctrListarMiembroEmpresa($valor);
+
+                    foreach ($miembros as $key => $value) {
+                      echo '<option value="' . $value["id_miembro"] . '">' .$value["nombre_completo"] . '</option>';
+                    }
+                  
+                  ?>
+
+                </select>
+              </div>
+
+            </div>   
+
             <!-- ENTRADA PARA COMPROBANTE -->
             
             <div class="form-group">
@@ -159,9 +183,14 @@ MODAL AGREGAR MEMBRESIA
               
                 <span class="input-group-addon"><i class="fa fa-archive"></i></span> 
 
-                <input type="text"  class="form-control input-md" name="nuevoComprobante" placeholder="Ingresar comprobante" required>
+                <input type="file"  class="form-control input-md nuevoComprobante" name="nuevoComprobante" id="nuevoComprobante" required>
+
+                
 
               </div>
+              <p class="help-block">Peso máximo de la foto 2MB</p>
+
+              <img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail previsualizarComprobante" width="100px">
 
             </div>   
 
@@ -210,7 +239,7 @@ MODAL EDITAR MEMBRESIA
 
     <div class="modal-content">
 
-      <form role="form" method="post">
+      <form role="form" method="post" enctype="multipart/form-data">
 
         <!--=====================================
         CABEZA DEL MODAL
@@ -285,7 +314,22 @@ MODAL EDITAR MEMBRESIA
 
               </div>
 
-            </div>    
+            </div> 
+
+            <!-- ENTRADA PARA MIEMBROS -->
+
+            <div class="form-group">
+              <label for="">MIEMBROS</label>
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-users"></i></span> 
+
+                <input type="hidden" name="editarMiembro" id="editarMiembro" >
+                <input type="text"  class="form-control input-md " name="editarMiembro2" id="editarMiembro2" readonly>
+          
+              </div>
+
+            </div>      
 
             <!-- ENTRADA PARA COMPROBANTE -->
             
@@ -295,10 +339,16 @@ MODAL EDITAR MEMBRESIA
               
                 <span class="input-group-addon"><i class="fa fa-archive"></i></span> 
 
-                <input type="text"  class="form-control input-md" name="editarComprobante" id="editarComprobante" required>
+                <input type="file"  class="form-control input-md nuevoComprobante" name="editarComprobante" id="nuevoComprobante" required>
+
+                
 
               </div>
+              <p class="help-block">Peso máximo de la foto 2MB</p>
 
+              <img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail previsualizarComprobante" width="100px">
+
+              <input type="hidden" name="fotoActualComprobante" id="fotoActualComprobante">
             </div>   
   
           </div>

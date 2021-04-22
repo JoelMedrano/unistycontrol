@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once "../../controladores/membresias.controlador.php";
 require_once "../../modelos/membresias.modelo.php";
 
@@ -11,10 +11,9 @@ class TablaMembresias{
 
     public function mostrarTablaMembresias(){
 
-        $item = null;     
-        $valor = null;
+        $valor = $_SESSION["empresa"];    
 
-        $membresia = ControladorMembresias::ctrMostrarMembresias($item, $valor);	
+        $membresia = ControladorMembresias::ctrSelecMembresias($valor);	
         if(count($membresia)>0){
 
         $datosJson = '{
@@ -42,7 +41,7 @@ class TablaMembresias{
         TRAEMOS LAS ACCIONES
         =============================================*/         
         
-        $botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarMembresia' idMembresia='".$membresia[$i]["id_membresia"]."' data-toggle='modal' data-target='#modalEditarMembresia'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarMembresia' idMembresia='".$membresia[$i]["id_membresia"]."'><i class='fa fa-times'></i></button></div>"; 
+        $botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarMembresia' idMembresia='".$membresia[$i]["id_membresia"]."' data-toggle='modal' data-target='#modalEditarMembresia'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarMembresia' idMembresia='".$membresia[$i]["id_membresia"]."' comprobante='".$membresia[$i]["comprobante"]."'><i class='fa fa-times'></i></button></div>"; 
 
             $datosJson .= '[
             "'.($i+1).'",
@@ -50,7 +49,6 @@ class TablaMembresias{
             "'.$membresia[$i]["nombre_membresia"].'",
             "'.$membresia[$i]["fecha_inicio"].'",
             "'.$membresia[$i]["fecha_fin"].'",
-            "'.$membresia[$i]["comprobante"].'",
             "'.$estado.'",
             "'.$botones.'"
             ],';        

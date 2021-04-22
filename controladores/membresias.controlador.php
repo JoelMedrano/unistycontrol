@@ -332,6 +332,18 @@ class ControladorMembresias{
 
     }
 
+	/*=============================================
+	MOSTRAR  MEMBRESIAS
+	=============================================*/
+
+	static public function ctrSelecMembresias($empresa){
+		$tabla="membresia";
+		$respuesta = ModeloMembresias::mdlSelecMembresias($tabla,$empresa);
+
+		return $respuesta;
+
+    }
+
 
 	/*=============================================
 	CREAR PRECIO DE MEMBRESIA
@@ -341,12 +353,81 @@ class ControladorMembresias{
 
 		if(isset($_POST["nuevoTipoMembresia"])){
 				
+
+			/*=============================================
+				VALIDAR IMAGEN
+				=============================================*/
+
+				$ruta = "";
+
+				if(isset($_FILES["nuevoComprobante"]["tmp_name"])){
+
+					list($ancho, $alto) = getimagesize($_FILES["nuevoComprobante"]["tmp_name"]);
+
+					$nuevoAncho = 500;
+					$nuevoAlto = 500;
+
+					/*=============================================
+					CREAMOS EL DIRECTORIO DONDE VAMOS A GUARDAR LA FOTO DEL USUARIO
+					=============================================*/
+
+					$directorio = "vistas/img/comprobantes/".$_POST["nuevoMiembro"];
+
+					mkdir($directorio, 0755);
+
+					/*=============================================
+					DE ACUERDO AL TIPO DE IMAGEN APLICAMOS LAS FUNCIONES POR DEFECTO DE PHP
+					=============================================*/
+
+					if($_FILES["nuevoComprobante"]["type"] == "image/jpeg"){
+
+						/*=============================================
+						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
+						=============================================*/
+
+						$aleatorio = mt_rand(100,999);
+
+						$ruta = "vistas/img/comprobantes/".$_POST["nuevoMiembro"]."/".$aleatorio.".jpg";
+
+						$origen = imagecreatefromjpeg($_FILES["nuevoComprobante"]["tmp_name"]);						
+
+						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+
+						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+
+						imagejpeg($destino, $ruta);
+
+					}
+
+					if($_FILES["nuevoComprobante"]["type"] == "image/png"){
+
+						/*=============================================
+						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
+						=============================================*/
+
+						$aleatorio = mt_rand(100,999);
+
+						$ruta = "vistas/img/comprobantes/".$_POST["nuevoMiembro"]."/".$aleatorio.".png";
+
+						$origen = imagecreatefrompng($_FILES["nuevoComprobante"]["tmp_name"]);						
+
+						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+
+						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+
+						imagepng($destino, $ruta);
+
+					}
+
+				}
+
             $tabla="membresia";
             $datos = array("id_tipo_membresia"=>$_POST["nuevoTipoMembresia"],
 							"fecha_inicio"=>$_POST["nuevaFechaInicio"],
 							"fecha_fin"=>$_POST["nuevaFechaFin"],
-							"comprobante"=>$_POST["nuevoComprobante"],
-                            "id_usuario"=>$_SESSION["id"]);
+							"comprobante"=>$ruta,
+                            "id_usuario"=>$_SESSION["id"],
+							"id_miembro"=>$_POST["nuevoMiembro"]);
 
             $respuesta = ModeloMembresias::mdlIngresarMembresia($tabla,$datos);
 
@@ -398,13 +479,95 @@ class ControladorMembresias{
 
 		if(isset($_POST["idMembresia"])){
 
+			/*=============================================
+				VALIDAR IMAGEN
+				=============================================*/
+
+				$ruta = $_POST["fotoActualComprobante"];
+
+				if(isset($_FILES["editarComprobante"]["tmp_name"]) && !empty($_FILES["editarComprobante"]["tmp_name"])){
+
+					list($ancho, $alto) = getimagesize($_FILES["nuevoComprobante"]["tmp_name"]);
+
+					$nuevoAncho = 500;
+					$nuevoAlto = 500;
+
+					/*=============================================
+					CREAMOS EL DIRECTORIO DONDE VAMOS A GUARDAR LA FOTO DEL USUARIO
+					=============================================*/
+
+					$directorio = "vistas/img/comprobantes/".$_POST["editarMiembro"];
+
+					/*=============================================
+					PRIMERO PREGUNTAMOS SI EXISTE OTRA IMAGEN EN LA BD
+					=============================================*/
+
+					if(!empty($_POST["fotoActualComprobante"])){
+
+						unlink($_POST["fotoActualComprobante"]);
+
+					}else{
+
+						mkdir($directorio, 0755);
+
+					}	
+
+					
+
+					/*=============================================
+					DE ACUERDO AL TIPO DE IMAGEN APLICAMOS LAS FUNCIONES POR DEFECTO DE PHP
+					=============================================*/
+
+					if($_FILES["editarComprobante"]["type"] == "image/jpeg"){
+
+						/*=============================================
+						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
+						=============================================*/
+
+						$aleatorio = mt_rand(100,999);
+
+						$ruta = "vistas/img/comprobantes/".$_POST["editarMiembro"]."/".$aleatorio.".jpg";
+
+						$origen = imagecreatefromjpeg($_FILES["editarComprobante"]["tmp_name"]);						
+
+						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+
+						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+
+						imagejpeg($destino, $ruta);
+
+					}
+
+					if($_FILES["editarComprobante"]["type"] == "image/png"){
+
+						/*=============================================
+						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
+						=============================================*/
+
+						$aleatorio = mt_rand(100,999);
+
+						$ruta = "vistas/img/comprobantes/".$_POST["editarMiembro"]."/".$aleatorio.".png";
+
+						$origen = imagecreatefrompng($_FILES["editarComprobante"]["tmp_name"]);						
+
+						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+
+						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+
+						imagepng($destino, $ruta);
+
+					}
+
+				}
+
 			$tabla="membresia";
 			$datos = array("id"=>$_POST["idMembresia"],
 							"id_tipo_membresia"=>$_POST["editarTipoMembresia"],
 							"fecha_inicio"=>$_POST["editarFechaInicio"],
 							"fecha_fin"=>$_POST["editarFechaFin"],
-							"comprobante"=>$_POST["editarComprobante"],
-							"id_usuario"=>$_SESSION["id"]);
+							"comprobante"=>$ruta,
+							"id_usuario"=>$_SESSION["id"],
+							"id_miembro"=>$_POST["editarMiembro"]);
 
 			   	$respuesta = ModeloMembresias::mdlEditarMembresia($tabla,$datos);
 
@@ -445,11 +608,11 @@ class ControladorMembresias{
 			$tabla="membresia";
 			date_default_timezone_set('America/Lima');
 			$fecha = new DateTime();
-			$precio=ControladorMembresias::ctrMostrarMembresias("id_membresia",$datos);
+			$membresia=ControladorMembresias::ctrMostrarMembresias("id_membresia",$datos);
 			$usuario= $_SESSION["nombre"];
 			$para      = 'notificacionesvascorp@gmail.com';
-			$asunto    = 'Se elimino un precio de membresia';
-			$descripcion   = 'El usuario '.$usuario.' elimino el precio de membresia '.$precio["nombre_precio_membresia"];
+			$asunto    = 'Se elimino una membresia';
+			$descripcion   = 'El usuario '.$usuario.' elimino la membresia de '.$membresia["nombre_completo"];
 			$de = 'From: notificacionesvascorp@gmail.com';
 			if($_SESSION["correo"] == 1){
 				mail($para, $asunto, $descripcion, $de);
@@ -460,7 +623,13 @@ class ControladorMembresias{
 								"fecha" => $fecha->format("Y-m-d H:i:s"));
 				$auditoria=ModeloUsuarios::mdlIngresarAuditoria("auditoria",$datos2);
 			}
-			
+
+			if($_GET["comprobante"] != ""){
+
+				unlink($_GET["comprobante"]);
+				rmdir('vistas/img/comprobantes/'.$membresia["id_miembro"]);
+
+			}
 			$respuesta = ModeloMembresias::mdlEliminarMembresia($tabla,$datos);
 			if($respuesta == "ok"){
 				
