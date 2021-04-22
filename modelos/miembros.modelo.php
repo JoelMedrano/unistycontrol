@@ -118,7 +118,8 @@ class ModeloMiembros{
                                                 LEFT JOIN membresia me 
                                                 ON m.id_miembro = me.id_miembro 
                                                 LEFT JOIN red_social r 
-                                                ON m.id_red_social = r.id_red_social");
+                                                ON m.id_red_social = r.id_red_social
+                                            WHERE m.eliminado=1");
 
 
 			$stmt -> execute();
@@ -154,7 +155,7 @@ class ModeloMiembros{
                                                 ON m.id_miembro = me.id_miembro 
                                                 LEFT JOIN red_social r 
                                                 ON m.id_red_social = r.id_red_social 
-                                            WHERE m.id_empresa = $empresa");
+                                            WHERE m.id_empresa = $empresa AND m.eliminado=1");
 
 			$stmt -> execute();
 
@@ -196,6 +197,61 @@ class ModeloMiembros{
         $stmt->bindParam(":id_red_social", $datos["id_red_social"], PDO::PARAM_STR);
         $stmt->bindParam(":usuario_red_social", $datos["usuario_red_social"], PDO::PARAM_STR);
         $stmt->bindParam(":id_empresa", $datos["id_empresa"], PDO::PARAM_STR);
+
+		if($stmt -> execute()){
+
+			return "ok";
+		
+		}else{
+
+			return "error";	
+
+		}
+
+		$stmt -> close();
+
+		$stmt = null;
+
+	}
+
+    /* 
+    *Borrar Miembro
+    */
+    static public function mdlBorrarMiembro($tabla, $datos){
+
+		$stmt = Conexion::conectar()->prepare("UPDATE 
+                                                    miembros 
+                                                SET
+                                                    eliminado = 0 
+                                                WHERE id_miembro = :idMiembro ");
+
+		$stmt -> bindParam(":idMiembro", $datos, PDO::PARAM_INT);
+
+		if($stmt -> execute()){
+
+			return "ok";
+		
+		}else{
+
+			return "error";	
+
+		}
+
+		$stmt -> close();
+
+		$stmt = null;
+
+	}
+
+    /* 
+    *Actualizar 1 dato miembro
+    */
+    static public function mdlActualizarMiembro($item1, $valor1, $item2, $valor2){
+
+		$stmt = Conexion::conectar()->prepare("UPDATE miembros SET $item1 = :$item1 WHERE $item2 = :$item2");
+
+		$stmt -> bindParam(":".$item1, $valor1, PDO::PARAM_STR);
+		$stmt -> bindParam(":".$item2, $valor2, PDO::PARAM_STR);
 
 		if($stmt -> execute()){
 

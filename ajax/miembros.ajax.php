@@ -19,6 +19,20 @@ class AjaxMiembros{
 
 	}
 
+	/* 
+	*Activar miembros
+	*/
+	public function ajaxActivarMiembro(){
+
+		$item1 = "estado";
+		$valor1 = $this->activarMiembro;
+
+		$item2 = "id_miembro";
+		$valor2 = $this->activarId;
+
+		$respuesta = ModeloMiembros::mdlActualizarMiembro($item1, $valor1, $item2, $valor2);
+
+	}
 
 }
 /* 
@@ -29,5 +43,17 @@ if(isset($_POST["idMiembro"])){
 	$editarEmpresa = new AjaxMiembros();
 	$editarEmpresa -> idMiembro = $_POST["idMiembro"];
 	$editarEmpresa -> ajaxEditarMiembro();
+
+}
+
+/* 
+*Activar Miembro
+*/
+if(isset($_POST["activarMiembro"])){
+
+	$activarMiembro = new AjaxMiembros();
+	$activarMiembro -> activarMiembro = $_POST["activarMiembro"];
+	$activarMiembro -> activarId = $_POST["activarId"];
+	$activarMiembro -> ajaxActivarMiembro();
 
 }

@@ -275,21 +275,20 @@ class ControladorMiembros{
     /* 
     *Eliminar miembro
     */
-    static public function ctrBorrarUsuario(){
+    static public function ctrBorrarMiembro(){
 
 		if(isset($_GET["idMiembro"])){
 
-			$tabla ="usuarios";
-			$datos = $_GET["idMiembro"];
+            $datos = $_GET["idMiembro"];
 
-			if($_GET["fotoUsuario"] != ""){
+			if($_GET["fotoMiembro"] != ""){
 
-				unlink($_GET["fotoUsuario"]);
-				rmdir('vistas/img/usuarios/'.$_GET["usuario"]);
+				unlink($_GET["fotoMiembro"]);
+				rmdir('vistas/img/miembros/'.$_GET["documento"]);
 
 			}
 
-			$respuesta = ModeloUsuarios::mdlBorrarUsuario($tabla, $datos);
+			$respuesta = ModeloMiembros::mdlBorrarMiembro($tabla, $datos);
 
 			if($respuesta == "ok"){
 
@@ -297,13 +296,13 @@ class ControladorMiembros{
 
 				swal({
 					  type: "success",
-					  title: "El usuario ha sido borrado correctamente",
+					  title: "El miembro ha sido borrado correctamente",
 					  showConfirmButton: true,
 					  confirmButtonText: "Cerrar"
 					  }).then(function(result){
 								if (result.value) {
 
-								window.location = "usuarios";
+								window.location = "miembros";
 
 								}
 							})
