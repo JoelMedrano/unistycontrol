@@ -26,7 +26,7 @@ class TablaPrecioMembresias{
         TRAEMOS LAS ACCIONES
         =============================================*/         
         
-        $botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarPrecioMembresia' idPrecioMembresia='".$precio[$i]["id_precio_membresia"]."' data-toggle='modal' data-target='#modalEditarPrecioMembresia'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarPrecioMembresia' idPrecioMembresia='".$precio[$i]["id_precio_membresia"]."'><i class='fa fa-times'></i></button></div>"; 
+        $botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarPrecioMembresia' idPrecioMembresia='".$precio[$i]["id_precio_membresia"]."' data-toggle='modal' data-target='#modalEditarPrecioMembresia' title='Editar Precio Membresia'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarPrecioMembresia' idPrecioMembresia='".$precio[$i]["id_precio_membresia"]."' title='Eliminar Precio Membresia'><i class='fa fa-times'></i></button></div>"; 
 
             $datosJson .= '[
             "'.($i+1).'",

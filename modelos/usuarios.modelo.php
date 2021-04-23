@@ -22,7 +22,7 @@ class ModeloUsuarios{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+			$stmt = Conexion::conectar()->prepare("SELECT u.*,e.nombre as empresa FROM $tabla u LEFT JOIN empresa e ON e.id_empresa = u.id_empresa");
 
 			$stmt -> execute();
 
@@ -43,13 +43,15 @@ class ModeloUsuarios{
 
 	static public function mdlIngresarUsuario($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(nombre, usuario, password, perfil, foto) VALUES (:nombre, :usuario, :password, :perfil, :foto)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(nombre, usuario, password, perfil, foto, email, telefono) VALUES (:nombre, :usuario, :password, :perfil, :foto, :email, :telefono)");
 
 		$stmt->bindParam(":nombre", $datos["nombre"], PDO::PARAM_STR);
 		$stmt->bindParam(":usuario", $datos["usuario"], PDO::PARAM_STR);
 		$stmt->bindParam(":password", $datos["password"], PDO::PARAM_STR);
 		$stmt->bindParam(":perfil", $datos["perfil"], PDO::PARAM_STR);
 		$stmt->bindParam(":foto", $datos["foto"], PDO::PARAM_STR);
+		$stmt->bindParam(":email", $datos["email"], PDO::PARAM_STR);
+		$stmt->bindParam(":telefono", $datos["telefono"], PDO::PARAM_STR);
 
 		if($stmt->execute()){
 
@@ -73,13 +75,15 @@ class ModeloUsuarios{
 
 	static public function mdlEditarUsuario($tabla, $datos){
 	
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET nombre = :nombre, password = :password, perfil = :perfil, foto = :foto WHERE usuario = :usuario");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET nombre = :nombre, password = :password, perfil = :perfil, foto = :foto, email = :email, telefono = :telefono WHERE usuario = :usuario");
 
 		$stmt -> bindParam(":nombre", $datos["nombre"], PDO::PARAM_STR);
 		$stmt -> bindParam(":password", $datos["password"], PDO::PARAM_STR);
 		$stmt -> bindParam(":perfil", $datos["perfil"], PDO::PARAM_STR);
 		$stmt -> bindParam(":foto", $datos["foto"], PDO::PARAM_STR);
 		$stmt -> bindParam(":usuario", $datos["usuario"], PDO::PARAM_STR);
+		$stmt->bindParam(":email", $datos["email"], PDO::PARAM_STR);
+		$stmt->bindParam(":telefono", $datos["telefono"], PDO::PARAM_STR);
 
 		if($stmt -> execute()){
 

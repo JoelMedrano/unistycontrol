@@ -100,6 +100,8 @@ $(".tablaUsuarios").on("click", ".btnEditarUsuario", function(){
 		success: function(respuesta){
 			$("#idUsuario").val(respuesta["id"]);
 			$("#editarNombre").val(respuesta["nombre"]);
+			$("#editarCelular").val(respuesta["telefono"]);
+			$("#editarEmail").val(respuesta["email"]);
 			$("#editarUsuario").val(respuesta["usuario"]);
 			$("#editarPerfil").html(respuesta["perfil"]);
 			$("#editarPerfil").val(respuesta["perfil"]);

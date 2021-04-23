@@ -463,7 +463,7 @@ class ModeloMembresias{
 
 		if($empresa == "0"){
 
-			$stmt = Conexion::conectar()->prepare("SELECT m.*,t.nombre_membresia,mb.nombre_completo FROM $tabla m LEFT JOIN tipo_membresia t ON t.id_tipo_membresia=m.id_tipo_membresia  LEFT JOIN miembros mb ON mb.id_miembro=m.id_miembro ");
+			$stmt = Conexion::conectar()->prepare("SELECT m.*,t.nombre_membresia,mb.nombre_completo,e.nombre FROM $tabla m LEFT JOIN tipo_membresia t ON t.id_tipo_membresia=m.id_tipo_membresia  LEFT JOIN miembros mb ON mb.id_miembro=m.id_miembro LEFT JOIN empresa e ON e.id_empresa=t.id_empresa ");
 
 
 			$stmt -> execute();
@@ -472,7 +472,7 @@ class ModeloMembresias{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT m.*,t.nombre_membresia,mb.nombre_completo FROM $tabla m LEFT JOIN tipo_membresia t ON t.id_tipo_membresia=m.id_tipo_membresia  LEFT JOIN miembros mb ON mb.id_miembro=m.id_miembro WHERE t.id_empresa = '".$empresa."' ");
+			$stmt = Conexion::conectar()->prepare("SELECT m.*,t.nombre_membresia,mb.nombre_completo,e.nombre FROM $tabla m LEFT JOIN tipo_membresia t ON t.id_tipo_membresia=m.id_tipo_membresia  LEFT JOIN miembros mb ON mb.id_miembro=m.id_miembro LEFT JOIN empresa e ON e.id_empresa=t.id_empresa WHERE t.id_empresa = '".$empresa."' ");
 
 			$stmt -> execute();
 
@@ -535,6 +535,64 @@ class ModeloMembresias{
 		$stmt = null;
 
     }
+
 	
+    /*=============================================
+	RENOVAR MEMBRESIA
+	=============================================*/
+
+	static public function mdlRenovarMembresia($tabla,$datos){
+
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_tipo_membresia,fecha_inicio,fecha_fin,comprobante,id_usuario,id_miembro,estado) VALUES (:id_tipo_membresia,:fecha_inicio,:fecha_fin,:comprobante,:id_usuario,:id_miembro,:estado)");
+
+        $stmt->bindParam(":id_tipo_membresia", $datos["id_tipo_membresia"], PDO::PARAM_STR);
+		$stmt->bindParam(":fecha_inicio", $datos["fecha_inicio"], PDO::PARAM_STR);
+		$stmt->bindParam(":fecha_fin", $datos["fecha_fin"], PDO::PARAM_STR);
+		$stmt->bindParam(":comprobante", $datos["comprobante"], PDO::PARAM_STR);
+		$stmt->bindParam(":id_usuario", $datos["id_usuario"], PDO::PARAM_STR);
+		$stmt->bindParam(":id_miembro", $datos["id_miembro"], PDO::PARAM_STR);
+		$stmt->bindParam(":estado", $datos["estado"], PDO::PARAM_STR);
+
+
+		if($stmt->execute()){
+
+			return "ok";
+
+		}else{
+
+			return "error";
+		
+		}
+
+		$stmt->close();
+		$stmt = null;
+
+	}    
+	
+	/*=============================================
+	ASIGNAR DESTINO
+	=============================================*/
+
+	static public function mdlAsignarDestino($datos){
+
+		$stmt = Conexion::conectar()->prepare("UPDATE membresia SET destino = :destino WHERE id_membresia = :id_membresia");
+
+		$stmt->bindParam(":id_membresia", $datos["id_membresia"], PDO::PARAM_STR);
+		$stmt->bindParam(":destino", $datos["destino"], PDO::PARAM_STR);
+
+		if($stmt->execute()){
+
+			return "ok";
+
+		}else{
+
+			return "error";
+		
+		}
+
+		$stmt->close();
+		$stmt = null;
+
+    }
 
 }
