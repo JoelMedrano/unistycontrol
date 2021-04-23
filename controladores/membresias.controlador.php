@@ -433,9 +433,6 @@ class ControladorMembresias{
 
 			$ultimoId= ModeloMembresias::mdlMostrarUltimoID();
 
-			$datosAsignar = array("id_membresia"=>$ultimoId["id_membresia"],
-							"id_miembro"=>$_POST["nuevoMiembro"]);
-
 			$asignado = ModeloMembresias::mdlAsignarMiembro($ultimoId);
 
             if($respuesta == "ok"){
@@ -664,5 +661,126 @@ class ControladorMembresias{
 		}
 
 	} 
+
+	/*=============================================
+	CREAR PRECIO DE MEMBRESIA
+	=============================================*/
+
+	static public function ctrRenovarMembresia(){
+
+		if(isset($_POST["renovarTipoMembresia"])){
+				
+
+			/*=============================================
+				VALIDAR IMAGEN
+				=============================================*/
+
+				$ruta = "";
+
+				if(isset($_FILES["renovarComprobante"]["tmp_name"])){
+
+					list($ancho, $alto) = getimagesize($_FILES["renovarComprobante"]["tmp_name"]);
+
+					$nuevoAncho = 500;
+					$nuevoAlto = 500;
+
+					/*=============================================
+					CREAMOS EL DIRECTORIO DONDE VAMOS A GUARDAR LA FOTO DEL USUARIO
+					=============================================*/
+
+					$directorio = "vistas/img/comprobantes/".$_POST["renovarMiembro"];
+
+					mkdir($directorio, 0755);
+
+					/*=============================================
+					DE ACUERDO AL TIPO DE IMAGEN APLICAMOS LAS FUNCIONES POR DEFECTO DE PHP
+					=============================================*/
+
+					if($_FILES["renovarComprobante"]["type"] == "image/jpeg"){
+
+						/*=============================================
+						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
+						=============================================*/
+	
+						$aleatorio = mt_rand(100,999);
+	
+						$ruta = "vistas/img/comprobantes/".$_POST["renovarMiembro"]."/".$aleatorio.".jpg";
+	
+						$origen = imagecreatefromjpeg($_FILES["renovarComprobante"]["tmp_name"]);
+	
+						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+	
+						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+	
+						imagejpeg($destino, $ruta);
+	
+					}
+	
+					if($_FILES["renovarComprobante"]["type"] == "image/png"){
+	
+						/*=============================================
+						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
+						=============================================*/
+	
+						$aleatorio = mt_rand(100,999);
+	
+						$ruta = "vistas/img/comprobantes/".$_POST["renovarMiembro"]."/".$aleatorio.".png";
+	
+						$origen = imagecreatefrompng($_FILES["renovarComprobante"]["tmp_name"]);
+	
+						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+	
+						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+	
+						imagepng($destino, $ruta);
+	
+					}
+
+				}
+
+            $tabla="membresia";
+            $datos = array("id_tipo_membresia"=>$_POST["renovarTipoMembresia"],
+							"fecha_inicio"=>$_POST["renovarFechaInicio"],
+							"fecha_fin"=>$_POST["renovarFechaFin"],
+							"comprobante"=>$ruta,
+                            "id_usuario"=>$_SESSION["id"],
+							"id_miembro"=>$_POST["renovarMiembro"],
+							"estado"=>'1');
+
+            $respuesta = ModeloMembresias::mdlRenovarMembresia($tabla,$datos);
+
+			$ultimoId= ModeloMembresias::mdlMostrarUltimoID();
+
+			$datosAsignar = array("destino"=>$ultimoId["id_membresia"],
+							"id_membresia"=>$_POST["idMembresia2"]);
+
+			$asignado = ModeloMembresias::mdlAsignarDestino($datosAsignar);
+
+            if($respuesta == "ok"){
+
+                echo'<script>
+
+                swal({
+                        type: "success",
+                        title: "La membresia ha sido renovada correctamente",
+                        showConfirmButton: true,
+                        confirmButtonText: "Cerrar"
+                        }).then(function(result){
+                                if (result.value) {
+
+                                window.location = "membresias";
+
+                                }
+                            })
+
+                </script>';
+
+            }
+
+			
+
+		}
+
+    }
 
 }

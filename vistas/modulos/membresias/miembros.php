@@ -256,7 +256,7 @@ MODAL AGREGAR MIEMBRO
 
                             <p class="help-block">Peso máximo de la foto 2 MB</p>
 
-                            <img src="vistas/img/miembros/default/anonymous.png" class="img-thumbnail previsualizarM" width="100px">
+                            <img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail previsualizarM" width="100px">
 
                         </div>
 
@@ -477,7 +477,7 @@ MODAL EDITAR MIEMBRO
 
                             <p class="help-block">Peso máximo de la foto 2MB</p>
 
-                            <img src="vistas/img/miembros/default/anonymous.png" class="img-thumbnail previsualizarM" width="100px">
+                            <img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail previsualizarM" width="100px">
 
                             <input type="hidden" name="fotoMiembroActual" id="fotoMiembroActual">
 

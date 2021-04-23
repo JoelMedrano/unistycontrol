@@ -27,7 +27,7 @@ class TablaSocial{
         TRAEMOS LAS ACCIONES
         =============================================*/         
         
-        $botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarSocial' idSocial='".$social[$i]["id_red_social"]."' data-toggle='modal' data-target='#modalEditarSocial'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarSocial' idSocial='".$social[$i]["id_red_social"]."'><i class='fa fa-times'></i></button></div>"; 
+        $botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarSocial' idSocial='".$social[$i]["id_red_social"]."' data-toggle='modal' data-target='#modalEditarSocial' title='Editar Red Social'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarSocial' idSocial='".$social[$i]["id_red_social"]."' title='Eliminar Red Social'><i class='fa fa-times'></i></button></div>"; 
 
             $datosJson .= '[
             "'.($i+1).'",

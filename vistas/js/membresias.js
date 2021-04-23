@@ -379,3 +379,71 @@ $("#editarFechaInicio").change(function(){
   } 
 
 });
+
+/*=============================================
+RENOVAR MEMBRESIA
+=============================================*/
+$(".tablaMembresias").on("click", ".btnRenovarMembresia", function () {
+
+  var idMembresia = $(this).attr("idMembresia");
+
+  var datos = new FormData();
+  datos.append("idMembresia", idMembresia);
+
+  $.ajax({
+
+      url: "ajax/membresias.ajax.php",
+      method: "POST",
+      data: datos,
+      cache: false,
+      contentType: false,
+      processData: false,
+      dataType: "json",
+      success: function (respuesta) {
+          var fin = respuesta["fecha_fin"];
+          var e = new Date(fin);
+          e.setDate(e.getDate() + 2);
+
+          if((e.getMonth()+1)<10){
+            if((e.getDate())<10){
+              $("#renovarFechaInicio").val(e.getFullYear() +"-0"+ (e.getMonth()+1) +"-0"+ e.getDate());
+            }else{
+              $("#renovarFechaInicio").val(e.getFullYear() +"-0"+ (e.getMonth()+1) +"-"+ e.getDate());
+            } 
+          }else{
+            if((e.getDate())<10){
+              $("#renovarFechaInicio").val(e.getFullYear() +"-"+ (e.getMonth()+1) +"-0"+ e.getDate());
+            }else{
+              $("#renovarFechaInicio").val(e.getFullYear() +"-"+ (e.getMonth()+1) +"-"+ e.getDate());
+            } 
+          } 
+
+          e.setMonth(e.getMonth() + 1);
+
+          if((e.getMonth()+1)<10){
+            if((e.getDate())<10){
+              $("#renovarFechaFin").val(e.getFullYear() +"-0"+ (e.getMonth()+1) +"-0"+ e.getDate());
+            }else{
+              $("#renovarFechaFin").val(e.getFullYear() +"-0"+ (e.getMonth()+1) +"-"+ e.getDate());
+            } 
+          }else{
+            if((e.getDate())<10){
+              $("#renovarFechaFin").val(e.getFullYear() +"-"+ (e.getMonth()+1) +"-0"+ e.getDate());
+            }else{
+              $("#renovarFechaFin").val(e.getFullYear() +"-"+ (e.getMonth()+1) +"-"+ e.getDate());
+            } 
+          } 
+
+
+
+          $("#idMembresia2").val(respuesta["id_membresia"]);
+          $("#renovarTipoMembresia").val(respuesta["id_tipo_membresia"]);
+          $("#renovarTipoMembresia").selectpicker("refresh");
+          $("#renovarMiembro").val(respuesta["id_miembro"]);
+          $("#renovarMiembro2").val(respuesta["id_miembro"]+" - "+respuesta["nombre_completo"]);
+    
+      }
+
+  })
+
+})

@@ -39,8 +39,9 @@
         <thead>
          
          <tr>
-           <th>N°</th>
+           <th>Código</th>
            <th>Miembro</th>
+           <th>Empresa</th>
            <th>Tipo Membresia</th>
            <th>Fecha Inicio</th>
            <th>Fecha Fin</th>
@@ -373,6 +374,161 @@ MODAL EDITAR MEMBRESIA
 
         $editarMembresia = new ControladorMembresias();
         $editarMembresia -> ctrEditarMembresia();
+
+      ?>   
+
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<!--=====================================
+MODAL RENOVAR MEMBRESIA
+======================================-->
+
+<div id="modalRenovarMembresia" class="modal fade" role="dialog">
+  
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+
+      <form role="form" method="post" enctype="multipart/form-data">
+
+        <!--=====================================
+        CABEZA DEL MODAL
+        ======================================-->
+
+        <div class="modal-header" style="background:#3c8dbc; color:white">
+
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+          <h4 class="modal-title">Renovar membresia</h4>
+
+        </div>
+
+        <!--=====================================
+        CUERPO DEL MODAL
+        ======================================-->
+
+        <div class="modal-body">
+
+          <div class="box-body">
+
+          
+            <!-- ENTRADA PARA TIPO DE MEMBRESIA -->
+
+            <div class="form-group">
+              <label for="">Tipo de membresia</label>
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-credit-card-alt"></i></span> 
+
+                <select  class="form-control input-md selectpicker" name="renovarTipoMembresia" id="renovarTipoMembresia" data-live-search="true" required>
+          
+                  <?php
+                    $valor=$_SESSION["empresa"];
+                    $empresas = ControladorMembresias::ctrSelecTipoMembresias($valor);
+
+                    foreach ($empresas as $key => $value) {
+                      echo '<option value="' . $value["id_tipo_membresia"] . '">' .$value["nombre_membresia"] . '</option>';
+                    }
+                  
+                  ?>
+
+                </select>
+              </div>
+
+            </div>   
+
+            <!-- ENTRADA PARA FECHA DE INICIO -->
+            
+            <div class="form-group">
+              <label for="">Fecha de inicio</label>
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-calendar"></i></span> 
+
+                <input type="date"  class="form-control input-md" name="renovarFechaInicio"  id="renovarFechaInicio" required>
+                <input type="hidden"  name="idMembresia2" id="idMembresia2" >
+
+              </div>
+
+            </div>        
+
+            <!-- ENTRADA PARA FECHA DE FIN -->
+            
+            <div class="form-group">
+              <label for="">Fecha de fin</label>
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-calendar"></i></span> 
+
+                <input type="date"  class="form-control input-md" name="renovarFechaFin" id="renovarFechaFin" required>
+
+              </div>
+
+            </div> 
+
+            <!-- ENTRADA PARA MIEMBROS -->
+
+            <div class="form-group">
+              <label for="">MIEMBROS</label>
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-users"></i></span> 
+
+                <input type="hidden" name="renovarMiembro" id="renovarMiembro" >
+                <input type="text"  class="form-control input-md " name="renovarMiembro2" id="renovarMiembro2" readonly>
+          
+              </div>
+
+            </div>      
+
+            <!-- ENTRADA PARA COMPROBANTE -->
+            
+            <div class="form-group">
+              <label for="">Comprobante</label>
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-archive"></i></span> 
+
+                <input type="file"  class="form-control input-md nuevoComprobante" name="renovarComprobante" id="nuevoComprobante" required>
+
+                
+
+              </div>
+              <p class="help-block">Peso máximo de la foto 2MB</p>
+
+              <img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail previsualizarComprobante" width="100px">
+
+            </div>   
+  
+          </div>
+
+        </div>
+
+        <!--=====================================
+        PIE DEL MODAL
+        ======================================-->
+
+        <div class="modal-footer">
+
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+
+          <button type="submit" class="btn btn-primary">Guardar cambios</button>
+
+        </div>
+
+      </form>
+
+      <?php
+
+        $renovarMembresia = new ControladorMembresias();
+        $renovarMembresia -> ctrRenovarMembresia();
 
       ?>   
 

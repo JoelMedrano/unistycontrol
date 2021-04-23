@@ -43,8 +43,11 @@
            <th style="width:10px">#</th>
            <th>Nombre</th>
            <th>Usuario</th>
+           <th>Empresa</th>
            <th>Foto</th>
            <th>Perfil</th>
+           <th>Celular</th>
+           <th>Email</th>
            <th>Estado</th>
            <th>Último login</th>
            <th>Acciones</th>
@@ -108,6 +111,34 @@ MODAL AGREGAR USUARIO
                 <span class="input-group-addon"><i class="fa fa-user"></i></span> 
 
                 <input type="text" class="form-control input-lg" name="nuevoNombre" placeholder="Ingresar nombre" required>
+
+              </div>
+
+            </div>
+
+            <!-- ENTRADA PARA EL CELULAR -->
+
+            <div class="form-group">
+
+              <div class="input-group">
+
+                  <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+
+                  <input type="text" class="form-control input-lg" name="nuevoCelular" placeholder="Ingresar celular" data-inputmask="'mask':'999-999-999'" data-mask required>
+
+              </div>
+
+            </div>
+
+            <!-- Email -->
+
+            <div class="form-group">
+
+              <div class="input-group">
+
+                  <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+
+                  <input type="email" class="form-control input-lg" name="nuevoEmail" placeholder="Ingrese el Correo del Cliente" maxlength="200" required>
 
               </div>
 
@@ -270,6 +301,35 @@ MODAL EDITAR USUARIO
               </div>
 
             </div>
+
+            <!-- ENTRADA PARA EL CELULAR -->
+
+            <div class="form-group">
+
+              <div class="input-group">
+
+                  <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+
+                  <input type="text" class="form-control input-lg" name="editarCelular" id="editarCelular"  data-inputmask="'mask':'999-999-999'" data-mask required>
+
+              </div>
+
+            </div>
+
+            <!-- Email -->
+
+            <div class="form-group">
+
+              <div class="input-group">
+
+                  <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+
+                  <input type="email" class="form-control input-lg" name="editarEmail" id="editarEmail"  maxlength="200" required>
+
+              </div>
+
+            </div>
+
 
             <!-- ENTRADA PARA EL USUARIO -->
 

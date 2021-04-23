@@ -48,7 +48,7 @@ class TablaEmpresas{
         TRAEMOS LAS ACCIONES
         =============================================*/         
         
-        $botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarEmpresa' idEmpresa='".$empresa[$i]["id_empresa"]."' data-toggle='modal' data-target='#modalEditarEmpresa'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarEmpresa' idEmpresa='".$empresa[$i]["id_empresa"]."' logo1='".$empresa[$i]["logo1"]."' logo2='".$empresa[$i]["logo2"]."'><i class='fa fa-times'></i></button></div>"; 
+        $botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarEmpresa' idEmpresa='".$empresa[$i]["id_empresa"]."' data-toggle='modal' data-target='#modalEditarEmpresa' title='Editar Empresa'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarEmpresa' idEmpresa='".$empresa[$i]["id_empresa"]."' logo1='".$empresa[$i]["logo1"]."' logo2='".$empresa[$i]["logo2"]."' title='Eliminar Empresa'><i class='fa fa-times'></i></button></div>"; 
 
             $datosJson .= '[
             "'.($i+1).'",

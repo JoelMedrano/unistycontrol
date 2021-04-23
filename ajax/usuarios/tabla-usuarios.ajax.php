@@ -41,18 +41,31 @@ class TablaUsuarios{
             $foto= "<img src='vistas/img/usuarios/default/anonymous.png' class='img-thumbnail' width='40px'>";
 
           }
+
+          if($usuarios[$i]["id_empresa"] == "0"){
+
+            $empresa= "UNISTY CONTROL";
+
+          }else{
+
+            $empresa= $usuarios[$i]["empresa"];
+
+          }
         /*=============================================
         TRAEMOS LAS ACCIONES
         =============================================*/         
         
-        $botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarUsuario' idUsuario='".$usuarios[$i]["id"]."' data-toggle='modal' data-target='#modalEditarUsuario'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarUsuario' idUsuario='".$usuarios[$i]["id"]."' fotoUsuario='".$usuarios[$i]["foto"]."' usuario='".$usuarios[$i]["usuario"]."'><i class='fa fa-times'></i></button><button class='btn btn-primary btnEditarCorreo' idUsuario='".$usuarios[$i]["id"]."' data-toggle='modal' data-target='#modalEditarCorreo'><i class='fa fa-envelope'></i></button></div>"; 
+        $botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarUsuario' idUsuario='".$usuarios[$i]["id"]."' data-toggle='modal' data-target='#modalEditarUsuario' title='Editar Usuario'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarUsuario' idUsuario='".$usuarios[$i]["id"]."' fotoUsuario='".$usuarios[$i]["foto"]."' usuario='".$usuarios[$i]["usuario"]."' title='Eliminar Usuario'><i class='fa fa-times'></i></button><button class='btn btn-primary btnEditarCorreo' idUsuario='".$usuarios[$i]["id"]."' data-toggle='modal' data-target='#modalEditarCorreo' title='Envio correo datos'><i class='fa fa-envelope'></i></button></div>"; 
 
             $datosJson .= '[
             "'.($i+1).'",
             "'.$usuarios[$i]["nombre"].'",
             "'.$usuarios[$i]["usuario"].'",
+            "'.$empresa.'",
             "'.$foto.'",
             "'.$usuarios[$i]["perfil"].'",
+            "'.$usuarios[$i]["telefono"].'",
+            "'.$usuarios[$i]["email"].'",
             "'.$estado.'",
             "'.$usuarios[$i]["ultimo_login"].'",
             "'.$botones.'"

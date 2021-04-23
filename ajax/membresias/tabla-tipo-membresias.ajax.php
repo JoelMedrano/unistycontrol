@@ -26,7 +26,7 @@ class TablaTipoMembresias{
         TRAEMOS LAS ACCIONES
         =============================================*/         
         
-        $botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarTipoMembresia' idTipoMembresia='".$tipo[$i]["id_tipo_membresia"]."' data-toggle='modal' data-target='#modalEditarTipoMembresia'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarTipoMembresia' idTipoMembresia='".$tipo[$i]["id_tipo_membresia"]."'><i class='fa fa-times'></i></button></div>"; 
+        $botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarTipoMembresia' idTipoMembresia='".$tipo[$i]["id_tipo_membresia"]."' data-toggle='modal' data-target='#modalEditarTipoMembresia' title='Editar Tipo Membresia'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarTipoMembresia' idTipoMembresia='".$tipo[$i]["id_tipo_membresia"]."' title='Eliminar Tipo Membresia'><i class='fa fa-times'></i></button></div>"; 
 
             $datosJson .= '[
             "'.($i+1).'",
