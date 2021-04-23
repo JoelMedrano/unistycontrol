@@ -30,7 +30,10 @@ class AjaxMiembros{
 		$item2 = "id_miembro";
 		$valor2 = $this->activarId;
 
-		$respuesta = ModeloMiembros::mdlActualizarMiembro($item1, $valor1, $item2, $valor2);
+		$item3 = "id_usuario_activador";
+		$valor3 = $this->idActivador;
+
+		$respuesta = ModeloMiembros::mdlActualizarMiembro($item1, $valor1, $item2, $valor2, $item3, $valor3);
 
 	}
 
@@ -54,6 +57,7 @@ if(isset($_POST["activarMiembro"])){
 	$activarMiembro = new AjaxMiembros();
 	$activarMiembro -> activarMiembro = $_POST["activarMiembro"];
 	$activarMiembro -> activarId = $_POST["activarId"];
+	$activarMiembro -> idActivador = $_POST["idActivador"];
 	$activarMiembro -> ajaxActivarMiembro();
 
 }
