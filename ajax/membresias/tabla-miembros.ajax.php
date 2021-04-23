@@ -14,7 +14,8 @@ class TablaMiembros{
     public function mostrarTablaMiembros(){
 
         $empresa = $_SESSION["empresa"];
-        $miembros = ControladorMiembros::ctrListarMiembroEmpresa($empresa);	
+        $miembros = ControladorMiembros::ctrListarMiembroEmpresa($empresa);
+        $activador = $_SESSION["id"];
 
         if(count($miembros)>0){
 
@@ -33,11 +34,11 @@ class TablaMiembros{
             */
             if($miembros[$i]["estado"] == 1){
 
-                $estado = "<button class='btn btn-success btn-xs btnActivarMiembro' idMiembro='".$miembros[$i]["id_miembro"]."' estadoMiembro='0'>Activo</button>";
+                $estado = "<button class='btn btn-success btn-xs btnActivarMiembro' idMiembro='".$miembros[$i]["id_miembro"]."' estadoMiembro='0' idActivador='".$activador."'>Activo</button>";
     
             }else{
     
-                $estado = "<button class='btn btn-danger btn-xs btnActivarMiembro' idMiembro='".$miembros[$i]["id_miembro"]."' estadoMiembro='1'>Inactivo</button>";
+                $estado = "<button class='btn btn-danger btn-xs btnActivarMiembro' idMiembro='".$miembros[$i]["id_miembro"]."' estadoMiembro='1' idActivador='".$activador."'>Inactivo</button>";
     
             }
 

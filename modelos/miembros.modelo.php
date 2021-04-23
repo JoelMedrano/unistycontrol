@@ -244,14 +244,15 @@ class ModeloMiembros{
 	}
 
     /* 
-    *Actualizar 1 dato miembro
+    *Activar miembro
     */
-    static public function mdlActualizarMiembro($item1, $valor1, $item2, $valor2){
+    static public function mdlActualizarMiembro($item1, $valor1, $item2, $valor2, $item3, $valor3){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE miembros SET $item1 = :$item1 WHERE $item2 = :$item2");
+		$stmt = Conexion::conectar()->prepare("UPDATE miembros SET $item1 = :$item1, $item3=:$item3 WHERE $item2 = :$item2");
 
 		$stmt -> bindParam(":".$item1, $valor1, PDO::PARAM_STR);
 		$stmt -> bindParam(":".$item2, $valor2, PDO::PARAM_STR);
+        $stmt -> bindParam(":".$item3, $valor3, PDO::PARAM_STR);
 
 		if($stmt -> execute()){
 

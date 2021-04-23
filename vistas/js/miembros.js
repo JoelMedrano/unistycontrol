@@ -173,10 +173,13 @@ $(".tablaMiembros").on("click", ".btnActivarMiembro", function(){
 
 	var idMiembro = $(this).attr("idMiembro");
 	var estadoMiembro = $(this).attr("estadoMiembro");
+	var idActivador = $(this).attr("idActivador");
+	//console.log(idActivador);
 
 	var datos = new FormData();
  	datos.append("activarId", idMiembro);
   	datos.append("activarMiembro", estadoMiembro);
+	  datos.append("idActivador", idActivador);
 
   	$.ajax({
 
@@ -187,7 +190,7 @@ $(".tablaMiembros").on("click", ".btnActivarMiembro", function(){
       contentType: false,
       processData: false,
       success: function(respuesta){
-		  console.log(respuesta)
+		  //console.log(respuesta)
 
       	if(window.matchMedia("(max-width:767px)").matches){
 		
