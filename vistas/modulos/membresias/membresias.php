@@ -130,7 +130,7 @@ MODAL AGREGAR MEMBRESIA
               
                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span> 
 
-                <input type="date"  class="form-control input-md" name="nuevaFechaInicio" required>
+                <input type="date"  class="form-control input-md" name="nuevaFechaInicio" id="nuevaFechaInicio" required>
 
               </div>
 
@@ -144,7 +144,7 @@ MODAL AGREGAR MEMBRESIA
               
                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span> 
 
-                <input type="date"  class="form-control input-md" name="nuevaFechaFin" required>
+                <input type="date"  class="form-control input-md" name="nuevaFechaFin" id="nuevaFechaFin" required>
 
               </div>
 

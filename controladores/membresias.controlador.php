@@ -384,39 +384,39 @@ class ControladorMembresias{
 						/*=============================================
 						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
 						=============================================*/
-
+	
 						$aleatorio = mt_rand(100,999);
-
+	
 						$ruta = "vistas/img/comprobantes/".$_POST["nuevoMiembro"]."/".$aleatorio.".jpg";
-
-						$origen = imagecreatefromjpeg($_FILES["nuevoComprobante"]["tmp_name"]);						
-
+	
+						$origen = imagecreatefromjpeg($_FILES["nuevoComprobante"]["tmp_name"]);
+	
 						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
-
+	
 						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
-
+	
 						imagejpeg($destino, $ruta);
-
+	
 					}
-
+	
 					if($_FILES["nuevoComprobante"]["type"] == "image/png"){
-
+	
 						/*=============================================
 						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
 						=============================================*/
-
+	
 						$aleatorio = mt_rand(100,999);
-
+	
 						$ruta = "vistas/img/comprobantes/".$_POST["nuevoMiembro"]."/".$aleatorio.".png";
-
-						$origen = imagecreatefrompng($_FILES["nuevoComprobante"]["tmp_name"]);						
-
+	
+						$origen = imagecreatefrompng($_FILES["nuevoComprobante"]["tmp_name"]);
+	
 						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
-
+	
 						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
-
+	
 						imagepng($destino, $ruta);
-
+	
 					}
 
 				}
@@ -430,6 +430,13 @@ class ControladorMembresias{
 							"id_miembro"=>$_POST["nuevoMiembro"]);
 
             $respuesta = ModeloMembresias::mdlIngresarMembresia($tabla,$datos);
+
+			$ultimoId= ModeloMembresias::mdlMostrarUltimoID();
+
+			$datosAsignar = array("id_membresia"=>$ultimoId["id_membresia"],
+							"id_miembro"=>$_POST["nuevoMiembro"]);
+
+			$asignado = ModeloMembresias::mdlAsignarMiembro($ultimoId);
 
             if($respuesta == "ok"){
 
@@ -487,7 +494,7 @@ class ControladorMembresias{
 
 				if(isset($_FILES["editarComprobante"]["tmp_name"]) && !empty($_FILES["editarComprobante"]["tmp_name"])){
 
-					list($ancho, $alto) = getimagesize($_FILES["nuevoComprobante"]["tmp_name"]);
+					list($ancho, $alto) = getimagesize($_FILES["editarComprobante"]["tmp_name"]);
 
 					$nuevoAncho = 500;
 					$nuevoAlto = 500;
@@ -523,39 +530,39 @@ class ControladorMembresias{
 						/*=============================================
 						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
 						=============================================*/
-
+	
 						$aleatorio = mt_rand(100,999);
-
+	
 						$ruta = "vistas/img/comprobantes/".$_POST["editarMiembro"]."/".$aleatorio.".jpg";
-
-						$origen = imagecreatefromjpeg($_FILES["editarComprobante"]["tmp_name"]);						
-
+	
+						$origen = imagecreatefromjpeg($_FILES["editarComprobante"]["tmp_name"]);
+	
 						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
-
+	
 						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
-
+	
 						imagejpeg($destino, $ruta);
-
+	
 					}
-
+	
 					if($_FILES["editarComprobante"]["type"] == "image/png"){
-
+	
 						/*=============================================
 						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
 						=============================================*/
-
+	
 						$aleatorio = mt_rand(100,999);
-
+	
 						$ruta = "vistas/img/comprobantes/".$_POST["editarMiembro"]."/".$aleatorio.".png";
-
-						$origen = imagecreatefrompng($_FILES["editarComprobante"]["tmp_name"]);						
-
+	
+						$origen = imagecreatefrompng($_FILES["editarComprobante"]["tmp_name"]);
+	
 						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
-
+	
 						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
-
+	
 						imagepng($destino, $ruta);
-
+	
 					}
 
 				}
