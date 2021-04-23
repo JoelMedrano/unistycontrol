@@ -96,20 +96,6 @@ MODAL AGREGAR TIPO MEMBRESIA
 
           <div class="box-body">
 
-            <!-- ENTRADA PARA TIPO DE MEMBRESIA -->
-            
-            <div class="form-group">
-              
-              <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-credit-card-alt"></i></span> 
-
-                <input type="text"  class="form-control input-md" name="nuevoTipo" placeholder="Ingresar tipo membresia" required>
-
-              </div>
-
-            </div>    
-
             <?php 
              if ($_SESSION["empresa"] == "0"){
             ?>
@@ -117,7 +103,7 @@ MODAL AGREGAR TIPO MEMBRESIA
               
               <div class="input-group">
               
-                <span class="input-group-addon"><i class="fa fa-builing"></i></span> 
+                <span class="input-group-addon"><i class="fa fa-building"></i></span> 
 
                 <select  class="form-control input-md selectpicker" name="nuevaEmpresa" data-live-search="true"  required>
                   <option value="">Seleccionar Empresa</option>
@@ -146,6 +132,22 @@ MODAL AGREGAR TIPO MEMBRESIA
             <?php 
              }
             ?>
+
+            <!-- ENTRADA PARA TIPO DE MEMBRESIA -->
+            
+            <div class="form-group">
+              
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-credit-card-alt"></i></span> 
+
+                <input type="text"  class="form-control input-md" name="nuevoTipo" placeholder="Ingresar tipo membresia" required>
+
+              </div>
+
+            </div>    
+
+            
 
 
 
@@ -214,23 +216,6 @@ MODAL EDITAR TIPO MEMBRESIA
         <div class="modal-body">
 
           <div class="box-body">
-
-          
-            <!-- ENTRADA PARA TIPO MEMBRESIA -->
-            
-            <div class="form-group">
-              
-              <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-credit-card-alt"></i></span> 
-
-                <input type="text" class="form-control input-md" name="editarTipo"  id="editarTipo" required>
-                <input type="hidden" name="idTipo"  id="idTipo" required>
-
-              </div>
-
-            </div>   
-
             <?php 
              if ($_SESSION["empresa"] == "0"){
             ?>
@@ -238,7 +223,7 @@ MODAL EDITAR TIPO MEMBRESIA
               
               <div class="input-group">
               
-                <span class="input-group-addon"><i class="fa fa-builing"></i></span> 
+                <span class="input-group-addon"><i class="fa fa-building"></i></span> 
 
                 <select  class="form-control input-md selectpicker" name="editarEmpresa" data-live-search="true" required>
 
@@ -265,7 +250,24 @@ MODAL EDITAR TIPO MEMBRESIA
               
             <?php 
              }
-            ?>       
+            ?>      
+          
+            <!-- ENTRADA PARA TIPO MEMBRESIA -->
+            
+            <div class="form-group">
+              
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-credit-card-alt"></i></span> 
+
+                <input type="text" class="form-control input-md" name="editarTipo"  id="editarTipo" required>
+                <input type="hidden" name="idTipo"  id="idTipo" required>
+
+              </div>
+
+            </div>   
+
+             
 
   
           </div>

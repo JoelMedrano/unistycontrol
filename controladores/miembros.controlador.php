@@ -9,7 +9,7 @@ class ControladorMiembros{
 
         if(isset($_POST["nuevoDocumento"])){
 
-            var_dump($_SESSION["empresa"]);
+            // var_dump($_SESSION["empresa"]);
 
             /*=============================================
             VALIDAR IMAGEN

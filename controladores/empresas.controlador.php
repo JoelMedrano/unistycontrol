@@ -243,7 +243,15 @@ class ControladorEmpresas{
 								"fecha" => $fecha->format("Y-m-d H:i:s"));
 				$auditoria=ModeloUsuarios::mdlIngresarAuditoria("auditoria",$datos2);
 			}
-			
+
+			if($_GET["logo1"] != ""){
+
+				unlink($_GET["logo1"]);
+				unlink($_GET["logo2"]);
+				rmdir('vistas/img/empresas/'.$empresas["documento"]);
+
+			}
+
 			$respuesta = ModeloEmpresas::mdlEliminarEmpresa($tabla,$datos);
 			if($respuesta == "ok"){
 				

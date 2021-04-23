@@ -127,13 +127,14 @@ class ModeloMembresias{
 
 	static public function mdlIngresarMembresia($tabla,$datos){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_tipo_membresia,fecha_inicio,fecha_fin,comprobante,id_usuario) VALUES (:id_tipo_membresia,:fecha_inicio,:fecha_fin,:comprobante,:id_usuario)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_tipo_membresia,fecha_inicio,fecha_fin,comprobante,id_usuario,id_miembro) VALUES (:id_tipo_membresia,:fecha_inicio,:fecha_fin,:comprobante,:id_usuario,:id_miembro)");
 
         $stmt->bindParam(":id_tipo_membresia", $datos["id_tipo_membresia"], PDO::PARAM_STR);
 		$stmt->bindParam(":fecha_inicio", $datos["fecha_inicio"], PDO::PARAM_STR);
 		$stmt->bindParam(":fecha_fin", $datos["fecha_fin"], PDO::PARAM_STR);
 		$stmt->bindParam(":comprobante", $datos["comprobante"], PDO::PARAM_STR);
 		$stmt->bindParam(":id_usuario", $datos["id_usuario"], PDO::PARAM_STR);
+		$stmt->bindParam(":id_miembro", $datos["id_miembro"], PDO::PARAM_STR);
 
 
 		if($stmt->execute()){
@@ -159,7 +160,7 @@ class ModeloMembresias{
 
 		if($item != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
+			$stmt = Conexion::conectar()->prepare("SELECT m.*,t.nombre_membresia,mb.nombre_completo FROM $tabla m LEFT JOIN tipo_membresia t ON t.id_tipo_membresia=m.id_tipo_membresia  LEFT JOIN miembros mb ON mb.id_miembro=m.id_miembro WHERE m.$item = :$item");
 
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
@@ -189,7 +190,7 @@ class ModeloMembresias{
 
 	static public function mdlEditarMembresia($tabla,$datos){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET id_tipo_membresia = :id_tipo_membresia,fecha_inicio = :fecha_inicio,fecha_fin = :fecha_fin,comprobante = :comprobante, id_usuario = :id_usuario WHERE id_membresia = :id");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET id_tipo_membresia = :id_tipo_membresia,fecha_inicio = :fecha_inicio,fecha_fin = :fecha_fin,comprobante = :comprobante, id_usuario = :id_usuario, id_miembro = :id_miembro WHERE id_membresia = :id");
 
 		$stmt->bindParam(":id", $datos["id"], PDO::PARAM_INT);
 		$stmt->bindParam(":id_tipo_membresia", $datos["id_tipo_membresia"], PDO::PARAM_STR);
@@ -197,6 +198,7 @@ class ModeloMembresias{
 		$stmt->bindParam(":fecha_fin", $datos["fecha_fin"], PDO::PARAM_STR);
 		$stmt->bindParam(":comprobante", $datos["comprobante"], PDO::PARAM_STR);
 		$stmt->bindParam(":id_usuario", $datos["id_usuario"], PDO::PARAM_STR);
+		$stmt->bindParam(":id_miembro", $datos["id_miembro"], PDO::PARAM_STR);
 
 		if($stmt->execute()){
 
@@ -453,6 +455,35 @@ class ModeloMembresias{
 
     }
 
+/*=============================================
+	SELECT PARA MEMBRESIAS POR EMPRESA
+	=============================================*/
 
+	static public function mdlSelecMembresias($tabla,$empresa){
+
+		if($empresa == "0"){
+
+			$stmt = Conexion::conectar()->prepare("SELECT m.*,t.nombre_membresia,mb.nombre_completo FROM $tabla m LEFT JOIN tipo_membresia t ON t.id_tipo_membresia=m.id_tipo_membresia  LEFT JOIN miembros mb ON mb.id_miembro=m.id_miembro ");
+
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}else{
+
+			$stmt = Conexion::conectar()->prepare("SELECT m.*,t.nombre_membresia,mb.nombre_completo FROM $tabla m LEFT JOIN tipo_membresia t ON t.id_tipo_membresia=m.id_tipo_membresia  LEFT JOIN miembros mb ON mb.id_miembro=m.id_miembro WHERE t.id_empresa = '".$empresa."' ");
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}
+
+		$stmt -> close();
+
+		$stmt = null;
+
+    }
 
 }
