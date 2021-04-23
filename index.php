@@ -14,5 +14,9 @@ require_once "modelos/social.modelo.php";
 require_once "modelos/miembros.modelo.php";
 require_once "modelos/membresias.modelo.php";
 
+//LIBRERIA PHPMAILER
+
+require_once "extensiones/PHPMailer/PHPMailerAutoload.php";
+
 $plantilla = new ControladorPlantilla();
 $plantilla -> ctrPlantilla();

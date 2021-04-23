@@ -355,4 +355,25 @@ class ModeloUsuarios{
 
 	}
 
+	/*=============================================
+	MOSTRAR EMAIL POR EMPRESA Y PERFIL
+	=============================================*/
+
+	static public function mdlMostrarEmail($valor){
+
+
+		$stmt = Conexion::conectar()->prepare("SELECT email FROM usuarios WHERE id_empresa = :id_empresa AND perfil = 'Administrador'");
+
+		$stmt -> bindParam(":id_empresa", $valor, PDO::PARAM_STR);
+
+		$stmt -> execute();
+
+		return $stmt -> fetch();
+
+		$stmt -> close();
+
+		$stmt = null;
+
+	}
+
 }
