@@ -92,7 +92,7 @@ class ModeloMiembros{
 
 		if($empresa == "0"){
 
-			$stmt = Conexion::conectar()->prepare("SELECT 
+			$stmt = Conexion::conectar()->prepare("SELECT DISTINCT
                                                 m.id_miembro,
                                                 m.nombre_completo,
                                                 m.documento,
@@ -128,7 +128,7 @@ class ModeloMiembros{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT 
+			$stmt = Conexion::conectar()->prepare("SELECT DISTINCT
                                                 m.id_miembro,
                                                 m.nombre_completo,
                                                 m.documento,

@@ -13,7 +13,11 @@ $totalMiembros = ControladorEscritorio::ctrTotalMiembros($empresa);
 $totalMiembrosNuevos = ControladorEscritorio::ctrTotalMiembrosNuevos($empresa);
 //var_dump($totalMiembros["total_miembros"]);
 
+$renovaciones = ControladorEscritorio::ctrTotalRenovaciones($empresa);
+//var_dump($totalMiembros["total_miembros"]);
 
+$porVencer = ControladorEscritorio::ctrTotalPorVencer($empresa);
+//var_dump($totalMiembros["total_miembros"]);
 
 ?>
 
@@ -77,19 +81,19 @@ $totalMiembrosNuevos = ControladorEscritorio::ctrTotalMiembrosNuevos($empresa);
 
 <div class="col-lg-3 col-xs-6">
 
-  <div class="small-box bg-yellow">
+  <div class="small-box bg-aqua">
     
     <div class="inner">
     
-      <h3><?php echo number_format($articulosP["pedidos"],0); ?></h3>
+      <h3><?php echo number_format($renovaciones["renovaciones"],0); ?></h3>
 
-      <p>Unidades en Pedidos</p>
+      <p>Miembros Renovados</p>
   
     </div>
     
     <div class="icon">
     
-      <i class="fa fa-id-card-o"></i>
+      <i class="fa fa-refresh"></i>
     
     </div>
     
@@ -109,15 +113,15 @@ $totalMiembrosNuevos = ControladorEscritorio::ctrTotalMiembrosNuevos($empresa);
   
     <div class="inner">
     
-      <h3><?php echo number_format($articulosF["faltantes"],0); ?></h3>
+      <h3><?php echo number_format($porVencer["por_vencer"],0); ?></h3>
 
-      <p>Unidades faltantes: <?php echo $porcentaje; ?> %</p>
+      <p>Membresiar por caducar</p>
     
     </div>
     
     <div class="icon">
       
-      <i class="fa fa-check-circle-o"></i>
+      <i class="fa fa-exclamation-circle"></i>
     
     </div>
     
