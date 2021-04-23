@@ -41,6 +41,19 @@ class TablaMiembros{
     
             }
 
+            /* 
+            *MEMBRESIA
+            */
+            if($miembros[$i]["id_membresia"] == "Pendiente" ){
+
+                $membresia = "<span style='font-size:85%' class='label label-warning'>".$miembros[$i]["id_membresia"]."</span>";
+    
+            }else{
+    
+                $membresia = "<span style='font-size:85%' class='label label-primary'>".$miembros[$i]["id_membresia"]."</span>";
+    
+            }
+
             /*
             *Botones
             */            
@@ -57,7 +70,7 @@ class TablaMiembros{
             "'.$miembros[$i]["usuario_red_social"].'",
             "'.$estado.'",
             "'.$miembros[$i]["nombre"].'",
-            "'.$miembros[$i]["id_membresia"].'",
+            "'.$membresia.'",
             "'.$miembros[$i]["fecha_creacion"].'",
             "'.$botones.'"
             ],';        
