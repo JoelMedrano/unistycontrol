@@ -334,3 +334,48 @@ $(".nuevoComprobante").change(function(){
 
   	}
 })
+
+
+$("#nuevaFechaInicio").change(function(){
+  var fechaInicio = $(this).val();
+  var e = new Date(fechaInicio);
+  e.setMonth(e.getMonth() + 1);
+  e.setDate(e.getDate() + 1);
+
+  if((e.getMonth()+1)<10){
+    if((e.getDate())<10){
+      $("#nuevaFechaFin").val(e.getFullYear() +"-0"+ (e.getMonth()+1) +"-0"+ e.getDate());
+    }else{
+      $("#nuevaFechaFin").val(e.getFullYear() +"-0"+ (e.getMonth()+1) +"-"+ e.getDate());
+    } 
+  }else{
+    if((e.getDate())<10){
+      $("#nuevaFechaFin").val(e.getFullYear() +"-"+ (e.getMonth()+1) +"-0"+ e.getDate());
+    }else{
+      $("#nuevaFechaFin").val(e.getFullYear() +"-"+ (e.getMonth()+1) +"-"+ e.getDate());
+    } 
+  } 
+
+});
+
+$("#editarFechaInicio").change(function(){
+  var fechaInicio = $(this).val();
+  var e = new Date(fechaInicio);
+  e.setMonth(e.getMonth() + 1);
+  e.setDate(e.getDate() + 1);
+
+  if((e.getMonth()+1)<10){
+    if((e.getDate())<10){
+      $("#editarFechaFin").val(e.getFullYear() +"-0"+ (e.getMonth()+1) +"-0"+ e.getDate());
+    }else{
+      $("#editarFechaFin").val(e.getFullYear() +"-0"+ (e.getMonth()+1) +"-"+ e.getDate());
+    } 
+  }else{
+    if((e.getDate())<10){
+      $("#editarFechaFin").val(e.getFullYear() +"-"+ (e.getMonth()+1) +"-0"+ e.getDate());
+    }else{
+      $("#editarFechaFin").val(e.getFullYear() +"-"+ (e.getMonth()+1) +"-"+ e.getDate());
+    } 
+  } 
+
+});

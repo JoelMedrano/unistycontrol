@@ -486,4 +486,55 @@ class ModeloMembresias{
 
     }
 
+
+	/*=============================================
+	MOSTRAR ULTIMO ID DE MEMBRESIA
+	=============================================*/
+
+	static public function mdlMostrarUltimoID(){
+
+
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM membresia ORDER BY id_membresia DESC LIMIT 1");
+
+		$stmt -> execute();
+
+		return $stmt -> fetch();
+
+	
+		
+
+		$stmt -> close();
+
+		$stmt = null;
+
+	}
+
+
+	/*=============================================
+	ASIGNAR MIEMBRO
+	=============================================*/
+
+	static public function mdlAsignarMiembro($datos){
+
+		$stmt = Conexion::conectar()->prepare("UPDATE miembros SET id_membresia = :id_membresia WHERE id_miembro = :id_miembro");
+
+		$stmt->bindParam(":id_membresia", $datos["id_membresia"], PDO::PARAM_STR);
+		$stmt->bindParam(":id_miembro", $datos["id_miembro"], PDO::PARAM_STR);
+
+		if($stmt->execute()){
+
+			return "ok";
+
+		}else{
+
+			return "error";
+		
+		}
+
+		$stmt->close();
+		$stmt = null;
+
+    }
+	
+
 }
