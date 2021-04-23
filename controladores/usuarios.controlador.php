@@ -286,6 +286,18 @@ class ControladorUsuarios{
 	}
 
 	/*=============================================
+	MOSTRAR EMAIL POR PERFIL Y EMPRESA
+	=============================================*/
+
+	static public function ctrMostrarEmail($valor){
+
+
+		$respuesta = ModeloUsuarios::MdlMostrarEmail($valor);
+
+		return $respuesta;
+	}
+
+	/*=============================================
 	EDITAR USUARIO
 	=============================================*/
 
