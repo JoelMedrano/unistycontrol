@@ -442,6 +442,8 @@ class ControladorMembresias{
 			
 			$encriptando= ModeloMembresias::mdlAsignarCodigo($datosEncriptado);
 
+			$traerEmail = ControladorUsuarios::ctrMostrarEmail($ultimoId["id_empresa"]);
+
 		
 
             if($respuesta == "ok"){

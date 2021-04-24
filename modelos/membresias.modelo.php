@@ -494,7 +494,7 @@ class ModeloMembresias{
 	static public function mdlMostrarUltimoID(){
 
 
-		$stmt = Conexion::conectar()->prepare("SELECT * FROM membresia ORDER BY id_membresia DESC LIMIT 1");
+		$stmt = Conexion::conectar()->prepare("SELECT m.*,t.id_empresa FROM membresia m LEFT JOIN tipo_membresia t ON t.id_tipo_membresia = m.id_tipo_membresia ORDER BY m.id_membresia DESC LIMIT 1");
 
 		$stmt -> execute();
 
