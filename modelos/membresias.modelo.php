@@ -595,4 +595,31 @@ class ModeloMembresias{
 
     }
 
+	/*=============================================
+	ASIGNAR MIEMBRO
+	=============================================*/
+
+	static public function mdlAsignarCodigo($datos){
+
+		$stmt = Conexion::conectar()->prepare("UPDATE miembros SET codigo_activador = :codigo_activador WHERE id_miembro = :id_miembro");
+
+		$stmt->bindParam(":codigo_activador", $datos["codigo_activador"], PDO::PARAM_STR);
+		$stmt->bindParam(":id_miembro", $datos["id_miembro"], PDO::PARAM_STR);
+
+		if($stmt->execute()){
+
+			return "ok";
+
+		}else{
+
+			return "error";
+		
+		}
+
+		$stmt->close();
+		$stmt = null;
+
+    }
+
+
 }

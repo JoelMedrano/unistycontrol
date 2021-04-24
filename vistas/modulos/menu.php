@@ -158,7 +158,23 @@
 
 			<?php
 			}
-            ?>
+            if($_SESSION["estadisticas"] == 1){
+			?>
+	
+			<li>
+
+				<a href="estadisticas">
+
+					<i class="fa fa-area-chart"></i>
+					<span>Estadisticas</span>
+
+				</a>
+
+			</li>
+
+			<?php
+			}
+			?>
 
 		</ul>
 

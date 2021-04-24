@@ -146,6 +146,17 @@ class ControladorMiembros{
     }
 
     /* 
+    *Actualizar Miembros 2
+    */
+    static public function ctrActualizarMiembro2($item1,$valor1,$item2,$valor2){
+
+        $respuesta = ModeloMiembros::mdlActualizarMiembro2($item1,$valor1,$item2,$valor2);
+
+		return $respuesta;
+
+    }
+
+    /* 
     *Editar miembro
     */
     static public function ctrEditarMiembro(){
@@ -314,5 +325,6 @@ class ControladorMiembros{
 		}
 
 	}
+
 
 }

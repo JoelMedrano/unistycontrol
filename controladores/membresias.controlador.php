@@ -435,24 +435,122 @@ class ControladorMembresias{
 
 			$asignado = ModeloMembresias::mdlAsignarMiembro($ultimoId);
 
+			$encriptarMiembro = md5($_POST["nuevoMiembro"]);
+
+			$datosEncriptado = array("id_miembro"=>$_POST["nuevoMiembro"],
+									  "codigo_activador"=>$encriptarMiembro);
+			
+			$encriptando= ModeloMembresias::mdlAsignarCodigo($datosEncriptado);
+
+		
+
             if($respuesta == "ok"){
 
-                echo'<script>
+                /*=============================================
+					VERIFICACIÓN CORREO ELECTRÓNICO
+					=============================================*/
 
-                swal({
-                        type: "success",
-                        title: "La membresia ha sido guardada correctamente",
-                        showConfirmButton: true,
-                        confirmButtonText: "Cerrar"
-                        }).then(function(result){
-                                if (result.value) {
+					date_default_timezone_set("America/Lima");
 
-                                window.location = "membresias";
+					// $url = Ruta::ctrRuta();	
 
-                                }
-                            })
+					$mail = new PHPMailer;
 
-                </script>';
+					$mail->CharSet = 'UTF-8';
+
+					$mail->isMail();
+
+					$mail->setFrom('noreply@unistycontrol.com', 'Soporte Unisty Control');
+
+					$mail->addReplyTo('noreply@unistycontrol.com', 'Soporte Unisty Control');
+
+					$mail->Subject = "Por favor verifique que el miembro haya sido dada de alta en su grupo VIP";
+
+					$mail->addAddress($_POST["regEmail"]);
+
+					$mail->msgHTML('<div style="width:100%; background:#eee; position:relative; font-family:sans-serif; padding-bottom:40px">
+						
+						<center>
+							
+							<img style="padding:20px; width:10%" src="http://www.unistycontrol.com/tienda/logo.png">
+
+						</center>
+
+						<div style="position:relative; margin:auto; width:600px; background:white; padding:20px">
+						
+							<center>
+							
+							<img style="padding:20px; width:15%" src="http://www.unistycontrol.com/tienda/icon-email.png">
+
+							<h3 style="font-weight:100; color:#999">VERIFIQUE SU NUEVO MIEMBRO</h3>
+
+							<hr style="border:1px solid #ccc; width:80%">
+
+							<h4 style="font-weight:100; color:#999; padding:0 20px">Para confirmar que el miembro pertenece al grupo VIP hacer click en el enlace.</h4>
+
+							<a href="'.$url.'verificar/'.$encriptarMiembro.'" target="_blank" style="text-decoration:none">
+
+							<div style="line-height:60px; background:#0aa; width:60%; color:white">Verifique al miembro registrado</div>
+
+							</a>
+
+							<br>
+
+							<hr style="border:1px solid #ccc; width:80%">
+
+							<h5 style="font-weight:100; color:#999">Si ya se inscribió a este miembro, puede ignorar este correo electrónico.</h5>
+
+							</center>
+
+						</div>
+
+					</div>');
+
+					$envio = $mail->Send();
+
+					if(!$envio){
+
+						echo '<script> 
+
+							swal({
+								  title: "¡ERROR!",
+								  text: "¡Ha ocurrido un problema enviando verificación del miembro a '.$_POST["regEmail"].$mail->ErrorInfo.'!",
+								  type:"error",
+								  confirmButtonText: "Cerrar",
+								  closeOnConfirm: false
+								},
+
+								function(isConfirm){
+
+									if(isConfirm){
+										history.back();
+									}
+							});
+
+						</script>';
+
+					}else{
+
+						echo '<script> 
+
+							swal({
+								  title: "¡OK!",
+								  text: "¡Por favor revise la bandeja de entrada o la carpeta de SPAM de su correo electrónico '.$_POST["regEmail"].' para verificar su miembro!",
+								  type:"success",
+								  confirmButtonText: "Cerrar",
+								  closeOnConfirm: false
+								},
+
+								function(isConfirm){
+
+									if(isConfirm){
+										history.back();
+									}
+							});
+
+						</script>';
+
+					}
 
             }
 
