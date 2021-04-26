@@ -28,7 +28,7 @@ class TablaApuestas{
             */
             if($apuestas[$i]["estado"] == 0){
 
-                $estado = "<button class='btn btn-info btn-xs' idApuesta='".$apuestas[$i]["id_apuestas"]."'>Pendiente</button>";
+                $estado = "<button class='btn btn-info btn-xs ".'G'.$apuestas[$i]["id_apuestas"]."' id=".'G'.$apuestas[$i]["id_apuestas"]." name=".'G'.$apuestas[$i]["id_apuestas"]." idApuesta='".$apuestas[$i]["id_apuestas"]."'>Pendiente</button>";
     
             }else if($apuestas[$i]["estado"] == 1){
     
@@ -47,12 +47,25 @@ class TablaApuestas{
             /*
             *Resultado
             */
-            $resultado =  "<div class='btn-group text-center'><button class='btn btn-success btnGanada' style='margin-right: 20px' idApuesta='".$apuestas[$i]["id_apuestas"]."' estadoApuesta='1'>G</button><button class='btn btn-warning btnGanada' style='margin-right: 20px' idApuesta='".$apuestas[$i]["id_apuestas"]."' estadoApuesta='1'>A</button><button class='btn btn-danger btnGanada' idApuesta='".$apuestas[$i]["id_apuestas"]."' estadoApuesta='1'>P</button></div>"; 
+            if($apuestas[$i]["estado"] == 1){
+
+                $ganada = "<div class='btn-group text-center'><button class='btn btn-success' style='margin-right: 20px' idApuesta='".$apuestas[$i]["id_apuestas"]."' estadoApuesta='1'>G</button></div>";
+
+            }else{
+
+                $ganada = "<div class='btn-group text-center'><button class='btn btn-default btnGanada' style='margin-right: 20px' idApuesta='".$apuestas[$i]["id_apuestas"]."' estadoApuesta='1'>G</button></div>";
+
+
+            }
+
+            $anulada = "<div class='btn-group text-center'><button class='btn btn-default btnAnulada' style='margin-right: 20px' idApuesta='".$apuestas[$i]["id_apuestas"]."' estadoApuesta='2'>A</button></div>";
+
+            $perdida = "<div class='btn-group text-center'><button class='btn btn-default btnPerdida' idApuesta='".$apuestas[$i]["id_apuestas"]."' estadoApuesta='3'>P</button></div>";
 
             /*
             *Acciones
             */            
-            $botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarApuesta' idApuesta='".$apuestas[$i]["id_apuestas"]."' data-toggle='modal' data-target='#modalEditarApuesta'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarApuesta' idApuesta='".$apuestas[$i]["id_apuestas"]."'><i class='fa fa-times'></i></button></div>"; 
+            $botones =  "<div class='btn-group'><button class='btn btn-warning btnEditarApuesta' idApuesta='".$apuestas[$i]["id_apuestas"]."' empresa='".$apuestas[$i]["id_empresa"]."' data-toggle='modal' data-target='#modalEditarApuesta'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarApuesta' idApuesta='".$apuestas[$i]["id_apuestas"]."'><i class='fa fa-times'></i></button></div>"; 
 
             $datosJson .= '[
             "'.($i+1).'",
@@ -64,7 +77,7 @@ class TablaApuestas{
             "'.$apuestas[$i]["pronostico"].'",
             "'.$apuestas[$i]["cuota"].'",
             "'.$estado.'",
-            "'.$resultado.'",
+            "'.$ganada.$anulada.$perdida.'",
             "'.$botones.'"
             ],';        
         }

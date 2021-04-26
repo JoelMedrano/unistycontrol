@@ -6,10 +6,10 @@ $("#nuevaEmpresa").change(function(){
     document.getElementById("nuevoTipoMembresia").disabled = false;
 
     var empresa = $(this).val();
-    console.log(empresa);
+    //console.log(empresa);
 
     var datos = new FormData();
-	datos.append("empresa", empresa);
+	  datos.append("empresa", empresa);
 	
     $.ajax({
 
@@ -34,7 +34,43 @@ $("#nuevaEmpresa").change(function(){
       }
     })
   
+})
+
+/* 
+*Editar Apuesta - SELECT
+*/
+$("#editarEmpresa").change(function(){
+
+  var empresa = $(this).val();
+  //console.log(empresa);
+
+  var datos = new FormData();
+  datos.append("empresa", empresa);
+
+  $.ajax({
+
+    url:"ajax/membresias.ajax.php",
+    method: "POST",
+    data: datos,
+    cache: false,
+    contentType: false,
+    processData: false,
+    dataType:"json",
+    success:function(respuesta){
+
+      //console.log(respuesta)
+
+      $("#editarTipoMembresia").find('option').remove();
+      $("#editarTipoMembresia").append('<option value="">Seleccionar Tipo Membresia</option>')
+      for (let i = 0; i < respuesta.length; i++) {
+        $("#editarTipoMembresia").append("<option value='"+respuesta[i]["id_tipo_membresia"]+"'>"+respuesta[i]["nombre_membresia"]+"</option>");
+        
+      }
+      $('#editarTipoMembresia').selectpicker('refresh');
+    }
   })
+
+})
 
 
 /* 
@@ -71,3 +107,139 @@ $('.tablaApuestas').DataTable({
     }
   }    
 });
+
+/*
+*EDITAR APUESTA
+*/
+$(".tablaApuestas").on("click", ".btnEditarApuesta", function () {
+
+  var idApuesta = $(this).attr("idApuesta");
+  //console.log(idApuesta)
+  var empresa = $(this).attr("empresa");
+  //console.log(empresa);
+
+  var datos = new FormData();
+  datos.append("idApuesta", idApuesta);
+
+  $.ajax({
+
+      url: "ajax/apuestas.ajax.php",
+      method: "POST",
+      data: datos,
+      cache: false,
+      contentType: false,
+      processData: false,
+      dataType: "json",
+      success: function (respuesta) {
+
+      //console.log(respuesta);
+
+      $("#idApuesta").val(respuesta["id_apuestas"]);
+      $("#editarEmpresa").val(respuesta["id_empresa"]);
+      $("#editarEmpresa").selectpicker("refresh");
+
+      $("#editarTipoMembresia").val(respuesta["id_tipo_membresia"]);
+      $("#editarTipoMembresia").selectpicker("refresh");
+      $("#editarTipoApuesta").html(respuesta["tipo_apuesta_nombre"]);
+      $("#editarTipoApuesta").val(respuesta["tipo_apuesta"]);
+      $("#editarFecha").val(respuesta["fecha"]);
+      $("#editarPartido").val(respuesta["partido"]);
+      $("#editarPronostico").val(respuesta["pronostico"]);
+      $("#editarCuota").val(respuesta["cuota"]);
+      $("#editarMonto").val(respuesta["monto"]);
+
+      }
+
+  })
+
+})
+
+/*
+*Eliminar apuesta
+*/
+$(".tablaApuestas").on("click", ".btnEliminarApuesta", function(){
+
+	var idApuesta = $(this).attr("idApuesta");
+
+  console.log(idApuesta);
+  
+	swal({
+	  title: '¿Está seguro de borrar la apuesta?',
+	  text: "¡Si no lo está puede cancelar la accíón!",
+	  type: 'warning',
+	  showCancelButton: true,
+	  confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		cancelButtonText: 'Cancelar',
+		confirmButtonText: 'Si, borrar apuesta!'
+	}).then(function(result){
+  
+	  if(result.value){
+  
+		window.location = "index.php?ruta=apuestas&idApuesta="+idApuesta;
+  
+	  }
+  
+	})
+  
+})
+
+/* 
+*Activar Miembro
+*/
+$(".tablaApuestas").on("click", ".btnGanada", function () {
+
+  var idApuesta = $(this).attr("idApuesta");
+  var estadoApuesta = $(this).attr("estadoApuesta");
+  console.log(idApuesta,estadoApuesta)
+
+  var datos = new FormData();
+  datos.append("idApuesta", idApuesta);
+  datos.append("estadoApuesta", estadoApuesta);
+
+  $.ajax({
+
+    url: "ajax/apuestas.ajax.php",
+    method: "POST",
+    data: datos,
+    cache: false,
+    contentType: false,
+    processData: false,
+    success: function (respuesta) {
+      //console.log(respuesta)
+
+      if (window.matchMedia("(max-width:767px)").matches) {
+
+        swal({
+          title: "Ha ganado la apuesta",
+          type: "success",
+          confirmButtonText: "¡Cerrar!"
+        }).then(function (result) {
+
+          if (result.value) {
+
+            window.location = "miembros";
+
+          }
+
+        });
+
+      }
+    }
+
+  })
+
+  if(estadoApuesta == 1){
+
+    $(this).removeClass('btn-default');
+    $(this).addClass('btn-success');
+
+    var boton = '.G' + idApuesta;
+
+    $(boton).removeClass('btn-info');
+    $(boton).addClass('btn-success');
+    $(boton).html('Ganada');
+
+  }
+
+})
