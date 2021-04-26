@@ -85,7 +85,7 @@ MODAL AGREGAR EMPRESA
         CABEZA DEL MODAL
         ======================================-->
 
-        <div class="modal-header" style="background:#3c8dbc; color:white">
+        <div class="modal-header" style="background:#34495E; color:white">
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -236,7 +236,7 @@ MODAL EDITAR EMPRESA
         CABEZA DEL MODAL
         ======================================-->
 
-        <div class="modal-header" style="background:#3c8dbc; color:white">
+        <div class="modal-header" style="background:#34495E; color:white">
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 

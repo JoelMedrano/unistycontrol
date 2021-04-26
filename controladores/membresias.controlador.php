@@ -455,6 +455,8 @@ class ControladorMembresias{
 			$encriptando= ModeloMembresias::mdlAsignarCodigo($datosEncriptado);
 
 			$traerEmail = ControladorUsuarios::ctrMostrarEmail($ultimoId["id_empresa"]);
+
+			$miembro= ControladorMiembros::ctrMostrarMiembros("id_miembro",$_POST["nuevoMiembro"]);
 			// var_dump($traerEmail);
 			// var_dump($ultimoId["id_empresa"]);
 
@@ -486,27 +488,32 @@ class ControladorMembresias{
 
 					$mail->msgHTML('<div style="width:100%; background:#eee; position:relative; font-family:sans-serif; padding-bottom:40px">
 						
-						<center>
-							
-							<img style="padding:20px; width:10%" src="https://www.unistycontrol.com/vistas/img/plantilla/logo-grande.png">
-
-						</center>
 
 						<div style="position:relative; margin:auto; width:600px; background:white; padding:20px">
 						
 							<center>
 							
-							<img style="padding:20px; width:15%" src="https://www.unistycontrol.com/vistas/img/plantilla/logo-grande.png">
+							<img style="padding:20px; width:25%" src="https://www.unistycontrol.com/vistas/img/plantilla/logo-grande.png">
 
 							<h3 style="font-weight:100; color:#999">VERIFIQUE SU NUEVO MIEMBRO</h3>
 
 							<hr style="border:1px solid #ccc; width:80%">
 
+							<ul style="list-style:none;columns:2;text-align:left;color:#b03002">
+                           	<li>Codigo:'.$_POST["nuevoMiembro"].'</li>
+                            <li>Documento: '.$miembro["documento"].'</li>
+                            <li>Fecha Inicio: '.$_POST["nuevaFechaInicio"].'</li>
+                            <li>Nombre: '.$miembro["nombre_completo"].'</li>
+                            <li>Celular: '.$miembro["celular"].'</li>
+                            <li>Fecha Fin: '.$_POST["nuevaFechaFin"].'</li>
+                            
+                           </ul>
+
 							<h4 style="font-weight:100; color:#999; padding:0 20px">Para confirmar que el miembro pertenece al grupo VIP hacer click en el enlace.</h4>
 
-							<a href="https://www.unistycontrol.com/verificar/'.$encriptarMiembro.'" target="_blank" style="text-decoration:none">
+							<a href="https://www.unistycontrol.com/index.php?ruta=verificar&id='.$encriptarMiembro.'" target="_blank" style="text-decoration:none">
 
-							<div style="line-height:60px; background:#0aa; width:60%; color:white">Verifique al miembro registrado</div>
+							<div style="line-height:60px; background:#b03002; width:60%; color:white">Verifique al miembro registrado</div>
 
 							</a>
 
@@ -525,7 +532,7 @@ class ControladorMembresias{
 					$envio = $mail->Send();
 
 					if(!$envio){
-
+						$respuesta ="error";
 						echo '<script> 
 
 							swal({
@@ -546,6 +553,7 @@ class ControladorMembresias{
 						</script>';
 
 					}else{
+						$respuesta ="error";
 
 						echo '<script> 
 
@@ -553,16 +561,16 @@ class ControladorMembresias{
 								  title: "¡OK!",
 								  text: "¡Por favor revise la bandeja de entrada o la carpeta de SPAM de su correo electrónico '.$traerEmail["email"].' para verificar su miembro!",
 								  type:"success",
+								  showConfirmButton: true,
 								  confirmButtonText: "Cerrar",
 								  closeOnConfirm: false
-								},
+								}).then(function(result){
+									if (result.value) {
 
-								function(isConfirm){
+									window.location = "membresias";
 
-									if(isConfirm){
-										history.back();
 									}
-							});
+								});
 
 						</script>';
 
