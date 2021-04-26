@@ -143,7 +143,7 @@ $(".tablaMiembros").on("click", ".btnEliminarMiembro", function(){
 	var idMiembro = $(this).attr("idMiembro");
 	var fotoMiembro = $(this).attr("fotoMiembro");
 	var documento = $(this).attr("documento");
-	console.log(idMiembro,fotoMiembro,documento);
+	//console.log(idMiembro,fotoMiembro,documento);
   
 	swal({
 	  title: '¿Está seguro de borrar el miembro?',
@@ -164,7 +164,7 @@ $(".tablaMiembros").on("click", ".btnEliminarMiembro", function(){
   
 	})
   
-  })
+})
   
 /* 
 *Activar Miembro
@@ -179,7 +179,7 @@ $(".tablaMiembros").on("click", ".btnActivarMiembro", function(){
 	var datos = new FormData();
  	datos.append("activarId", idMiembro);
   	datos.append("activarMiembro", estadoMiembro);
-	  datos.append("idActivador", idActivador);
+	datos.append("idActivador", idActivador);
 
   	$.ajax({
 
@@ -195,7 +195,7 @@ $(".tablaMiembros").on("click", ".btnActivarMiembro", function(){
       	if(window.matchMedia("(max-width:767px)").matches){
 		
       		 swal({
-		      	title: "El usuario ha sido actualizado",
+		      	title: "El miembro ha sido actualizado",
 		      	type: "success",
 		      	confirmButtonText: "¡Cerrar!"
 		    	}).then(function(result) {

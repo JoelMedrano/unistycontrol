@@ -60,6 +60,9 @@ class ModeloMiembros{
 
 	}
 
+    /* 
+    *Mostrar miembros
+    */
 	static public function mdlMostrarMiembros($item,$valor){
 
 		if($item != null){
