@@ -617,12 +617,13 @@ a:focus {
   }
   .sidebar-mini.sidebar-collapse .main-header .logo > .logo-mini {
     display: block;
-    margin-left: -15px;
-    margin-right: -15px;
+    margin-left: -25px;
+    margin-right: -25px;
     font-size: 18px;
   }
   .sidebar-mini.sidebar-collapse .main-header .logo > .logo-lg {
     display: none;
+    padding:0px !important;
   }
   .sidebar-mini.sidebar-collapse .main-header .navbar {
     margin-left: 50px;
@@ -5747,4 +5748,68 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+.verificar{
+	color:#333;
+}
+
+@media (min-width:1200px){
+
+	.verificar h3{
+		margin-top:30px;
+		font-size:100px;
+		text-shadow:4px 4px 1px #dadada;
+	}
+
+}
+
+/*=============================================
+ESCRITORIO MEDIANO O TABLET HORIZONTAL (MD revisamos en 1024px)
+=============================================*/
+
+@media (max-width:1199px) and (min-width:992px){
+
+	.verificar h3{
+		margin-top:30px;
+		font-size:100px;
+		text-shadow:4px 4px 1px #dadada;
+	}
+
+}
+
+/*=============================================
+ESCRITORIO PEQUEÑO O TABLET VERTICAL (SM revisamos en 768px)
+=============================================*/
+
+@media (max-width:991px) and (min-width:768px){
+
+
+	.verificar h3{
+		margin-top:30px;
+		font-size:100px;
+		text-shadow:4px 4px 1px #dadada;
+	}
+
+}
+
+/*=============================================
+MOVIL (XS revisamos en 320px)
+=============================================*/
+
+@media (max-width:767px){
+
+
+	.verificar h3{
+		margin-top:30px;
+		font-size:50px;
+		text-shadow:2px 2px 1px #dadada;
+	}
+
+}
+
+
+.backColor, .backColor a{
+	background:#47bac1;
+	color:white;
 }

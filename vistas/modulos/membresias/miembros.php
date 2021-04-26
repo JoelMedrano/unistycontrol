@@ -88,7 +88,7 @@ MODAL AGREGAR MIEMBRO
                 CABEZA DEL MODAL
                 ======================================-->
 
-                <div class="modal-header" style="background:#3c8dbc; color:white">
+                <div class="modal-header" style="background:#34495E; color:white">
 
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -113,10 +113,10 @@ MODAL AGREGAR MIEMBRO
                             if($empresa == '0'){
 
                                 echo '  <div class="form-group">
-
+                                            <label for="">Empresa</label>
                                             <div class="input-group">
     
-                                                <span class="input-group-addon"><i class="fa fa-university"></i></span>
+                                                <span class="input-group-addon"><i class="fa fa-building"></i></span>
                 
                                                 <select class="form-control input-md selectpicker"  data-live-search="true" name="empresa">';
 
@@ -149,7 +149,7 @@ MODAL AGREGAR MIEMBRO
                         <!-- ENTRADA PARA EL NOMBRE -->
 
                         <div class="form-group">
-
+                            <label for="">Nombre completo</label>
                             <div class="input-group">
 
                                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
@@ -163,12 +163,12 @@ MODAL AGREGAR MIEMBRO
                         <!-- ENTRADA PARA EL DOCUMENTO -->
 
                         <div class="form-group">
-
+                            <label for="">DNI o RUC</label>
                             <div class="input-group">
 
                                 <span class="input-group-addon"><i class="fa fa-address-card"></i></span>
 
-                                <input type="text" class="form-control input-md" name="nuevoDocumento" placeholder="Ingresar documento" required>
+                                <input type="text" class="form-control input-md" name="nuevoDocumento" placeholder="Ingresar documento" >
 
                             </div>
 
@@ -177,7 +177,7 @@ MODAL AGREGAR MIEMBRO
                         <!-- ENTRADA PARA EL CELULAR -->
 
                         <div class="form-group">
-
+                            <label for="">Celular </label>
                             <div class="input-group">
 
                                 <span class="input-group-addon"><i class="fa fa-phone"></i></span>
@@ -191,7 +191,7 @@ MODAL AGREGAR MIEMBRO
                         <!-- Email -->
 
                         <div class="form-group">
-
+                            <label for="">Correo electronico</label>
                             <div class="input-group">
 
                                 <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
@@ -205,7 +205,7 @@ MODAL AGREGAR MIEMBRO
                         <!-- ENTRADA PARA SELECCIONAR SU RED SOCIAL -->
 
                         <div class="form-group">
-
+                            <label for="">Red social</label>
                             <div class="input-group">
 
                                 <span class="input-group-addon"><i class="fa fa-users"></i></span>
@@ -235,7 +235,7 @@ MODAL AGREGAR MIEMBRO
                         <!-- ENTRADA PARA EL PERFIL -->
 
                         <div class="form-group">
-
+                            <label for="">Usuario de Red Social</label>
                             <div class="input-group">
 
                                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
@@ -249,7 +249,7 @@ MODAL AGREGAR MIEMBRO
                         <!-- ENTRADA PARA SUBIR FOTO -->
 
                         <div class="form-group">
-
+                            
                             <div class="panel">SUBIR FOTO</div>
 
                             <input type="file" class="form-control input-md nuevaFotoMiembro" id="nuevaFotoMiembro" name="nuevaFotoMiembro">
@@ -307,11 +307,11 @@ MODAL EDITAR MIEMBRO
                 CABEZA DEL MODAL
                 ======================================-->
 
-                <div class="modal-header" style="background:#3c8dbc; color:white">
+                <div class="modal-header" style="background:#34495E; color:white">
 
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-                    <h4 class="modal-title">Agregar miembros</h4>
+                    <h4 class="modal-title">Editar miembros</h4>
 
                 </div>
 
@@ -332,7 +332,7 @@ MODAL EDITAR MIEMBRO
                             if($empresa == '0'){
 
                                 echo '  <div class="form-group">
-
+                                            <label for="">Empresa</label>
                                             <div class="input-group">
     
                                                 <span class="input-group-addon"><i class="fa fa-university"></i></span>
@@ -368,7 +368,7 @@ MODAL EDITAR MIEMBRO
                         <!-- ENTRADA PARA EL NOMBRE -->
 
                         <div class="form-group">
-
+                            <label for="">Nombre Completo</label>
                             <div class="input-group">
 
                                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
@@ -382,12 +382,12 @@ MODAL EDITAR MIEMBRO
                         <!-- ENTRADA PARA EL DOCUMENTO -->
 
                         <div class="form-group">
-
+                            <label for="">RUC o DNI</label>
                             <div class="input-group">
 
                                 <span class="input-group-addon"><i class="fa fa-address-card"></i></span>
 
-                                <input type="text" class="form-control input-md" name="editarDocumento" id="editarDocumento" placeholder="Ingresar documento" required>
+                                <input type="text" class="form-control input-md" name="editarDocumento" id="editarDocumento" placeholder="Ingresar documento" >
 
                                 <input type="hidden" name="idMiembro" id="idMiembro">
 
@@ -398,7 +398,7 @@ MODAL EDITAR MIEMBRO
                         <!-- ENTRADA PARA EL CELULAR -->
 
                         <div class="form-group">
-
+                            <label for="">Celular</label>
                             <div class="input-group">
 
                                 <span class="input-group-addon"><i class="fa fa-phone"></i></span>
@@ -412,7 +412,7 @@ MODAL EDITAR MIEMBRO
                         <!-- Email -->
 
                         <div class="form-group">
-
+                            <label for="">Correo electrónico</label>
                             <div class="input-group">
 
                                 <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
@@ -426,7 +426,7 @@ MODAL EDITAR MIEMBRO
                         <!-- ENTRADA PARA SELECCIONAR SU RED SOCIAL -->
 
                         <div class="form-group">
-
+                            <label for="">Red Social</label>
                             <div class="input-group">
 
                                 <span class="input-group-addon"><i class="fa fa-users"></i></span>
@@ -456,7 +456,7 @@ MODAL EDITAR MIEMBRO
                         <!-- ENTRADA PARA EL PERFIL -->
 
                         <div class="form-group">
-
+                            <label for="">Usuario de Red Social</label>
                             <div class="input-group">
 
                                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>

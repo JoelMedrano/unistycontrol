@@ -16,7 +16,7 @@ session_start();
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-  <link rel="icon" href="vistas/img/plantilla/favicon.png">
+  <link rel="icon" href="vistas/img/plantilla/logo-grande.png">
 
    <!--=====================================
   PLUGINS DE CSS
@@ -158,10 +158,6 @@ CUERPO DOCUMENTO
 
         include "modulos/".$_GET["ruta"].".php";
 
-      }else if($_GET["ruta"] == "verificar" ){
-
-        include "modulos/".$_GET["ruta"].".php";
-
       }else if($_GET["ruta"] == "apuestas" ){
 
         include "modulos/apuestas/".$_GET["ruta"].".php";
@@ -185,6 +181,10 @@ CUERPO DOCUMENTO
     include "modulos/footer.php";
 
     echo '</div>';
+
+  }else if( $_GET["ruta"] == "verificar"){
+
+    include "modulos/verificar.php";
 
   }else{
 

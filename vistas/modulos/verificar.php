@@ -7,18 +7,21 @@ VERIFICAR
 	$usuarioVerificado = false;
 	
 	$item = "codigo_activador";
-	$valor =  $rutas[1];
+	$valor =  $_GET["id"];
 
 	$respuesta = ControladorMiembros::ctrMostrarMiembros($item, $valor);
+	
 
 	if($valor == $respuesta["codigo_activador"]){
 
 		$item1="estado";
 		$valor1 = 1;
-		$item1="estado";
+		$item2="id_miembro";
 		$valor2 = $respuesta["id"];
 
 		$respuesta2 = ControladorMiembros::ctrActualizarMiembro2($item1,$valor1, $item2, $valor2);
+		
+
 
 		if($respuesta2 == "ok"){
 
@@ -31,9 +34,9 @@ VERIFICAR
 
 ?>
 
-<div class="container">
+<div class="container box">
 	
-	<div class="row">
+	<div class="row box-body">
 	 
 		<div class="col-xs-12 text-center verificar">
 			

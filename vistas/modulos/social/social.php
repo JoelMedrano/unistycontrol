@@ -78,7 +78,7 @@ MODAL AGREGAR RED SOCIAL
         CABEZA DEL MODAL
         ======================================-->
 
-        <div class="modal-header" style="background:#3c8dbc; color:white">
+        <div class="modal-header" style="background:#34495E; color:white">
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -97,7 +97,7 @@ MODAL AGREGAR RED SOCIAL
             <!-- ENTRADA PARA LA RED SOCIAL -->
             
             <div class="form-group">
-              
+              <label for="">Red Social</label>
               <div class="input-group">
               
                 <span class="input-group-addon"><i class="fa fa-globe"></i></span> 
@@ -159,7 +159,7 @@ MODAL EDITAR SOCIAL
         CABEZA DEL MODAL
         ======================================-->
 
-        <div class="modal-header" style="background:#3c8dbc; color:white">
+        <div class="modal-header" style="background:#34495E; color:white">
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -179,7 +179,7 @@ MODAL EDITAR SOCIAL
             <!-- ENTRADA PARA LA RED SOCIAL -->
             
             <div class="form-group">
-              
+              <label for="">Red Social</label>
               <div class="input-group">
               
                 <span class="input-group-addon"><i class="fa fa-globe"></i></span> 
