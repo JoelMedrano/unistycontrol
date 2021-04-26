@@ -56,6 +56,20 @@ class AjaxMembresias{
 
 	}
 
+	/*=============================================
+	TIPO DE MEMBRESIA POR EMPRESA
+	=============================================*/	
+
+	public function ajaxTipoEmpresa(){
+
+		$valor = $this->empresa;
+
+		$respuesta = ControladorMembresias::ctrSelecMembresiasApuestas($valor);
+
+		echo json_encode($respuesta);
+
+	}	
+
 
 }
 
@@ -89,5 +103,17 @@ if(isset($_POST["idMembresia"])){
 	$editarMembresia = new AjaxMembresias();
 	$editarMembresia -> idMembresia = $_POST["idMembresia"];
 	$editarMembresia -> ajaxEditarMembresia();
+
+}
+
+
+/*=============================================
+TIPO DE MEMBRESIA POR EMPRESA
+=============================================*/
+if(isset($_POST["empresa"])){
+
+	$editarMembresia = new AjaxMembresias();
+	$editarMembresia -> empresa = $_POST["empresa"];
+	$editarMembresia -> ajaxTipoEmpresa();
 
 }

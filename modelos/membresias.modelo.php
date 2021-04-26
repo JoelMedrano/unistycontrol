@@ -621,5 +621,35 @@ class ModeloMembresias{
 
     }
 
+	/*=============================================
+	SELECT PARA MEMBRESIAS POR EMPRESA PARA APUESTAS
+	=============================================*/
+
+	static public function mdlSelecMembresiasApuestas($tabla,$empresa){
+
+		if($empresa == "0"){
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM tipo_membresia");
+
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}else{
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM tipo_membresia WHERE id_empresa= $empresa");
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}
+
+		$stmt -> close();
+
+		$stmt = null;
+
+    }
 
 }

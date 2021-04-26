@@ -333,6 +333,18 @@ class ControladorMembresias{
     }
 
 	/*=============================================
+	MOSTRAR  MEMBRESIAS PARA APUESTAS
+	=============================================*/
+
+	static public function ctrSelecMembresiasApuestas($empresa){
+		$tabla="membresia";
+		$respuesta = ModeloMembresias::mdlSelecMembresiasApuestas($tabla,$empresa);
+
+		return $respuesta;
+
+    }
+
+	/*=============================================
 	MOSTRAR  MEMBRESIAS
 	=============================================*/
 
@@ -342,7 +354,7 @@ class ControladorMembresias{
 
 		return $respuesta;
 
-    }
+    }	
 
 
 	/*=============================================

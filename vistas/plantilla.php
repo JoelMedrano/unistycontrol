@@ -162,6 +162,10 @@ CUERPO DOCUMENTO
 
         include "modulos/".$_GET["ruta"].".php";
 
+      }else if($_GET["ruta"] == "apuestas" ){
+
+        include "modulos/apuestas/".$_GET["ruta"].".php";
+
       }else{
 
         include "modulos/404.php";
@@ -197,6 +201,7 @@ CUERPO DOCUMENTO
 <script src="vistas/js/social.js"></script>
 <script src="vistas/js/membresias.js"></script>
 <script src="vistas/js/miembros.js"></script>
+<script src="vistas/js/apuestas.js"></script>
 
 </body>
 </html>

@@ -142,7 +142,7 @@ INSERT INTO `permisos` (`id_permiso`, `nombre`) VALUES
 (3, 'Redes'),
 (4, 'Miembros'),
 (5, 'Membresias'),
-(6, 'Estadisticas'),
+(6, 'Apuestas'),
 (7, 'Dashboard');
 
 -- --------------------------------------------------------

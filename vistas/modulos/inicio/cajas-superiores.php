@@ -29,7 +29,7 @@ $porVencer = ControladorEscritorio::ctrTotalPorVencer($empresa);
     
     <div class="inner">
       
-      <h3><?php echo number_format($totalMiembros["total_miembros"],0); ?> miembros</h3>
+      <h3><?php echo number_format($totalMiembros["total_miembros"],0); ?></h3>
 
       <p>Total Miembros</p>
     
@@ -57,7 +57,7 @@ $porVencer = ControladorEscritorio::ctrTotalPorVencer($empresa);
     
     <div class="inner">
     
-      <h3><?php echo number_format($totalMiembrosNuevos["total_miembros"],0); ?> und</h3>
+      <h3><?php echo number_format($totalMiembrosNuevos["total_miembros"],0); ?></h3>
 
       <p>Miembros Nuevos</p>
     

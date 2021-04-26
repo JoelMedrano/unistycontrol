@@ -88,6 +88,9 @@ class ModeloMiembros{
 
     }
 
+    /* 
+    *Listar Miemros por empresa
+    */
 	static public function mdlListarMiembroEmpresa($empresa){
 
 		if($empresa == "0"){

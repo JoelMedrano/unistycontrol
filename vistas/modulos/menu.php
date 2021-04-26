@@ -17,7 +17,7 @@
             in_array(3,$valores)?$_SESSION['redes']=1:$_SESSION['redes']=0;
             in_array(4,$valores)?$_SESSION['miembros']=1:$_SESSION['miembros']=0;
             in_array(5,$valores)?$_SESSION['membresias']=1:$_SESSION['membresias']=0;
-            in_array(6,$valores)?$_SESSION['estadisticas']=1:$_SESSION['estadisticas']=0;
+            in_array(6,$valores)?$_SESSION['apuestas']=1:$_SESSION['apuestas']=0;
 			in_array(6,$valores)?$_SESSION['dashboard']=1:$_SESSION['dashboard']=0;
 
             ?>
@@ -158,15 +158,15 @@
 
 			<?php
 			}
-            if($_SESSION["estadisticas"] == 1){
+            if($_SESSION["apuestas"] == 1){
 			?>
 	
 			<li>
 
-				<a href="estadisticas">
+				<a href="apuestas">
 
 					<i class="fa fa-area-chart"></i>
-					<span>Estadisticas</span>
+					<span>Apuestas</span>
 
 				</a>
 
