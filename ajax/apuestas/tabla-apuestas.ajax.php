@@ -47,7 +47,7 @@ class TablaApuestas{
             /*
             *Resultado
             */
-            $resultado =  "<div class='btn-group'><button class='btn btn-success btnGanada' idApuesta='".$apuestas[$i]["id_apuestas"]."' estadoApuesta='1'><i class='fa fa-check-circle-o'></i></button><button class='btn btn-secundary btnGanada' idApuesta='".$apuestas[$i]["id_apuestas"]."' estadoApuesta='1'><i class='fa fa-refresh'></i></button><button class='btn btn-danger btnGanada' idApuesta='".$apuestas[$i]["id_apuestas"]."' estadoApuesta='1'><i class='fa fa-times'></i></button></div>"; 
+            $resultado =  "<div class='btn-group text-center'><button class='btn btn-success btnGanada' style='margin-right: 20px' idApuesta='".$apuestas[$i]["id_apuestas"]."' estadoApuesta='1'>G</button><button class='btn btn-warning btnGanada' style='margin-right: 20px' idApuesta='".$apuestas[$i]["id_apuestas"]."' estadoApuesta='1'>A</button><button class='btn btn-danger btnGanada' idApuesta='".$apuestas[$i]["id_apuestas"]."' estadoApuesta='1'>P</button></div>"; 
 
             /*
             *Acciones

@@ -49,7 +49,7 @@
                             <th>Pronostico</th>
                             <th>Cuota</th>
                             <th>Estado</th>
-                            <th>Resultado</th>
+                            <th style="width:150px">Resultado</th>
                             <th>Acciones</th>
 
                         </tr>
