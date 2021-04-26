@@ -104,7 +104,7 @@ MODAL AGREGAR EMPRESA
             <!-- ENTRADA PARA LA RAZON SOCIAL -->
             
             <div class="form-group">
-              
+              <label for="">Razon Social</label>
               <div class="input-group">
               
                 <span class="input-group-addon"><i class="fa fa-building"></i></span> 
@@ -118,7 +118,7 @@ MODAL AGREGAR EMPRESA
             <!-- ENTRADA PARA EL DOCUMENTO -->
             
             <div class="form-group">
-              
+              <label for="">RUC o DNI</label>
               <div class="input-group">
               
                 <span class="input-group-addon"><i class="fa fa-archive"></i></span> 
@@ -132,7 +132,7 @@ MODAL AGREGAR EMPRESA
             <!-- ENTRADA PARA EL LOGO1 -->
             
             <div class="form-group">
-              
+              <label for="">Logo pequeño</label>
               <div class="input-group">
               
                 <span class="input-group-addon"><i class="fa fa-image"></i></span> 
@@ -148,7 +148,7 @@ MODAL AGREGAR EMPRESA
             <!-- ENTRADA PARA EL LOGO2 -->
             
             <div class="form-group">
-              
+              <label for="">Logo grande</label> 
               <div class="input-group">
               
                 <span class="input-group-addon"><i class="fa fa-image"></i></span> 
@@ -166,7 +166,7 @@ MODAL AGREGAR EMPRESA
             <!-- ENTRADA PARA EL RESPONSABLE -->
             
             <div class="form-group">
-              
+              <label for="">Responsable</label>
               <div class="input-group">
               
                 <span class="input-group-addon"><i class="fa fa-user"></i></span> 
@@ -256,7 +256,7 @@ MODAL EDITAR EMPRESA
             <!-- ENTRADA PARA LA RAZON SOCIAL -->
             
             <div class="form-group">
-              
+              <label for="">Razon social</label>
               <div class="input-group">
               
                 <span class="input-group-addon"><i class="fa fa-building"></i></span> 
@@ -270,7 +270,7 @@ MODAL EDITAR EMPRESA
             <!-- ENTRADA PARA EL DOCUMENTO -->
             
             <div class="form-group">
-              
+              <label for="">RUC o DNI</label>
               <div class="input-group">
               
                 <span class="input-group-addon"><i class="fa fa-archive"></i></span> 
@@ -285,7 +285,7 @@ MODAL EDITAR EMPRESA
             <!-- ENTRADA PARA EL RESPONSABLE -->
             
             <div class="form-group">
-              
+              <label for="">Responsable</label>
               <div class="input-group">
               
                 <span class="input-group-addon"><i class="fa fa-user"></i></span> 

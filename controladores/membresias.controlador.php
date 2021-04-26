@@ -455,6 +455,8 @@ class ControladorMembresias{
 			$encriptando= ModeloMembresias::mdlAsignarCodigo($datosEncriptado);
 
 			$traerEmail = ControladorUsuarios::ctrMostrarEmail($ultimoId["id_empresa"]);
+			// var_dump($traerEmail);
+			// var_dump($ultimoId["id_empresa"]);
 
 		
 
@@ -480,13 +482,13 @@ class ControladorMembresias{
 
 					$mail->Subject = "Por favor verifique que el miembro haya sido dada de alta en su grupo VIP";
 
-					$mail->addAddress($_POST["regEmail"]);
+					$mail->addAddress($traerEmail["email"]);
 
 					$mail->msgHTML('<div style="width:100%; background:#eee; position:relative; font-family:sans-serif; padding-bottom:40px">
 						
 						<center>
 							
-							<img style="padding:20px; width:10%" src="http://www.unistycontrol.com/tienda/logo.png">
+							<img style="padding:20px; width:10%" src="https://www.unistycontrol.com/vistas/img/plantilla/logo-grande.png">
 
 						</center>
 
@@ -494,7 +496,7 @@ class ControladorMembresias{
 						
 							<center>
 							
-							<img style="padding:20px; width:15%" src="http://www.unistycontrol.com/tienda/icon-email.png">
+							<img style="padding:20px; width:15%" src="https://www.unistycontrol.com/vistas/img/plantilla/logo-grande.png">
 
 							<h3 style="font-weight:100; color:#999">VERIFIQUE SU NUEVO MIEMBRO</h3>
 
@@ -502,7 +504,7 @@ class ControladorMembresias{
 
 							<h4 style="font-weight:100; color:#999; padding:0 20px">Para confirmar que el miembro pertenece al grupo VIP hacer click en el enlace.</h4>
 
-							<a href="'.$url.'verificar/'.$encriptarMiembro.'" target="_blank" style="text-decoration:none">
+							<a href="https://www.unistycontrol.com/verificar/'.$encriptarMiembro.'" target="_blank" style="text-decoration:none">
 
 							<div style="line-height:60px; background:#0aa; width:60%; color:white">Verifique al miembro registrado</div>
 
@@ -528,7 +530,7 @@ class ControladorMembresias{
 
 							swal({
 								  title: "¡ERROR!",
-								  text: "¡Ha ocurrido un problema enviando verificación del miembro a '.$_POST["regEmail"].$mail->ErrorInfo.'!",
+								  text: "¡Ha ocurrido un problema enviando verificación del miembro a '.$traerEmail["email"].$mail->ErrorInfo.'!",
 								  type:"error",
 								  confirmButtonText: "Cerrar",
 								  closeOnConfirm: false
@@ -549,7 +551,7 @@ class ControladorMembresias{
 
 							swal({
 								  title: "¡OK!",
-								  text: "¡Por favor revise la bandeja de entrada o la carpeta de SPAM de su correo electrónico '.$_POST["regEmail"].' para verificar su miembro!",
+								  text: "¡Por favor revise la bandeja de entrada o la carpeta de SPAM de su correo electrónico '.$traerEmail["email"].' para verificar su miembro!",
 								  type:"success",
 								  confirmButtonText: "Cerrar",
 								  closeOnConfirm: false
