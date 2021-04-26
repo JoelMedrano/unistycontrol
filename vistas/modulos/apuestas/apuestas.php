@@ -111,6 +111,7 @@ MODAL AGREGAR APPUESTAS
                             if($empresa == '0'){
 
                                 echo '  <div class="form-group">
+                                        <label for="">Empresa</label>
 
                                             <div class="input-group">
     
@@ -155,6 +156,7 @@ MODAL AGREGAR APPUESTAS
                         if($empresa == '0'){
 
                             echo '<div class="form-group">
+                                    <label for="">Tipo de membresia</label>
 
                                     <div class="input-group">
 
@@ -197,6 +199,8 @@ MODAL AGREGAR APPUESTAS
                         <!-- ENTRADA PARA SELECCIONAR TIPO DE APUESTA -->
 
                         <div class="form-group">
+
+                            <label for="">Tipo de apuesta</label>
                         
                             <div class="input-group">
                             
@@ -220,6 +224,7 @@ MODAL AGREGAR APPUESTAS
                         <!-- ENTRADA PARA LA FECHA -->
 
                         <div class="form-group">
+                        <label for="">Fecha</label>
 
                             <div class="input-group">
 
@@ -235,6 +240,8 @@ MODAL AGREGAR APPUESTAS
 
                         <div class="form-group">
 
+                            <label for="">Partido</label>
+
                             <div class="input-group">
 
                                 <span class="input-group-addon"><i class="fa fa-dribbble"></i></span>
@@ -248,6 +255,8 @@ MODAL AGREGAR APPUESTAS
                         <!-- ENTRADA PARA EL PRONOSTICO -->
 
                         <div class="form-group">
+
+                            <label for="">Pronostico</label>
 
                             <div class="input-group">
 
@@ -263,15 +272,33 @@ MODAL AGREGAR APPUESTAS
 
                         <div class="form-group">
 
+                            <label for="">Couta</label>
+
                             <div class="input-group">
 
                                 <span class="input-group-addon"><i class="fa fa-percent"></i></span>
 
-                                <input type="numbres" step="any" class="form-control input-md" name="nuevaCuota" placeholder="Ingresa Cuota" required>
+                                <input type="number" step="any" class="form-control input-md" name="nuevaCuota" placeholder="Ingresa Cuota" required>
 
                             </div>
 
-                        </div>                                                
+                        </div>
+
+                        <!-- ENTRADA PARA EL MONTO -->
+
+                        <div class="form-group">
+
+                            <label for="">Monto</label>
+
+                            <div class="input-group">
+
+                                <span class="input-group-addon"><i class="fa fa-money"></i></span>
+
+                                <input type="number" step="any" class="form-control input-md" name="nuevoMonto" value="1">
+
+                            </div>
+
+                        </div>                                                   
 
                     </div>
 
