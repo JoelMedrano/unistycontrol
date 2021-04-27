@@ -41,15 +41,15 @@
                         <tr>
 
                             <th style="width:10px">#</th>
-                            <th>Empresa</th>
-                            <th>Documento</th>
+                            <th>Pronóstico</th>
+                            <th>Estado</th>
+                            <th>Cuota</th>
                             <th>Tipo</th>
                             <th>Fecha</th>
-                            <th>Partido</th>
-                            <th>Pronostico</th>
-                            <th>Cuota</th>
-                            <th>Estado</th>
+                            <th>Partido</th>                            
                             <th style="width:150px">Resultado</th>
+                            <th>Empresa</th>
+                            <th>Membresía</th>
                             <th>Acciones</th>
 
                         </tr>
@@ -230,7 +230,7 @@ MODAL AGREGAR APPUESTAS
 
                                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 
-                                <input type="date" class="form-control input-md" name="nuevaFecha" value="<?php echo date("Y-m-d");?>">
+                                <input type="date" class="form-control input-md" name="nuevaFecha" value="<?php date_default_timezone_set('America/Lima'); echo date("Y-m-d");?>">
 
                             </div>
 

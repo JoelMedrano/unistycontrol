@@ -90,7 +90,7 @@ class ModeloApuestas{
                                                     ON a.id_empresa = em.id_empresa 
                                                     LEFT JOIN tipo_membresia tm 
                                                     ON a.id_tipo_membresia = tm.id_tipo_membresia
-                                                    where a.eliminado=1");
+                                                    where a.eliminado=$empresa");
 
 
 			$stmt -> execute();

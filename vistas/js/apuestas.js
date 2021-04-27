@@ -115,7 +115,7 @@ $(".tablaApuestas").on("click", ".btnEditarApuesta", function () {
 
   var idApuesta = $(this).attr("idApuesta");
   //console.log(idApuesta)
-  var empresa = $(this).attr("empresa");
+  //var empresa = $(this).attr("empresa");
   //console.log(empresa);
 
   var datos = new FormData();
@@ -185,9 +185,9 @@ $(".tablaApuestas").on("click", ".btnEliminarApuesta", function(){
 })
 
 /* 
-*Activar Miembro
+*Boton ganada
 */
-$(".tablaApuestas").on("click", ".btnGanada", function () {
+$(".tablaApuestas").on("click", ".btnGanada,.btnAnulada,.btnPerdida", function () {
 
   var idApuesta = $(this).attr("idApuesta");
   var estadoApuesta = $(this).attr("estadoApuesta");
@@ -208,37 +208,46 @@ $(".tablaApuestas").on("click", ".btnGanada", function () {
     success: function (respuesta) {
       //console.log(respuesta)
 
-      if (window.matchMedia("(max-width:767px)").matches) {
 
-        swal({
-          title: "Ha ganado la apuesta",
-          type: "success",
-          confirmButtonText: "¡Cerrar!"
-        }).then(function (result) {
+            //window.location = "apuestas";
 
-          if (result.value) {
-
-            window.location = "miembros";
-
-          }
-
-        });
-
-      }
     }
 
   })
 
   if(estadoApuesta == 1){
 
-    $(this).removeClass('btn-default');
+    $(this).removeClass('btn-info');
     $(this).addClass('btn-success');
 
-    var boton = '.G' + idApuesta;
+    var botonI = '.I' + idApuesta;
 
-    $(boton).removeClass('btn-info');
-    $(boton).addClass('btn-success');
-    $(boton).html('Ganada');
+    $(botonI).removeClass('btn-info');
+    $(botonI).addClass('btn-success');
+    $(botonI).html('Ganada');
+
+  }else if(estadoApuesta == 2){
+
+    $(this).removeClass('btn-info');
+    $(this).addClass('btn-warning');
+
+    var botonI = '.I' + idApuesta;
+
+    $(botonI).removeClass('btn-info');
+    $(botonI).addClass('btn-warning');
+    $(botonI).html('Anulada');
+
+  }else{
+
+    $(this).removeClass('btn-info');
+    $(this).addClass('btn-danger');
+
+    var botonI = '.I' + idApuesta;
+
+    $(botonI).removeClass('btn-info');
+    $(botonI).addClass('btn-danger');
+    $(botonI).html('Perdida');
+
 
   }
 
