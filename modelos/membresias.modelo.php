@@ -463,7 +463,7 @@ class ModeloMembresias{
 
 		if($empresa == "0"){
 
-			$stmt = Conexion::conectar()->prepare("SELECT m.*,t.nombre_membresia,mb.nombre_completo,e.nombre FROM $tabla m LEFT JOIN tipo_membresia t ON t.id_tipo_membresia=m.id_tipo_membresia  LEFT JOIN miembros mb ON mb.id_miembro=m.id_miembro LEFT JOIN empresa e ON e.id_empresa=t.id_empresa ");
+			$stmt = Conexion::conectar()->prepare("SELECT m.*,t.nombre_membresia,mb.nombre_completo,e.nombre,mb.celular FROM $tabla m LEFT JOIN tipo_membresia t ON t.id_tipo_membresia=m.id_tipo_membresia  LEFT JOIN miembros mb ON mb.id_miembro=m.id_miembro LEFT JOIN empresa e ON e.id_empresa=t.id_empresa ");
 
 
 			$stmt -> execute();
@@ -472,7 +472,7 @@ class ModeloMembresias{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT m.*,t.nombre_membresia,mb.nombre_completo,e.nombre FROM $tabla m LEFT JOIN tipo_membresia t ON t.id_tipo_membresia=m.id_tipo_membresia  LEFT JOIN miembros mb ON mb.id_miembro=m.id_miembro LEFT JOIN empresa e ON e.id_empresa=t.id_empresa WHERE t.id_empresa = '".$empresa."' ");
+			$stmt = Conexion::conectar()->prepare("SELECT m.*,t.nombre_membresia,mb.nombre_completo,e.nombre,mb.celular FROM $tabla m LEFT JOIN tipo_membresia t ON t.id_tipo_membresia=m.id_tipo_membresia  LEFT JOIN miembros mb ON mb.id_miembro=m.id_miembro LEFT JOIN empresa e ON e.id_empresa=t.id_empresa WHERE t.id_empresa = '".$empresa."' ");
 
 			$stmt -> execute();
 
@@ -639,6 +639,102 @@ class ModeloMembresias{
 		}else{
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM tipo_membresia WHERE id_empresa= $empresa");
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}
+
+		$stmt -> close();
+
+		$stmt = null;
+
+    }
+
+
+	/*=============================================
+	SELECT PARA MEMBRESIAS POR EMPRESA
+	=============================================*/
+
+	static public function mdlSelecMembresiasNuevas($tabla,$empresa){
+
+		if($empresa == "0"){
+
+			$stmt = Conexion::conectar()->prepare("SELECT m.*,t.nombre_membresia,mb.nombre_completo,e.nombre,mb.celular FROM $tabla m LEFT JOIN tipo_membresia t ON t.id_tipo_membresia=m.id_tipo_membresia  LEFT JOIN miembros mb ON mb.id_miembro=m.id_miembro LEFT JOIN empresa e ON e.id_empresa=t.id_empresa WHERE m.estado = '0'");
+
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}else{
+
+			$stmt = Conexion::conectar()->prepare("SELECT m.*,t.nombre_membresia,mb.nombre_completo,e.nombre,mb.celular FROM $tabla m LEFT JOIN tipo_membresia t ON t.id_tipo_membresia=m.id_tipo_membresia  LEFT JOIN miembros mb ON mb.id_miembro=m.id_miembro LEFT JOIN empresa e ON e.id_empresa=t.id_empresa WHERE t.id_empresa = '".$empresa."' AND m.estado = '0' ");
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}
+
+		$stmt -> close();
+
+		$stmt = null;
+
+    }
+
+
+	/*=============================================
+	SELECT PARA MEMBRESIAS POR EMPRESA
+	=============================================*/
+
+	static public function mdlSelecMembresiasRenovadas($tabla,$empresa){
+
+		if($empresa == "0"){
+
+			$stmt = Conexion::conectar()->prepare("SELECT m.*,t.nombre_membresia,mb.nombre_completo,e.nombre,mb.celular FROM $tabla m LEFT JOIN tipo_membresia t ON t.id_tipo_membresia=m.id_tipo_membresia  LEFT JOIN miembros mb ON mb.id_miembro=m.id_miembro LEFT JOIN empresa e ON e.id_empresa=t.id_empresa WHERE m.estado = '1' ");
+
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}else{
+
+			$stmt = Conexion::conectar()->prepare("SELECT m.*,t.nombre_membresia,mb.nombre_completo,e.nombre,mb.celular FROM $tabla m LEFT JOIN tipo_membresia t ON t.id_tipo_membresia=m.id_tipo_membresia  LEFT JOIN miembros mb ON mb.id_miembro=m.id_miembro LEFT JOIN empresa e ON e.id_empresa=t.id_empresa WHERE t.id_empresa = '".$empresa."' AND m.estado = '1' ");
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}
+
+		$stmt -> close();
+
+		$stmt = null;
+
+    }
+
+
+	/*=============================================
+	SELECT PARA MEMBRESIAS POR EMPRESA
+	=============================================*/
+
+	static public function mdlSelecMembresiasCaducadas($tabla,$empresa){
+
+		if($empresa == "0"){
+
+			$stmt = Conexion::conectar()->prepare("SELECT m.*,t.nombre_membresia,mb.nombre_completo,e.nombre,mb.celular FROM $tabla m LEFT JOIN tipo_membresia t ON t.id_tipo_membresia=m.id_tipo_membresia  LEFT JOIN miembros mb ON mb.id_miembro=m.id_miembro LEFT JOIN empresa e ON e.id_empresa=t.id_empresa WHERE m.estado = '2'");
+
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}else{
+
+			$stmt = Conexion::conectar()->prepare("SELECT m.*,t.nombre_membresia,mb.nombre_completo,e.nombre,mb.celular FROM $tabla m LEFT JOIN tipo_membresia t ON t.id_tipo_membresia=m.id_tipo_membresia  LEFT JOIN miembros mb ON mb.id_miembro=m.id_miembro LEFT JOIN empresa e ON e.id_empresa=t.id_empresa WHERE t.id_empresa = '".$empresa."' AND m.estado = '2' ");
 
 			$stmt -> execute();
 

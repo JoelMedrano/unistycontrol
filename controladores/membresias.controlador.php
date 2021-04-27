@@ -356,6 +356,42 @@ class ControladorMembresias{
 
     }	
 
+	/*=============================================
+	MOSTRAR  MEMBRESIAS
+	=============================================*/
+
+	static public function ctrSelecMembresiasNuevas($empresa){
+		$tabla="membresia";
+		$respuesta = ModeloMembresias::mdlSelecMembresiasNuevas($tabla,$empresa);
+
+		return $respuesta;
+
+    }
+
+	/*=============================================
+	MOSTRAR  MEMBRESIAS
+	=============================================*/
+
+	static public function ctrSelecMembresiasRenovadas($empresa){
+		$tabla="membresia";
+		$respuesta = ModeloMembresias::mdlSelecMembresiasRenovadas($tabla,$empresa);
+
+		return $respuesta;
+
+    }
+
+	/*=============================================
+	MOSTRAR  MEMBRESIAS
+	=============================================*/
+
+	static public function ctrSelecMembresiasCaducadas($empresa){
+		$tabla="membresia";
+		$respuesta = ModeloMembresias::mdlSelecMembresiasCaducadas($tabla,$empresa);
+
+		return $respuesta;
+
+    }
+
 
 	/*=============================================
 	CREAR PRECIO DE MEMBRESIA

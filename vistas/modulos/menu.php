@@ -42,7 +42,7 @@
 
 				<a href="usuarios">
 
-					<i class="fa fa-user"></i>
+					<i class="fa fa-user text-primary"></i>
 					<span>Usuarios</span>
 
 				</a>
@@ -57,7 +57,7 @@
 
 				<a href="empresas">
 
-					<i class="fa fa-building"></i>
+					<i class="fa fa-building text-yellow"></i>
 					<span>Empresas</span>
 
 				</a>
@@ -73,7 +73,7 @@
 
 				<a href="social">
 
-					<i class="fa fa-globe"></i>
+					<i class="fa fa-globe text-green"></i>
 					<span>Red Social</span>
 
 				</a>
@@ -87,9 +87,9 @@
 
 			<li>
 
-				<a href="miembros">
+				<a href="miembros ">
 
-					<i class="fa fa-users"></i>
+					<i class="fa fa-users text-orange"></i>
 					<span>Miembros</span>
 
 				</a>
@@ -105,7 +105,7 @@
 
 				<a href="#">
 
-					<i class="fa fa-credit-card-alt"></i>
+					<i class="fa fa-credit-card-alt text-primary"></i>
 					
 					<span>Membresias</span>
 					
@@ -119,22 +119,78 @@
 
 				<ul class="treeview-menu">
 					
-					<li>
+				<li class="treeview">
 
-						<a href="membresias">
-							
-							<i class="fa fa-circle-o"></i>
-							<span>Membresias</span>
+					<a href="#">
 
-						</a>
+						<i class="fa fa-credit-card-alt text-primary"></i>
+
+						<span>Membresias</span>
+
+						<span class="pull-right-container">
+
+							<i class="fa fa-angle-left pull-right"></i>
+
+						</span>
+
+					</a>
+
+					<ul class="treeview-menu">
+
+						<li>
+
+							<a href="membresias">
+
+								<i class="fa fa-circle-o text-orange"></i>
+								<span>Generales</span>
+
+							</a>
+
+						</li>
+
+						<li>
+
+							<a href="membresias-nuevas">
+
+								<i class="fa fa-circle-o text-primary"></i>
+								<span>Nuevas</span>
+
+							</a>
+
+						</li>
+
+						<li>
+
+							<a href="membresias-renovadas">
+
+								<i class="fa fa-circle-o text-info"></i>
+								<span>Renovadas</span>
+
+							</a>
+
+						</li>
+
+						<li>
+
+							<a href="membresias-caducadas">
+
+								<i class="fa fa-circle-o text-danger"></i>
+								<span>Caducadas</span>
+
+							</a>
+
+						</li>
+
+						</ul>
 
 					</li>
+
 
 					<li>
 
 						<a href="preciomembresias">
 							
-							<i class="fa fa-circle-o"></i>
+							<i class="fa fa-usd text-green"></i>
 							<span>Precio de membresias</span>
 
 						</a>
@@ -145,7 +201,7 @@
 
 						<a href="tipomembresias">
 							
-							<i class="fa fa-circle-o"></i>
+							<i class="fa fa-text-width text-orange"></i>
 							<span>Tipo membresias</span>
 
 						</a>
@@ -165,7 +221,7 @@
 
 				<a href="apuestas">
 
-					<i class="fa fa-area-chart"></i>
+					<i class="fa fa-area-chart text-danger"></i>
 					<span>Apuestas</span>
 
 				</a>

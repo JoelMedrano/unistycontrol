@@ -447,3 +447,128 @@ $(".tablaMembresias").on("click", ".btnRenovarMembresia", function () {
   })
 
 })
+
+
+/*=============================================
+ELIMINAR PRECIO MEMBRESIA
+=============================================*/
+$(".tablaMembresias").on("click", ".btnEnviarWhatsapp", function(){
+
+  var celular = $(this).attr("celular");
+  var nombre = $(this).attr("nombre");
+  var empresa = $(this).attr("empresa");
+  
+  swal({
+        title: '¿Está seguro de enviar un whatsapp para renovar al miembro '+nombre+'?',
+        text: "¡Si no lo está puede cancelar la acción!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Si, enviar al '+celular
+      }).then(function(result){
+        if (result.value) {
+          
+          window.open("https://api.whatsapp.com/send?phone=51" +celular + "&text= Hola! le saludamos desde "+empresa+" le hacemos recordar que su membresia con nosotros, esta proxima a vencer.","_blank");
+        }
+  
+  })
+  
+  })
+  
+  $('.tablaMembresiasNuevas').DataTable({
+    "ajax": "ajax/membresias/tabla-membresias-nuevas.ajax.php?perfil="+$("#perfilOculto").val(),
+    "deferRender": true,
+    "retrieve": true,
+    "processing": true,
+    "order": [[0, "asc"]],
+    "language": {
+      "sProcessing":     "Procesando...",
+      "sLengthMenu":     "Mostrar _MENU_ registros",
+      "sZeroRecords":    "No se encontraron resultados",
+      "sEmptyTable":     "Ningún dato disponible en esta tabla",
+      "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
+      "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0",
+      "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+      "sInfoPostFix":    "",
+      "sSearch":         "Buscar:",
+      "sUrl":            "",
+      "sInfoThousands":  ",",
+      "sLoadingRecords": "Cargando...",
+      "oPaginate": {
+      "sFirst":    "Primero",
+      "sLast":     "Último",
+      "sNext":     "Siguiente",
+      "sPrevious": "Anterior"
+      },
+      "oAria": {
+        "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+      }
+    }    
+  });
+
+  $('.tablaMembresiasRenovadas').DataTable({
+    "ajax": "ajax/membresias/tabla-membresias-renovadas.ajax.php?perfil="+$("#perfilOculto").val(),
+    "deferRender": true,
+    "retrieve": true,
+    "processing": true,
+    "order": [[0, "asc"]],
+    "language": {
+      "sProcessing":     "Procesando...",
+      "sLengthMenu":     "Mostrar _MENU_ registros",
+      "sZeroRecords":    "No se encontraron resultados",
+      "sEmptyTable":     "Ningún dato disponible en esta tabla",
+      "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
+      "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0",
+      "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+      "sInfoPostFix":    "",
+      "sSearch":         "Buscar:",
+      "sUrl":            "",
+      "sInfoThousands":  ",",
+      "sLoadingRecords": "Cargando...",
+      "oPaginate": {
+      "sFirst":    "Primero",
+      "sLast":     "Último",
+      "sNext":     "Siguiente",
+      "sPrevious": "Anterior"
+      },
+      "oAria": {
+        "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+      }
+    }    
+  });
+
+  $('.tablaMembresiasCaducadas').DataTable({
+    "ajax": "ajax/membresias/tabla-membresias-caducadas.ajax.php?perfil="+$("#perfilOculto").val(),
+    "deferRender": true,
+    "retrieve": true,
+    "processing": true,
+    "order": [[0, "asc"]],
+    "language": {
+      "sProcessing":     "Procesando...",
+      "sLengthMenu":     "Mostrar _MENU_ registros",
+      "sZeroRecords":    "No se encontraron resultados",
+      "sEmptyTable":     "Ningún dato disponible en esta tabla",
+      "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
+      "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0",
+      "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+      "sInfoPostFix":    "",
+      "sSearch":         "Buscar:",
+      "sUrl":            "",
+      "sInfoThousands":  ",",
+      "sLoadingRecords": "Cargando...",
+      "oPaginate": {
+      "sFirst":    "Primero",
+      "sLast":     "Último",
+      "sNext":     "Siguiente",
+      "sPrevious": "Anterior"
+      },
+      "oAria": {
+        "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+      }
+    }    
+  });
