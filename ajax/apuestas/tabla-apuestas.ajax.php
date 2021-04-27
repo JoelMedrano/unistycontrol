@@ -28,7 +28,7 @@ class TablaApuestas{
             */
             if($apuestas[$i]["estado"] == 0){
 
-                $estado = "<button class='btn btn-info btn-xs ".'G'.$apuestas[$i]["id_apuestas"]."' id=".'G'.$apuestas[$i]["id_apuestas"]." name=".'G'.$apuestas[$i]["id_apuestas"]." idApuesta='".$apuestas[$i]["id_apuestas"]."'>Pendiente</button>";
+                $estado = "<button class='btn btn-info btn-xs ".'I'.$apuestas[$i]["id_apuestas"]."' id=".'I'.$apuestas[$i]["id_apuestas"]." name=".'I'.$apuestas[$i]["id_apuestas"]." idApuesta='".$apuestas[$i]["id_apuestas"]."'>Pendiente</button>";
     
             }else if($apuestas[$i]["estado"] == 1){
     
@@ -36,11 +36,11 @@ class TablaApuestas{
     
             }else if($apuestas[$i]["estado"] == 2){
     
-                $estado = "<button class='btn btn-danger btn-xs btnReiniciarApuesta' idApuesta='".$apuestas[$i]["id_apuestas"]."' estadoApuesta='0'>Perdida</button>";
+                $estado = "<button class='btn btn-warning btn-xs btnReiniciarApuesta' idApuesta='".$apuestas[$i]["id_apuestas"]."' estadoApuesta='0'>Anulada</button>";
     
             }else{
 
-                $estado = "<button class='btn btn-secundary btn-xs btnReiniciarApuesta' idApuesta='".$apuestas[$i]["id_apuestas"]."' estadoApuesta='0'>Anulada</button>";
+                $estado = "<button class='btn btn-danger btn-xs btnReiniciarApuesta' idApuesta='".$apuestas[$i]["id_apuestas"]."' estadoApuesta='0'>Perdida</button>";
 
             }
 
@@ -58,9 +58,27 @@ class TablaApuestas{
 
             }
 
-            $anulada = "<div class='btn-group text-center'><button class='btn btn-default btnAnulada' style='margin-right: 20px' idApuesta='".$apuestas[$i]["id_apuestas"]."' estadoApuesta='2'>A</button></div>";
+            if($apuestas[$i]["estado"] == 2){
 
-            $perdida = "<div class='btn-group text-center'><button class='btn btn-default btnPerdida' idApuesta='".$apuestas[$i]["id_apuestas"]."' estadoApuesta='3'>P</button></div>";
+                $anulada = "<div class='btn-group text-center'><button class='btn btn-warning' style='margin-right: 20px' idApuesta='".$apuestas[$i]["id_apuestas"]."' estadoApuesta='2'>A</button></div>";
+
+            }else{
+
+                $anulada = "<div class='btn-group text-center'><button class='btn btn-default btnAnulada' style='margin-right: 20px' idApuesta='".$apuestas[$i]["id_apuestas"]."' estadoApuesta='2'>A</button></div>";
+
+
+            }
+
+            if($apuestas[$i]["estado"] == 3){
+
+                $perdida = "<div class='btn-group text-center'><button class='btn btn-danger' idApuesta='".$apuestas[$i]["id_apuestas"]."' estadoApuesta='3'>P</button></div>";
+
+            }else{
+
+                $perdida = "<div class='btn-group text-center'><button class='btn btn-default btnPerdida' idApuesta='".$apuestas[$i]["id_apuestas"]."' estadoApuesta='3'>P</button></div>";
+
+
+            }            
 
             /*
             *Acciones
@@ -69,15 +87,16 @@ class TablaApuestas{
 
             $datosJson .= '[
             "'.($i+1).'",
-            "'.$apuestas[$i]["nombre_empresa"].'",
-            "'.$apuestas[$i]["nombre_membresia"].'",
+            "'.$apuestas[$i]["pronostico"].'",
+            "'.$estado.'",
+            "'.$apuestas[$i]["cuota"].'",
             "'.$apuestas[$i]["tipo_apuesta_nombre"].'",
             "'.$apuestas[$i]["fecha"].'",
-            "'.$apuestas[$i]["partido"].'",
-            "'.$apuestas[$i]["pronostico"].'",
-            "'.$apuestas[$i]["cuota"].'",
-            "'.$estado.'",
+            "'.$apuestas[$i]["partido"].'",            
+                        
             "'.$ganada.$anulada.$perdida.'",
+            "'.$apuestas[$i]["nombre_empresa"].'",
+            "'.$apuestas[$i]["nombre_membresia"].'",
             "'.$botones.'"
             ],';        
         }
