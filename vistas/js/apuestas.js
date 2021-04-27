@@ -191,7 +191,7 @@ $(".tablaApuestas").on("click", ".btnGanada,.btnAnulada,.btnPerdida", function (
 
   var idApuesta = $(this).attr("idApuesta");
   var estadoApuesta = $(this).attr("estadoApuesta");
-  console.log(idApuesta,estadoApuesta)
+  // console.log(idApuesta,estadoApuesta)
 
   var datos = new FormData();
   datos.append("idApuesta", idApuesta);
@@ -207,9 +207,15 @@ $(".tablaApuestas").on("click", ".btnGanada,.btnAnulada,.btnPerdida", function (
     processData: false,
     success: function (respuesta) {
       //console.log(respuesta)
+      if(estadoApuesta == 1){
+        Command: toastr["success"]("Apuesta ganada!");
+      }else if (estadoApuesta == 2){
+        Command: toastr["warning"]("Apuesta anulada!");
+      }else{
+        Command: toastr["error"]("Apuesta perdida!");
+      }
 
-
-            //window.location = "apuestas";
+          
 
     }
 
@@ -217,8 +223,8 @@ $(".tablaApuestas").on("click", ".btnGanada,.btnAnulada,.btnPerdida", function (
 
   if(estadoApuesta == 1){
 
-    $(this).removeClass('btn-info');
     $(this).addClass('btn-success');
+    $(this).removeClass('btnGanada');
 
     var botonI = '.I' + idApuesta;
 
@@ -228,7 +234,6 @@ $(".tablaApuestas").on("click", ".btnGanada,.btnAnulada,.btnPerdida", function (
 
   }else if(estadoApuesta == 2){
 
-    $(this).removeClass('btn-info');
     $(this).addClass('btn-warning');
 
     var botonI = '.I' + idApuesta;
@@ -239,7 +244,6 @@ $(".tablaApuestas").on("click", ".btnGanada,.btnAnulada,.btnPerdida", function (
 
   }else{
 
-    $(this).removeClass('btn-info');
     $(this).addClass('btn-danger');
 
     var botonI = '.I' + idApuesta;
@@ -252,3 +256,57 @@ $(".tablaApuestas").on("click", ".btnGanada,.btnAnulada,.btnPerdida", function (
   }
 
 })
+
+$(".tablaApuestas").on("click",".btnReiniciarApuesta",function(){
+	var idApuesta = $(this).attr("idApuesta");
+  var estadoApuesta = $(this).attr("estadoApuesta");
+  var nombreApuesta = $(this).attr("nombre");
+  // console.log(idApuesta,estadoApuesta)
+
+  
+	swal({
+        title: '¿Está seguro de reiniciar la apuesta '+nombreApuesta+'?',
+        text: "¡Si no lo está puede cancelar la acción!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Si, reiniciar la apuesta!'
+    }).then(function (result) {
+
+        if (result.value) {
+
+			
+			// console.log("codigo", codigo);
+			
+			//Realizamos la activación-desactivación por una petición AJAX
+			var datos = new FormData();
+      datos.append("idApuesta", idApuesta);
+      datos.append("estadoApuesta", estadoApuesta);
+			$.ajax({
+				url:"ajax/apuestas.ajax.php",
+				type:"POST",
+				data:datos,
+				cache:false,
+				contentType:false,
+				processData:false,
+				success:function(respuesta){
+					// console.log(respuesta);
+					swal({
+						type: "success",
+						title: "¡Ok!",
+						text: "¡La apuesta fue reiniciada con éxito!",
+						showConfirmButton: true,
+						confirmButtonText: "Cerrar",
+						closeOnConfirm: false
+					}).then((result)=>{
+						if(result.value){
+							window.location="apuestas";}
+					});}
+			});
+
+		}
+	})
+
+});

@@ -32,15 +32,15 @@ class TablaApuestas{
     
             }else if($apuestas[$i]["estado"] == 1){
     
-                $estado = "<button class='btn btn-success btn-xs btnReiniciarApuesta' idApuesta='".$apuestas[$i]["id_apuestas"]."' estadoApuesta='0'>Ganada</button>";
+                $estado = "<button class='btn btn-success btn-xs btnReiniciarApuesta' idApuesta='".$apuestas[$i]["id_apuestas"]."' estadoApuesta='0'  nombre= '".$apuestas[$i]["partido"]."'>Ganada</button>";
     
             }else if($apuestas[$i]["estado"] == 2){
     
-                $estado = "<button class='btn btn-warning btn-xs btnReiniciarApuesta' idApuesta='".$apuestas[$i]["id_apuestas"]."' estadoApuesta='0'>Anulada</button>";
+                $estado = "<button class='btn btn-warning btn-xs btnReiniciarApuesta' idApuesta='".$apuestas[$i]["id_apuestas"]."' estadoApuesta='0'  nombre= '".$apuestas[$i]["partido"]."'>Anulada</button>";
     
             }else{
 
-                $estado = "<button class='btn btn-danger btn-xs btnReiniciarApuesta' idApuesta='".$apuestas[$i]["id_apuestas"]."' estadoApuesta='0'>Perdida</button>";
+                $estado = "<button class='btn btn-danger btn-xs btnReiniciarApuesta' idApuesta='".$apuestas[$i]["id_apuestas"]."' estadoApuesta='0'  nombre= '".$apuestas[$i]["partido"]."'>Perdida</button>";
 
             }
 
