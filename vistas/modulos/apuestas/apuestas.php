@@ -41,12 +41,13 @@
                         <tr>
 
                             <th style="width:10px">#</th>
-                            <th>Pronóstico</th>
+                            <th>Partido</th>                            
                             <th>Estado</th>
                             <th>Cuota</th>
+                            <th>Monto</th>
+                            <th>Pronóstico</th> 
                             <th>Tipo</th>
-                            <th>Fecha</th>
-                            <th>Partido</th>                            
+                            <th>Fecha</th>                                         
                             <th style="width:150px">Resultado</th>
                             <th>Empresa</th>
                             <th>Membresía</th>

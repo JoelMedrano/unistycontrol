@@ -78,6 +78,8 @@ class ControladorMiembros{
 
             }
 
+            $_POST["nuevoNombre"]=ucwords(mb_strtolower($_POST["nuevoNombre"]));
+
             $datos = array( "nombre_completo" => $_POST["nuevoNombre"],
                             "documento" => $_POST["nuevoDocumento"],
                             "celular" => $_POST["nuevoCelular"],
@@ -241,6 +243,8 @@ class ControladorMiembros{
                 }
 
             }
+
+            $_POST["editarNombre"]=ucwords(mb_strtolower($_POST["editarNombre"]));
 
             $datos = array( "id_miembro" => $_POST["idMiembro"],
                             "nombre_completo" => $_POST["editarNombre"],

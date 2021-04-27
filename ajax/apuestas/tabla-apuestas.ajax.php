@@ -78,7 +78,12 @@ class TablaApuestas{
                 $perdida = "<div class='btn-group text-center'><button class='btn btn-default btnPerdida' idApuesta='".$apuestas[$i]["id_apuestas"]."' estadoApuesta='3'>P</button></div>";
 
 
-            }            
+            }
+
+            /* 
+            *monto
+            */
+            $monto = "<div class='btn-group text-center'>".$apuestas[$i]["monto"]."</div>";
 
             /*
             *Acciones
@@ -87,13 +92,13 @@ class TablaApuestas{
 
             $datosJson .= '[
             "'.($i+1).'",
-            "'.$apuestas[$i]["pronostico"].'",
+            "<b>'.$apuestas[$i]["partido"].'</b>",
             "'.$estado.'",
             "'.$apuestas[$i]["cuota"].'",
+            "'.$monto.'",
+            "'.$apuestas[$i]["pronostico"].'",
             "'.$apuestas[$i]["tipo_apuesta_nombre"].'",
             "'.$apuestas[$i]["fecha"].'",
-            "'.$apuestas[$i]["partido"].'",            
-                        
             "'.$ganada.$anulada.$perdida.'",
             "'.$apuestas[$i]["nombre_empresa"].'",
             "'.$apuestas[$i]["nombre_membresia"].'",
