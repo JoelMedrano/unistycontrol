@@ -11,6 +11,9 @@ class ControladorApuestas{
 
             //var_dump($_POST["nuevaEmpresa"]);
 
+            $_POST["nuevoPartido"]=ucwords(mb_strtolower($_POST["nuevoPartido"]));
+            $_POST["nuevoPronostico"]=ucwords(mb_strtolower($_POST["nuevoPronostico"]));
+
             $datos = array( "id_empresa" => $_POST["nuevaEmpresa"],
                             "id_tipo_membresia" => $_POST["nuevoTipoMembresia"],
                             "tipo_apuesta" => $_POST["nuevoTipoApuesta"],
@@ -88,6 +91,9 @@ class ControladorApuestas{
 
             //var_dump($_POST["idApuesta"]);
             
+            $_POST["editarPartido"]=ucwords(mb_strtolower($_POST["editarPartido"]));
+            $_POST["editarPronostico"]=ucwords(mb_strtolower($_POST["editarPronostico"]));
+
             $datos = array( "id_apuestas" => $_POST["idApuesta"],
                             "id_empresa" => $_POST["editarEmpresa"],
                             "id_tipo_membresia" => $_POST["editarTipoMembresia"],
