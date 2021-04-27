@@ -83,7 +83,7 @@ class TablaApuestas{
             /* 
             *monto
             */
-            $monto = "<div class='btn-group text-center'>".$apuestas[$i]["monto"]."</div>";
+            $monto = "<div class='text-right'>".$apuestas[$i]["monto"]."</div>";
 
             /*
             *Acciones
