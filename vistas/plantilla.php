@@ -92,6 +92,13 @@ session_start();
 
   <!-- Toastr -->
   <script src="vistas/bower_components/toastr/toastr.min.js"></script>
+
+  <style>
+    .table thead, .table tfoot{
+      background-color:#1e282c;
+      color:white;
+    }
+  </style>
 </head>
 
 <!--=====================================
@@ -153,6 +160,7 @@ CUERPO DOCUMENTO
         include "modulos/membresias/".$_GET["ruta"].".php";
 
       }else if( $_GET["ruta"] == "inicio" ||
+        $_GET["ruta"] == "perfil" ||
         $_GET["ruta"] == "salir" ||
         $_GET["ruta"] == "reportes"){
 

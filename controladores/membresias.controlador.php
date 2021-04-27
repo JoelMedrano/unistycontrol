@@ -495,11 +495,11 @@ class ControladorMembresias{
 							
 							<img style="padding:20px; width:25%" src="https://www.unistycontrol.com/vistas/img/plantilla/logo-grande.png">
 
-							<h3 style="font-weight:100; color:#999">VERIFIQUE SU NUEVO MIEMBRO</h3>
+							<h3 style="font-weight:100; color:##b03002">VERIFIQUE SU NUEVO MIEMBRO</h3>
 
-							<hr style="border:1px solid #ccc; width:80%">
+							<hr style="border:1px solid #b03002; width:80%">
 
-							<ul style="list-style:none;columns:2;text-align:left;color:#b03002">
+							<ul style="list-style:none;columns:2;text-align:left;color:#1e282c">
                            	<li>Codigo:'.$_POST["nuevoMiembro"].'</li>
                             <li>Documento: '.$miembro["documento"].'</li>
                             <li>Fecha Inicio: '.$_POST["nuevaFechaInicio"].'</li>
@@ -513,13 +513,13 @@ class ControladorMembresias{
 
 							<a href="https://www.unistycontrol.com/index.php?ruta=verificar&id='.$encriptarMiembro.'" target="_blank" style="text-decoration:none">
 
-							<div style="line-height:60px; background:#b03002; width:60%; color:white">Verifique al miembro registrado</div>
+							<div style="line-height:60px; background:#1e282c; width:60%; color:white">Verifique al miembro registrado</div>
 
 							</a>
 
 							<br>
 
-							<hr style="border:1px solid #ccc; width:80%">
+							<hr style="border:1px solid #b03002; width:80%">
 
 							<h5 style="font-weight:100; color:#999">Si ya se inscribió a este miembro, puede ignorar este correo electrónico.</h5>
 

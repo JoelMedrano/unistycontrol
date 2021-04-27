@@ -116,17 +116,52 @@
 					<!-- Dropdown-toggle -->
 
 					<ul class="dropdown-menu">
-						
-						<li class="user-body">
+						<!-- User image -->
+						<li class="user-header">
+						<?php
+
+							if($_SESSION["foto"] != ""){
+
+								echo '<img src="'.$_SESSION["foto"].'" class="img-circle" alt="User Image">';
+
+							}else{
+
+
+								echo '<img src="vistas/img/usuarios/default/anonymous.png" class="img-circle" alt="User Image">';
+
+							}
+
+
+						?>
 							
-							<div class="pull-right">
-								
-								<a href="salir" class="btn btn-default btn-flat">Salir</a>
-
-							</div>
-
+							<p>
+							<?php  echo $_SESSION["nombre"]; ?>
+							</p>
 						</li>
-
+						<!-- Menu Body -->
+						<li class="user-body">
+							<div class="row">
+							<div class="col-xs-4 text-center">
+								<a href="#">Miembros</a>
+							</div>
+							<div class="col-xs-4 text-center">
+								<a href="#">Nuevos Miembros</a>
+							</div>
+							<div class="col-xs-4 text-center">
+								<a href="#">Miembros caducados</a>
+							</div>
+							</div>
+							<!-- /.row -->
+						</li>
+						<!-- Menu Footer-->
+						<li class="user-footer">
+							<div class="pull-left">
+							<a href="perfil" class="btn btn-default btn-flat">Perfil</a>
+							</div>
+							<div class="pull-right">
+							<a href="salir" class="btn btn-default btn-flat">Salir</a>
+							</div>
+						</li>
 					</ul>
 
 				</li>
