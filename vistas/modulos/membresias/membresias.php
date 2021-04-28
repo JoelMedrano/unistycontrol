@@ -340,7 +340,7 @@ MODAL EDITAR MEMBRESIA
               
                 <span class="input-group-addon"><i class="fa fa-archive"></i></span> 
 
-                <input type="file"  class="form-control input-md nuevoComprobante" name="editarComprobante" id="nuevoComprobante" required>
+                <input type="file"  class="form-control input-md nuevoComprobante" name="editarComprobante" id="nuevoComprobante" >
 
                 
 
@@ -496,7 +496,7 @@ MODAL RENOVAR MEMBRESIA
               
                 <span class="input-group-addon"><i class="fa fa-archive"></i></span> 
 
-                <input type="file"  class="form-control input-md nuevoComprobante" name="renovarComprobante" id="nuevoComprobante" required>
+                <input type="file"  class="form-control input-md nuevoComprobante" name="renovarComprobante" id="nuevoComprobante" >
 
                 
 
