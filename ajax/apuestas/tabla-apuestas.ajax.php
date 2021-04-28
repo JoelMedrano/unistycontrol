@@ -95,7 +95,7 @@ class TablaApuestas{
 
             if($apuestas[$i]["tipo_apuesta_nombre"] == 'VIP'){
 
-                $tipo_apuesta = "<b><span style='color:#FFFFFF; background-color:black ;'>".$apuestas[$i]["tipo_apuesta_nombre"]."</span></b>";
+                $tipo_apuesta = "<b><span class='btn btn-xs' style='color:#FFFFFF; background-color:black ;'>".$apuestas[$i]["tipo_apuesta_nombre"]."</span></b>";
 
             }else{
 
