@@ -113,13 +113,13 @@ $('.tablaApuestas').DataTable({
 */
 $(".tablaApuestas").on("click", ".btnEditarApuesta", function () {
 
-  var idApuesta = $(this).attr("idApuesta");
-  //console.log(idApuesta)
+  var idApuestaE = $(this).attr("idApuesta");
+  console.log(idApuestaE)
   //var empresa = $(this).attr("empresa");
   //console.log(empresa);
 
   var datos = new FormData();
-  datos.append("idApuesta", idApuesta);
+  datos.append("idApuestaE", idApuestaE);
 
   $.ajax({
 

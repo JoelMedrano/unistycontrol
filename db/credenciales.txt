@@ -11,3 +11,39 @@ Header always set Content-Security-Policy "upgrade-insecure-requests;"
 		$link = new PDO("mysql:host=localhost;dbname=unistystore_control",
 			            "unistystore_admin",
 			            "Ctaay_aTgTK@");
+
+
+
+DELIMITER $$
+
+CREATE EVENT renovar_membresia 
+ON SCHEDULE EVERY 1 DAY STARTS '2021-04-28 11:10:00' 
+ON COMPLETION PRESERVE ENABLE DO 
+BEGIN
+UPDATE 
+  membresia me 
+  LEFT JOIN miembros m 
+    ON me.id_miembro = m.id_miembro SET m.id_membresia = me.id_membresia 
+WHERE me.estado = '1' 
+  AND DATE(me.fecha_inicio) = DATE(NOW()) ;
+END $$
+
+DELIMITER ;
+
+
+
+DELIMITER $$
+
+CREATE EVENT caducar_membresias 
+ON SCHEDULE EVERY 1 DAY STARTS '2021-04-28 11:00:00' 
+ON COMPLETION PRESERVE ENABLE DO 
+BEGIN
+  UPDATE 
+    miembros 
+    LEFT JOIN membresia 
+      ON miembros.id_membresia = membresia.id_membresia SET miembros.id_membresia = '0',
+    membresia.estado = '2' 
+  WHERE DATE(membresia.fecha_fin) <= DATE(NOW()) ;
+END $$
+
+DELIMITER ;

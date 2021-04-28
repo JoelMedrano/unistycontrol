@@ -45,7 +45,7 @@
                             <th>Estado</th>
                             <th>Cuota</th>
                             <th style="width:40px">Monto</th>
-                            <th>Pronóstico</th> 
+                            <th style="width:300px">Pronóstico</th> 
                             <th>Tipo</th>
                             <th>Fecha</th>                                         
                             <th style="width:150px">Resultado</th>
