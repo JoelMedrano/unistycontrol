@@ -81,7 +81,7 @@ $('.tablaApuestas').DataTable({
   "deferRender": true,
   "retrieve": true,
   "processing": true,
-  "order": [[0, "asc"]],
+  "order": [[7, "desc"]],
   "language": {
     "sProcessing":     "Procesando...",
     "sLengthMenu":     "Mostrar _MENU_ registros",
@@ -191,7 +191,8 @@ $(".tablaApuestas").on("click", ".btnGanada,.btnAnulada,.btnPerdida", function (
 
   var idApuesta = $(this).attr("idApuesta");
   var estadoApuesta = $(this).attr("estadoApuesta");
-  // console.log(idApuesta,estadoApuesta)
+  //console.log(idApuesta,estadoApuesta)
+
 
   var datos = new FormData();
   datos.append("idApuesta", idApuesta);
@@ -232,6 +233,19 @@ $(".tablaApuestas").on("click", ".btnGanada,.btnAnulada,.btnPerdida", function (
     $(botonI).addClass('btn-success');
     $(botonI).html('Ganada');
 
+    var botonA = 'A' + idApuesta;
+    document.getElementById(botonA).disabled = true;
+
+    var botonP = 'P' + idApuesta;
+    document.getElementById(botonP).disabled = true;
+
+    var botonED = 'ED' + idApuesta;
+    document.getElementById(botonED).disabled = true;
+
+    var botonEL = 'EL' + idApuesta;
+    document.getElementById(botonEL).disabled = true;
+
+
   }else if(estadoApuesta == 2){
 
     $(this).addClass('btn-warning');
@@ -241,6 +255,18 @@ $(".tablaApuestas").on("click", ".btnGanada,.btnAnulada,.btnPerdida", function (
     $(botonI).removeClass('btn-info');
     $(botonI).addClass('btn-warning');
     $(botonI).html('Anulada');
+
+    var botonA = 'G' + idApuesta;
+    document.getElementById(botonA).disabled = true;
+
+    var botonP = 'P' + idApuesta;
+    document.getElementById(botonP).disabled = true;
+
+    var botonED = 'ED' + idApuesta;
+    document.getElementById(botonED).disabled = true;
+
+    var botonEL = 'EL' + idApuesta;
+    document.getElementById(botonEL).disabled = true;
 
   }else{
 
@@ -252,6 +278,17 @@ $(".tablaApuestas").on("click", ".btnGanada,.btnAnulada,.btnPerdida", function (
     $(botonI).addClass('btn-danger');
     $(botonI).html('Perdida');
 
+    var botonA = 'G' + idApuesta;
+    document.getElementById(botonA).disabled = true;
+
+    var botonP = 'A' + idApuesta;
+    document.getElementById(botonP).disabled = true;
+
+    var botonED = 'ED' + idApuesta;
+    document.getElementById(botonED).disabled = true;
+
+    var botonEL = 'EL' + idApuesta;
+    document.getElementById(botonEL).disabled = true;
 
   }
 

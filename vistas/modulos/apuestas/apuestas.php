@@ -44,7 +44,7 @@
                             <th>Partido</th>                            
                             <th>Estado</th>
                             <th>Cuota</th>
-                            <th>Monto</th>
+                            <th style="width:40px">Monto</th>
                             <th>Pronóstico</th> 
                             <th>Tipo</th>
                             <th>Fecha</th>                                         
