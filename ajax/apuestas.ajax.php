@@ -11,7 +11,7 @@ class AjaxApuestas{
 	public function ajaxEditarApuesta(){
 
 		$item = "id_apuestas";
-		$valor = $this->idApuesta;
+		$valor = $this->idApuestaE;
 
 		$respuesta = ControladorApuestas::ctrMostrarApuestas($item, $valor);
 
@@ -39,10 +39,10 @@ class AjaxApuestas{
 /* 
 *Editar Apuesta
 */
-if(isset($_POST["idApuesta"])){
+if(isset($_POST["idApuestaE"])){
 
 	$editarApuesta = new AjaxApuestas();
-	$editarApuesta -> idApuesta = $_POST["idApuesta"];
+	$editarApuesta -> idApuestaE = $_POST["idApuestaE"];
 	$editarApuesta -> ajaxEditarApuesta();
 
 }

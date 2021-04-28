@@ -15,7 +15,7 @@ class ModeloEscritorio{
                                         COUNT(id_miembro) AS total_miembros 
                                     FROM
                                         miembros 
-                                    WHERE eliminado = 0");
+                                    WHERE eliminado = 1");
 
 			$stmt -> execute();
 
@@ -27,7 +27,7 @@ class ModeloEscritorio{
                                         COUNT(id_miembro) AS total_miembros 
                                     FROM
                                         miembros 
-                                    WHERE eliminado = 0 
+                                    WHERE eliminado = 1 
                                         AND id_empresa = $empresa");
 
 			$stmt -> execute();
@@ -53,7 +53,7 @@ class ModeloEscritorio{
                                                 COUNT(id_miembro) AS total_miembros 
                                             FROM
                                                 miembros 
-                                            WHERE eliminado = 0 
+                                            WHERE eliminado = 1 
                                                 AND MONTH(fecha_creacion) = MONTH(NOW())");
 
 			$stmt -> execute();
@@ -66,7 +66,7 @@ class ModeloEscritorio{
                                                 COUNT(id_miembro) AS total_miembros 
                                             FROM
                                                 miembros 
-                                            WHERE eliminado = 0 
+                                            WHERE eliminado = 1 
                                                 AND id_empresa = $empresa
                                                 AND MONTH(fecha_creacion) = MONTH(NOW()) ");
 
@@ -139,7 +139,7 @@ class ModeloEscritorio{
                                                         miembros m 
                                                         LEFT JOIN membresia me 
                                                         ON m.id_membresia = me.id_membresia 
-                                                    WHERE MONTH(me.fecha_fin) = MONTH(NOW()) 
+                                                    WHERE DATE(me.fecha_fin) >= DATE(NOW()) 
                                                         AND me.estado IN ('0','1')");
 
 			$stmt -> execute();
@@ -154,7 +154,7 @@ class ModeloEscritorio{
                                                     miembros m 
                                                     LEFT JOIN membresia me 
                                                     ON m.id_membresia = me.id_membresia 
-                                                WHERE MONTH(me.fecha_fin) = MONTH(NOW()) 
+                                                WHERE DATE(me.fecha_fin) >= DATE(NOW()) 
                                                     AND me.estado IN ('0','1') 
                                                     AND m.id_empresa =  $empresa");
 
