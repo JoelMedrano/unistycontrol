@@ -75,8 +75,8 @@ class ModeloApuestas{
                                                     a.tipo_apuesta,
                                                     CASE
                                                     WHEN a.tipo_apuesta = '1' 
-                                                    THEN 'Normal' 
-                                                    ELSE 'VIP' 
+                                                    THEN 'Recomendada' 
+                                                    ELSE 'MVP' 
                                                     END AS tipo_apuesta_nombre,
                                                     DATE(a.fecha) AS fecha,
                                                     a.partido,
@@ -108,8 +108,8 @@ class ModeloApuestas{
                                                         a.tipo_apuesta,
                                                         CASE
                                                         WHEN a.tipo_apuesta = '1' 
-                                                        THEN 'Normal' 
-                                                        ELSE 'VIP' 
+                                                        THEN 'Recomendada' 
+                                                        ELSE 'MVP' 
                                                         END AS tipo_apuesta_nombre,
                                                         DATE(a.fecha) AS fecha,
                                                         a.partido,
@@ -153,8 +153,8 @@ class ModeloApuestas{
                                                     a.tipo_apuesta,
                                                     CASE
                                                     WHEN a.tipo_apuesta = '1' 
-                                                    THEN 'Normal' 
-                                                    ELSE 'VIP' 
+                                                    THEN 'Recomendada' 
+                                                    ELSE 'MVP' 
                                                     END AS tipo_apuesta_nombre,
                                                     DATE(a.fecha) AS fecha,
                                                     a.partido,
@@ -186,8 +186,8 @@ class ModeloApuestas{
                                                         a.tipo_apuesta,
                                                         CASE
                                                         WHEN a.tipo_apuesta = '1' 
-                                                        THEN 'Normal' 
-                                                        ELSE 'VIP' 
+                                                        THEN 'Recomendada' 
+                                                        ELSE 'MVP'  
                                                         END AS tipo_apuesta_nombre,
                                                         DATE(a.fecha) AS fecha,
                                                         a.partido,
@@ -231,8 +231,8 @@ class ModeloApuestas{
                                                         a.tipo_apuesta,
                                                         CASE
                                                         WHEN a.tipo_apuesta = '1' 
-                                                        THEN 'Normal' 
-                                                        ELSE 'VIP' 
+                                                        THEN 'Recomendada' 
+                                                        ELSE 'MVP' 
                                                         END AS tipo_apuesta_nombre,
                                                         DATE(a.fecha) AS fecha,
                                                         a.partido,
@@ -264,8 +264,8 @@ class ModeloApuestas{
                                                         a.tipo_apuesta,
                                                         CASE
                                                         WHEN a.tipo_apuesta = '1' 
-                                                        THEN 'Normal' 
-                                                        ELSE 'VIP' 
+                                                        THEN 'Recomendada' 
+                                                        ELSE 'MVP' 
                                                         END AS tipo_apuesta_nombre,
                                                         DATE(a.fecha) AS fecha,
                                                         a.partido,

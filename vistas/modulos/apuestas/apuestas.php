@@ -211,9 +211,9 @@ MODAL AGREGAR APPUESTAS
                                 
                                     <option value="">Selecionar Tipo Apuesta</option>
 
-                                    <option value="1">Normal</option>
+                                    <option value="1">Recomendada</option>
 
-                                    <option value="2">VIP</option>
+                                    <option value="2">MVP</option>
 
                                 </select>
 
@@ -479,9 +479,9 @@ MODAL EDITAR APPUESTAS
                                 
                                     <option value="" id="editarTipoApuesta"></option>
 
-                                    <option value="1">Normal</option>
+                                    <option value="1">Recomendada</option>
 
-                                    <option value="2">VIP</option>
+                                    <option value="2">MVP</option>
 
                                 </select>
 

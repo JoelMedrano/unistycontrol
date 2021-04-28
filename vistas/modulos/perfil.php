@@ -1,9 +1,35 @@
+<?php
+
+//$empresa = $_SESSION["empresa"];
+//var_dump($empresa);
+
+$empresa   = 2;
+$item = "id_empresa";
+$valor  = "2";
+
+$empresaDatos = ControladorEmpresas::ctrMostrarEmpresas($item,$valor);
+//var_dump($empresa);
+
+$totalMiembros = ControladorEscritorio::ctrTotalMiembros($empresa);
+//var_dump($totalMiembros["total_miembros"]);
+
+$totalMiembrosNuevos = ControladorEscritorio::ctrTotalMiembrosNuevos($empresa);
+//var_dump($totalMiembros["total_miembros"]);
+
+$renovaciones = ControladorEscritorio::ctrTotalRenovaciones($empresa);
+//var_dump($totalMiembros["total_miembros"]);
+
+$porVencer = ControladorEscritorio::ctrTotalPorVencer($empresa);
+//var_dump($totalMiembros["total_miembros"]);
+
+?>
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Perfil de usuario
+        Perfil del Tipster
       </h1>
       <ol class="breadcrumb">
         <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
@@ -23,9 +49,9 @@
 
             <?php
 
-                if($_SESSION["foto"] != ""){
+                if($empresaDatos["logo1"] != ""){
 
-                    echo '<img src="'.$_SESSION["foto"].'" class="profile-user-img img-responsive img-circle" alt="User profile picture">';
+                    echo '<img src="'.$empresaDatos["logo1"].'" class="profile-user-img img-responsive img-circle" alt="User profile picture">';
 
                 }else{
 
@@ -37,13 +63,11 @@
 
             ?>
 
-              <h3 class="profile-username text-center"><?php  echo $_SESSION["nombre"]; ?></h3>
-
-              <p class="text-muted text-center"><?php  echo $_SESSION["perfil"]; ?></p>
+              <h3 class="profile-username text-center"><?php  echo $empresaDatos["nombre"]; ?></h3>
 
               <ul class="list-group list-group-unbordered">
                 <li class="list-group-item">
-                  <b>Miembros</b> <a class="pull-right">1,322</a>
+                  <b>Miembros</b> <a class="pull-right"><?php  echo $empresaDatos["nombre"]; ?></a>
                 </li>
                 <li class="list-group-item">
                   <b>Miembros nuevos</b> <a class="pull-right">543</a>

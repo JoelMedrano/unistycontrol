@@ -93,7 +93,7 @@ class TablaApuestas{
             *Etiqueta negra VIP
             */
 
-            if($apuestas[$i]["tipo_apuesta_nombre"] == 'VIP'){
+            if($apuestas[$i]["tipo_apuesta_nombre"] == 'MVP'){
 
                 $tipo_apuesta = "<b><span class='btn btn-xs' style='color:#FFFFFF; background-color:black ;'>".$apuestas[$i]["tipo_apuesta_nombre"]."</span></b>";
 

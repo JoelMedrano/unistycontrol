@@ -8,16 +8,16 @@ $empresa = $_SESSION["empresa"];
 //var_dump($empresa);
 
 $totalMiembros = ControladorEscritorio::ctrTotalMiembros($empresa);
-//var_dump($totalMiembros["total_miembros"]);
+var_dump($totalMiembros["total_miembros"]);
 
 $totalMiembrosNuevos = ControladorEscritorio::ctrTotalMiembrosNuevos($empresa);
-//var_dump($totalMiembros["total_miembros"]);
+var_dump($totalMiembros["total_miembros"]);
 
 $renovaciones = ControladorEscritorio::ctrTotalRenovaciones($empresa);
-//var_dump($totalMiembros["total_miembros"]);
+var_dump($totalMiembros["total_miembros"]);
 
 $porVencer = ControladorEscritorio::ctrTotalPorVencer($empresa);
-//var_dump($totalMiembros["total_miembros"]);
+var_dump($totalMiembros["total_miembros"]);
 
 ?>
 
