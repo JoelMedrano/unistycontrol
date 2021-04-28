@@ -748,4 +748,32 @@ class ModeloMembresias{
 
     }
 
+	/*=============================================
+	NOSTRAR ULTIMA MEMBRESIAS DEL MIEMBRO
+	=============================================*/
+
+	static public function mdlMostrarUltimaMembresia($tabla,$miembro){
+
+
+		$stmt = Conexion::conectar()->prepare("SELECT 
+		* 
+	  FROM
+		membresia 
+	  WHERE id_miembro = $miembro
+	  ORDER BY id_membresia DESC 
+	  LIMIT 1 ");
+
+
+		$stmt -> execute();
+
+		return $stmt -> fetch();
+
+		
+
+		$stmt -> close();
+
+		$stmt = null;
+
+    }
+
 }

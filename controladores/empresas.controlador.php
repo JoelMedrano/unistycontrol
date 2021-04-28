@@ -133,6 +133,10 @@ class ControladorEmpresas{
 							   "id_usuario"=>$_SESSION["id"]);
 
 			   	$respuesta = ModeloEmpresas::mdlIngresarEmpresa($tabla,$datos);
+				
+				$ultimoID = ModeloEmpresas::mdlUltimoID();
+
+				$actualizar = ModeloMiembros::mdlActualizarMiembro2("id_empresa",$ultimoID["id_empresa"],"id_miembro",$_POST["nuevoResponsable"]);
 
 			   	if($respuesta == "ok"){
 

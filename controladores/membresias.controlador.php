@@ -632,6 +632,18 @@ class ControladorMembresias{
 		return $respuesta;
 
     }
+
+	/*=============================================
+	MOSTRAR PRECIO MEMBRESIAS
+	=============================================*/
+
+	static public function ctrMostrarUltimaMembresia($valor){
+		$tabla="membresia";
+		$respuesta = ModeloMembresias::mdlMostrarUltimaMembresia($tabla,$valor);
+
+		return $respuesta;
+
+    }
     
 	/*=============================================
 	EDITAR PRECIO DE MEMBRESIA

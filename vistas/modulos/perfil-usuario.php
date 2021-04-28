@@ -3,7 +3,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Perfil de empresa
+        Perfil de usuario
       </h1>
       <ol class="breadcrumb">
         <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
@@ -22,12 +22,10 @@
             <div class="box-body box-profile">
 
             <?php
-              $empresa = ControladorEmpresas::ctrMostrarEmpresas("id_empresa",$_SESSION["empresa"]);
-
 
                 if($_SESSION["foto"] != ""){
 
-                    echo '<img src="'.$empresa["logo1"].'" class="profile-user-img img-responsive img-circle" alt="User profile picture">';
+                    echo '<img src="'.$_SESSION["foto"].'" class="profile-user-img img-responsive img-circle" alt="User profile picture">';
 
                 }else{
 
@@ -39,9 +37,9 @@
 
             ?>
 
-              <h3 class="profile-username text-center"><?php  echo $empresa["nombre"]; ?></h3>
+              <h3 class="profile-username text-center"><?php  echo $_SESSION["nombre"]; ?></h3>
 
-              <p class=" text-center">RUC O DNI: <?php  echo $empresa["documento"]; ?></p>
+              <p class="text-muted text-center"><?php  echo $_SESSION["perfil"]; ?></p>
 
               <ul class="list-group list-group-unbordered">
                 <li class="list-group-item">

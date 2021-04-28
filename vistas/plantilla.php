@@ -164,6 +164,7 @@ CUERPO DOCUMENTO
 
       }else if( $_GET["ruta"] == "inicio" ||
         $_GET["ruta"] == "perfil" ||
+        $_GET["ruta"] == "perfil-usuario" ||
         $_GET["ruta"] == "salir" ||
         $_GET["ruta"] == "reportes"){
 

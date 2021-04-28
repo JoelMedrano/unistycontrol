@@ -18,6 +18,10 @@
 
     </section>
 
+    <?php 
+        $membresia = ControladorMembresias::ctrMostrarUltimaMembresia($_SESSION["miembro"]);
+    ?>
+
     <section class="content">
 
         <div class="box">
@@ -173,26 +177,8 @@ MODAL AGREGAR APPUESTAS
 
                         }else{
 
-                            echo '<div class="form-group">
-                                    <label for="">Tipo de membresia</label>
-                                    <div class="input-group">
-                                    
-                                    <span class="input-group-addon"><i class="fa fa-credit-card-alt"></i></span> 
-                    
-                                    <select  class="form-control input-md selectpicker" name="nuevoTipoMembresia" id="nuevoTipoMembresia" data-live-search="true" required>
-                                        <option value="">Seleccionar tipo de membresia</option>';
-
-                                        $valor=$_SESSION["empresa"];
-                                        $empresas = ControladorMembresias::ctrSelecTipoMembresias($valor);
-                    
-                                        foreach ($empresas as $key => $value) {
-                                          echo '<option value="' . $value["id_tipo_membresia"] . '">' .$value["nombre_membresia"] . '</option>';
-                                        }
-
-                            echo '</select>
-                                    </div>
-                    
-                                </div>';
+                            echo '<input type="hidden" name="nuevoTipoMembresia" id="nuevoTipoMembresia" value="'.$membresia["id_tipo_membresia"].'" required>
+                                    ';
 
                         }
                         ?>
@@ -441,26 +427,7 @@ MODAL EDITAR APPUESTAS
 
                         }else{
 
-                            echo '<div class="form-group">
-                                    <label for="">Tipo de membresia</label>
-                                    <div class="input-group">
-                                    
-                                    <span class="input-group-addon"><i class="fa fa-credit-card-alt"></i></span> 
-                    
-                                    <select  class="form-control input-md selectpicker" name="editarTipoMembresia" id="editarTipoMembresia" data-live-search="true" required>
-                                        <option value="">Seleccionar tipo de membresia</option>';
-
-                                        $valor=$_SESSION["empresa"];
-                                        $empresas = ControladorMembresias::ctrSelecTipoMembresias($valor);
-                    
-                                        foreach ($empresas as $key => $value) {
-                                          echo '<option value="' . $value["id_tipo_membresia"] . '">' .$value["nombre_membresia"] . '</option>';
-                                        }
-
-                            echo '</select>
-                                    </div>
-                    
-                                </div>';
+                            echo '<input type="hidden"  name="editarTipoMembresia" id="editarTipoMembresia" value="'.$membresia["id_tipo_membresia"].'"required>';
 
                         }
                         ?>

@@ -97,23 +97,9 @@ MODAL AGREGAR PRECIO MEMBRESIA
 
           <div class="box-body">
 
-            <!-- ENTRADA PARA DESCRIPCION PRECIO DE MEMBRESIA -->
-            
-            <div class="form-group">
-              
-              <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-text-width"></i></span> 
+          <!-- ENTRADA PARA TIPO DE MEMBRESIA -->
 
-                <input type="text"  class="form-control input-md" name="nuevaDescripcionPrecio" placeholder="Ingresar descripcion membresia" required>
-
-              </div>
-
-            </div>    
-
-            <!-- ENTRADA PARA TIPO DE MEMBRESIA -->
-
-            <div class="form-group">
+          <div class="form-group">
               
               <div class="input-group">
               
@@ -135,6 +121,22 @@ MODAL AGREGAR PRECIO MEMBRESIA
               </div>
 
             </div>   
+
+            <!-- ENTRADA PARA DESCRIPCION PRECIO DE MEMBRESIA -->
+            
+            <div class="form-group">
+              
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-text-width"></i></span> 
+
+                <input type="text"  class="form-control input-md" name="nuevaDescripcionPrecio" placeholder="Ingresar descripcion membresia" required>
+
+              </div>
+
+            </div>    
+
+            
 
 
             <!-- ENTRADA PARA PRECIO DE MEMBRESIA -->
@@ -218,24 +220,9 @@ MODAL EDITAR PRECIO DE MEMBRESIA
 
           <div class="box-body">
 
-          
-            <!-- ENTRADA PARA DESCRIPCION PRECIO DE MEMBRESIA -->
-            
-            <div class="form-group">
-              
-              <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-text-width"></i></span> 
-
-                <input type="text"  class="form-control input-md" name="editarDescripcionPrecio" id="editarDescripcionPrecio"  required>
-
-              </div>
-
-            </div>    
-
             <!-- ENTRADA PARA TIPO DE MEMBRESIA -->
 
-            <div class="form-group">
+           <div class="form-group">
               
               <div class="input-group">
               
@@ -257,6 +244,23 @@ MODAL EDITAR PRECIO DE MEMBRESIA
 
             </div>   
 
+
+          
+            <!-- ENTRADA PARA DESCRIPCION PRECIO DE MEMBRESIA -->
+            
+            <div class="form-group">
+              
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-text-width"></i></span> 
+
+                <input type="text"  class="form-control input-md" name="editarDescripcionPrecio" id="editarDescripcionPrecio"  required>
+
+              </div>
+
+            </div>    
+
+            
 
             <!-- ENTRADA PARA PRECIO DE MEMBRESIA -->
             

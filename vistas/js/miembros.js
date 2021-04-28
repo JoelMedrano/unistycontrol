@@ -190,26 +190,11 @@ $(".tablaMiembros").on("click", ".btnActivarMiembro", function(){
       contentType: false,
       processData: false,
       success: function(respuesta){
-		  //console.log(respuesta)
-
-      	if(window.matchMedia("(max-width:767px)").matches){
-		
-      		 swal({
-		      	title: "El miembro ha sido actualizado",
-		      	type: "success",
-		      	confirmButtonText: "¡Cerrar!"
-		    	}).then(function(result) {
-		        
-		        	if (result.value) {
-
-		        	window.location = "miembros";
-
-		        }
-
-		      });
-
-
-		}
+		  if(estadoMiembro == 0){
+			Command: toastr["error"]("Miembro desactivado!");
+		  }else{
+			Command: toastr["success"]("Miembro activo!");
+		  }
       }
 
   	})
@@ -225,7 +210,7 @@ $(".tablaMiembros").on("click", ".btnActivarMiembro", function(){
 
   		$(this).addClass('btn-success');
   		$(this).removeClass('btn-danger');
-  		$(this).html('Activado');
+  		$(this).html('Activo');
   		$(this).attr('estadoMiembro',0);
 
   	}
