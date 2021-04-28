@@ -427,7 +427,7 @@ MODAL EDITAR APPUESTAS
 
                         }else{
 
-                            echo '<input type="hidden"  name="editarTipoMembresia" id="editarTipoMembresia" value="'.$membresia["id_tipo_membresia"].'"required>';
+                            echo '<input type="hidden"  name="editarTipoMembresia" id="editarTipoMembresia" required>';
 
                         }
                         ?>

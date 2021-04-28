@@ -111,7 +111,7 @@ $('.tablaApuestas').DataTable({
 /*
 *EDITAR APUESTA
 */
-$(".tablaApuestas").on("click", ".btnEditarApuesta", function () {
+$(".tablaApuestas , .tablaApuestasPlayer").on("click", ".btnEditarApuesta", function () {
 
   var idApuestaE = $(this).attr("idApuesta");
   console.log(idApuestaE)
@@ -157,7 +157,7 @@ $(".tablaApuestas").on("click", ".btnEditarApuesta", function () {
 /*
 *Eliminar apuesta
 */
-$(".tablaApuestas").on("click", ".btnEliminarApuesta", function(){
+$(".tablaApuestas, .tablaApuestasPlayer").on("click", ".btnEliminarApuesta", function(){
 
 	var idApuesta = $(this).attr("idApuesta");
 
@@ -187,7 +187,7 @@ $(".tablaApuestas").on("click", ".btnEliminarApuesta", function(){
 /* 
 *Boton ganada
 */
-$(".tablaApuestas").on("click", ".btnGanada,.btnAnulada,.btnPerdida", function () {
+$(".tablaApuestas, .tablaApuestasPlayer").on("click", ".btnGanada,.btnAnulada,.btnPerdida", function () {
 
   var idApuesta = $(this).attr("idApuesta");
   var estadoApuesta = $(this).attr("estadoApuesta");
@@ -294,7 +294,7 @@ $(".tablaApuestas").on("click", ".btnGanada,.btnAnulada,.btnPerdida", function (
 
 })
 
-$(".tablaApuestas").on("click",".btnReiniciarApuesta",function(){
+$(".tablaApuestas, .tablaApuestasPlayer").on("click",".btnReiniciarApuesta",function(){
 	var idApuesta = $(this).attr("idApuesta");
   var estadoApuesta = $(this).attr("estadoApuesta");
   var nombreApuesta = $(this).attr("nombre");
