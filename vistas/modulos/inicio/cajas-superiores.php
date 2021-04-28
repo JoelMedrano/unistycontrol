@@ -41,7 +41,7 @@ var_dump($totalMiembros["total_miembros"]);
     
     </div>
     
-    <a href="#" class="small-box-footer">
+    <a href="membresias" class="small-box-footer">
       
       Más info <i class="fa fa-arrow-circle-right"></i>
     
@@ -69,7 +69,7 @@ var_dump($totalMiembros["total_miembros"]);
     
     </div>
     
-    <a href="#" class="small-box-footer">
+    <a href="membresias-nuevas" class="small-box-footer">
       
       Más info <i class="fa fa-arrow-circle-right"></i>
     
@@ -97,7 +97,7 @@ var_dump($totalMiembros["total_miembros"]);
     
     </div>
     
-    <a href="tarjetas" class="small-box-footer">
+    <a href="membresias-renovadas" class="small-box-footer">
 
       Más info <i class="fa fa-arrow-circle-right"></i>
 
@@ -115,7 +115,7 @@ var_dump($totalMiembros["total_miembros"]);
     
       <h3><?php echo number_format($porVencer["por_vencer"],0); ?></h3>
 
-      <p>Membresiar por caducar</p>
+      <p>Membresias por caducar</p>
     
     </div>
     
@@ -125,7 +125,7 @@ var_dump($totalMiembros["total_miembros"]);
     
     </div>
     
-    <a href="articulos" class="small-box-footer">
+    <a href="membresias-caducadas" class="small-box-footer">
       
       Más info <i class="fa fa-arrow-circle-right"></i>
     

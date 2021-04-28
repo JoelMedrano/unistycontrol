@@ -18,8 +18,9 @@
             in_array(4,$valores)?$_SESSION['miembros']=1:$_SESSION['miembros']=0;
             in_array(5,$valores)?$_SESSION['membresias']=1:$_SESSION['membresias']=0;
             in_array(6,$valores)?$_SESSION['apuestas']=1:$_SESSION['apuestas']=0;
-			in_array(6,$valores)?$_SESSION['apuestas-player']=1:$_SESSION['apuestas-player']=0;
-			in_array(6,$valores)?$_SESSION['dashboard']=1:$_SESSION['dashboard']=0;
+			in_array(7,$valores)?$_SESSION['apuestas-player']=1:$_SESSION['apuestas-player']=0;
+			in_array(8,$valores)?$_SESSION['dashboard']=1:$_SESSION['dashboard']=0;
+			in_array(9,$valores)?$_SESSION['perfiles']=1:$_SESSION['perfil']=0;
 
             ?>
 
@@ -33,8 +34,23 @@
 				</a>
 
 			</li>
-
 			<?php
+            if($_SESSION["perfiles"] == 1){
+            ?>
+
+
+			<li>
+
+				<a href="perfil-usuario">
+
+					<i class="fa fa-male text-orange"></i>
+					<span>Perfil</span>
+
+				</a>
+
+			</li>
+			<?php
+			}
             if($_SESSION["usuarios"] == 1){
             ?>
 

@@ -146,4 +146,26 @@ class ModeloEmpresas{
 		$stmt = null;
 	}
 
+	/*=============================================
+	MOSTRAR ULTIMA EMPRESA REGISTRADA
+	=============================================*/
+
+	static public function mdlMostrarUltimoID(){
+
+
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM empresa ORDER BY id DESC LIMIT 1");
+
+		$stmt -> execute();
+
+		return $stmt -> fetch();
+
+	
+		
+
+		$stmt -> close();
+
+		$stmt = null;
+
+	}
+
 }
