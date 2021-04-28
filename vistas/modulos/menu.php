@@ -18,6 +18,7 @@
             in_array(4,$valores)?$_SESSION['miembros']=1:$_SESSION['miembros']=0;
             in_array(5,$valores)?$_SESSION['membresias']=1:$_SESSION['membresias']=0;
             in_array(6,$valores)?$_SESSION['apuestas']=1:$_SESSION['apuestas']=0;
+			in_array(6,$valores)?$_SESSION['apuestas-player']=1:$_SESSION['apuestas-player']=0;
 			in_array(6,$valores)?$_SESSION['dashboard']=1:$_SESSION['dashboard']=0;
 
             ?>
@@ -185,6 +186,17 @@
 
 					</li>
 
+					<li>
+
+						<a href="tipomembresias">
+							
+							<i class="fa fa-text-width text-orange"></i>
+							<span>Tipo membresias</span>
+
+						</a>
+
+					</li>
+
 
 					<li>
 
@@ -197,17 +209,7 @@
 
 					</li>
 
-					<li>
-
-						<a href="tipomembresias">
-							
-							<i class="fa fa-text-width text-orange"></i>
-							<span>Tipo membresias</span>
-
-						</a>
-
-					</li>
-
+					
 				</ul>
 
 			</li>
@@ -229,8 +231,23 @@
 			</li>
 
 			<?php
-			}
+			}if($_SESSION["apuestas-player"] == 1){
 			?>
+		
+				<li>
+	
+					<a href="apuestas-player">
+	
+						<i class="fa fa-area-chart text-danger"></i>
+						<span>Apuestas</span>
+	
+					</a>
+	
+				</li>
+	
+				<?php
+				}
+				?>
 
 		</ul>
 

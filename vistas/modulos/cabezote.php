@@ -142,13 +142,13 @@
 						<li class="user-body">
 							<div class="row">
 							<div class="col-xs-4 text-center">
-								<a href="#">Miembros</a>
+								<a href="membresias">Miembros</a>
 							</div>
 							<div class="col-xs-4 text-center">
-								<a href="#">Nuevos Miembros</a>
+								<a href="membresias-nuevas">Nuevos Miembros</a>
 							</div>
 							<div class="col-xs-4 text-center">
-								<a href="#">Miembros caducados</a>
+								<a href="membresias-caducadas">Miembros caducados</a>
 							</div>
 							</div>
 							<!-- /.row -->

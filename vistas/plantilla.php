@@ -169,7 +169,8 @@ CUERPO DOCUMENTO
 
         include "modulos/".$_GET["ruta"].".php";
 
-      }else if($_GET["ruta"] == "apuestas" ){
+      }else if($_GET["ruta"] == "apuestas" ||
+              $_GET["ruta"] == "apuestas-player" ){
 
         include "modulos/apuestas/".$_GET["ruta"].".php";
 
