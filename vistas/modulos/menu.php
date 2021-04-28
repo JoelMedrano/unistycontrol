@@ -20,7 +20,7 @@
             in_array(6,$valores)?$_SESSION['apuestas']=1:$_SESSION['apuestas']=0;
 			in_array(7,$valores)?$_SESSION['apuestas-player']=1:$_SESSION['apuestas-player']=0;
 			in_array(8,$valores)?$_SESSION['dashboard']=1:$_SESSION['dashboard']=0;
-			in_array(9,$valores)?$_SESSION['perfiles']=1:$_SESSION['perfil']=0;
+			in_array(9,$valores)?$_SESSION['perfiles']=1:$_SESSION['perfiles']=0;
 
             ?>
 

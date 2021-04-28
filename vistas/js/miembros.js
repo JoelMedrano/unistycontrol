@@ -216,3 +216,25 @@ $(".tablaMiembros").on("click", ".btnActivarMiembro", function(){
   	}
 
 })
+
+$(".box").on("click", ".btnEnviarWsppPendiente", function(){
+
+	
+	swal({
+		  title: '¿Está seguro de enviar un whatsapp de pendientes?',
+		  text: "¡Si no lo está puede cancelar la acción!",
+		  type: 'warning',
+		  showCancelButton: true,
+		  confirmButtonColor: '#3085d6',
+		  cancelButtonColor: '#d33',
+		  cancelButtonText: 'Cancelar',
+		  confirmButtonText: 'Si, enviar al whatsapp'
+		}).then(function(result){
+		  if (result.value) {
+			
+			window.open("https://api.whatsapp.com/send?phone=51","_blank");
+		  }
+	
+	})
+	
+})

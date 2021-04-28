@@ -471,6 +471,7 @@ class ControladorMembresias{
 
             $tabla="membresia";
             $datos = array("id_tipo_membresia"=>$_POST["nuevoTipoMembresia"],
+							"id_precio_membresia"=>$_POST["nuevoPrecioMembresia"],
 							"fecha_inicio"=>$_POST["nuevaFechaInicio"],
 							"fecha_fin"=>$_POST["nuevaFechaFin"],
 							"comprobante"=>$ruta,
@@ -622,7 +623,7 @@ class ControladorMembresias{
     
 
 	/*=============================================
-	MOSTRAR PRECIO MEMBRESIAS
+	MOSTRAR PRECIO MEMBRESIAS 
 	=============================================*/
 
 	static public function ctrMostrarMembresias($item,$valor){
@@ -632,6 +633,19 @@ class ControladorMembresias{
 		return $respuesta;
 
     }
+
+	/*=============================================
+	MOSTRAR PRECIO MEMBRESIAS 
+	=============================================*/
+
+	static public function ctrListarPrecioMembresias($item,$valor){
+		$tabla="precio_membresia";
+		$respuesta = ModeloMembresias::mdlListarPrecioMembresias($tabla,$item,$valor);
+
+		return $respuesta;
+
+    }
+
 
 	/*=============================================
 	MOSTRAR PRECIO MEMBRESIAS
@@ -737,6 +751,7 @@ class ControladorMembresias{
 			$tabla="membresia";
 			$datos = array("id"=>$_POST["idMembresia"],
 							"id_tipo_membresia"=>$_POST["editarTipoMembresia"],
+							"id_precio_membresia"=>$_POST["editarPrecioMembresia"],
 							"fecha_inicio"=>$_POST["editarFechaInicio"],
 							"fecha_fin"=>$_POST["editarFechaFin"],
 							"comprobante"=>$ruta,
@@ -910,6 +925,7 @@ class ControladorMembresias{
 
             $tabla="membresia";
             $datos = array("id_tipo_membresia"=>$_POST["renovarTipoMembresia"],
+							"id_precio_membresia"=>$_POST["renovarPrecioMembresia"],
 							"fecha_inicio"=>$_POST["renovarFechaInicio"],
 							"fecha_fin"=>$_POST["renovarFechaFin"],
 							"comprobante"=>$ruta,

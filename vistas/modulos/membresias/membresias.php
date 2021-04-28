@@ -30,6 +30,8 @@
 
         </button>
 
+        
+
       </div>
         
       <div class="box-body">
@@ -76,7 +78,7 @@ MODAL AGREGAR MEMBRESIA
 
     <div class="modal-content">
 
-      <form role="form" method="post" enctype="multipart/form-data">
+      <form role="form" method="post" enctype="multipart/form-data" id="formularioMembresias">
 
         <!--=====================================
         CABEZA DEL MODAL
@@ -113,7 +115,11 @@ MODAL AGREGAR MEMBRESIA
                     $empresas = ControladorMembresias::ctrSelecTipoMembresias($valor);
 
                     foreach ($empresas as $key => $value) {
-                      echo '<option value="' . $value["id_tipo_membresia"] . '">' .$value["nombre_membresia"] . '</option>';
+                      if($_SESSION["empresa"] == '0'){
+                        echo '<option value="' . $value["id_tipo_membresia"] . '">' .$value["nombre_membresia"] ." - ". $value["nombre"] .'</option>';
+                      }else{
+                        echo '<option value="' . $value["id_tipo_membresia"] . '">' .$value["nombre_membresia"] . '</option>';
+                      }
                     }
                   
                   ?>
@@ -122,6 +128,23 @@ MODAL AGREGAR MEMBRESIA
               </div>
 
             </div>   
+
+
+            <!-- ENTRADA PARA PRECIO DE MEMBRESIA -->
+
+            <div class="form-group">
+              <label for="">Precio de membresia</label>
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-usd"></i></span> 
+
+                <select  class="form-control input-md selectpicker" name="nuevoPrecioMembresia" id="nuevoPrecioMembresia" data-live-search="true" required>
+                  <option value="">Seleccionar precio de membresia</option>
+
+                </select>
+              </div>
+
+            </div>  
 
             <!-- ENTRADA PARA FECHA DE INICIO -->
             
@@ -240,7 +263,7 @@ MODAL EDITAR MEMBRESIA
 
     <div class="modal-content">
 
-      <form role="form" method="post" enctype="multipart/form-data">
+      <form role="form" method="post" enctype="multipart/form-data" id="formularioMembresias2">
 
         <!--=====================================
         CABEZA DEL MODAL
@@ -278,10 +301,30 @@ MODAL EDITAR MEMBRESIA
                     $empresas = ControladorMembresias::ctrSelecTipoMembresias($valor);
 
                     foreach ($empresas as $key => $value) {
-                      echo '<option value="' . $value["id_tipo_membresia"] . '">' .$value["nombre_membresia"] . '</option>';
+                      if($_SESSION["empresa"] == '0'){
+                        echo '<option value="' . $value["id_tipo_membresia"] . '">' .$value["nombre_membresia"] ." - ". $value["nombre"] .'</option>';
+                      }else{
+                        echo '<option value="' . $value["id_tipo_membresia"] . '">' .$value["nombre_membresia"] . '</option>';
+                      }
                     }
                   
                   ?>
+
+                </select>
+              </div>
+
+            </div>   
+
+            <!-- ENTRADA PARA PRECIO DE MEMBRESIA -->
+
+            <div class="form-group">
+              <label for="">Precio de membresia</label>
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-usd"></i></span> 
+
+                <select  class="form-control input-md selectpicker" name="editarPrecioMembresia" id="editarPrecioMembresia" data-live-search="true" required>
+                
 
                 </select>
               </div>
@@ -434,7 +477,11 @@ MODAL RENOVAR MEMBRESIA
                     $empresas = ControladorMembresias::ctrSelecTipoMembresias($valor);
 
                     foreach ($empresas as $key => $value) {
-                      echo '<option value="' . $value["id_tipo_membresia"] . '">' .$value["nombre_membresia"] . '</option>';
+                      if($_SESSION["empresa"] == '0'){
+                        echo '<option value="' . $value["id_tipo_membresia"] . '">' .$value["nombre_membresia"] ." - ". $value["nombre"] .'</option>';
+                      }else{
+                        echo '<option value="' . $value["id_tipo_membresia"] . '">' .$value["nombre_membresia"] . '</option>';
+                      }
                     }
                   
                   ?>
@@ -443,6 +490,23 @@ MODAL RENOVAR MEMBRESIA
               </div>
 
             </div>   
+
+            <!-- ENTRADA PARA PRECIO DE MEMBRESIA -->
+
+            <div class="form-group">
+              <label for="">Precio de membresia</label>
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-usd"></i></span> 
+
+                <select  class="form-control input-md selectpicker" name="renovarPrecioMembresia" id="renovarPrecioMembresia" data-live-search="true" required>
+                
+
+                </select>
+              </div>
+
+            </div>   
+
 
             <!-- ENTRADA PARA FECHA DE INICIO -->
             

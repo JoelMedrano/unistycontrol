@@ -30,6 +30,12 @@
 
                 </button>
 
+                <button class="btn btn-success btnEnviarWsppPendiente" >
+                    <i class="fa fa-whatsapp"></i> 
+                    Enviar Whatsapp pendientes
+
+                </button>
+
             </div>
 
             <div class="box-body">

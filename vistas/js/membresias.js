@@ -234,13 +234,16 @@ $(".tablaMembresias").on("click", ".btnEditarMembresia", function () {
       processData: false,
       dataType: "json",
       success: function (respuesta) {
-
+          // console.log(respuesta);
           $("#idMembresia").val(respuesta["id_membresia"]);
           $("#editarFechaInicio").val(respuesta["fecha_inicio"]);
           $("#editarFechaFin").val(respuesta["fecha_fin"]);
           $("#editarComprobante").val(respuesta["comprobante"]);
           $("#editarTipoMembresia").val(respuesta["id_tipo_membresia"]);
           $("#editarTipoMembresia").selectpicker("refresh");
+          $("#editarPrecioMembresia").find('option').remove();
+          $("#editarPrecioMembresia").append("<option value='"+respuesta["id_precio_membresia"]+"'>"+respuesta["nombre_precio_membresia"]+"</option>");
+          $("#editarPrecioMembresia").selectpicker("refresh");
           $("#editarMiembro").val(respuesta["id_miembro"]);
           $("#editarMiembro2").val(respuesta["id_miembro"]+" - "+respuesta["nombre_completo"]);
           $("#fotoActualComprobante").val(respuesta["comprobante"]);
@@ -439,6 +442,9 @@ $(".tablaMembresias").on("click", ".btnRenovarMembresia", function () {
           $("#idMembresia2").val(respuesta["id_membresia"]);
           $("#renovarTipoMembresia").val(respuesta["id_tipo_membresia"]);
           $("#renovarTipoMembresia").selectpicker("refresh");
+          $("#renovarPrecioMembresia").find('option').remove();
+          $("#renovarPrecioMembresia").append("<option value='"+respuesta["id_precio_membresia"]+"'>"+respuesta["nombre_precio_membresia"]+"</option>");
+          $("#renovarPrecioMembresia").selectpicker("refresh");
           $("#renovarMiembro").val(respuesta["id_miembro"]);
           $("#renovarMiembro2").val(respuesta["id_miembro"]+" - "+respuesta["nombre_completo"]);
     
@@ -572,3 +578,68 @@ $(".tablaMembresias").on("click", ".btnEnviarWhatsapp", function(){
       }
     }    
   });
+
+  $("#formularioMembresias").on("change", "#nuevoTipoMembresia", function(){
+    var tipoM = $(this).val();
+  //console.log(empresa);
+
+    var datos = new FormData();
+    datos.append("tipoM", tipoM);
+
+    $.ajax({
+
+      url:"ajax/membresias.ajax.php",
+      method: "POST",
+      data: datos,
+      cache: false,
+      contentType: false,
+      processData: false,
+      dataType:"json",
+      success:function(respuesta){
+
+        // console.log(respuesta)
+
+        $("#nuevoPrecioMembresia").find('option').remove();
+        $("#nuevoPrecioMembresia").append('<option value="">Seleccionar precio de membresia</option>')
+        for (let i = 0; i < respuesta.length; i++) {
+          $("#nuevoPrecioMembresia").append("<option value='"+respuesta[i]["id_precio_membresia"]+"'>"+respuesta[i]["nombre_precio_membresia"]+"</option>");
+          
+        }
+        $('#nuevoPrecioMembresia').selectpicker('refresh');
+      }
+    })
+
+  })
+
+
+  $("#formularioMembresias2").on("change", "#editarTipoMembresia", function(){
+    var tipoM = $(this).val();
+  //console.log(empresa);
+
+    var datos = new FormData();
+    datos.append("tipoM", tipoM);
+
+    $.ajax({
+
+      url:"ajax/membresias.ajax.php",
+      method: "POST",
+      data: datos,
+      cache: false,
+      contentType: false,
+      processData: false,
+      dataType:"json",
+      success:function(respuesta){
+
+        // console.log(respuesta)
+
+        $("#editarPrecioMembresia").find('option').remove();
+        $("#editarPrecioMembresia").append('<option value="">Seleccionar precio de membresia</option>')
+        for (let i = 0; i < respuesta.length; i++) {
+          $("#editarPrecioMembresia").append("<option value='"+respuesta[i]["id_precio_membresia"]+"'>"+respuesta[i]["nombre_precio_membresia"]+"</option>");
+          
+        }
+        $('#editarPrecioMembresia').selectpicker('refresh');
+      }
+    })
+
+  })
