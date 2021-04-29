@@ -1,131 +1,90 @@
-<?php
-
-//$empresa = $_SESSION["empresa"];
-//var_dump($empresa);
-
-$empresa   = 2;
-$item = "id_empresa";
-$valor  = "2";
-
-$empresaDatos = ControladorEmpresas::ctrMostrarEmpresas($item,$valor);
-//var_dump($empresa);
-
-$totalMiembros = ControladorEscritorio::ctrTotalMiembros($empresa);
-//var_dump($totalMiembros["total_miembros"]);
-
-$totalMiembrosNuevos = ControladorEscritorio::ctrTotalMiembrosNuevos($empresa);
-//var_dump($totalMiembros["total_miembros"]);
-
-$renovaciones = ControladorEscritorio::ctrTotalRenovaciones($empresa);
-//var_dump($totalMiembros["total_miembros"]);
-
-$porVencer = ControladorEscritorio::ctrTotalPorVencer($empresa);
-//var_dump($totalMiembros["total_miembros"]);
-
-?>
-
-<!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
+
     <section class="content-header">
-      <h1>
-        Perfil del Tipster
-      </h1>
       <ol class="breadcrumb">
         <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
         <li class="active">Perfil</li>
       </ol>
     </section>
 
-    <!-- Main content -->
     <section class="content">
 
       <div class="row">
-        <div class="col-md-3">
 
-          <!-- Profile Image -->
+      <?php
+
+        $empresa = 2;
+
+        $membresias = ControladorMembresias::ctrSelecTipoMembresias($empresa);
+        var_dump($membresias);
+
+        foreach($membresias as $key => $value){
+
+          echo '<div class="col-md-3">
+
           <div class="box box-primary">
             <div class="box-body box-profile">
 
-            <?php
-              $empresa = ControladorEmpresas::ctrMostrarEmpresas("id_empresa",$_SESSION["empresa"]);
+            <img src="vistas/img/usuarios/default/anonymous.png" class="profile-user-img img-responsive img-circle" alt="User profile picture">
 
-
-                if($empresaDatos["logo1"] != ""){
-
-                    echo '<img src="'.$empresaDatos["logo1"].'" class="profile-user-img img-responsive img-circle" alt="User profile picture">';
-
-                }else{
-
-
-                    echo '<img src="vistas/img/usuarios/default/anonymous.png" class="profile-user-img img-responsive img-circle" alt="User profile picture">';
-
-                }
-
-
-            ?>
-
-              <h3 class="profile-username text-center"><?php  echo $empresaDatos["nombre"]; ?></h3>
+              <h3 class="profile-username text-center">Tipster Prueba</h3>
+              <p class="text-muted text-center">VIP FUTBOL</p>
 
               <ul class="list-group list-group-unbordered">
-                <li class="list-group-item">
-                  <b>Miembros</b> <a class="pull-right"><?php  echo $empresaDatos["nombre"]; ?></a>
+                <li class="list-group-item" style="height:55px;  align-items:center">
+                <h4><b>Efectividad MVP</b> <a class="pull-right"><b>70 %</b></a></h4>
                 </li>
                 <li class="list-group-item">
-                  <b>Miembros nuevos</b> <a class="pull-right">543</a>
-                </li>
-                <li class="list-group-item">
-                  <b>Miembros caducados</b> <a class="pull-right">13,287</a>
+                  <b>Cuota Promedio</b> <a class="pull-right">1.75</a>
                 </li>
               </ul>
 
-              <a href="#" class="btn btn-primary btn-block"><b>Seguir</b></a>
             </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
 
-          <!-- About Me Box -->
+          </div>
+
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Acerca de mi</h3>
+              <h3 class="box-title">VIP FUTBOL</h3>
             </div>
-            <!-- /.box-header -->
+
             <div class="box-body">
-              <strong><i class="fa fa-book margin-r-5"></i> Última apuesta</strong>
+              <strong><i class="fa fa-line-chart margin-r-5"></i>Estadísticas MVP</strong>
 
-              <p class="text-muted">
-                Barcelona vs Getafe
-              </p>
-
-              <hr>
-
-              <strong><i class="fa fa-map-marker margin-r-5"></i> Ubicación</strong>
-
-              <p class="text-muted">Lima, Perú</p>
+              <ul class="nav nav-stacked">
+                <li><a href="#">Ganadas <span class="pull-right badge bg-green">31</span></a></li>
+                <li><a href="#">Anuladas <span class="pull-right badge bg-yellow">5</span></a></li>
+                <li><a href="#">Perdidas <span class="pull-right badge bg-red">12</span></a></li>
+                <li><a href="#">Pendientes <span class="pull-right badge bg-aqua">842</span></a></li>
+              </ul>
 
               <hr>
 
-              <strong><i class="fa fa-pencil margin-r-5"></i> Habilidades</strong>
-
-              <p>
-                <span class="label label-danger">UI Design</span>
-                <span class="label label-success">Coding</span>
-                <span class="label label-info">Javascript</span>
-                <span class="label label-warning">PHP</span>
-                <span class="label label-primary">Node.js</span>
-              </p>
-
-              <hr>
-
-              <strong><i class="fa fa-file-text-o margin-r-5"></i> Notas</strong>
-
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
             </div>
-            <!-- /.box-body -->
+
+            <div class="box-body">
+              <strong><i class="fa fa-line-chart margin-r-5"></i>Estadísticas Recomendadas</strong>
+
+              <ul class="nav nav-stacked">
+                <li><a href="#">Ganadas <span class="pull-right badge bg-green">31</span></a></li>
+                <li><a href="#">Anuladas <span class="pull-right badge bg-yellow">5</span></a></li>
+                <li><a href="#">Perdidas <span class="pull-right badge bg-red">12</span></a></li>
+                <li><a href="#">Pendientes <span class="pull-right badge bg-aqua">842</span></a></li>
+              </ul>
+
+              <hr>
+
+            </div>
+
           </div>
-          <!-- /.box -->
-        </div>
+
+        </div>';
+
+        }
+
+      ?>
+
+        <!-- FINAL -->
       </div>
   </section>
 </div>
