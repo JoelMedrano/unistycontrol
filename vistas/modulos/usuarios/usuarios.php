@@ -110,7 +110,7 @@ MODAL AGREGAR USUARIO
               
                 <span class="input-group-addon"><i class="fa fa-user"></i></span> 
 
-                <input type="text" class="form-control input-lg" name="nuevoNombre" placeholder="Ingresar nombre" required>
+                <input type="text" class="form-control input-md" name="nuevoNombre" placeholder="Ingresar nombre" required>
 
               </div>
 
@@ -124,7 +124,7 @@ MODAL AGREGAR USUARIO
 
                   <span class="input-group-addon"><i class="fa fa-phone"></i></span>
 
-                  <input type="text" class="form-control input-lg" name="nuevoCelular" placeholder="Ingresar celular" data-inputmask="'mask':'999-999-999'" data-mask required>
+                  <input type="text" class="form-control input-md" name="nuevoCelular" placeholder="Ingresar celular" data-inputmask="'mask':'999-999-999'" data-mask required>
 
               </div>
 
@@ -138,7 +138,7 @@ MODAL AGREGAR USUARIO
 
                   <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
 
-                  <input type="email" class="form-control input-lg" name="nuevoEmail" placeholder="Ingrese el Correo del Cliente" maxlength="200" required>
+                  <input type="email" class="form-control input-md" name="nuevoEmail" placeholder="Ingrese el Correo del Cliente" maxlength="200" required>
 
               </div>
 
@@ -152,7 +152,7 @@ MODAL AGREGAR USUARIO
               
                 <span class="input-group-addon"><i class="fa fa-key"></i></span> 
 
-                <input type="text" class="form-control input-lg" name="nuevoUsuario" placeholder="Ingresar usuario" id="nuevoUsuario" required>
+                <input type="text" class="form-control input-md" name="nuevoUsuario" placeholder="Ingresar usuario" id="nuevoUsuario" required>
 
               </div>
 
@@ -166,7 +166,7 @@ MODAL AGREGAR USUARIO
               
                 <span class="input-group-addon"><i class="fa fa-lock"></i></span> 
 
-                <input type="password" class="form-control input-lg" name="nuevoPassword" placeholder="Ingresar contraseña" required>
+                <input type="password" class="form-control input-md" name="nuevoPassword" placeholder="Ingresar contraseña" required>
 
               </div>
 
@@ -180,7 +180,7 @@ MODAL AGREGAR USUARIO
               
                 <span class="input-group-addon"><i class="fa fa-users"></i></span> 
 
-                <select class="form-control input-lg" name="nuevoPerfil">
+                <select class="form-control input-md" name="nuevoPerfil">
                   
                   <option value="">Selecionar perfil</option>
 
@@ -189,6 +189,30 @@ MODAL AGREGAR USUARIO
                   <option value="Especial">Especial</option>
 
                   <option value="Vendedor">Vendedor</option>
+
+                </select>
+
+              </div>
+
+            </div>
+
+            <!-- ENTRADA PARA MIEMBROS -->
+
+            <div class="form-group">
+              
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-users"></i></span> 
+
+                <select class="form-control input-md selectpicker" data-live-search="true" name="nuevoMiembro">
+                  
+                  <option value="">Selecionar miembro</option>
+                  <?php 
+                    $miembros = ControladorMiembros::ctrMostrarMiembros(null,null);
+                    foreach ($miembros as $key => $value) {
+                      echo '<option value="' . $value["id_miembro"] . '">' .$value["nombre_completo"] . '</option>';
+                    }
+                  ?>
 
                 </select>
 
@@ -296,7 +320,7 @@ MODAL EDITAR USUARIO
               
                 <span class="input-group-addon"><i class="fa fa-user"></i></span> 
 
-                <input type="text" class="form-control input-lg" id="editarNombre" name="editarNombre" value="" required>
+                <input type="text" class="form-control input-md" id="editarNombre" name="editarNombre" value="" required>
 
               </div>
 
@@ -310,7 +334,7 @@ MODAL EDITAR USUARIO
 
                   <span class="input-group-addon"><i class="fa fa-phone"></i></span>
 
-                  <input type="text" class="form-control input-lg" name="editarCelular" id="editarCelular"  data-inputmask="'mask':'999-999-999'" data-mask required>
+                  <input type="text" class="form-control input-md" name="editarCelular" id="editarCelular"  data-inputmask="'mask':'999-999-999'" data-mask required>
 
               </div>
 
@@ -324,7 +348,7 @@ MODAL EDITAR USUARIO
 
                   <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
 
-                  <input type="email" class="form-control input-lg" name="editarEmail" id="editarEmail"  maxlength="200" required>
+                  <input type="email" class="form-control input-md" name="editarEmail" id="editarEmail"  maxlength="200" required>
 
               </div>
 
@@ -339,7 +363,7 @@ MODAL EDITAR USUARIO
               
                 <span class="input-group-addon"><i class="fa fa-key"></i></span> 
 
-                <input type="text" class="form-control input-lg" id="editarUsuario" name="editarUsuario" value="" readonly>
+                <input type="text" class="form-control input-md" id="editarUsuario" name="editarUsuario" value="" readonly>
                 <input type="hidden" name="idUsuario" id="idUsuario">
               </div>
 
@@ -353,7 +377,7 @@ MODAL EDITAR USUARIO
               
                 <span class="input-group-addon"><i class="fa fa-lock"></i></span> 
 
-                <input type="password" class="form-control input-lg" name="editarPassword" placeholder="Escriba la nueva contraseña">
+                <input type="password" class="form-control input-md" name="editarPassword" placeholder="Escriba la nueva contraseña">
 
                 <input type="hidden" id="passwordActual" name="passwordActual">
 
@@ -369,7 +393,7 @@ MODAL EDITAR USUARIO
               
                 <span class="input-group-addon"><i class="fa fa-users"></i></span> 
 
-                <select class="form-control input-lg" name="editarPerfil">
+                <select class="form-control input-md" name="editarPerfil">
                   
                   <option value="" id="editarPerfil"></option>
 
@@ -378,6 +402,29 @@ MODAL EDITAR USUARIO
                   <option value="Especial">Especial</option>
 
                   <option value="Vendedor">Vendedor</option>
+
+                </select>
+
+              </div>
+
+            </div>
+
+            <!-- ENTRADA PARA MIEMBROS -->
+
+            <div class="form-group">
+              
+              <div class="input-group">
+              
+                <span class="input-group-addon"><i class="fa fa-users"></i></span> 
+
+                <select class="form-control input-md selectpicker" data-live-search="true" name="editarMiembro" id="editarMiembro">
+                  
+                  <?php 
+                    $miembros = ControladorMiembros::ctrMostrarMiembros(null,null);
+                    foreach ($miembros as $key => $value) {
+                      echo '<option value="' . $value["id_miembro"] . '">' .$value["nombre_completo"] . '</option>';
+                    }
+                  ?>
 
                 </select>
 

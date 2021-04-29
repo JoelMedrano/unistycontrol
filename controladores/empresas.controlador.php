@@ -134,9 +134,9 @@ class ControladorEmpresas{
 
 			   	$respuesta = ModeloEmpresas::mdlIngresarEmpresa($tabla,$datos);
 				
-				$ultimoID = ModeloEmpresas::mdlUltimoID();
+				$ultimoID = ModeloEmpresas::mdlMostrarUltimoID();
 
-				$actualizar = ModeloMiembros::mdlActualizarMiembro2("id_empresa",$ultimoID["id_empresa"],"id_miembro",$_POST["nuevoResponsable"]);
+				$actualizar = ModeloUsuarios::mdlActualizarUsuario("usuarios","id_empresa",$ultimoID["id_empresa"],"id",$_POST["nuevoResponsable"]);
 
 			   	if($respuesta == "ok"){
 
@@ -194,6 +194,9 @@ class ControladorEmpresas{
 						"id_usuario"=>$_SESSION["id"]);
 
 			   	$respuesta = ModeloEmpresas::mdlEditarEmpresa($tabla,$datos);
+
+
+				$actualizar = ModeloUsuarios::mdlActualizarUsuario("usuarios","id_empresa",$_POST["idEmpresa"],"id",$_POST["editarResponsable"]);
 
 			   	if($respuesta == "ok"){
 

@@ -127,9 +127,10 @@ class ModeloMembresias{
 
 	static public function mdlIngresarMembresia($tabla,$datos){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_tipo_membresia,fecha_inicio,fecha_fin,comprobante,id_usuario,id_miembro) VALUES (:id_tipo_membresia,:fecha_inicio,:fecha_fin,:comprobante,:id_usuario,:id_miembro)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_tipo_membresia,id_precio_membresia,fecha_inicio,fecha_fin,comprobante,id_usuario,id_miembro) VALUES (:id_tipo_membresia,:fecha_inicio,:fecha_fin,:comprobante,:id_usuario,:id_miembro)");
 
         $stmt->bindParam(":id_tipo_membresia", $datos["id_tipo_membresia"], PDO::PARAM_STR);
+		$stmt->bindParam(":id_precio_membresia", $datos["id_precio_membresia"], PDO::PARAM_STR);
 		$stmt->bindParam(":fecha_inicio", $datos["fecha_inicio"], PDO::PARAM_STR);
 		$stmt->bindParam(":fecha_fin", $datos["fecha_fin"], PDO::PARAM_STR);
 		$stmt->bindParam(":comprobante", $datos["comprobante"], PDO::PARAM_STR);
@@ -160,7 +161,7 @@ class ModeloMembresias{
 
 		if($item != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT m.*,t.nombre_membresia,mb.nombre_completo FROM $tabla m LEFT JOIN tipo_membresia t ON t.id_tipo_membresia=m.id_tipo_membresia  LEFT JOIN miembros mb ON mb.id_miembro=m.id_miembro WHERE m.$item = :$item");
+			$stmt = Conexion::conectar()->prepare("SELECT m.*,t.nombre_membresia,mb.nombre_completo,pm.nombre_precio_membresia FROM $tabla m LEFT JOIN tipo_membresia t ON t.id_tipo_membresia=m.id_tipo_membresia  LEFT JOIN miembros mb ON mb.id_miembro=m.id_miembro LEFT JOIN precio_membresia pm ON pm.id_precio_membresia=m.id_precio_membresia WHERE m.$item = :$item");
 
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
@@ -190,10 +191,11 @@ class ModeloMembresias{
 
 	static public function mdlEditarMembresia($tabla,$datos){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET id_tipo_membresia = :id_tipo_membresia,fecha_inicio = :fecha_inicio,fecha_fin = :fecha_fin,comprobante = :comprobante, id_usuario = :id_usuario, id_miembro = :id_miembro WHERE id_membresia = :id");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET id_tipo_membresia = :id_tipo_membresia, id_precio_membresia = :id_precio_membresia,fecha_inicio = :fecha_inicio,fecha_fin = :fecha_fin,comprobante = :comprobante, id_usuario = :id_usuario, id_miembro = :id_miembro WHERE id_membresia = :id");
 
 		$stmt->bindParam(":id", $datos["id"], PDO::PARAM_INT);
 		$stmt->bindParam(":id_tipo_membresia", $datos["id_tipo_membresia"], PDO::PARAM_STR);
+		$stmt->bindParam(":id_precio_membresia", $datos["id_precio_membresia"], PDO::PARAM_STR);
 		$stmt->bindParam(":fecha_inicio", $datos["fecha_inicio"], PDO::PARAM_STR);
 		$stmt->bindParam(":fecha_fin", $datos["fecha_fin"], PDO::PARAM_STR);
 		$stmt->bindParam(":comprobante", $datos["comprobante"], PDO::PARAM_STR);
@@ -543,9 +545,10 @@ class ModeloMembresias{
 
 	static public function mdlRenovarMembresia($tabla,$datos){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_tipo_membresia,fecha_inicio,fecha_fin,comprobante,id_usuario,id_miembro,estado) VALUES (:id_tipo_membresia,:fecha_inicio,:fecha_fin,:comprobante,:id_usuario,:id_miembro,:estado)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_tipo_membresia,id_precio_membresia,fecha_inicio,fecha_fin,comprobante,id_usuario,id_miembro,estado) VALUES (:id_tipo_membresia,:fecha_inicio,:fecha_fin,:comprobante,:id_usuario,:id_miembro,:estado)");
 
         $stmt->bindParam(":id_tipo_membresia", $datos["id_tipo_membresia"], PDO::PARAM_STR);
+		$stmt->bindParam(":id_precio_membresia", $datos["id_precio_membresia"], PDO::PARAM_STR);
 		$stmt->bindParam(":fecha_inicio", $datos["fecha_inicio"], PDO::PARAM_STR);
 		$stmt->bindParam(":fecha_fin", $datos["fecha_fin"], PDO::PARAM_STR);
 		$stmt->bindParam(":comprobante", $datos["comprobante"], PDO::PARAM_STR);
@@ -767,6 +770,29 @@ class ModeloMembresias{
 		$stmt -> execute();
 
 		return $stmt -> fetch();
+
+		
+
+		$stmt -> close();
+
+		$stmt = null;
+
+    }
+
+	/*=============================================
+	LISTAR PRECIO MEMBRESIAS SELECT
+	=============================================*/
+
+	static public function mdlListarPrecioMembresias($tabla,$item,$valor){
+
+
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
+
+		$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+
+		$stmt -> execute();
+
+		return $stmt -> fetchAll();
 
 		
 

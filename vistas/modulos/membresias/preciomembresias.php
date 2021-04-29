@@ -108,11 +108,17 @@ MODAL AGREGAR PRECIO MEMBRESIA
                 <select  class="form-control input-md selectpicker" name="nuevoTipoMembresia" data-live-search="true" required>
                   <option value="">Seleccionar tipo membresia</option>
                   <?php
+                    
                     $valor=$_SESSION["empresa"];
                     $empresas = ControladorMembresias::ctrSelecTipoMembresias($valor);
 
                     foreach ($empresas as $key => $value) {
-                      echo '<option value="' . $value["id_tipo_membresia"] . '">' .$value["nombre_membresia"] . '</option>';
+                      if($_SESSION["empresa"] == '0'){
+                        echo '<option value="' . $value["id_tipo_membresia"] . '">' .$value["nombre_membresia"] ." - ". $value["nombre"] .'</option>';
+                      }else{
+                        echo '<option value="' . $value["id_tipo_membresia"] . '">' .$value["nombre_membresia"] . '</option>';
+                      }
+                      
                     }
                   
                   ?>
@@ -234,7 +240,11 @@ MODAL EDITAR PRECIO DE MEMBRESIA
                     $empresas = ControladorMembresias::ctrSelecTipoMembresias($valor);
 
                     foreach ($empresas as $key => $value) {
-                      echo '<option value="' . $value["id_tipo_membresia"] . '">' .$value["nombre_membresia"] . '</option>';
+                      if($_SESSION["empresa"] == '0'){
+                        echo '<option value="' . $value["id_tipo_membresia"] . '">' .$value["nombre_membresia"] ." - ". $value["nombre"] .'</option>';
+                      }else{
+                        echo '<option value="' . $value["id_tipo_membresia"] . '">' .$value["nombre_membresia"] . '</option>';
+                      }
                     }
                   
                   ?>

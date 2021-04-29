@@ -70,6 +70,20 @@ class AjaxMembresias{
 
 	}	
 
+	/*=============================================
+	PRECIO DE MEMBRESIA POR TIPO
+	=============================================*/	
+
+	public function ajaxSelecPrecioMembresia(){
+		$item="id_tipo_membresia";
+		$valor = $this->tipoM;
+
+		$respuesta = ControladorMembresias::ctrListarPrecioMembresias($item,$valor);
+
+		echo json_encode($respuesta);
+
+	}	
+
 
 }
 
@@ -115,5 +129,16 @@ if(isset($_POST["empresa"])){
 	$editarMembresia = new AjaxMembresias();
 	$editarMembresia -> empresa = $_POST["empresa"];
 	$editarMembresia -> ajaxTipoEmpresa();
+
+}
+
+/*=============================================
+TIPO DE MEMBRESIA POR EMPRESA
+=============================================*/
+if(isset($_POST["tipoM"])){
+
+	$selecPrecioMembresia = new AjaxMembresias();
+	$selecPrecioMembresia -> tipoM = $_POST["tipoM"];
+	$selecPrecioMembresia -> ajaxSelecPrecioMembresia();
 
 }

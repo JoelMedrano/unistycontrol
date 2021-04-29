@@ -105,6 +105,8 @@ $(".tablaUsuarios").on("click", ".btnEditarUsuario", function(){
 			$("#editarUsuario").val(respuesta["usuario"]);
 			$("#editarPerfil").html(respuesta["perfil"]);
 			$("#editarPerfil").val(respuesta["perfil"]);
+			$("#editarMiembro").val(respuesta["id_miembro"]);
+			$("#editarMiembro").selectpicker("refresh");
 			$("#fotoActual").val(respuesta["foto"]);
 
 			$("#passwordActual").val(respuesta["password"]);
