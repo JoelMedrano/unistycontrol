@@ -219,22 +219,49 @@ $(".tablaMiembros").on("click", ".btnActivarMiembro", function(){
 
 $(".box").on("click", ".btnEnviarWsppPendiente", function(){
 
-	
-	swal({
-		  title: '¿Está seguro de enviar un whatsapp de pendientes?',
-		  text: "¡Si no lo está puede cancelar la acción!",
-		  type: 'warning',
-		  showCancelButton: true,
-		  confirmButtonColor: '#3085d6',
-		  cancelButtonColor: '#d33',
-		  cancelButtonText: 'Cancelar',
-		  confirmButtonText: 'Si, enviar al whatsapp'
-		}).then(function(result){
-		  if (result.value) {
-			
-			window.open("https://api.whatsapp.com/send?phone=51","_blank");
-		  }
-	
+
+	var listarMiembros = "listarMiembros";
+	//console.log(idMiembro)
+
+    var datos = new FormData();
+    datos.append("listarMiembros", listarMiembros);
+
+    $.ajax({
+
+        url: "ajax/miembros.ajax.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function (respuesta) {
+			texto ="Por favor revisar los siguientes miembros";
+			for (let i = 0; i < respuesta.length; i++) {
+				texto += " el miembro "+respuesta[i]["nombre_completo"]+" con telefono "+respuesta[i]["celular"];
+				
+			}
+			telefonoAdmin="";
+
+			swal({
+				title: '¿Está seguro de enviar un whatsapp de pendientes?',
+				text: "¡Si no lo está puede cancelar la acción!",
+				type: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				cancelButtonText: 'Cancelar',
+				confirmButtonText: 'Si, enviar al whatsapp'
+			  }).then(function(result){
+				if (result.value) {
+				  
+				  window.open("https://api.whatsapp.com/send?phone=51"+telefonoAdmin+"&text="+texto,"_blank");
+				}
+		  
+		  })
+		}
 	})
+	
+	
 	
 })

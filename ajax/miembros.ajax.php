@@ -37,6 +37,18 @@ class AjaxMiembros{
 
 	}
 
+	/* 
+    *Listar miembros
+    */
+	public function ajaxListarMiembro(){
+
+
+		$respuesta = ControladorMiembros::ctrMostrarMiembros(null, null);
+
+		echo json_encode($respuesta);
+
+	}
+
 }
 /* 
 *Editar Miembro
@@ -59,5 +71,17 @@ if(isset($_POST["activarMiembro"])){
 	$activarMiembro -> activarId = $_POST["activarId"];
 	$activarMiembro -> idActivador = $_POST["idActivador"];
 	$activarMiembro -> ajaxActivarMiembro();
+
+}
+
+
+/* 
+*Listar Miembros
+*/
+if(isset($_POST["listarMiembros"])){
+
+	$listaMiembros = new AjaxMiembros();
+	$listaMiembros -> listarMiembros = $_POST["listarMiembros"];
+	$listaMiembros -> ajaxListarMiembro();
 
 }
