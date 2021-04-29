@@ -4,7 +4,7 @@
 $(".nuevaFotoMiembro").change(function(){
 
 	var imagen = this.files[0];
-	console.log(imagen);
+	// console.log(imagen);
 	
 	/*=============================================
   	VALIDAMOS EL FORMATO DE LA IMAGEN SEA JPG O PNG
@@ -58,6 +58,8 @@ $('.tablaMiembros').DataTable({
     "retrieve": true,
     "processing": true,
     "order": [[0, "asc"]],
+	"pageLength": 20,
+	"lengthMenu": [[20, 40, 60, -1], [20, 40, 60, 'Todos']],
     "language": {
 			"sProcessing":     "Procesando...",
 			"sLengthMenu":     "Mostrar _MENU_ registros",
@@ -236,29 +238,48 @@ $(".box").on("click", ".btnEnviarWsppPendiente", function(){
         processData: false,
         dataType: "json",
         success: function (respuesta) {
-			texto ="Por favor revisar los siguientes miembros";
-			for (let i = 0; i < respuesta.length; i++) {
-				texto += " el miembro "+respuesta[i]["nombre_completo"]+" con telefono "+respuesta[i]["celular"];
-				
-			}
-			telefonoAdmin="";
+			if(respuesta.length == 0){
+				swal({
+					type: "warning",
+					title: "No hay miembros con membresias pendientes",
+					showConfirmButton: true,
+					confirmButtonText: "Cerrar"
+					}).then(function(result){
+							  if (result.value) {
 
-			swal({
-				title: '¿Está seguro de enviar un whatsapp de pendientes?',
-				text: "¡Si no lo está puede cancelar la acción!",
-				type: 'warning',
-				showCancelButton: true,
-				confirmButtonColor: '#3085d6',
-				cancelButtonColor: '#d33',
-				cancelButtonText: 'Cancelar',
-				confirmButtonText: 'Si, enviar al whatsapp'
-			  }).then(function(result){
-				if (result.value) {
-				  
-				  window.open("https://api.whatsapp.com/send?phone=51"+telefonoAdmin+"&text="+texto,"_blank");
+							  window.location = "miembros";
+
+							  }
+					})
+
+
+			}else{
+				texto ="Por favor revisar los siguientes miembros que esten dados de baja en su grupo VIP:";
+				for (let i = 0; i < respuesta.length; i++) {
+					texto += " el miembro "+respuesta[i]["nombre_completo"]+" con telefono "+respuesta[i]["celular"]+", ";
+					
 				}
-		  
-		  })
+				telefonoAdmin=$("#celularAdministrador").val();
+
+				swal({
+					title: '¿Está seguro de enviar un whatsapp de pendientes?',
+					text: "¡Si no lo está puede cancelar la acción!",
+					type: 'warning',
+					showCancelButton: true,
+					confirmButtonColor: '#3085d6',
+					cancelButtonColor: '#d33',
+					cancelButtonText: 'Cancelar',
+					confirmButtonText: 'Si, enviar al whatsapp'
+				}).then(function(result){
+					if (result.value) {
+					
+					window.open("https://api.whatsapp.com/send?phone=51"+telefonoAdmin+"&text="+texto,"_blank");
+					}
+			
+				})
+
+			}
+			
 		}
 	})
 	

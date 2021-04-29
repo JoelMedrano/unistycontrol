@@ -148,6 +148,17 @@ class ControladorMiembros{
     }
 
     /* 
+    *Listar Miemros pendientes con estado activo por empresa
+    */
+    static public function ctrListarMiembroPendiente($empresa){
+
+        $respuesta = ModeloMiembros::mdlListarMiembroPendiente($empresa);
+
+		return $respuesta;
+
+    }
+
+    /* 
     *Actualizar Miembros 2
     */
     static public function ctrActualizarMiembro2($item1,$valor1,$item2,$valor2){

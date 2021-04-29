@@ -55,12 +55,21 @@ class ControladorUsuarios{
 						$ultimoLogin = ModeloUsuarios::mdlActualizarUsuario($tabla, $item1, $valor1, $item2, $valor2);
 
 						if($ultimoLogin == "ok"){
+							if($_SESSION["empresa"] == "1"){
+								echo '<script>
 
-							echo '<script>
+								window.location = "perfil-usuario";
+
+								</script>';
+							}else{
+								echo '<script>
 
 								window.location = "inicio";
 
-							</script>';
+								</script>';
+							}
+
+							
 
 						}				
 						

@@ -36,11 +36,16 @@
 
                 </button>
 
+                <?php 
+                    $usuario = ControladorUsuarios::ctrMostrarUsuarios("id",$_SESSION["id"]);
+                    echo"<input type='hidden' id='celularAdministrador' value='".$usuario["telefono"]."'>"
+                ?>
+
             </div>
 
-            <div class="box-body">
+            <div class="box-body ">
                 <input type="hidden" value="<?= $_SESSION["perfil"]; ?>" id="perfilOculto"> 
-                <table class="table table-bordered table-striped dt-responsive table-condensed tablaMiembros">
+                <table class="table table-bordered table-striped dt-responsive table-condensed tablaMiembros ">
 
                     <thead>
 

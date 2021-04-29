@@ -4,6 +4,8 @@ $('.tablaTipoMembresias').DataTable({
     "retrieve": true,
     "processing": true,
     "order": [[0, "asc"]],
+    "pageLength": 20,
+    "lengthMenu": [[20, 40, 60, -1], [20, 40, 60, 'Todos']],
     "language": {
 			"sProcessing":     "Procesando...",
 			"sLengthMenu":     "Mostrar _MENU_ registros",
@@ -95,6 +97,8 @@ $('.tablaPrecioMembresias').DataTable({
   "retrieve": true,
   "processing": true,
   "order": [[0, "asc"]],
+	"pageLength": 20,
+	"lengthMenu": [[20, 40, 60, -1], [20, 40, 60, 'Todos']],
   "language": {
     "sProcessing":     "Procesando...",
     "sLengthMenu":     "Mostrar _MENU_ registros",
@@ -188,6 +192,8 @@ $('.tablaMembresias').DataTable({
   "retrieve": true,
   "processing": true,
   "order": [[0, "asc"]],
+	"pageLength": 20,
+	"lengthMenu": [[20, 40, 60, -1], [20, 40, 60, 'Todos']],
   "language": {
     "sProcessing":     "Procesando...",
     "sLengthMenu":     "Mostrar _MENU_ registros",
@@ -489,6 +495,8 @@ $(".tablaMembresias").on("click", ".btnEnviarWhatsapp", function(){
     "retrieve": true,
     "processing": true,
     "order": [[0, "asc"]],
+    "pageLength": 20,
+    "lengthMenu": [[20, 40, 60, -1], [20, 40, 60, 'Todos']],
     "language": {
       "sProcessing":     "Procesando...",
       "sLengthMenu":     "Mostrar _MENU_ registros",
@@ -521,6 +529,8 @@ $(".tablaMembresias").on("click", ".btnEnviarWhatsapp", function(){
     "retrieve": true,
     "processing": true,
     "order": [[0, "asc"]],
+    "pageLength": 20,
+    "lengthMenu": [[20, 40, 60, -1], [20, 40, 60, 'Todos']],
     "language": {
       "sProcessing":     "Procesando...",
       "sLengthMenu":     "Mostrar _MENU_ registros",
@@ -553,6 +563,8 @@ $(".tablaMembresias").on("click", ".btnEnviarWhatsapp", function(){
     "retrieve": true,
     "processing": true,
     "order": [[0, "asc"]],
+    "pageLength": 20,
+    "lengthMenu": [[20, 40, 60, -1], [20, 40, 60, 'Todos']],
     "language": {
       "sProcessing":     "Procesando...",
       "sLengthMenu":     "Mostrar _MENU_ registros",
