@@ -545,7 +545,7 @@ class ModeloMembresias{
 
 	static public function mdlRenovarMembresia($tabla,$datos){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_tipo_membresia,id_precio_membresia,fecha_inicio,fecha_fin,comprobante,id_usuario,id_miembro,estado) VALUES (:id_tipo_membresia,:fecha_inicio,:fecha_fin,:comprobante,:id_usuario,:id_miembro,:estado)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_tipo_membresia,id_precio_membresia,fecha_inicio,fecha_fin,comprobante,id_usuario,id_miembro,estado) VALUES (:id_tipo_membresia,:id_precio_membresia,:fecha_inicio,:fecha_fin,:comprobante,:id_usuario,:id_miembro,:estado)");
 
         $stmt->bindParam(":id_tipo_membresia", $datos["id_tipo_membresia"], PDO::PARAM_STR);
 		$stmt->bindParam(":id_precio_membresia", $datos["id_precio_membresia"], PDO::PARAM_STR);

@@ -34,6 +34,8 @@ class ControladorUsuarios{
 						$_SESSION["perfil"] = $respuesta["perfil"];
 						$_SESSION["empresa"] = $respuesta["id_empresa"];
 						$_SESSION["miembro"] = $respuesta["id_miembro"];
+						$_SESSION["datos"] = $respuesta["datos"];
+						$_SESSION["correo"] = $respuesta["correo"];
 
 						/*=============================================
 						REGISTRAR FECHA PARA SABER EL ÚLTIMO LOGIN
@@ -453,6 +455,20 @@ class ControladorUsuarios{
 					$usuario_permiso=ModeloUsuarios::mdlIngresarPermiso($tabla2,$datos2);
 				}
 
+				date_default_timezone_set('America/Lima');
+				$fecha = new DateTime();
+				$user=ControladorUsuarios::ctrMostrarUsuarios("id",$_POST["idUsuario"]);
+				$usuario= $_SESSION["nombre"];
+				$descripcion   = 'El usuario '.$usuario.' edito al usuario '.$user["nombre"];
+				
+				if($_SESSION["datos"] == 1){
+					$datos2= array( "usuario" => $usuario,
+									"concepto" => $descripcion,
+									"fecha" => $fecha->format("Y-m-d H:i:s"));
+					$auditoria=ModeloUsuarios::mdlIngresarAuditoria("auditoria",$datos2);
+				}
+
+
 
 				if($respuesta == "ok"){
 
@@ -523,6 +539,19 @@ class ControladorUsuarios{
 			$tabla2="usuario_permiso";
 			$borrado=ModeloUsuarios::mdlBorrarUsuarioPermiso($tabla2, $datos);
 
+			date_default_timezone_set('America/Lima');
+			$fecha = new DateTime();
+			$user=ControladorUsuarios::ctrMostrarUsuarios("id",$datos);
+			$usuario= $_SESSION["nombre"];
+			$descripcion   = 'El usuario '.$usuario.' elimino al usuario '.$user["nombre"];
+			
+			if($_SESSION["datos"] == 1){
+				$datos2= array( "usuario" => $usuario,
+								"concepto" => $descripcion,
+								"fecha" => $fecha->format("Y-m-d H:i:s"));
+				$auditoria=ModeloUsuarios::mdlIngresarAuditoria("auditoria",$datos2);
+			}
+
 			if($respuesta == "ok"){
 
 				echo'<script>
@@ -571,8 +600,21 @@ class ControladorUsuarios{
 			}else{
 				$valor1=$_POST["nuevoDatos"];
 			}
-			var_dump($valor3);
+			// var_dump($valor3);
 			$respuesta = ModeloUsuarios::mdlActualizarCorreo($tabla, $item1, $valor1, $item2, $valor2, $item3, $valor3);
+
+			date_default_timezone_set('America/Lima');
+			$fecha = new DateTime();
+			$user=ControladorUsuarios::ctrMostrarUsuarios("id",$_POST["idUsuarioCorreo"]);
+			$usuario= $_SESSION["nombre"];
+			$descripcion   = 'El usuario '.$usuario.' actualizo el guardado de auditoria de '.$user["nombre"];
+			
+			if($_SESSION["datos"] == 1){
+				$datos2= array( "usuario" => $usuario,
+								"concepto" => $descripcion,
+								"fecha" => $fecha->format("Y-m-d H:i:s"));
+				$auditoria=ModeloUsuarios::mdlIngresarAuditoria("auditoria",$datos2);
+			}
 
 			if($respuesta == "ok"){
 

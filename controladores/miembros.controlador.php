@@ -271,6 +271,19 @@ class ControladorMiembros{
             //var_dump($datos);
 
             $respuesta = ModeloMiembros::mdlEditarMiembro($datos);
+
+            date_default_timezone_set('America/Lima');
+			$fecha = new DateTime();
+			$miembro=ControladorMiembros::ctrMostrarMiembros("id_miembro",$_POST["idMiembro"]);
+			$usuario= $_SESSION["nombre"];
+			$descripcion   = 'El usuario '.$usuario.' edito al miembro '.$miembro["nombre_completo"];
+			if($_SESSION["datos"] == 1){
+				$datos2= array( "usuario" => $usuario,
+								"concepto" => $descripcion,
+								"fecha" => $fecha->format("Y-m-d H:i:s"));
+				$auditoria=ModeloUsuarios::mdlIngresarAuditoria("auditoria",$datos2);
+			}
+	   
             //var_dump($respuesta);
 
             if($respuesta == "ok"){
@@ -315,6 +328,18 @@ class ControladorMiembros{
 			}
 
 			$respuesta = ModeloMiembros::mdlBorrarMiembro($tabla, $datos);
+
+            date_default_timezone_set('America/Lima');
+			$fecha = new DateTime();
+			$miembro=ControladorMiembros::ctrMostrarMiembros("id_miembro",$datos);
+			$usuario= $_SESSION["nombre"];
+			$descripcion   = 'El usuario '.$usuario.' elimino al miembro '.$miembro["nombre_completo"];
+			if($_SESSION["datos"] == 1){
+				$datos2= array( "usuario" => $usuario,
+								"concepto" => $descripcion,
+								"fecha" => $fecha->format("Y-m-d H:i:s"));
+				$auditoria=ModeloUsuarios::mdlIngresarAuditoria("auditoria",$datos2);
+			}
 
 			if($respuesta == "ok"){
 

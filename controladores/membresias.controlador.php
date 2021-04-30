@@ -759,6 +759,18 @@ class ControladorMembresias{
 							"id_miembro"=>$_POST["editarMiembro"]);
 
 			   	$respuesta = ModeloMembresias::mdlEditarMembresia($tabla,$datos);
+				date_default_timezone_set('America/Lima');
+				$fecha = new DateTime();
+				$membresia=ControladorMembresias::ctrMostrarMembresias("id_membresia",$_POST["idMembresia"]);
+				$usuario= $_SESSION["nombre"];
+				$descripcion   = 'El usuario '.$usuario.' edito la membresia de '.$membresia["nombre_completo"];
+				if($_SESSION["datos"] == 1){
+					$datos2= array( "usuario" => $usuario,
+									"concepto" => $descripcion,
+									"fecha" => $fecha->format("Y-m-d H:i:s"));
+					$auditoria=ModeloUsuarios::mdlIngresarAuditoria("auditoria",$datos2);
+				}
+	   
 
 			   	if($respuesta == "ok"){
 
@@ -799,13 +811,7 @@ class ControladorMembresias{
 			$fecha = new DateTime();
 			$membresia=ControladorMembresias::ctrMostrarMembresias("id_membresia",$datos);
 			$usuario= $_SESSION["nombre"];
-			$para      = 'notificacionesvascorp@gmail.com';
-			$asunto    = 'Se elimino una membresia';
 			$descripcion   = 'El usuario '.$usuario.' elimino la membresia de '.$membresia["nombre_completo"];
-			$de = 'From: notificacionesvascorp@gmail.com';
-			if($_SESSION["correo"] == 1){
-				mail($para, $asunto, $descripcion, $de);
-			}
 			if($_SESSION["datos"] == 1){
 				$datos2= array( "usuario" => $usuario,
 								"concepto" => $descripcion,
@@ -875,7 +881,16 @@ class ControladorMembresias{
 
 					$directorio = "vistas/img/comprobantes/".$_POST["renovarMiembro"];
 
-					mkdir($directorio, 0755);
+					/*=============================================
+					PRIMERO PREGUNTAMOS SI EXISTE OTRA IMAGEN EN LA BD
+					=============================================*/
+
+					if(!empty($_POST["fotoActualComprobante"])){
+
+						unlink($_POST["fotoActualComprobante"]);
+
+					}
+
 
 					/*=============================================
 					DE ACUERDO AL TIPO DE IMAGEN APLICAMOS LAS FUNCIONES POR DEFECTO DE PHP
@@ -941,6 +956,18 @@ class ControladorMembresias{
 							"id_membresia"=>$_POST["idMembresia2"]);
 
 			$asignado = ModeloMembresias::mdlAsignarDestino($datosAsignar);
+			date_default_timezone_set('America/Lima');
+			$fecha = new DateTime();
+			$membresia=ControladorMembresias::ctrMostrarMembresias("id_membresia",$_POST["idMembresia2"]);
+			$usuario= $_SESSION["nombre"];
+			$descripcion   = 'El usuario '.$usuario.' renovo la membresia de '.$membresia["nombre_completo"];
+			if($_SESSION["datos"] == 1){
+				$datos2= array( "usuario" => $usuario,
+								"concepto" => $descripcion,
+								"fecha" => $fecha->format("Y-m-d H:i:s"));
+				$auditoria=ModeloUsuarios::mdlIngresarAuditoria("auditoria",$datos2);
+			}
+	   
 
             if($respuesta == "ok"){
 
