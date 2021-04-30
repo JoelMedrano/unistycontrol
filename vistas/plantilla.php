@@ -50,6 +50,10 @@ session_start();
   <!-- SELECT2 -->
   <link rel="stylesheet" href="vistas/bower_components/bootstrap-select/dist/css/bootstrap-select.min.css">
 
+  
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="vistas/bower_components/bootstrap-daterangepicker/daterangepicker.css">  
+
   <!-- Toastr -->
   <link rel="stylesheet" href="vistas/bower_components/toastr/toastr.min.css">
 
@@ -70,6 +74,10 @@ session_start();
   <script src="vistas/dist/js/adminlte.min.js"></script>
 
   <script src="vistas/bower_components/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+
+  <!-- daterangepicker http://www.daterangepicker.com/-->
+  <script src="vistas/bower_components/moment/min/moment.min.js"></script>
+  <script src="vistas/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>  
   
   <!-- DataTables -->
   <script src="vistas/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>

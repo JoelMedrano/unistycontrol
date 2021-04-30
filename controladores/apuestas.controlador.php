@@ -94,6 +94,26 @@ class ControladorApuestas{
 
     }
 
+    static public function ctrRangoFechasApuestasPlayer($fechaInicial,$fechaFinal,$empresa,$usuario){
+        $tabla="apuestas";
+
+        $respuesta = ModeloApuestas::mdlRangoFechasApuestasPlayer($tabla, $fechaInicial,$fechaFinal,$empresa,$usuario);
+
+		return $respuesta;
+
+    }
+
+    static public function ctrRangoFechasApuestas($fechaInicial,$fechaFinal,$empresa){
+        $tabla="apuestas";
+
+        $respuesta = ModeloApuestas::mdlRangoFechasApuestas($tabla, $fechaInicial,$fechaFinal,$empresa);
+
+		return $respuesta;
+
+    }
+
+
+
    /* 
     *Editar apuesta
     */

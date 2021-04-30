@@ -13,8 +13,10 @@ class TablaApuestas{
 
     public function mostrarTablaApuestas(){
 
-        $empresa = $_SESSION["empresa"];
-        $apuestas = ControladorApuestas::ctrListarApuestasEmpresa($empresa);
+        $empresa = $_GET["empresa"];
+        $fechaInicial= $_GET["fechaInicial"];
+        $fechaFinal= $_GET["fechaFinal"];
+        $apuestas = ControladorApuestas::ctrRangoFechasApuestas($fechaInicial,$fechaFinal,$empresa);
 
         if(count($apuestas)>0){
 

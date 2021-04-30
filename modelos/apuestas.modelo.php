@@ -393,5 +393,444 @@ class ModeloApuestas{
 
 	}    
 
+    /*=============================================
+	RANGO FECHAS APUESTAS PLAYER
+	=============================================*/	
+
+	static public function mdlRangoFechasApuestasPlayer($tabla, $fechaInicial, $fechaFinal,$empresa,$usuario){
+
+		if($fechaInicial == "null"){
+
+			$stmt = Conexion::conectar()->prepare("SELECT 
+            a.id_apuestas,
+            a.id_empresa,
+            em.nombre AS nombre_empresa,
+            a.id_tipo_membresia,
+            tm.nombre_membresia,
+            a.tipo_apuesta,
+            CASE
+            WHEN a.tipo_apuesta = '1' 
+            THEN 'Recomendada' 
+            ELSE 'MVP'  
+            END AS tipo_apuesta_nombre,
+            DATE(a.fecha) AS fecha,
+            a.partido,
+            a.pronostico,
+            a.cuota,
+            a.monto,
+            a.estado 
+        FROM
+            apuestas a 
+            LEFT JOIN empresa em 
+            ON a.id_empresa = em.id_empresa 
+            LEFT JOIN tipo_membresia tm 
+            ON a.id_tipo_membresia = tm.id_tipo_membresia 
+        WHERE a.id_empresa = $empresa AND a.id_usuario = $usuario AND a.eliminado=1");
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();	
+
+
+		}else if($fechaInicial == $fechaFinal){
+
+			$stmt = Conexion::conectar()->prepare("SELECT 
+            a.id_apuestas,
+            a.id_empresa,
+            em.nombre AS nombre_empresa,
+            a.id_tipo_membresia,
+            tm.nombre_membresia,
+            a.tipo_apuesta,
+            CASE
+            WHEN a.tipo_apuesta = '1' 
+            THEN 'Recomendada' 
+            ELSE 'MVP'  
+            END AS tipo_apuesta_nombre,
+            DATE(a.fecha) AS fecha,
+            a.partido,
+            a.pronostico,
+            a.cuota,
+            a.monto,
+            a.estado 
+        FROM
+            apuestas a 
+            LEFT JOIN empresa em 
+            ON a.id_empresa = em.id_empresa 
+            LEFT JOIN tipo_membresia tm 
+            ON a.id_tipo_membresia = tm.id_tipo_membresia 
+        WHERE a.id_empresa = $empresa AND a.id_usuario = $usuario 
+        AND a.eliminado=1 AND DATE(a.fecha) like '%$fechaFinal%'");
+
+			$stmt -> bindParam(":fecha", $fechaFinal, PDO::PARAM_STR);
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}else{
+
+			$fechaActual = new DateTime();
+			$fechaActual ->add(new DateInterval("P1D"));
+			$fechaActualMasUno = $fechaActual->format("Y-m-d");
+
+			$fechaFinal2 = new DateTime($fechaFinal);
+			$fechaFinal2 ->add(new DateInterval("P1D"));
+			$fechaFinalMasUno = $fechaFinal2->format("Y-m-d");
+
+			if($fechaFinalMasUno == $fechaActualMasUno){
+
+				$stmt = Conexion::conectar()->prepare("SELECT 
+                a.id_apuestas,
+                a.id_empresa,
+                em.nombre AS nombre_empresa,
+                a.id_tipo_membresia,
+                tm.nombre_membresia,
+                a.tipo_apuesta,
+                CASE
+                WHEN a.tipo_apuesta = '1' 
+                THEN 'Recomendada' 
+                ELSE 'MVP'  
+                END AS tipo_apuesta_nombre,
+                DATE(a.fecha) AS fecha,
+                a.partido,
+                a.pronostico,
+                a.cuota,
+                a.monto,
+                a.estado 
+            FROM
+                apuestas a 
+                LEFT JOIN empresa em 
+                ON a.id_empresa = em.id_empresa 
+                LEFT JOIN tipo_membresia tm 
+                ON a.id_tipo_membresia = tm.id_tipo_membresia 
+            WHERE a.id_empresa = $empresa AND a.id_usuario = $usuario 
+            AND DATE(a.fecha) BETWEEN '$fechaInicial' AND '$fechaFinalMasUno'");
+
+			}else{
+
+
+				$stmt = Conexion::conectar()->prepare("SELECT 
+                a.id_apuestas,
+                a.id_empresa,
+                em.nombre AS nombre_empresa,
+                a.id_tipo_membresia,
+                tm.nombre_membresia,
+                a.tipo_apuesta,
+                CASE
+                WHEN a.tipo_apuesta = '1' 
+                THEN 'Recomendada' 
+                ELSE 'MVP'  
+                END AS tipo_apuesta_nombre,
+                DATE(a.fecha) AS fecha,
+                a.partido,
+                a.pronostico,
+                a.cuota,
+                a.monto,
+                a.estado 
+            FROM
+                apuestas a 
+                LEFT JOIN empresa em 
+                ON a.id_empresa = em.id_empresa 
+                LEFT JOIN tipo_membresia tm 
+                ON a.id_tipo_membresia = tm.id_tipo_membresia 
+            WHERE a.id_empresa = $empresa AND a.id_usuario = $usuario 
+            AND DATE(a.fecha) BETWEEN '$fechaInicial' AND '$fechaFinal'");
+
+			}
+		
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}
+
+	}
+
+    /*=============================================
+	RANGO FECHAS APUESTAS 
+	=============================================*/	
+
+	static public function mdlRangoFechasApuestas($tabla, $fechaInicial, $fechaFinal,$empresa){
+
+		if($fechaInicial == "null"){
+
+            if($empresa == "0"){
+                $stmt = Conexion::conectar()->prepare("SELECT 
+                a.id_apuestas,
+                a.id_empresa,
+                em.nombre AS nombre_empresa,
+                a.id_tipo_membresia,
+                tm.nombre_membresia,
+                a.tipo_apuesta,
+                CASE
+                WHEN a.tipo_apuesta = '1' 
+                THEN 'Recomendada' 
+                ELSE 'MVP'  
+                END AS tipo_apuesta_nombre,
+                DATE(a.fecha) AS fecha,
+                a.partido,
+                a.pronostico,
+                a.cuota,
+                a.monto,
+                a.estado 
+            FROM
+                apuestas a 
+                LEFT JOIN empresa em 
+                ON a.id_empresa = em.id_empresa 
+                LEFT JOIN tipo_membresia tm 
+                ON a.id_tipo_membresia = tm.id_tipo_membresia 
+            WHERE  a.eliminado=1");
+
+            }else{
+
+                $stmt = Conexion::conectar()->prepare("SELECT 
+                a.id_apuestas,
+                a.id_empresa,
+                em.nombre AS nombre_empresa,
+                a.id_tipo_membresia,
+                tm.nombre_membresia,
+                a.tipo_apuesta,
+                CASE
+                WHEN a.tipo_apuesta = '1' 
+                THEN 'Recomendada' 
+                ELSE 'MVP'  
+                END AS tipo_apuesta_nombre,
+                DATE(a.fecha) AS fecha,
+                a.partido,
+                a.pronostico,
+                a.cuota,
+                a.monto,
+                a.estado 
+            FROM
+                apuestas a 
+                LEFT JOIN empresa em 
+                ON a.id_empresa = em.id_empresa 
+                LEFT JOIN tipo_membresia tm 
+                ON a.id_tipo_membresia = tm.id_tipo_membresia 
+            WHERE a.id_empresa = $empresa  AND a.eliminado=1");
+
+            }
+
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();	
+
+
+		}else if($fechaInicial == $fechaFinal){
+
+            if($empresa == "0"){
+                $stmt = Conexion::conectar()->prepare("SELECT 
+                a.id_apuestas,
+                a.id_empresa,
+                em.nombre AS nombre_empresa,
+                a.id_tipo_membresia,
+                tm.nombre_membresia,
+                a.tipo_apuesta,
+                CASE
+                WHEN a.tipo_apuesta = '1' 
+                THEN 'Recomendada' 
+                ELSE 'MVP'  
+                END AS tipo_apuesta_nombre,
+                DATE(a.fecha) AS fecha,
+                a.partido,
+                a.pronostico,
+                a.cuota,
+                a.monto,
+                a.estado 
+            FROM
+                apuestas a 
+                LEFT JOIN empresa em 
+                ON a.id_empresa = em.id_empresa 
+                LEFT JOIN tipo_membresia tm 
+                ON a.id_tipo_membresia = tm.id_tipo_membresia 
+            WHERE a.eliminado=1 AND DATE(a.fecha) like '%$fechaFinal%'");
+
+
+            }else{
+                $stmt = Conexion::conectar()->prepare("SELECT 
+                a.id_apuestas,
+                a.id_empresa,
+                em.nombre AS nombre_empresa,
+                a.id_tipo_membresia,
+                tm.nombre_membresia,
+                a.tipo_apuesta,
+                CASE
+                WHEN a.tipo_apuesta = '1' 
+                THEN 'Recomendada' 
+                ELSE 'MVP'  
+                END AS tipo_apuesta_nombre,
+                DATE(a.fecha) AS fecha,
+                a.partido,
+                a.pronostico,
+                a.cuota,
+                a.monto,
+                a.estado 
+            FROM
+                apuestas a 
+                LEFT JOIN empresa em 
+                ON a.id_empresa = em.id_empresa 
+                LEFT JOIN tipo_membresia tm 
+                ON a.id_tipo_membresia = tm.id_tipo_membresia 
+            WHERE a.id_empresa = $empresa 
+            AND a.eliminado=1 AND DATE(a.fecha) like '%$fechaFinal%'");
+
+
+            }
+
+			
+
+			$stmt -> bindParam(":fecha", $fechaFinal, PDO::PARAM_STR);
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}else{
+
+			$fechaActual = new DateTime();
+			$fechaActual ->add(new DateInterval("P1D"));
+			$fechaActualMasUno = $fechaActual->format("Y-m-d");
+
+			$fechaFinal2 = new DateTime($fechaFinal);
+			$fechaFinal2 ->add(new DateInterval("P1D"));
+			$fechaFinalMasUno = $fechaFinal2->format("Y-m-d");
+
+			if($fechaFinalMasUno == $fechaActualMasUno){
+
+                if($empresa == "0"){
+                    $stmt = Conexion::conectar()->prepare("SELECT 
+                    a.id_apuestas,
+                    a.id_empresa,
+                    em.nombre AS nombre_empresa,
+                    a.id_tipo_membresia,
+                    tm.nombre_membresia,
+                    a.tipo_apuesta,
+                    CASE
+                    WHEN a.tipo_apuesta = '1' 
+                    THEN 'Recomendada' 
+                    ELSE 'MVP'  
+                    END AS tipo_apuesta_nombre,
+                    DATE(a.fecha) AS fecha,
+                    a.partido,
+                    a.pronostico,
+                    a.cuota,
+                    a.monto,
+                    a.estado 
+                FROM
+                    apuestas a 
+                    LEFT JOIN empresa em 
+                    ON a.id_empresa = em.id_empresa 
+                    LEFT JOIN tipo_membresia tm 
+                    ON a.id_tipo_membresia = tm.id_tipo_membresia 
+                WHERE  DATE(a.fecha) BETWEEN '$fechaInicial' AND '$fechaFinalMasUno'");
+
+                }else{
+
+                    $stmt = Conexion::conectar()->prepare("SELECT 
+                    a.id_apuestas,
+                    a.id_empresa,
+                    em.nombre AS nombre_empresa,
+                    a.id_tipo_membresia,
+                    tm.nombre_membresia,
+                    a.tipo_apuesta,
+                    CASE
+                    WHEN a.tipo_apuesta = '1' 
+                    THEN 'Recomendada' 
+                    ELSE 'MVP'  
+                    END AS tipo_apuesta_nombre,
+                    DATE(a.fecha) AS fecha,
+                    a.partido,
+                    a.pronostico,
+                    a.cuota,
+                    a.monto,
+                    a.estado 
+                FROM
+                    apuestas a 
+                    LEFT JOIN empresa em 
+                    ON a.id_empresa = em.id_empresa 
+                    LEFT JOIN tipo_membresia tm 
+                    ON a.id_tipo_membresia = tm.id_tipo_membresia 
+                WHERE a.id_empresa = $empresa
+                AND DATE(a.fecha) BETWEEN '$fechaInicial' AND '$fechaFinalMasUno'");
+
+                }
+
+				
+
+			}else{
+                if($empresa == "0"){
+
+                    $stmt = Conexion::conectar()->prepare("SELECT 
+                    a.id_apuestas,
+                    a.id_empresa,
+                    em.nombre AS nombre_empresa,
+                    a.id_tipo_membresia,
+                    tm.nombre_membresia,
+                    a.tipo_apuesta,
+                    CASE
+                    WHEN a.tipo_apuesta = '1' 
+                    THEN 'Recomendada' 
+                    ELSE 'MVP'  
+                    END AS tipo_apuesta_nombre,
+                    DATE(a.fecha) AS fecha,
+                    a.partido,
+                    a.pronostico,
+                    a.cuota,
+                    a.monto,
+                    a.estado 
+                FROM
+                    apuestas a 
+                    LEFT JOIN empresa em 
+                    ON a.id_empresa = em.id_empresa 
+                    LEFT JOIN tipo_membresia tm 
+                    ON a.id_tipo_membresia = tm.id_tipo_membresia 
+                WHERE a.id_empresa = $empresa 
+                AND DATE(a.fecha) BETWEEN '$fechaInicial' AND '$fechaFinal'");
+
+                }else{
+
+                    $stmt = Conexion::conectar()->prepare("SELECT 
+                    a.id_apuestas,
+                    a.id_empresa,
+                    em.nombre AS nombre_empresa,
+                    a.id_tipo_membresia,
+                    tm.nombre_membresia,
+                    a.tipo_apuesta,
+                    CASE
+                    WHEN a.tipo_apuesta = '1' 
+                    THEN 'Recomendada' 
+                    ELSE 'MVP'  
+                    END AS tipo_apuesta_nombre,
+                    DATE(a.fecha) AS fecha,
+                    a.partido,
+                    a.pronostico,
+                    a.cuota,
+                    a.monto,
+                    a.estado 
+                FROM
+                    apuestas a 
+                    LEFT JOIN empresa em 
+                    ON a.id_empresa = em.id_empresa 
+                    LEFT JOIN tipo_membresia tm 
+                    ON a.id_tipo_membresia = tm.id_tipo_membresia 
+                WHERE a.id_empresa = $empresa 
+                AND DATE(a.fecha) BETWEEN '$fechaInicial' AND '$fechaFinal'");
+
+                }
+ 
+
+				
+
+			}
+		
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}
+
+	}
+
 
 }

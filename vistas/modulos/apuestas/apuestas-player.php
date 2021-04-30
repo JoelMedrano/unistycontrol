@@ -34,6 +34,35 @@
 
                 </button>
 
+                <button type="button" class="btn btn-default pull-right" id="daterange-btnApuestasPlayer">
+                    <span>
+                        <i class="fa fa-calendar"></i>
+
+                        <?php
+
+                        if(isset($_GET["fechaInicial2"])){
+
+                            echo $_GET["fechaInicial2"]." - ".$_GET["fechaFinal2"];
+
+                        }else{
+                        
+                            echo 'Rango de fecha';
+
+                        }
+
+                        ?>
+
+                    </span>
+
+                    <i class="fa fa-caret-down"></i>
+
+                </button>
+
+                <?php 
+                    echo"<input type='hidden' id= 'userDate' value='".$_SESSION["id"]."'> ";
+                    echo"<input type='hidden' id= 'empresaDate' value='".$_SESSION["empresa"]."'> ";
+                ?>
+
             </div>
 
             <div class="box-body">
@@ -49,7 +78,7 @@
                             <th>Estado</th>
                             <th>Cuota</th>
                             <th style="width:40px">Monto</th>
-                            <th>Pronóstico</th> 
+                            <th style="width:300px">Pronóstico</th> 
                             <th>Tipo</th>
                             <th>Fecha</th>                                         
                             <th style="width:150px">Resultado</th>

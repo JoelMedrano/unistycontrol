@@ -30,6 +30,34 @@
 
                 </button>
 
+                <button type="button" class="btn btn-default pull-right" id="daterange-btnApuestas">
+                    <span>
+                        <i class="fa fa-calendar"></i>
+
+                        <?php
+
+                        if(isset($_GET["fechaInicial"])){
+
+                            echo $_GET["fechaInicial"]." - ".$_GET["fechaFinal"];
+
+                        }else{
+                        
+                            echo 'Rango de fecha';
+
+                        }
+
+                        ?>
+
+                    </span>
+
+                    <i class="fa fa-caret-down"></i>
+
+                </button>
+
+                <?php 
+                    echo"<input type='hidden' id= 'empresaDate' value='".$_SESSION["empresa"]."'> ";
+                ?>
+
             </div>
 
             <div class="box-body">

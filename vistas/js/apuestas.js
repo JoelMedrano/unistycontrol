@@ -72,12 +72,25 @@ $("#editarEmpresa").change(function(){
 
 })
 
+/*=============================================
+CARGAR LA TABLA DINÁMICA DE APUESTAS PLAYER
+=============================================*/
+
+if (localStorage.getItem("capturarRango") != null) {
+	$("#daterange-btnApuestas span").html(localStorage.getItem("capturarRango"));
+  
+	cargarTablaApuestas(localStorage.getItem("fechaInicial"), localStorage.getItem("fechaFinal"),$("#empresaDate").val());
+} else {
+	$("#daterange-btnApuestas span").html('<i class="fa fa-calendar"></i> Rango de Fecha ');
+	cargarTablaApuestas(null, null,$("#empresaDate").val());
+}
 
 /* 
-*tabla apuestas
+* TABLA PARA APUESTAS PLAYER
 */
+function cargarTablaApuestas(fechaInicial,fechaFinal,empresa) {
 $('.tablaApuestas').DataTable({
-  "ajax": "ajax/apuestas/tabla-apuestas.ajax.php?perfil="+$("#perfilOculto").val(),
+  "ajax": "ajax/apuestas/tabla-apuestas.ajax.php?perfil="+$("#perfilOculto").val()+ "&fechaInicial=" + fechaInicial + "&fechaFinal=" + fechaFinal+ "&empresa=" + empresa,
   "deferRender": true,
   "retrieve": true,
   "processing": true,
@@ -109,6 +122,7 @@ $('.tablaApuestas').DataTable({
     }
   },
 });
+}
 
 /*
 *EDITAR APUESTA
@@ -350,8 +364,26 @@ $(".tablaApuestas, .tablaApuestasPlayer").on("click",".btnReiniciarApuesta",func
 
 });
 
+/*=============================================
+CARGAR LA TABLA DINÁMICA DE APUESTAS PLAYER
+=============================================*/
+
+if (localStorage.getItem("capturarRango2") != null) {
+	$("#daterange-btnApuestasPlayer span").html(localStorage.getItem("capturarRango2"));
+  
+	cargarTablaApuestasPlayer(localStorage.getItem("fechaInicial2"), localStorage.getItem("fechaFinal2"),$("#empresaDate").val(),$("#userDate").val());
+} else {
+	$("#daterange-btnApuestasPlayer span").html('<i class="fa fa-calendar"></i> Rango de Fecha ');
+	cargarTablaApuestasPlayer(null, null,$("#empresaDate").val(),$("#userDate").val());
+}
+
+/* 
+* TABLA PARA APUESTAS PLAYER
+*/
+function cargarTablaApuestasPlayer(fechaInicial,fechaFinal,empresa,usuario) {
+
 $('.tablaApuestasPlayer').DataTable({
-  "ajax": "ajax/apuestas/tabla-apuestas-player.ajax.php?perfil="+$("#perfilOculto").val(),
+  "ajax": "ajax/apuestas/tabla-apuestas-player.ajax.php?perfil="+$("#perfilOculto").val() + "&fechaInicial2=" + fechaInicial + "&fechaFinal2=" + fechaFinal+ "&empresa=" + empresa + "&usuario=" + usuario,
   "deferRender": true,
   "retrieve": true,
   "processing": true,
@@ -383,3 +415,239 @@ $('.tablaApuestasPlayer').DataTable({
     }
   },
 });
+
+}
+
+
+
+/*=============================================
+RANGO DE FECHAS APUESTAS PLAYER
+=============================================*/
+
+$("#daterange-btnApuestasPlayer").daterangepicker(
+  {
+    cancelClass: "CancelarApuestasPlayer",
+    locale:{
+  "daysOfWeek": [
+    "Dom",
+    "Lun",
+    "Mar",
+    "Mie",
+    "Jue",
+    "Vie",
+    "Sab"
+  ],
+  "monthNames": [
+    "Enero",
+    "Febrero",
+    "Marzo",
+    "Abril",
+    "Mayo",
+    "Junio",
+    "Julio",
+    "Agosto",
+    "Septiembre",
+    "Octubre",
+    "Noviembre",
+    "Diciembre"
+  ],
+  },
+    ranges: {
+      Hoy: [moment(), moment()],
+      Ayer: [moment().subtract(1, "days"), moment().subtract(1, "days")],
+      "Últimos 7 días": [moment().subtract(6, "days"), moment()],
+      "Últimos 30 días": [moment().subtract(29, "days"), moment()],
+      "Este mes": [moment().startOf("month"), moment().endOf("month")],
+      "Último mes": [
+        moment()
+          .subtract(1, "month")
+          .startOf("month"),
+        moment()
+          .subtract(1, "month")
+          .endOf("month")
+      ]
+    },
+    
+    startDate: moment(),
+    endDate: moment()
+  },
+  function(start, end) {
+    $("#daterange-btnApuestasPlayer span").html(
+      start.format("MMMM D, YYYY") + " - " + end.format("MMMM D, YYYY")
+    );
+
+    var fechaInicial = start.format("YYYY-MM-DD");
+
+    var fechaFinal = end.format("YYYY-MM-DD");
+
+    var capturarRango2 = $("#daterange-btnApuestasPlayer span").html();
+  
+    localStorage.setItem("capturarRango2", capturarRango2);
+    localStorage.setItem("fechaInicial2", localStorage.getItem("fechaInicial2"));
+    localStorage.setItem("fechaFinal2", localStorage.getItem("fechaFinal2"));
+
+    // Recargamos la tabla con la información para ser mostrada en la tabla
+    $(".tablaApuestasPlayer").DataTable().destroy();
+    cargarTablaApuestasPlayer(fechaInicial, fechaFinal);
+  });
+
+/*=============================================
+CANCELAR RANGO DE FECHAS
+=============================================*/
+
+$(".daterangepicker.opensleft .range_inputs .CancelarApuestasPlayer").on(
+  "click",
+  function() {
+    localStorage.removeItem("capturarRango2");
+    localStorage.removeItem("fechaInicial2");
+    localStorage.removeItem("fechaFinal2");
+    localStorage.clear();
+    window.location = "apuestas-player";
+  }
+);
+
+/*=============================================
+CAPTURAR HOY
+=============================================*/
+
+$(".daterangepicker.opensleft .ranges li").on("click", function() {
+  var textoHoy = $(this).attr("data-range-key");
+
+  if (textoHoy == "Hoy") {
+    var d = new Date();
+
+    var dia = d.getDate();
+    var mes = d.getMonth() + 1;
+    var año = d.getFullYear();
+
+    dia = ("0" + dia).slice(-2);
+    mes = ("0" + mes).slice(-2);
+
+    var fechaInicial = año + "-" + mes + "-" + dia;
+    var fechaFinal = año + "-" + mes + "-" + dia;
+
+    localStorage.setItem("capturarRango2", "Hoy");
+    localStorage.setItem("fechaInicial2", fechaInicial);
+    localStorage.setItem("fechaFinal2", fechaFinal);
+  // Recargamos la tabla con la información para ser mostrada en la tabla
+    $(".tablaApuestasPlayer").DataTable().destroy();
+    cargarTablaApuestasPlayer(fechaInicial, fechaFinal);
+  }
+});
+  
+
+/*=============================================
+RANGO DE FECHAS
+=============================================*/
+
+$("#daterange-btnApuestas").daterangepicker(
+  {
+    cancelClass: "CancelarApuestas",
+    locale:{
+  "daysOfWeek": [
+    "Dom",
+    "Lun",
+    "Mar",
+    "Mie",
+    "Jue",
+    "Vie",
+    "Sab"
+  ],
+  "monthNames": [
+    "Enero",
+    "Febrero",
+    "Marzo",
+    "Abril",
+    "Mayo",
+    "Junio",
+    "Julio",
+    "Agosto",
+    "Septiembre",
+    "Octubre",
+    "Noviembre",
+    "Diciembre"
+  ],
+  },
+    ranges: {
+      Hoy: [moment(), moment()],
+      Ayer: [moment().subtract(1, "days"), moment().subtract(1, "days")],
+      "Últimos 7 días": [moment().subtract(6, "days"), moment()],
+      "Últimos 30 días": [moment().subtract(29, "days"), moment()],
+      "Este mes": [moment().startOf("month"), moment().endOf("month")],
+      "Último mes": [
+        moment()
+          .subtract(1, "month")
+          .startOf("month"),
+        moment()
+          .subtract(1, "month")
+          .endOf("month")
+      ]
+    },
+    
+    startDate: moment(),
+    endDate: moment()
+  },
+  function(start, end) {
+    $("#daterange-btnApuestas span").html(
+      start.format("MMMM D, YYYY") + " - " + end.format("MMMM D, YYYY")
+    );
+
+    var fechaInicial = start.format("YYYY-MM-DD");
+
+    var fechaFinal = end.format("YYYY-MM-DD");
+
+    var capturarRango = $("#daterange-btnApuestas span").html();
+  
+    localStorage.setItem("capturarRango", capturarRango);
+    localStorage.setItem("fechaInicial", localStorage.getItem("fechaInicial"));
+    localStorage.setItem("fechaFinal", localStorage.getItem("fechaFinal"));
+
+    // Recargamos la tabla con la información para ser mostrada en la tabla
+    $(".tablaApuestas").DataTable().destroy();
+    cargarTablaApuestas(fechaInicial, fechaFinal);
+  });
+
+/*=============================================
+CANCELAR RANGO DE FECHAS
+=============================================*/
+
+$(".daterangepicker.opensleft .range_inputs .CancelarApuestas").on(
+  "click",
+  function() {
+    localStorage.removeItem("capturarRango");
+    localStorage.removeItem("fechaInicial");
+    localStorage.removeItem("fechaFinal");
+    localStorage.clear();
+    window.location = "apuestas";
+  }
+);
+
+/*=============================================
+CAPTURAR HOY
+=============================================*/
+
+$(".daterangepicker.opensleft .ranges li").on("click", function() {
+  var textoHoy = $(this).attr("data-range-key");
+
+  if (textoHoy == "Hoy") {
+    var d = new Date();
+
+    var dia = d.getDate();
+    var mes = d.getMonth() + 1;
+    var año = d.getFullYear();
+
+    dia = ("0" + dia).slice(-2);
+    mes = ("0" + mes).slice(-2);
+
+    var fechaInicial = año + "-" + mes + "-" + dia;
+    var fechaFinal = año + "-" + mes + "-" + dia;
+
+    localStorage.setItem("capturarRango", "Hoy");
+    localStorage.setItem("fechaInicial", fechaInicial);
+    localStorage.setItem("fechaFinal", fechaFinal);
+  // Recargamos la tabla con la información para ser mostrada en la tabla
+    $(".tablaApuestas").DataTable().destroy();
+    cargarTablaApuestas(fechaInicial, fechaFinal);
+  }
+});
+  
