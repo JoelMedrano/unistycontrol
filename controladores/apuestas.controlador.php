@@ -119,6 +119,18 @@ class ControladorApuestas{
             //var_dump($datos);
 
             $respuesta = ModeloApuestas::mdlEditarApuesta($datos);
+
+            date_default_timezone_set('America/Lima');
+			$fecha = new DateTime();
+			$apuesta=ControladorApuestas::ctrMostrarApuestas("id_apuestas",$_POST["idApuesta"]);
+			$usuario= $_SESSION["nombre"];
+			$descripcion   = 'El usuario '.$usuario.' edito la apuesta del partido '.$apuesta["partido"];
+			if($_SESSION["datos"] == 1){
+				$datos2= array( "usuario" => $usuario,
+								"concepto" => $descripcion,
+								"fecha" => $fecha->format("Y-m-d H:i:s"));
+				$auditoria=ModeloUsuarios::mdlIngresarAuditoria("auditoria",$datos2);
+			}
             //var_dump($respuesta);
 
             if($respuesta == "ok"){
@@ -154,13 +166,43 @@ class ControladorApuestas{
 		if(isset($_GET["idApuesta"])){
 
             $datos = $_GET["idApuesta"];
-            var_dump($datos);
+            // var_dump($datos);
 
 			$respuesta = ModeloApuestas::mdlBorrarApuesta($datos);
-            var_dump($respuesta);
-
+            // var_dump($respuesta);
+            date_default_timezone_set('America/Lima');
+			$fecha = new DateTime();
+			$apuesta=ControladorApuestas::ctrMostrarApuestas("id_apuestas",$datos);
+			$usuario= $_SESSION["nombre"];
+			$descripcion   = 'El usuario '.$usuario.' elimino la apuesta del partido '.$apuesta["partido"];
+			if($_SESSION["datos"] == 1){
+				$datos2= array( "usuario" => $usuario,
+								"concepto" => $descripcion,
+								"fecha" => $fecha->format("Y-m-d H:i:s"));
+				$auditoria=ModeloUsuarios::mdlIngresarAuditoria("auditoria",$datos2);
+			}
 	
 
+            if($respuesta == "ok"){
+
+                echo'<script>
+
+                swal({
+                      type: "success",
+                      title: "La apuesta ha sido eliminada correctamente",
+                      showConfirmButton: true,
+                      confirmButtonText: "Cerrar"
+                      }).then(function(result){
+                                if (result.value) {
+
+                                window.location = "apuestas";
+
+                                }
+                            })
+
+                </script>';
+
+            }      
 		}
 
 	}    

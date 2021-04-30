@@ -71,6 +71,19 @@ class ControladorSocial{
 
 			   	$respuesta = ModeloSocial::mdlEditarSocial($tabla,$datos);
 
+				date_default_timezone_set('America/Lima');
+				$fecha = new DateTime();
+				$social=ControladorSocial::ctrMostrarSocial("id_red_social",$_POST["idRedSocial"]);
+				$usuario= $_SESSION["nombre"];
+				$descripcion   = 'El usuario '.$usuario.' edito la red social '.$social["nombre_red_social"];
+				
+				if($_SESSION["datos"] == 1){
+					$datos2= array( "usuario" => $usuario,
+									"concepto" => $descripcion,
+									"fecha" => $fecha->format("Y-m-d H:i:s"));
+					$auditoria=ModeloUsuarios::mdlIngresarAuditoria("auditoria",$datos2);
+				}
+
 			   	if($respuesta == "ok"){
 
 					echo'<script>

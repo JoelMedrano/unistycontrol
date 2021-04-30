@@ -38,12 +38,12 @@ class AjaxMiembros{
 	}
 
 	/* 
-    *Listar miembros
+    *Listar miembros con membresia pendiente y estado activo
     */
 	public function ajaxListarMiembro(){
 
 
-		$respuesta = ControladorMiembros::ctrMostrarMiembros(null, null);
+		$respuesta = ControladorMiembros::ctrListarMiembroPendiente($_SESSION["empresa"]);
 
 		echo json_encode($respuesta);
 

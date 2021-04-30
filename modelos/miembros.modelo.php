@@ -302,4 +302,30 @@ class ModeloMiembros{
 
 	}
 
+
+    /* 
+    *Listar Miemros pendientes con estado activo por empresa
+    */
+	static public function mdlListarMiembroPendiente($empresa){
+
+        $stmt = Conexion::conectar()->prepare("SELECT 
+        * 
+      FROM
+        miembros 
+      WHERE id_membresia = 0 
+        AND estado = 1 
+        AND id_empresa = $empresa");
+
+        $stmt -> execute();
+
+        return $stmt -> fetchAll();
+
+
+		$stmt -> close();
+
+		$stmt = null;
+
+    }
+
+
 }

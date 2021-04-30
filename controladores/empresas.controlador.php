@@ -198,6 +198,19 @@ class ControladorEmpresas{
 
 				$actualizar = ModeloUsuarios::mdlActualizarUsuario("usuarios","id_empresa",$_POST["idEmpresa"],"id",$_POST["editarResponsable"]);
 
+				date_default_timezone_set('America/Lima');
+				$fecha = new DateTime();
+				$empresa=ControladorEmpresas::ctrMostrarEmpresas("id_empresa",$_POST["idEmpresa"]);
+				$usuario= $_SESSION["nombre"];
+				$descripcion   = 'El usuario '.$usuario.' edito la empresa '.$empresa["nombre"];
+				
+				if($_SESSION["datos"] == 1){
+					$datos2= array( "usuario" => $usuario,
+									"concepto" => $descripcion,
+									"fecha" => $fecha->format("Y-m-d H:i:s"));
+					$auditoria=ModeloUsuarios::mdlIngresarAuditoria("auditoria",$datos2);
+				}
+
 			   	if($respuesta == "ok"){
 
 					echo'<script>
@@ -260,6 +273,20 @@ class ControladorEmpresas{
 			}
 
 			$respuesta = ModeloEmpresas::mdlEliminarEmpresa($tabla,$datos);
+
+			date_default_timezone_set('America/Lima');
+			$fecha = new DateTime();
+			$empresa=ControladorEmpresas::ctrMostrarEmpresas("id_empresa",$_POST["idEmpresa"]);
+			$usuario= $_SESSION["nombre"];
+			$descripcion   = 'El usuario '.$usuario.' elimino la empresa '.$empresa["nombre"];
+			
+			if($_SESSION["datos"] == 1){
+				$datos2= array( "usuario" => $usuario,
+								"concepto" => $descripcion,
+								"fecha" => $fecha->format("Y-m-d H:i:s"));
+				$auditoria=ModeloUsuarios::mdlIngresarAuditoria("auditoria",$datos2);
+			}
+
 			if($respuesta == "ok"){
 				
 				

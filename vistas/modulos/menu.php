@@ -22,7 +22,10 @@
 			in_array(8,$valores)?$_SESSION['dashboard']=1:$_SESSION['dashboard']=0;
 			in_array(9,$valores)?$_SESSION['perfiles']=1:$_SESSION['perfiles']=0;
 
+            
+            if($_SESSION["dashboard"] == 1){
             ?>
+
 
 			<li class="active">
 
@@ -35,6 +38,7 @@
 
 			</li>
 			<?php
+			}
             if($_SESSION["perfiles"] == 1){
             ?>
 
