@@ -16,7 +16,7 @@
         $empresa = 2;
 
         $membresias = ControladorMembresias::ctrSelecTipoMembresias($empresa);
-        var_dump($membresias);
+        //var_dump($membresias);
 
         foreach($membresias as $key => $value){
 
@@ -30,7 +30,7 @@
               <h3 class="profile-username text-center">Tipster Prueba</h3>
               <p class="text-muted text-center">VIP FUTBOL</p>
 
-              <ul class="list-group list-group-unbordered">
+              <ul class="list-group list-group-unbordered" style="margin-bottom:0">
                 <li class="list-group-item" style="height:55px;  align-items:center">
                 <h4><b>Efectividad MVP</b> <a class="pull-right"><b>70 %</b></a></h4>
                 </li>
@@ -51,29 +51,46 @@
             <div class="box-body">
               <strong><i class="fa fa-line-chart margin-r-5"></i>Estadísticas MVP</strong>
 
-              <ul class="nav nav-stacked">
+              <ul class="nav nav-stacked" style="margin-bottom:0">
                 <li><a href="#">Ganadas <span class="pull-right badge bg-green">31</span></a></li>
                 <li><a href="#">Anuladas <span class="pull-right badge bg-yellow">5</span></a></li>
                 <li><a href="#">Perdidas <span class="pull-right badge bg-red">12</span></a></li>
                 <li><a href="#">Pendientes <span class="pull-right badge bg-aqua">842</span></a></li>
               </ul>
 
-              <hr>
+              <strong><i class="fa fa-map-marker margin-r-5"></i> Último MVP</strong>
 
-            </div>
+              <ul class="list-group list-group-unbordered">
 
-            <div class="box-body">
-              <strong><i class="fa fa-line-chart margin-r-5"></i>Estadísticas Recomendadas</strong>
+                <li class="list-group-item">
+                  <b>Partido</b> <a class="pull-right">Manchester United vs As Roma</a>
+                </li>
+                <li class="list-group-item">
+                  <b>Cuota</b> <a class="pull-right">1.88</a>
+                </li>
+                <li class="list-group-item" style="height:80px;  align-items:center" >
+                  <b>Pronóstico</b> <a class="pull-right">Manchester United triunfo | Manchester United -3.5 goles</a>
+                </li>
 
-              <ul class="nav nav-stacked">
-                <li><a href="#">Ganadas <span class="pull-right badge bg-green">31</span></a></li>
-                <li><a href="#">Anuladas <span class="pull-right badge bg-yellow">5</span></a></li>
-                <li><a href="#">Perdidas <span class="pull-right badge bg-red">12</span></a></li>
-                <li><a href="#">Pendientes <span class="pull-right badge bg-aqua">842</span></a></li>
               </ul>
 
+              <strong><i class="fa fa-pencil margin-r-5"></i> Resutado</strong>
+
+              <div atyle="align-item:center">
+                <span class="label label-default">Ganada</span>
+                <span class="label label-default">Anulada</span>
+                <span class="label label-danger">Perdida</span>
+                <span class="label label-default">Pendiente</span>
+              </div>
+
               <hr>
 
+              <strong><i class="fa fa-asterisk margin-r-5"></i> Validado Por</strong>
+              <div align="center">
+              
+              <img src="vistas/img/plantilla/logo-largo-v2.jpeg" width="200" height="50" align="center">
+              </div>
+              
             </div>
 
           </div>
