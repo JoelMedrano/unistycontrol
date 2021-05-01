@@ -13,9 +13,11 @@ class TablaApuestasPlayer{
 
     public function mostrarTablaApuestasPlayer(){
 
-        $empresa = $_SESSION["empresa"];
-        $usuario = $_SESSION["id"];
-        $apuestas = ControladorApuestas::ctrListarApuestasEmpresaUsuario($empresa,$usuario);
+        $empresa = $_GET["empresa"];
+        $usuario = $_GET["usuario"];
+        $fechaInicial= $_GET["fechaInicial2"];
+        $fechaFinal= $_GET["fechaFinal2"];
+        $apuestas = ControladorApuestas::ctrRangoFechasApuestasPlayer($fechaInicial,$fechaFinal,$empresa,$usuario);
 
         if(count($apuestas)>0){
 
@@ -117,7 +119,7 @@ class TablaApuestasPlayer{
             }
             
             $datosJson .= '[
-                "'.($i+1).'",
+                "'.$apuestas[$i]["id_apuestas"].'",
                 "<b>'.$apuestas[$i]["partido"].'</b>",
                 "'.$estado.'",
                 "'.$apuestas[$i]["cuota"].'",
