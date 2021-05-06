@@ -10,6 +10,8 @@
 
     </div>
 
+    
+
     <p class="login-box-msg"><b>Ingresar al sistema</b></p>
 
     <form method="post">
@@ -26,6 +28,15 @@
         <input type="password" class="form-control" placeholder="Contraseña" name="ingPassword" required>
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       
+      </div>
+
+      <div class="row">
+        <div class="form-check" style="padding-left:16px">
+            <input class="form-check-input" type="checkbox" value="1" name="mantener_sesion_abierta" >
+            <label class="form-check-label" for="flexCheckDefault">
+              Mantener sesión activa
+            </label>
+        </div>
       </div>
 
       <div class="row " >

@@ -24,6 +24,13 @@ class ControladorUsuarios{
 
 				if($respuesta["usuario"] == $_POST["ingUsuario"] && $respuesta["password"] == $encriptar){
 
+					// if (!empty($_POST["mantener_sesion_abierta"])) {
+					// 	$sessionTime = 365 * 24 * 60 * 60; // 1 año de duración
+					// 	session_set_cookie_params($sessionTime);
+					// 	session_start();
+					// } 
+				
+
 					if($respuesta["estado"] == 1){
 
 						$_SESSION["iniciarSesion"] = "ok";
