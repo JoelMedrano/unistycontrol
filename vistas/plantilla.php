@@ -171,10 +171,11 @@ CUERPO DOCUMENTO
         include "modulos/membresias/".$_GET["ruta"].".php";
 
       }else if( $_GET["ruta"] == "inicio" ||
-        $_GET["ruta"] == "perfil" ||
-        $_GET["ruta"] == "perfil-usuario" ||
-        $_GET["ruta"] == "salir" ||
-        $_GET["ruta"] == "reportes"){
+                $_GET["ruta"] == "perfil" ||
+                $_GET["ruta"] == "perfil-usuario" ||
+                $_GET["ruta"] == "perfil-general" ||
+                $_GET["ruta"] == "salir" ||
+                $_GET["ruta"] == "reportes"){
 
         include "modulos/".$_GET["ruta"].".php";
 

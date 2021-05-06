@@ -478,6 +478,8 @@ class ControladorMembresias{
                             "id_usuario"=>$_SESSION["id"],
 							"id_miembro"=>$_POST["nuevoMiembro"]);
 
+							var_dump($datos);
+
             $respuesta = ModeloMembresias::mdlIngresarMembresia($tabla,$datos);
 
 			$ultimoId= ModeloMembresias::mdlMostrarUltimoID();

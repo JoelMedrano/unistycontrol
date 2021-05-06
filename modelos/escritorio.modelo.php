@@ -139,7 +139,8 @@ class ModeloEscritorio{
                                                         miembros m 
                                                         LEFT JOIN membresia me 
                                                         ON m.id_membresia = me.id_membresia 
-                                                    WHERE DATE(me.fecha_fin) >= DATE(NOW()) 
+                                                    WHERE MONTH(DATE(me.fecha_fin)) = MONTH(NOW())
+                                                        AND DATE(me.fecha_fin) >= DATE(NOW()) 
                                                         AND me.estado IN ('0','1')");
 
 			$stmt -> execute();
@@ -154,7 +155,8 @@ class ModeloEscritorio{
                                                     miembros m 
                                                     LEFT JOIN membresia me 
                                                     ON m.id_membresia = me.id_membresia 
-                                                WHERE DATE(me.fecha_fin) >= DATE(NOW()) 
+                                                WHERE MONTH(DATE(me.fecha_fin)) = MONTH(NOW()) 
+                                                AND DATE(me.fecha_fin) >= DATE(NOW()) 
                                                     AND me.estado IN ('0','1') 
                                                     AND m.id_empresa =  $empresa");
 
@@ -343,6 +345,196 @@ class ModeloEscritorio{
 		$stmt = null;
 
     }
+
+    /* 
+    *Empresas menos Unisty 
+    */
+    static public function mdlEmpresasPerfil(){
+
+		$stmt = Conexion::conectar()->prepare("SELECT 
+                                                    * 
+                                                FROM
+                                                    empresa e 
+                                                WHERE e.id_empresa <> 1");
+
+        $stmt -> execute();
+
+        return $stmt -> fetchAll();
+
+		$stmt -> close();
+
+		$stmt = null;
+
+    }
+
+    /* 
+    *Empresas menos Unisty 
+    */
+    static public function mdlEmpresasPerfilUnido($valor){
+
+		$stmt = Conexion::conectar()->prepare("SELECT 
+                                                    * 
+                                                FROM
+                                                    empresa e 
+                                                WHERE e.id_empresa = $valor");
+
+        $stmt -> execute();
+
+        return $stmt -> fetchAll();
+
+		$stmt -> close();
+
+		$stmt = null;
+
+    }    
+    
+    /* 
+    *Normal Totales
+    */
+    static public function mdlNormalTotales($empresa, $tipo_membresia){
+
+		$stmt = Conexion::conectar()->prepare("SELECT 
+                                                    COUNT(*) AS total_Normal 
+                                                FROM
+                                                    apuestas a 
+                                                WHERE a.id_empresa = $empresa
+                                                    AND a.id_tipo_membresia = $tipo_membresia
+                                                    AND a.tipo_apuesta = 1 
+                                                    AND eliminado = 1");
+
+        $stmt -> execute();
+
+        return $stmt -> fetch();
+
+		$stmt -> close();
+
+		$stmt = null;
+
+    }
+
+    /* 
+    *Normal Ganadas
+    */
+    static public function mdlNormalGanadas($empresa, $tipo_membresia){
+
+		$stmt = Conexion::conectar()->prepare("SELECT 
+                                                    COUNT(*) AS total_ganadas 
+                                                FROM
+                                                    apuestas a 
+                                                WHERE a.id_empresa = $empresa
+                                                    AND id_tipo_membresia = $tipo_membresia 
+                                                    AND a.tipo_apuesta = 1 
+                                                    AND a.estado = 1 
+                                                    AND eliminado = 1");
+
+        $stmt -> execute();
+
+        return $stmt -> fetch();
+
+		$stmt -> close();
+
+		$stmt = null;
+
+    }
+
+    /* 
+    *Normal Perdidas
+    */
+    static public function mdlNormalPerdidas($empresa, $tipo_membresia){
+
+		$stmt = Conexion::conectar()->prepare("SELECT 
+                                                    COUNT(*) AS total_perdidas
+                                                FROM
+                                                    apuestas a 
+                                                WHERE a.id_empresa = $empresa
+                                                    AND id_tipo_membresia = $tipo_membresia 
+                                                    AND a.tipo_apuesta = 1 
+                                                    AND a.estado = 3 
+                                                    AND eliminado = 1");
+
+        $stmt -> execute();
+
+        return $stmt -> fetch();
+
+		$stmt -> close();
+
+		$stmt = null;
+
+    } 
+    
+    /* 
+    *Normal Anuladas
+    */
+    static public function mdlNormalAnuladas($empresa, $tipo_membresia){
+
+		$stmt = Conexion::conectar()->prepare("SELECT 
+                                                    COUNT(*) AS total_anuladas 
+                                                FROM
+                                                    apuestas a 
+                                                WHERE a.id_empresa = $empresa
+                                                    AND id_tipo_membresia = $tipo_membresia 
+                                                    AND a.tipo_apuesta = 1 
+                                                    AND a.estado = 2 
+                                                    AND eliminado = 1");
+
+        $stmt -> execute();
+
+        return $stmt -> fetch();
+
+		$stmt -> close();
+
+		$stmt = null;
+
+    }
+    
+    /* 
+    *Normal Pendientes
+    */
+    static public function mdlNormalPendientes($empresa, $tipo_membresia){
+
+		$stmt = Conexion::conectar()->prepare("SELECT 
+                                                    COUNT(*) AS total_pendientes
+                                                FROM
+                                                    apuestas a 
+                                                WHERE a.id_empresa = $empresa
+                                                    AND id_tipo_membresia = $tipo_membresia 
+                                                    AND a.tipo_apuesta = 1 
+                                                    AND a.estado = 0 
+                                                    AND eliminado = 1");
+
+        $stmt -> execute();
+
+        return $stmt -> fetch();
+
+		$stmt -> close();
+
+		$stmt = null;
+
+    }
+    
+    /* 
+    *CUOTA PROMEDIO
+    */
+    static public function mdlNormalCuota($empresa, $tipo_membresia){
+
+		$stmt = Conexion::conectar()->prepare("SELECT 
+                                                    IFNULL(AVG(a.cuota),0) AS promedio_cuota_normal
+                                                FROM
+                                                    apuestas a 
+                                                WHERE a.id_empresa = $empresa 
+                                                    AND id_tipo_membresia = $tipo_membresia 
+                                                    AND a.tipo_apuesta = 1 
+                                                    AND eliminado = 1");
+
+        $stmt -> execute();
+
+        return $stmt -> fetch();
+
+		$stmt -> close();
+
+		$stmt = null;
+
+    }    
     
 
 }

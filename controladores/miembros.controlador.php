@@ -15,7 +15,7 @@ class ControladorMiembros{
             VALIDAR IMAGEN
             =============================================*/
 
-            $ruta = "vistas/img/miembros/default/anonymous.png";
+            $ruta = "vistas/img/usuarios/default/anonymous.png";
 
             if(isset($_FILES["nuevaFotoMiembro"]["tmp_name"])){
 

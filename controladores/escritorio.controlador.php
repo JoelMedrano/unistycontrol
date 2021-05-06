@@ -122,5 +122,93 @@ class ControladorEscritorio{
 
     }
 
+    /* 
+    *Empresas menos Unisty 
+    */
+    static public function ctrEmpresasPerfil(){
+
+        $respuesta = ModeloEscritorio::mdlEmpresasPerfil();
+        
+        return $respuesta;
+
+    }
+
+    /* 
+    *Empresas menos Unisty 
+    */
+    static public function ctrEmpresasPerfilUnido($valor){
+
+        $respuesta = ModeloEscritorio::mdlEmpresasPerfilUnido($valor);
+        
+        return $respuesta;
+
+    }    
+    
+    /* 
+    *Normal Totales
+    */
+    static public function ctrNormalTotales($empresa,$tipo_membresia){
+
+        $respuesta = ModeloEscritorio::mdlNormalTotales($empresa,$tipo_membresia);
+
+        return $respuesta;
+
+    }
+
+    /* 
+    *Normal Ganadas
+    */
+    static public function ctrNormalGanadas($empresa,$tipo_membresia){
+
+        $respuesta = ModeloEscritorio::mdlNormalGanadas($empresa,$tipo_membresia);
+        
+        return $respuesta;
+
+    }
+
+    /* 
+    *Normal Perdidas
+    */
+    static public function ctrNormalPerdidas($empresa,$tipo_membresia){
+
+        $respuesta = ModeloEscritorio::mdlNormalPerdidas($empresa,$tipo_membresia);
+        
+        return $respuesta;
+
+    } 
+    
+    /* 
+    *Normal Anuladas
+    */
+    static public function ctrNormalAnuladas($empresa,$tipo_membresia){
+
+        $respuesta = ModeloEscritorio::mdlNormalAnuladas($empresa,$tipo_membresia);
+        
+        return $respuesta;
+
+    }
+    
+    /* 
+    *Normal Pendientes
+    */
+    static public function ctrNormalPendientes($empresa,$tipo_membresia){
+
+        $respuesta = ModeloEscritorio::mdlNormalPendientes($empresa,$tipo_membresia);
+        
+        return $respuesta;
+
+    }
+    
+    /* 
+    *Normal CUOTA PROMEDIO
+    */
+    static public function ctrNormalCuota($empresa,$tipo_membresia){
+
+        $respuesta = ModeloEscritorio::mdlNormalCuota($empresa,$tipo_membresia);
+        
+        return $respuesta;
+
+    }    
+
 
 }
