@@ -74,7 +74,7 @@
                         <tr>
 
                             <th style="width:10px">#</th>
-                            <th>Partido</th>                            
+                            <th style="width:300px">Partido</th>                            
                             <th>Estado</th>
                             <th>Cuota</th>
                             <th style="width:40px">Monto</th>

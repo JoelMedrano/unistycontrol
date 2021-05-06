@@ -118,7 +118,7 @@ class TablaApuestas{
             }
             
             $datosJson .= '[
-                "'.($i+1).'",
+                "'.$apuestas[$i]["id_apuestas"].'",
                 "<b>'.$apuestas[$i]["partido"].'</b>",
                 "'.$estado.'",
                 "'.$apuestas[$i]["cuota"].'",

@@ -21,6 +21,7 @@
 			in_array(7,$valores)?$_SESSION['apuestas-player']=1:$_SESSION['apuestas-player']=0;
 			in_array(8,$valores)?$_SESSION['dashboard']=1:$_SESSION['dashboard']=0;
 			in_array(9,$valores)?$_SESSION['perfiles']=1:$_SESSION['perfiles']=0;
+			in_array(10,$valores)?$_SESSION['perfiles-gral']=1:$_SESSION['perfiles-gral']=0;
 
             
             if($_SESSION["dashboard"] == 1){
@@ -53,6 +54,24 @@
 				</a>
 
 			</li>
+
+			<?php
+			}
+            if($_SESSION["perfiles-gral"] == 1){
+            ?>
+
+
+			<li>
+
+				<a href="perfil-general">
+
+					<i class="fa fa-male text-orange"></i>
+					<span>Perfil General</span>
+
+				</a>
+
+			</li>
+
 			<?php
 			}
             if($_SESSION["usuarios"] == 1){
