@@ -17,7 +17,7 @@ VERIFICAR
 		$item1="estado";
 		$valor1 = 1;
 		$item2="id_miembro";
-		$valor2 = $respuesta["id"];
+		$valor2 = $respuesta["id_miembro"];
 
 		$respuesta2 = ControladorMiembros::ctrActualizarMiembro2($item1,$valor1, $item2, $valor2);
 		

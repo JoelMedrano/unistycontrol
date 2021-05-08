@@ -787,8 +787,7 @@ class ModeloApuestas{
                     ON a.id_empresa = em.id_empresa 
                     LEFT JOIN tipo_membresia tm 
                     ON a.id_tipo_membresia = tm.id_tipo_membresia 
-                WHERE a.id_empresa = $empresa 
-                AND DATE(a.fecha) BETWEEN '$fechaInicial' AND '$fechaFinal'");
+                WHERE DATE(a.fecha) BETWEEN '$fechaInicial' AND '$fechaFinal'");
 
                 }else{
 

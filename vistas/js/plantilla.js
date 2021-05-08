@@ -67,6 +67,10 @@ $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
 	radioClass   : 'iradio_minimal-blue'
   })
 
+$('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+checkboxClass: 'icheckbox_minimal-red',
+radioClass   : 'iradio_minimal-red'
+})
 /*=============================================
  //input Mask
 =============================================*/
@@ -77,3 +81,5 @@ $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
 $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
 //Money Euro
 $('[data-mask]').inputmask()  
+
+

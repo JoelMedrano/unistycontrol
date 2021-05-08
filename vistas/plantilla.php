@@ -1,6 +1,20 @@
 <?php
 
 session_start();
+if(isset($_SESSION["mantenerSesion"])){
+  $sessionTime = time()+ 86400; 
+  setcookie("usuario",$_SESSION["usuario"],$sessionTime);
+  setcookie("password",$_SESSION["password"],$sessionTime);
+}
+else{
+  setcookie("usuario","",time()-1);
+  setcookie("password","",time()-1);
+  
+  
+  
+  // include "modulos/salir.php";
+ 
+}
 
 ?>
 
@@ -15,6 +29,7 @@ session_start();
 
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  
 
   <link rel="icon" href="vistas/img/plantilla/logo-grande.png">
 
@@ -100,6 +115,8 @@ session_start();
 
   <!-- Toastr -->
   <script src="vistas/bower_components/toastr/toastr.min.js"></script>
+
+  <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment-with-locales.min.js"></script>
 
   <style>
     .table thead, .table tfoot{

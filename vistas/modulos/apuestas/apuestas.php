@@ -53,10 +53,8 @@
                     <i class="fa fa-caret-down"></i>
 
                 </button>
-
-                <?php 
-                    echo"<input type='hidden' id= 'empresaDate' value='".$_SESSION["empresa"]."'> ";
-                ?>
+                <input type='hidden' id= 'empresaDate2' value="<?= $_SESSION["empresa"]; ?>"> 
+                
 
             </div>
 
