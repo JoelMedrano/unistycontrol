@@ -79,10 +79,10 @@ CARGAR LA TABLA DINÁMICA DE APUESTAS PLAYER
 if (localStorage.getItem("capturarRango") != null) {
 	$("#daterange-btnApuestas span").html(localStorage.getItem("capturarRango"));
   
-	cargarTablaApuestas(localStorage.getItem("fechaInicial"), localStorage.getItem("fechaFinal"),$("#empresaDate").val());
+	cargarTablaApuestas(localStorage.getItem("fechaInicial"), localStorage.getItem("fechaFinal"),$("#empresaDate2").val());
 } else {
 	$("#daterange-btnApuestas span").html('<i class="fa fa-calendar"></i> Rango de Fecha ');
-	cargarTablaApuestas(null, null,$("#empresaDate").val());
+	cargarTablaApuestas(null, null,$("#empresaDate2").val());
 }
 
 /* 
@@ -90,7 +90,7 @@ if (localStorage.getItem("capturarRango") != null) {
 */
 function cargarTablaApuestas(fechaInicial,fechaFinal,empresa) {
 $('.tablaApuestas').DataTable({
-  "ajax": "ajax/apuestas/tabla-apuestas.ajax.php?perfil="+$("#perfilOculto").val()+ "&fechaInicial=" + fechaInicial + "&fechaFinal=" + fechaFinal+ "&empresa=" + empresa,
+  "ajax": "ajax/apuestas/tabla-apuestas.ajax.php?perfil="+$("#perfilOculto").val()+ "&fechaInicial=" + fechaInicial + "&fechaFinal=" + fechaFinal+ "&empresa=" +$("#empresaDate2").val(),
   "deferRender": true,
   "retrieve": true,
   "processing": true,
@@ -383,7 +383,7 @@ if (localStorage.getItem("capturarRango2") != null) {
 function cargarTablaApuestasPlayer(fechaInicial,fechaFinal,empresa,usuario) {
 
 $('.tablaApuestasPlayer').DataTable({
-  "ajax": "ajax/apuestas/tabla-apuestas-player.ajax.php?perfil="+$("#perfilOculto").val() + "&fechaInicial2=" + fechaInicial + "&fechaFinal2=" + fechaFinal+ "&empresa=" + empresa + "&usuario=" + usuario,
+  "ajax": "ajax/apuestas/tabla-apuestas-player.ajax.php?perfil="+$("#perfilOculto").val() + "&fechaInicial2=" + fechaInicial + "&fechaFinal2=" + fechaFinal+ "&empresa=" + $("#empresaDate").val() + "&usuario=" + $("#userDate").val(),
   "deferRender": true,
   "retrieve": true,
   "processing": true,
@@ -419,7 +419,7 @@ $('.tablaApuestasPlayer').DataTable({
 }
 
 
-
+moment.locale('es');
 /*=============================================
 RANGO DE FECHAS APUESTAS PLAYER
 =============================================*/

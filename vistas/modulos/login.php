@@ -32,7 +32,8 @@
 
       <div class="row">
         <div class="form-check" style="padding-left:16px">
-            <input class="form-check-input" type="checkbox" value="1" name="mantener_sesion_abierta" >
+            
+            <input class="form-check-input minimal-red" type="checkbox" value="1" name="mantener_sesion_abierta" id="flexCheckDefault">
             <label class="form-check-label" for="flexCheckDefault">
               Mantener sesión activa
             </label>

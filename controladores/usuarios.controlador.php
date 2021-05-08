@@ -8,27 +8,35 @@ class ControladorUsuarios{
 
 	static public function ctrIngresoUsuario(){
 
-		if(isset($_POST["ingUsuario"])){
+		if((isset($_COOKIE["usuario"]) )|| isset($_POST["ingUsuario"])){
 
-			if(preg_match('/^[a-zA-Z0-9]+$/', $_POST["ingUsuario"]) &&
-			   preg_match('/^[a-zA-Z0-9]+$/', $_POST["ingPassword"])){
-
-			   	$encriptar = crypt($_POST["ingPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+			if(preg_match('/^[a-zA-Z0-9]+$/', $_COOKIE["usuario"]) ||
+			preg_match('/^[a-zA-Z0-9]+$/', $_POST["ingUsuario"]) ){
+				
+				$encriptar = crypt($_POST["ingPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+				
+			   	
 
 				$tabla = "usuarios";
 
 				$item = "usuario";
-				$valor = $_POST["ingUsuario"];
+				if(isset($_COOKIE["usuario"])){
+					$valor = $_COOKIE["usuario"];
+				}else{
+					$valor = $_POST["ingUsuario"];
+				}
+				
 
 				$respuesta = ModeloUsuarios::MdlMostrarUsuarios($tabla, $item, $valor);
 
-				if($respuesta["usuario"] == $_POST["ingUsuario"] && $respuesta["password"] == $encriptar){
+				if(($respuesta["usuario"] == $_COOKIE["usuario"] && $respuesta["password"] == $_COOKIE["password"]) || 
+				($respuesta["usuario"] == $_POST["ingUsuario"] && $respuesta["password"] == $encriptar)){
 
-					// if (!empty($_POST["mantener_sesion_abierta"])) {
-					// 	$sessionTime = 365 * 24 * 60 * 60; // 1 año de duración
-					// 	session_set_cookie_params($sessionTime);
-					// 	session_start();
-					// } 
+					if (isset($_POST["mantener_sesion_abierta"])) {
+
+						$_SESSION["mantenerSesion"] = "ok";
+						
+					} 
 				
 
 					if($respuesta["estado"] == 1){
@@ -37,6 +45,7 @@ class ControladorUsuarios{
 						$_SESSION["id"] = $respuesta["id"];
 						$_SESSION["nombre"] = $respuesta["nombre"];
 						$_SESSION["usuario"] = $respuesta["usuario"];
+						$_SESSION["password"] = $encriptar;
 						$_SESSION["foto"] = $respuesta["foto"];
 						$_SESSION["perfil"] = $respuesta["perfil"];
 						$_SESSION["empresa"] = $respuesta["id_empresa"];
