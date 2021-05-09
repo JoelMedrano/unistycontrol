@@ -362,6 +362,43 @@
 
       ?>
 
+      <div class="col-md-6 box-body">
+
+        <div class="box-body">
+        <input type="hidden" value="<?= $_SESSION["perfil"]; ?>" id="perfilOculto"> 
+          <table class="table table-bordered table-striped dt-responsive table-condensed tablaApuestas">
+
+              <thead>
+
+                  <tr>
+
+                      <th style="width:10px">#</th>
+                      <th style="width:300px">Partido</th>                            
+                      <th>Estado</th>
+                      <th>Cuota</th>
+                      <th style="width:40px">Monto</th>
+                      <th style="width:300px">Pronóstico</th> 
+                      <th>Tipo</th>
+                      <th>Fecha</th>                                         
+                      <th style="width:150px">Resultado</th>
+                      <th>Empresa</th>
+                      <th>Membresía</th>
+                      <th>Acciones</th>
+
+                  </tr>
+
+              </thead>
+
+              <tbody>
+
+              </tbody>
+
+          </table>
+
+        </div>      
+      
+      </div>
+
         <!-- FINAL -->
       </div>
   </section>

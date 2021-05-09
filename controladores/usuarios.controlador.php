@@ -13,7 +13,6 @@ class ControladorUsuarios{
 			if(isset($_POST["ingUsuario"])){
 
 				$encriptar = crypt($_POST["ingPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
-				var_dump($encriptar);
 
 				$tabla = "usuarios";
 
@@ -39,8 +38,11 @@ class ControladorUsuarios{
 						$_SESSION["datos"] = $respuesta["datos"];
 						$_SESSION["correo"] = $respuesta["correo"];
 
-						setcookie("usuario",$_SESSION["usuario"],time()+ 86400);
-						setcookie("password",$_SESSION["password"],time()+ 86400);				
+						if (isset($_POST["mantener_sesion_abierta"])) {
+
+							$_SESSION["mantenerSesion"] = "ok";
+							
+						}				
 
 						/*=============================================
 						REGISTRAR FECHA PARA SABER EL ÚLTIMO LOGIN
@@ -63,19 +65,23 @@ class ControladorUsuarios{
 
 						if($ultimoLogin == "ok"){
 
-							echo '<script>
+							var_dump("entra la ptm");
+
+							if($_SESSION["empresa"] == "1"){
+								echo '<script>
+
+								window.location = "perfil-usuario";
+
+								</script>';
+							}else{
+								echo '<script>
 
 								window.location = "inicio";
 
-							</script>';
+								</script>';
+							}
 
-						}						
-						
-						echo '<script>
-	
-							window.location = "inicio";
-	
-						</script>';
+						}
 
 					}else{
 
@@ -97,7 +103,6 @@ class ControladorUsuarios{
 			if(isset($_POST["ingUsuario"])){
 
 				$encriptar = crypt($_POST["ingPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
-				var_dump($encriptar);
 
 				$tabla = "usuarios";
 
@@ -144,19 +149,21 @@ class ControladorUsuarios{
 
 						if($ultimoLogin == "ok"){
 
-							echo '<script>
+							if($_SESSION["empresa"] == "1"){
+								echo '<script>
+
+								window.location = "perfil-usuario";
+
+								</script>';
+							}else{
+								echo '<script>
 
 								window.location = "inicio";
 
-							</script>';
+								</script>';
+							}
 
-						}						
-						
-						echo '<script>
-	
-							window.location = "inicio";
-	
-						</script>';
+						}
 
 					}else{
 
