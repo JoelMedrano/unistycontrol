@@ -8,36 +8,106 @@ class ControladorUsuarios{
 
 	static public function ctrIngresoUsuario(){
 
-		if((isset($_COOKIE["usuario"]) )|| isset($_POST["ingUsuario"])){
+		if(isset($_POST["mantener_sesion_abierta"])){
 
-			if(preg_match('/^[a-zA-Z0-9]+$/', $_COOKIE["usuario"]) ||
-			preg_match('/^[a-zA-Z0-9]+$/', $_POST["ingUsuario"]) ){
-				
+			if(isset($_POST["ingUsuario"])){
+
 				$encriptar = crypt($_POST["ingPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
-				
-			   	
+				var_dump($encriptar);
 
 				$tabla = "usuarios";
 
 				$item = "usuario";
-				if(isset($_COOKIE["usuario"])){
-					$valor = $_COOKIE["usuario"];
-				}else{
-					$valor = $_POST["ingUsuario"];
-				}
-				
+				$valor = $_POST["ingUsuario"];
 
 				$respuesta = ModeloUsuarios::MdlMostrarUsuarios($tabla, $item, $valor);
+				//var_dump($respuesta);
 
-				if(($respuesta["usuario"] == $_COOKIE["usuario"] && $respuesta["password"] == $_COOKIE["password"]) || 
-				($respuesta["usuario"] == $_POST["ingUsuario"] && $respuesta["password"] == $encriptar)){
+				if($respuesta["usuario"] == $_POST["ingUsuario"] && $respuesta["password"] == $encriptar){
 
-					if (isset($_POST["mantener_sesion_abierta"])) {
+					if($respuesta["estado"] == 1){
 
-						$_SESSION["mantenerSesion"] = "ok";
+						$_SESSION["iniciarSesion"] = "ok";
+						$_SESSION["id"] = $respuesta["id"];
+						$_SESSION["nombre"] = $respuesta["nombre"];
+						$_SESSION["usuario"] = $respuesta["usuario"];
+						$_SESSION["password"] = $encriptar;
+						$_SESSION["foto"] = $respuesta["foto"];
+						$_SESSION["perfil"] = $respuesta["perfil"];
+						$_SESSION["empresa"] = $respuesta["id_empresa"];
+						$_SESSION["miembro"] = $respuesta["id_miembro"];
+						$_SESSION["datos"] = $respuesta["datos"];
+						$_SESSION["correo"] = $respuesta["correo"];
+
+						setcookie("usuario",$_SESSION["usuario"],time()+ 86400);
+						setcookie("password",$_SESSION["password"],time()+ 86400);				
+
+						/*=============================================
+						REGISTRAR FECHA PARA SABER EL ÚLTIMO LOGIN
+						=============================================*/
+
+						date_default_timezone_set('America/Lima');
 						
-					} 
-				
+						$fecha = date('Y-m-d');
+						$hora = date('H:i:s');
+
+						$fechaActual = $fecha.' '.$hora;
+
+						$item1 = "ultimo_login";
+						$valor1 = $fechaActual;
+
+						$item2 = "id";
+						$valor2 = $respuesta["id"];
+
+						$ultimoLogin = ModeloUsuarios::mdlActualizarUsuario($tabla, $item1, $valor1, $item2, $valor2);
+
+						if($ultimoLogin == "ok"){
+
+							echo '<script>
+
+								window.location = "inicio";
+
+							</script>';
+
+						}						
+						
+						echo '<script>
+	
+							window.location = "inicio";
+	
+						</script>';
+
+					}else{
+
+						echo '<br>
+							<div class="alert alert-danger">El usuario aún no está activado</div>';						
+					}
+
+				}else{
+
+					echo '<br><div class="alert alert-danger">Error al ingresar, vuelve a intentarlo</div>';
+
+				}	
+
+			}	
+
+
+		}else{
+
+			if(isset($_POST["ingUsuario"])){
+
+				$encriptar = crypt($_POST["ingPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+				var_dump($encriptar);
+
+				$tabla = "usuarios";
+
+				$item = "usuario";
+				$valor = $_POST["ingUsuario"];
+
+				$respuesta = ModeloUsuarios::MdlMostrarUsuarios($tabla, $item, $valor);
+				//var_dump($respuesta);
+
+				if($respuesta["usuario"] == $_POST["ingUsuario"] && $respuesta["password"] == $encriptar){
 
 					if($respuesta["estado"] == 1){
 
@@ -57,8 +127,8 @@ class ControladorUsuarios{
 						REGISTRAR FECHA PARA SABER EL ÚLTIMO LOGIN
 						=============================================*/
 
-						date_default_timezone_set('America/Bogota');
-
+						date_default_timezone_set('America/Lima');
+						
 						$fecha = date('Y-m-d');
 						$hora = date('H:i:s');
 
@@ -73,40 +143,43 @@ class ControladorUsuarios{
 						$ultimoLogin = ModeloUsuarios::mdlActualizarUsuario($tabla, $item1, $valor1, $item2, $valor2);
 
 						if($ultimoLogin == "ok"){
-							if($_SESSION["empresa"] == "1"){
-								echo '<script>
 
-								window.location = "perfil-usuario";
-
-								</script>';
-							}else{
-								echo '<script>
+							echo '<script>
 
 								window.location = "inicio";
 
-								</script>';
-							}
+							</script>';
 
-							
-
-						}				
+						}						
 						
+						echo '<script>
+	
+							window.location = "inicio";
+	
+						</script>';
+
 					}else{
 
 						echo '<br>
-							<div class="alert alert-danger">El usuario aún no está activado</div>';
+							<div class="alert alert-danger">El usuario aún no está activado</div>';						
 
-					}		
+					}
+
+
 
 				}else{
 
 					echo '<br><div class="alert alert-danger">Error al ingresar, vuelve a intentarlo</div>';
 
-				}
+				}				
+				
 
-			}	
 
-		}
+
+			}			
+
+		}		
+
 
 	}
 

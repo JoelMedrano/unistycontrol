@@ -47,3 +47,18 @@ BEGIN
 END $$
 
 DELIMITER ;
+
+
+							if($_SESSION["empresa"] == "1"){
+								echo '<script>
+
+								window.location = "perfil-usuario";
+
+								</script>';
+							}else{
+								echo '<script>
+
+								window.location = "inicio";
+
+								</script>';
+							}

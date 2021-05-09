@@ -10,7 +10,7 @@ else{
   setcookie("usuario","",time()-1);
   setcookie("password","",time()-1);
   
-  
+  //$_SESSION["iniciarSesion"]="false";
   
   // include "modulos/salir.php";
  
@@ -211,9 +211,7 @@ CUERPO DOCUMENTO
 
         include "modulos/inicio.php";
      
-    }
-
-    
+    }    
 
     /*=============================================
     FOOTER
