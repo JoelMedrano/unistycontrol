@@ -132,7 +132,7 @@ $('.tablaApuestas').DataTable({
 $(".tablaApuestas , .tablaApuestasPlayer").on("click", ".btnEditarApuesta", function () {
 
   var idApuestaE = $(this).attr("idApuesta");
-  console.log(idApuestaE)
+  // console.log(idApuestaE)
   //var empresa = $(this).attr("empresa");
   //console.log(empresa);
 
@@ -485,8 +485,8 @@ $("#daterange-btnApuestasPlayer").daterangepicker(
     var capturarRango2 = $("#daterange-btnApuestasPlayer span").html();
   
     localStorage.setItem("capturarRango2", capturarRango2);
-    localStorage.setItem("fechaInicial2", localStorage.getItem("fechaInicial2"));
-    localStorage.setItem("fechaFinal2", localStorage.getItem("fechaFinal2"));
+    localStorage.setItem("fechaInicial2", fechaInicial);
+    localStorage.setItem("fechaFinal2", fechaFinal);
 
     // Recargamos la tabla con la información para ser mostrada en la tabla
     $(".tablaApuestasPlayer").DataTable().destroy();
@@ -601,8 +601,8 @@ $("#daterange-btnApuestas").daterangepicker(
     var capturarRango = $("#daterange-btnApuestas span").html();
   
     localStorage.setItem("capturarRango", capturarRango);
-    localStorage.setItem("fechaInicial", localStorage.getItem("fechaInicial"));
-    localStorage.setItem("fechaFinal", localStorage.getItem("fechaFinal"));
+    localStorage.setItem("fechaInicial", fechaInicial);
+    localStorage.setItem("fechaFinal", fechaFinal);
 
     // Recargamos la tabla con la información para ser mostrada en la tabla
     $(".tablaApuestas").DataTable().destroy();

@@ -65,7 +65,7 @@ class ControladorUsuarios{
 
 						if($ultimoLogin == "ok"){
 
-							var_dump("entra la ptm");
+							// var_dump("entra la ptm");
 
 							if($_SESSION["empresa"] == "1"){
 								echo '<script>

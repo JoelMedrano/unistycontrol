@@ -15,12 +15,12 @@ $(".box").on("click", ".btnCodEmpresa", function () {
 
 if (localStorage.getItem("empresa") != null) {
 
-    console.log("si hay");
+    // console.log("si hay");
     cargarTablaPerfilEmpresas(localStorage.getItem("empresa"));
 
 } else {
 
-    console.log("no hay");
+    // console.log("no hay");
     cargarTablaPerfilEmpresas("2");
 
 }
