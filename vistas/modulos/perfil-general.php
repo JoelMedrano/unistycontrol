@@ -1,19 +1,32 @@
 <div class="content-wrapper">
-
-    <section class="content-header">
-        <ol class="breadcrumb">
-            <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
-            <li class="active">Perfil</li>
-        </ol>
-    </section>
-
     <section class="content">
-
         <div class="row">
+            <div class="col-md-1">         
+                
+                <?php
+                    $empresas = ControladorEscritorio::ctrEmpresasPerfil();
+                    //var_dump($empresas);
 
-            <?php
+                    foreach($empresas as $key => $value){
 
-            $empresas = ControladorEscritorio::ctrEmpresasPerfil();
+                        echo '<div class="box box-primary">
+                                <div class="box-body box-profile">
+                                    <img src="'.$value["logo1"].'" class="profile-user-img img-responsive img-circle" alt="User profile picture">
+                                    </br>
+                                    <button class="btn btn-primary btn-block btn-xs btnCodEmpresa" id="b'.$value["id_empresa"].'" name= "b'.$value["id_empresa"].'" codigo="'.$value["id_empresa"].'"><b>'.$value["nombre"].'</b></button>
+                                </div>
+                            </div>';
+
+                    }
+                ?>
+
+            </div>
+
+      <?php
+
+            //var_dump($_GET["empresa"]);
+
+            $empresas = ControladorEscritorio::ctrEmpresasPerfilUnido($_GET["empresa"]);
             //var_dump($empresas);
 
             foreach($empresas as $key => $value){
@@ -64,7 +77,7 @@
                       /* 
                       *NORMALES 
                       */
-                      
+                     
                       $totalesNormal = ControladorEscritorio::ctrNormalTotales($value["id_empresa"], $value2["id_tipo_membresia"]);
                       //var_dump($totalesNormal);
   
@@ -101,8 +114,45 @@
                       }
                       
                       $cuotaNormal = ControladorEscritorio::ctrNormalCuota($value["id_empresa"], $value2["id_tipo_membresia"]);
-                      //var_dump($cuotaNormal);                      
+                      //var_dump($cuotaNormal);              
+                      
+                      /* 
+                      *PORCENTAJES
+                      */                    
+                      $porcentajes = ControladorEscritorio::ctrPorcentajes($_GET["empresa"]);
+                      //var_dump($porcentajes);
+
+                      $arrayMvp = array();
+
+                      foreach ($porcentajes as $key => $value) {
                     
+                        $mvp = $value["efectividad_dia_mvp"];
+                    
+                        array_push($arrayMvp, $mvp);
+
+                      }
+
+                      $arrayNormal = array();
+
+                      foreach ($porcentajes as $key => $value) {
+                    
+                        $normal = $value["efectividad_dia_normal"];
+                    
+                        array_push($arrayNormal, $normal);
+
+                      }
+
+                      $arrayDias = array();
+
+                      foreach ($porcentajes as $key => $value) {
+                    
+                        $normal = $value["dia"];
+                    
+                        array_push($arrayDias, $normal);
+
+                      }                      
+                      
+
                     echo'<div class="col-md-3">
 
                     <div class="box box-primary">
@@ -128,13 +178,13 @@
     
                             <ul class="list-group list-group-unbordered" style="margin-bottom:0">
                                 <li class="list-group-item">
-                                    <b>Efectividad MVP</b> <span class="pull-right" style="background: #efb810"><b>'.number_format($efectividadMVP,2).' %</b></span>
+                                    <b>Efectividad MVP</b> <span class="pull-right badge bg-purple"><b>'.number_format($efectividadMVP,2).' %</b></span>
                                 </li>
                                 <li class="list-group-item">
                                     <b>Cuota Promedio</b> <a class="pull-right"><b>',number_format($cuotaMVP["promedio_cuota"],2),'</b></a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Efectividad Recomendadas</b> <span class="pull-right" style="background:#000000; color:#ffffff"><b>'.number_format($efectividadNormal,2).' %</b></span>
+                                    <b>Efectividad Recomendadas</b> <span class="pull-right badge bg-orange"><b>'.number_format($efectividadNormal,2).' %</b></span>
                                 </li>
                                 <li class="list-group-item">
                                     <b>Cuota Promedio</b> <a class="pull-right"><b>',number_format($cuotaNormal["promedio_cuota_normal"],2),'</b></a>
@@ -151,7 +201,7 @@
                         </div>
     
                         <div class="box-body">
-                            <strong><i class="fa fa-line-chart margin-r-5"></i>Estadísticas MVP <span class="pull-right badge bg-black">'.$totalesMVP["total_mvp"].'</span></strong>
+                            <strong><i class="fa fa-line-chart margin-r-5 bg-purple"></i>Estadísticas MVP <span class="pull-right badge bg-purple">'.$totalesMVP["total_mvp"].'</span></strong>
     
                             <ul class="nav nav-stacked" style="margin-bottom:0">
                                 <li><a href="#">Ganadas <span class="pull-right badge bg-green">'.$arribaMVP.'</span></a></li>
@@ -160,7 +210,7 @@
                                 <li><a href="#">Pendientes <span class="pull-right badge bg-aqua">'.$pendientesMVP["total_pendientes"].'</span></a></li>
                             </ul>
     
-                            <strong><i class="fa fa-line-chart margin-r-5"></i>Estadísticas Recomendadas <span class="pull-right badge bg-black">'.$totalesNormal["total_Normal"].'</span></strong>
+                            <strong><i class="fa fa-line-chart margin-r-5 bg-orange"></i>Estadísticas Recomendadas <span class="pull-right badge bg-orange">'.$totalesNormal["total_Normal"].'</span></strong>
     
                             <ul class="nav nav-stacked" style="margin-bottom:0">
                                 <li><a href="#">Ganadas <span class="pull-right badge bg-green">'.$arribaNormal.'</span></a></li>
@@ -186,13 +236,202 @@
 
             }
 
-            ?>
+      ?>
 
-            <!-- FINAL -->
+            <div class="col-md-8 box-primary">
+
+            <div class="box box-body box-primary graficoLineasEmpresa">
+
+            </div>
+
+            <div class="box box-primary">
+            
+            <table class="table table-bordered table-striped dt-responsive table-condensed tablaApuestasPerfilV2">
+
+                <thead>
+
+                    <tr>
+                        <th style="width:80px">Fecha</th>
+                        <th style="width:400px">Partido</th>    
+                        <th style="width:400px">Pronóstico</th> 
+                        <th style="width:100px">Estado</th> 
+                        <th style="width:100px">Cuota</th>                                       
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                </tbody>
+
+            </table>
+            </div>
+
+            </div>                  
+
         </div>
     </section>
 </div>
 
 <script>
-    window.document.title = "Perfil Empresa"
+window.document.title = "Perfil Empresas";
+
+if(screen.width < 1024){
+
+  //console.log("celular");
+
+  $(".graficoLineasEmpresa").append(
+    
+    '<div class="chart">'+
+      '<canvas id="line-chartEmpresa" width="300" height="300">></canvas>'+
+    '</div>');
+
+}else {
+
+  //console.log("pc");
+
+  $(".graficoLineasEmpresa").append(
+    
+    '<div class="chart">'+
+      '<canvas id="line-chartEmpresa" width="800" height="227"></canvas>'+
+    '</div>');
+
+}
+
+
+window.chartColors = {
+  red: 'rgb(255, 99, 132)',
+  orange: 'rgb(255, 159, 64)',
+  yellow: 'rgb(255, 205, 86)',
+  green: 'rgb(75, 192, 192)',
+  blue: 'rgb(54, 162, 235)',
+  purple: 'rgb(153, 102, 255)',
+  grey: 'rgb(231,233,237)'
+};
+
+var line1 = [<?php
+
+            $conteoA = count($arrayMvp);
+            
+            foreach($arrayMvp as $numeroA => $key){
+
+              if($numeroA != $conteoA-1){
+
+                echo "$key,";
+
+              }else{
+
+                echo "$key";
+
+              }
+
+            }
+
+        ?>
+];
+
+var line2 = [<?php
+
+            $conteoB = count($arrayNormal);
+
+            foreach($arrayNormal as $numeroB => $key){
+
+              if($numeroB != $conteoB-1){
+
+                echo "$key,";
+
+              }else{
+
+                echo "$key";
+
+              }
+
+            }
+
+            ?>
+];
+
+var dias = [<?php
+
+            $conteoC = count($arrayDias);
+
+            foreach($arrayDias as $numeroC => $key){
+
+              if($numeroC != $conteoC-1){
+
+                echo "$key,";
+
+              }else{
+
+                echo "$key";
+
+              }
+
+            }
+
+            ?>
+];
+var configE = {
+  type: 'line',
+  data: {
+    labels: dias,
+    datasets: [{
+      label: "MVP <?php echo number_format($efectividadMVP,2); ?> %",
+      backgroundColor: window.chartColors.purple,
+      borderColor: window.chartColors.purple,
+      data: line1,
+      fill: false
+    }, {
+      label: "Recomendada <?php echo number_format($efectividadNormal,2); ?> %",
+      fill: false,
+      backgroundColor: window.chartColors.orange,
+      borderColor: window.chartColors.orange,
+      data: line2,
+      fill: false
+    }]
+  },
+  options: {
+    responsive: true,
+    title:{
+      display:true,
+      text:'% de efectividad de Mayo'
+    },
+    tooltips: {
+      mode: 'label',
+      intersect: false,
+      callbacks: {
+                    label: function(tooltipItems, data) { 
+                        return tooltipItems.yLabel + ' %';
+                    }
+                }
+    },
+   hover: {
+      mode: 'label',
+      intersect: true
+    },
+    scales: { 
+      xAxes: [{
+        display: true,
+        scaleLabel: {
+          display: true,
+          labelString: 'Días'
+        }
+      }],
+      yAxes: [{
+        display: true,
+        scaleLabel: {
+          display: true,
+        },
+        ticks: {
+                beginAtZero: true
+        },
+      }]
+    }
+  }
+};
+
+var ctxE = document.getElementById("line-chartEmpresa").getContext("2d");
+var myLineE = new Chart(ctxE, configE);
+
 </script>

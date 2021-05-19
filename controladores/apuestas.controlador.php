@@ -72,6 +72,17 @@ class ControladorApuestas{
     }
 
     /* 
+    *Listar apuestas por empresa
+    */
+    static public function ctrListarApuestasEmpresaPerfil($empresa){
+
+        $respuesta = ModeloApuestas::mdlListarApuestasEmpresaPerfil($empresa);
+
+		return $respuesta;
+
+    }    
+
+    /* 
     *Listar apuestas por empresa usuario
     */
     static public function ctrListarApuestasEmpresaUsuario($empresa,$usuario){

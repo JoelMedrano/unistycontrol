@@ -63,7 +63,7 @@
 
 			<li>
 
-				<a href="perfil-general">
+				<a href="index.php?ruta=perfil-general&empresa=2">
 
 					<i class="fa fa-male text-orange"></i>
 					<span>Perfil General</span>

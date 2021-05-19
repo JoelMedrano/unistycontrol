@@ -208,7 +208,18 @@ class ControladorEscritorio{
         
         return $respuesta;
 
-    }    
+    } 
+    
+    /* 
+    *PORCENTAJES
+    */
+    static public function ctrPorcentajes($empresa){
+
+        $respuesta = ModeloEscritorio::ctrPorcentajes($empresa);
+        
+        return $respuesta;
+
+    }      
 
 
 }

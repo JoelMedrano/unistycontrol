@@ -1,15 +1,19 @@
 <div class="content-wrapper">
 
+    <section class="content-header">
+        <ol class="breadcrumb">
+            <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
+            <li class="active">Perfil</li>
+        </ol>
+    </section>
+
     <section class="content">
 
-      <div class="row">
+        <div class="row">
 
-      <?php
+            <?php
 
-            //$_SESSION["empresa"]="2";
-            //var_dump($_SESSION["empresa"]);
-          
-            $empresas = ControladorEscritorio::ctrEmpresasPerfilUnido($_SESSION["empresa"]);
+            $empresas = ControladorEscritorio::ctrEmpresasPerfil();
             //var_dump($empresas);
 
             foreach($empresas as $key => $value){
@@ -60,7 +64,7 @@
                       /* 
                       *NORMALES 
                       */
-                     
+                      
                       $totalesNormal = ControladorEscritorio::ctrNormalTotales($value["id_empresa"], $value2["id_tipo_membresia"]);
                       //var_dump($totalesNormal);
   
@@ -97,45 +101,8 @@
                       }
                       
                       $cuotaNormal = ControladorEscritorio::ctrNormalCuota($value["id_empresa"], $value2["id_tipo_membresia"]);
-                      //var_dump($cuotaNormal);              
-                      
-                      /* 
-                      *PORCENTAJES
-                      */                    
-                      $porcentajes = ControladorEscritorio::ctrPorcentajes($_SESSION["empresa"]);
-                      //var_dump($porcentajes);
-
-                      $arrayMvp = array();
-
-                      foreach ($porcentajes as $key => $value) {
+                      //var_dump($cuotaNormal);                      
                     
-                        $mvp = $value["efectividad_dia_mvp"];
-                    
-                        array_push($arrayMvp, $mvp);
-
-                      }
-
-                      $arrayNormal = array();
-
-                      foreach ($porcentajes as $key => $value) {
-                    
-                        $normal = $value["efectividad_dia_normal"];
-                    
-                        array_push($arrayNormal, $normal);
-
-                      }
-
-                      $arrayDias = array();
-
-                      foreach ($porcentajes as $key => $value) {
-                    
-                        $normal = $value["dia"];
-                    
-                        array_push($arrayDias, $normal);
-
-                      }                      
-                      
-
                     echo'<div class="col-md-3">
 
                     <div class="box box-primary">
@@ -161,13 +128,13 @@
     
                             <ul class="list-group list-group-unbordered" style="margin-bottom:0">
                                 <li class="list-group-item">
-                                    <b>Efectividad MVP</b> <span class="pull-right badge bg-purple"><b>'.number_format($efectividadMVP,2).' %</b></span>
+                                    <b>Efectividad MVP</b> <span class="pull-right" style="background: #efb810"><b>'.number_format($efectividadMVP,2).' %</b></span>
                                 </li>
                                 <li class="list-group-item">
                                     <b>Cuota Promedio</b> <a class="pull-right"><b>',number_format($cuotaMVP["promedio_cuota"],2),'</b></a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Efectividad Recomendadas</b> <span class="pull-right badge bg-orange"><b>'.number_format($efectividadNormal,2).' %</b></span>
+                                    <b>Efectividad Recomendadas</b> <span class="pull-right" style="background:#000000; color:#ffffff"><b>'.number_format($efectividadNormal,2).' %</b></span>
                                 </li>
                                 <li class="list-group-item">
                                     <b>Cuota Promedio</b> <a class="pull-right"><b>',number_format($cuotaNormal["promedio_cuota_normal"],2),'</b></a>
@@ -184,7 +151,7 @@
                         </div>
     
                         <div class="box-body">
-                            <strong><i class="fa fa-line-chart margin-r-5 bg-purple"></i>Estadísticas MVP <span class="pull-right badge bg-purple">'.$totalesMVP["total_mvp"].'</span></strong>
+                            <strong><i class="fa fa-line-chart margin-r-5"></i>Estadísticas MVP <span class="pull-right badge bg-black">'.$totalesMVP["total_mvp"].'</span></strong>
     
                             <ul class="nav nav-stacked" style="margin-bottom:0">
                                 <li><a href="#">Ganadas <span class="pull-right badge bg-green">'.$arribaMVP.'</span></a></li>
@@ -193,7 +160,7 @@
                                 <li><a href="#">Pendientes <span class="pull-right badge bg-aqua">'.$pendientesMVP["total_pendientes"].'</span></a></li>
                             </ul>
     
-                            <strong><i class="fa fa-line-chart margin-r-5 bg-orange"></i>Estadísticas Recomendadas <span class="pull-right badge bg-orange">'.$totalesNormal["total_Normal"].'</span></strong>
+                            <strong><i class="fa fa-line-chart margin-r-5"></i>Estadísticas Recomendadas <span class="pull-right badge bg-black">'.$totalesNormal["total_Normal"].'</span></strong>
     
                             <ul class="nav nav-stacked" style="margin-bottom:0">
                                 <li><a href="#">Ganadas <span class="pull-right badge bg-green">'.$arribaNormal.'</span></a></li>
@@ -219,203 +186,13 @@
 
             }
 
-      ?>
+            ?>
 
-      <div class="col-md-9 box-primary">
-
-        <div class="box box-body box-primary graficoLineas">
-
+            <!-- FINAL -->
         </div>
-
-        <div class="box box-primary">
-          
-          <table class="table table-bordered table-striped dt-responsive table-condensed tablaApuestasPerfil">
-
-              <thead>
-
-                  <tr>
-                      <th style="width:60px">Fecha</th>
-                      <th style="width:400px">Partido</th>    
-                      <th style="width:400px">Pronóstico</th> 
-                      <th style="width:100px">Estado</th> 
-                      <th style="width:100px">Cuota</th>                                       
-
-                  </tr>
-
-              </thead>
-
-              <tbody>
-
-              </tbody>
-
-          </table>
-        </div>
-      
-      </div>
-
-        <!-- FINAL -->
-      </div>
-  </section>
+    </section>
 </div>
 
 <script>
-window.document.title = "Perfil Empresa";
-
-if(screen.width < 1024){
-
-  //console.log("celular");
-
-  $(".graficoLineas").append(
-    
-    '<div class="chart">'+
-      '<canvas id="line-chartA" width="300" height="300">></canvas>'+
-    '</div>');
-
-}else {
-
-  //console.log("pc");
-
-  $(".graficoLineas").append(
-    
-    '<div class="chart">'+
-      '<canvas id="line-chartA" width="800" height="200"></canvas>'+
-    '</div>');
-
-}
-
-
-window.chartColors = {
-  red: 'rgb(255, 99, 132)',
-  orange: 'rgb(255, 159, 64)',
-  yellow: 'rgb(255, 205, 86)',
-  green: 'rgb(75, 192, 192)',
-  blue: 'rgb(54, 162, 235)',
-  purple: 'rgb(153, 102, 255)',
-  grey: 'rgb(231,233,237)'
-};
-
-var line1 = [<?php
-
-            $conteoA = count($arrayMvp);
-            
-            foreach($arrayMvp as $numeroA => $key){
-
-              if($numeroA != $conteoA-1){
-
-                echo "$key,";
-
-              }else{
-
-                echo "$key";
-
-              }
-
-            }
-
-        ?>
-];
-
-var line2 = [<?php
-
-            $conteoB = count($arrayNormal);
-
-            foreach($arrayNormal as $numeroB => $key){
-
-              if($numeroB != $conteoB-1){
-
-                echo "$key,";
-
-              }else{
-
-                echo "$key";
-
-              }
-
-            }
-
-            ?>
-];
-
-var dias = [<?php
-
-            $conteoC = count($arrayDias);
-
-            foreach($arrayDias as $numeroC => $key){
-
-              if($numeroC != $conteoC-1){
-
-                echo "$key,";
-
-              }else{
-
-                echo "$key";
-
-              }
-
-            }
-
-            ?>
-];
-var config = {
-  type: 'line',
-  data: {
-    labels: dias,
-    datasets: [{
-      label: "MVP <?php echo number_format($efectividadMVP,2); ?> %",
-      backgroundColor: window.chartColors.purple,
-      borderColor: window.chartColors.purple,
-      data: line1,
-      fill: false
-    }, {
-      label: "Recomendada <?php echo number_format($efectividadNormal,2); ?> %",
-      fill: false,
-      backgroundColor: window.chartColors.orange,
-      borderColor: window.chartColors.orange,
-      data: line2,
-      fill: false
-    }]
-  },
-  options: {
-    responsive: true,
-    title:{
-      display:true,
-      text:'% de efectividad de Mayo'
-    },
-    tooltips: {
-      mode: 'label',
-      intersect: false,
-      callbacks: {
-                    label: function(tooltipItems, data) { 
-                        return tooltipItems.yLabel + ' %';
-                    }
-                }
-    },
-   hover: {
-      mode: 'label',
-      intersect: true
-    },
-    scales: { 
-      xAxes: [{
-        display: true,
-        scaleLabel: {
-          display: true,
-          labelString: 'Días'
-        }
-      }],
-      yAxes: [{
-        display: true,
-        scaleLabel: {
-          display: true,
-        },
-        ticks: {
-                beginAtZero: true
-        },
-      }]
-    }
-  }
-};
-
-var ctx = document.getElementById("line-chartA").getContext("2d");
-var myLine = new Chart(ctx, config);
-
+    window.document.title = "Perfil Empresa"
 </script>

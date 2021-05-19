@@ -113,6 +113,12 @@ else{
   <script src="vistas/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
   <script src="vistas/plugins/input-mask/jquery.inputmask.extensions.js"></script>
 
+  <!-- ChartJS http://www.chartjs.org/-->
+  <script src="vistas/bower_components/chart.js/Chart.js"></script>
+  <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment-with-locales.min.js"></script>
+  <script src ="http://cdn.datatables.net/plug-ins/1.10.16/api/sum().js"></script>
+  <script src ="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.bundle.min.js"></script>
+
   <!-- Toastr -->
   <script src="vistas/bower_components/toastr/toastr.min.js"></script>
 
@@ -123,6 +129,18 @@ else{
       background-color:#1e282c;
       color:white;
     }
+
+    .table > tbody > tr > th,
+    .table > tfoot > tr > th,
+    .table > thead > tr > td,
+    .table > tbody > tr > td,
+    .table > tfoot > tr > td {
+      padding: 2px !important;
+    }    
+    .table > thead > tr > th{
+      padding: 5px !important;
+    }
+
   </style>
 </head>
 
@@ -241,6 +259,7 @@ CUERPO DOCUMENTO
 <script src="vistas/js/membresias.js"></script>
 <script src="vistas/js/miembros.js"></script>
 <script src="vistas/js/apuestas.js"></script>
+<script src="vistas/js/perfiles.js"></script>
 
 </body>
 </html>

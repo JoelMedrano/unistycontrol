@@ -5,19 +5,16 @@ session_start();
 require_once "../../controladores/apuestas.controlador.php";
 require_once "../../modelos/apuestas.modelo.php";
 
-class TablaApuestasPlayer{
+class TablaApuestas{
 
     /*=============================================
     MOSTRAR LA TABLA DE SOCIALES
     =============================================*/ 
 
-    public function mostrarTablaApuestasPlayer(){
+    public function mostrarTablaApuestasPerfil(){
 
-        $empresa = $_GET["empresa"];
-        $usuario = $_GET["usuario"];
-        $fechaInicial= $_GET["fechaInicial2"];
-        $fechaFinal= $_GET["fechaFinal2"];
-        $apuestas = ControladorApuestas::ctrRangoFechasApuestasPlayer($fechaInicial,$fechaFinal,$empresa,$usuario);
+        $empresa = $_SESSION["empresa"];
+        $apuestas = ControladorApuestas::ctrListarApuestasEmpresaPerfil($empresa);
 
         if(count($apuestas)>0){
 
@@ -61,7 +58,7 @@ class TablaApuestasPlayer{
 
             }else if($apuestas[$i]["estado"] == 1){
 
-                $ganada = "<div class='btn-group text-center'><button class='btn btn-success btn-xs' style='margin-right: 20px' idApuesta='".$apuestas[$i]["id_apuestas"]."' estadoApuesta='1'>G</button></div>";
+                $ganada = "<div class='btn-group text-center'><button class='btn btn-success btn-xs ' style='margin-right: 20px' idApuesta='".$apuestas[$i]["id_apuestas"]."' estadoApuesta='1'>G</button></div>";
 
                 $anulada = "<div class='btn-group text-center'><button class='btn btn-default btn-xs ".'A'.$apuestas[$i]["id_apuestas"]."' style='margin-right: 20px' id=".'A'.$apuestas[$i]["id_apuestas"]." name=".'A'.$apuestas[$i]["id_apuestas"]." idApuesta='".$apuestas[$i]["id_apuestas"]."' estadoApuesta='2' disabled>A</button></div>";
 
@@ -75,7 +72,7 @@ class TablaApuestasPlayer{
                 $ganada = "<div class='btn-group text-center'><button class='btn btn-default btn-xs btnGanada ".'G'.$apuestas[$i]["id_apuestas"]."' style='margin-right: 20px' id=".'G'.$apuestas[$i]["id_apuestas"]." name=".'G'.$apuestas[$i]["id_apuestas"]." idApuesta='".$apuestas[$i]["id_apuestas"]."' estadoApuesta='1' disabled>G</button></div>";
 
 
-                $perdida = "<div class='btn-group text-center'><button class='btn btn-default btn-xs".'P'.$apuestas[$i]["id_apuestas"]."' id=".'P'.$apuestas[$i]["id_apuestas"]." name=".'P'.$apuestas[$i]["id_apuestas"]." idApuesta='".$apuestas[$i]["id_apuestas"]."' estadoApuesta='3' disabled>P</button></div>";
+                $perdida = "<div class='btn-group text-center'><button class='btn btn-default btn-xs ".'P'.$apuestas[$i]["id_apuestas"]."' id=".'P'.$apuestas[$i]["id_apuestas"]." name=".'P'.$apuestas[$i]["id_apuestas"]." idApuesta='".$apuestas[$i]["id_apuestas"]."' estadoApuesta='3' disabled>P</button></div>";
 
             }else if($apuestas[$i]["estado"] == 3){
 
@@ -110,27 +107,22 @@ class TablaApuestasPlayer{
             */
             if($apuestas[$i]["estado"] == 0){
 
-                $botones =  "<div class='btn-group'><button class='btn btn-warning btn-xs btnEditarApuesta ".'ED'.$apuestas[$i]["id_apuestas"]."' id=".'ED'.$apuestas[$i]["id_apuestas"]." idApuesta='".$apuestas[$i]["id_apuestas"]."' empresa='".$apuestas[$i]["id_empresa"]."' data-toggle='modal' data-target='#modalEditarApuesta'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btn-xs btnEliminarApuesta ".'EL'.$apuestas[$i]["id_apuestas"]."' id=".'EL'.$apuestas[$i]["id_apuestas"]." idApuesta='".$apuestas[$i]["id_apuestas"]."'><i class='fa fa-times'></i></button></div>";
+                $botones =  "<div class='btn-group'><button class='btn btn-warning btn-xs btnEditarApuesta ".'ED'.$apuestas[$i]["id_apuestas"]."' id=".'ED'.$apuestas[$i]["id_apuestas"]." idApuesta='".$apuestas[$i]["id_apuestas"]."' empresa='".$apuestas[$i]["id_empresa"]."' data-toggle='modal' data-target='#modalEditarApuesta'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarApuesta ".'EL'.$apuestas[$i]["id_apuestas"]."' id=".'EL'.$apuestas[$i]["id_apuestas"]." idApuesta='".$apuestas[$i]["id_apuestas"]."'><i class='fa fa-times'></i></button></div>";
 
             }else{
 
-                $botones =  "<div class='btn-group'><button class='btn btn-warning btn-xs btnEditarApuesta' idApuesta='".$apuestas[$i]["id_apuestas"]."' empresa='".$apuestas[$i]["id_empresa"]."' data-toggle='modal' data-target='#modalEditarApuesta' disabled><i class='fa fa-pencil'></i></button><button class='btn btn-danger btn-xs btnEliminarApuesta' idApuesta='".$apuestas[$i]["id_apuestas"]."' disabled><i class='fa fa-times'></i></button></div>";
+                $botones =  "<div class='btn-group'><button class='btn btn-warning btn-xs btnEditarApuesta' idApuesta='".$apuestas[$i]["id_apuestas"]."' empresa='".$apuestas[$i]["id_empresa"]."' data-toggle='modal' data-target='#modalEditarApuesta' disabled><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnEliminarApuesta' idApuesta='".$apuestas[$i]["id_apuestas"]."' disabled><i class='fa fa-times'></i></button></div>";
 
             }
             
             $datosJson .= '[
-                "'.$apuestas[$i]["id_apuestas"].'",
-                "<b>'.$apuestas[$i]["partido"].'</b>",
-                "'.$estado.'",
-                "'.$apuestas[$i]["cuota"].'",
-                "'.$monto.'",
-                "'.$apuestas[$i]["pronostico"].'",
-                "<center>'.$tipo_apuesta.'</center>",
+
                 "'.$apuestas[$i]["fecha"].'",
-                "'.$ganada.$anulada.$perdida.'",
-                "'.$apuestas[$i]["nombre_empresa"].'",
-                "'.$apuestas[$i]["nombre_membresia"].'",
-                "'.$botones.'"
+                "<b>'.$apuestas[$i]["partido"].'</b>",
+                "'.$apuestas[$i]["pronostico"].'",
+                "<center>'.$estado.'</center>",
+                "<center><b>'.$apuestas[$i]["cuota"].'</b></center>"
+                
             ],';        
         }
 
@@ -156,5 +148,5 @@ class TablaApuestasPlayer{
 /*=============================================
 ACTIVAR TABLA DE APUESTAS
 =============================================*/ 
-$activarApuestasPlayer = new TablaApuestasPlayer();
-$activarApuestasPlayer -> mostrarTablaApuestasPlayer();
+$activarApuestas = new TablaApuestas();
+$activarApuestas -> mostrarTablaApuestasPerfil();

@@ -536,5 +536,109 @@ class ModeloEscritorio{
 
     }    
     
+    /* 
+    *PORCENTAJES
+    */
+    static public function ctrPorcentajes($empresa){
+
+		$stmt = Conexion::conectar()->prepare("SELECT 
+        DAY(a.fecha) AS dia,
+        a.id_empresa,
+        (SELECT 
+          COUNT(*) 
+        FROM
+          apuestas a1 
+        WHERE a1.id_empresa = $empresa 
+          AND a1.tipo_apuesta = 2 
+          AND a1.estado = 1 
+          AND DAY(a1.fecha) <= DAY(a.fecha)) AS ganadas_mvp,
+        (SELECT 
+          COUNT(*) 
+        FROM
+          apuestas a1 
+        WHERE a1.id_empresa = $empresa 
+          AND a1.tipo_apuesta = 2 
+          AND a1.estado NOT IN ('0','2') 
+          AND DAY(a1.fecha) <= DAY(a.fecha)) AS total_mvp,
+        ROUND(
+          (
+            (
+              (SELECT 
+                COUNT(*) 
+              FROM
+                apuestas a1 
+              WHERE a1.id_empresa = $empresa 
+                AND a1.tipo_apuesta = 2 
+                AND a1.estado = 1 
+                AND DAY(a1.fecha) <= DAY(a.fecha))
+            ) / (
+              (SELECT 
+                COUNT(*) 
+              FROM
+                apuestas a1 
+              WHERE a1.id_empresa = $empresa 
+                AND a1.tipo_apuesta = 2 
+                AND a1.estado NOT IN ('0','2') 
+                AND DAY(a1.fecha) <= DAY(a.fecha))
+            )
+          ) * 100,
+          2
+        ) AS efectividad_dia_mvp,
+        (SELECT 
+          COUNT(*) 
+        FROM
+          apuestas a1 
+        WHERE a1.id_empresa = $empresa 
+          AND a1.tipo_apuesta = 1 
+          AND a1.estado = 1 
+          AND DAY(a1.fecha) <= DAY(a.fecha)) AS ganadas_normal,
+        (SELECT 
+          COUNT(*) 
+        FROM
+          apuestas a1 
+        WHERE a1.id_empresa = $empresa
+          AND a1.tipo_apuesta = 1 
+          AND a1.estado NOT IN ('0','2') 
+          AND DAY(a1.fecha) <= DAY(a.fecha)) AS total_normal,
+        ROUND(
+          (
+            (
+              (SELECT 
+                COUNT(*) 
+              FROM
+                apuestas a1 
+              WHERE a1.id_empresa = $empresa 
+                AND a1.tipo_apuesta = 1 
+                AND a1.estado = 1 
+                AND DAY(a1.fecha) <= DAY(a.fecha))
+            ) / (
+              (SELECT 
+                COUNT(*) 
+              FROM
+                apuestas a1 
+              WHERE a1.id_empresa = $empresa 
+                AND a1.tipo_apuesta = 1 
+                AND a1.estado NOT IN ('0','2') 
+                AND DAY(a1.fecha) <= DAY(a.fecha))
+            )
+          ) * 100,
+          2
+        ) AS efectividad_dia_normal 
+      FROM
+        apuestas a 
+      WHERE a.id_empresa = $empresa
+        AND a.tipo_apuesta = 1 
+      GROUP BY DAY(a.fecha),
+        a.id_empresa");
+
+        $stmt -> execute();
+
+        return $stmt -> fetchAll();
+
+		$stmt -> close();
+
+		$stmt = null;
+
+    }    
 
 }
